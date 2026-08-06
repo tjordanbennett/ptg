@@ -412,6 +412,57 @@
   .hov-card--flat:hover {
     box-shadow: none;
   }
+  /* ── Hero load reveal ──────────────────────────────────────────────
+     Driven by CSS, not by motion's animate prop, so the hidden state can
+     exist BEFORE first paint (see the inline gate script in app/layout.tsx).
+
+     Rules of the road:
+       · Base state (no `.js`) is the CORRECT VISIBLE STATE. JS off, chunk
+         failure or the 2.5s safety timeout all land on readable content.
+       · `.js` is only present when the pre-paint script ran, so the hidden
+         state never appears after the page has already painted visible.
+       · `.is-in` is added on mount and transitions in.
+     Stagger comes from --rv-delay set inline per element.                   */
+  .hero-rv {
+    opacity: 1;
+    transform: none;
+  }
+  .js .hero-rv {
+    opacity: 0;
+    transform: translateY(var(--rv-y, 24px));
+  }
+  .js .hero-rv.is-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) var(--rv-delay, 0s),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) var(--rv-delay, 0s);
+  }
+  /* The hero photo settles from a slight over-scale rather than rising. */
+  .js .hero-rv--media {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+  .js .hero-rv--media.is-in {
+    opacity: 1;
+    transform: scale(1);
+    transition:
+      opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 12s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    /* Keep the fade, drop all movement. */
+    .js .hero-rv,
+    .js .hero-rv--media {
+      transform: none;
+    }
+    .js .hero-rv.is-in,
+    .js .hero-rv--media.is-in {
+      transform: none;
+      transition: opacity 0.3s linear;
+    }
+  }
+
   /* Visually hidden, still read by screen readers. Used to announce
      "(opens in a new tab)" on external authority-record links. */
   .sr-only {

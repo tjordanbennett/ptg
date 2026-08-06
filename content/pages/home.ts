@@ -19,7 +19,7 @@ export const home: HomePage = {
       "the team that wins your work is the team that does it.",
     ctas: [
       { label: "Schedule a consultation", href: "/contact" },
-      { label: "How to buy from PTG", href: "/procurement-contracts" },
+      { label: "Procurement & contracts", href: "/procurement-contracts" },
     ],
     image: {
       src: "/images/hero-houston.jpg",
@@ -32,7 +32,7 @@ export const home: HomePage = {
   twoPaths: [
     {
       eyebrow: "I'm evaluating partners",
-      heading: "Buy without running an RFP",
+      heading: "No RFP required",
       body:
         "Most public agencies and universities already participate in a " +
         "cooperative contract that covers PTG. If yours does, the sourcing work " +
@@ -97,8 +97,8 @@ export const home: HomePage = {
   },
 
   contracts: {
-    eyebrow: "How to buy",
-    heading: "You may already be able to buy from us.",
+    eyebrow: "Procurement & contracts",
+    heading: "The competitive bid may already be done.",
     body: [
       "PTG holds six cooperative and government contract vehicles. If your " +
         "organization participates in one, the competitive bid is already done — " +
@@ -266,7 +266,7 @@ export const home: HomePage = {
       "years past go-live — and we'll tell you honestly whether we're the right firm for it.",
     ctas: [
       { label: "Connect with us", href: "/contact" },
-      { label: "Or start with how to buy", href: "/procurement-contracts" },
+      { label: "Or start with procurement", href: "/procurement-contracts" },
     ],
   },
 };

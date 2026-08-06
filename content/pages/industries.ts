@@ -13,7 +13,7 @@ const crumbs = (label: string) => [
   { label },
 ];
 
-const howToBuy = { label: "See how to buy", href: "/procurement-contracts" };
+const howToBuy = { label: "See procurement options", href: "/procurement-contracts" };
 
 export const industries: Record<string, StandardPage> = {
   government: {

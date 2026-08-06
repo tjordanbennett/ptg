@@ -9,10 +9,10 @@ import { FaqAccordion } from "@/components/FaqAccordion";
 import { EyebrowBar } from "@/components/EyebrowBar";
 
 export const metadata: Metadata = {
-  title: "How to Buy from PTG",
+  title: "Procurement & Contracts",
   description:
     "PTG holds six cooperative and government contract vehicles. Find the one " +
-    "that lets your organization buy Workday licensing and implementation without an RFP.",
+    "that lets your organization contract for Workday licensing and implementation without an RFP.",
 };
 
 /** Matches public/_design/howtobuy.html — the template for all internal pages. */
@@ -26,7 +26,7 @@ export default async function HowToBuyPage() {
 
   return (
     <>
-      <SiteHeader site={site} currentLabel="How to Buy" />
+      <SiteHeader site={site} currentLabel="Procurement & Contracts" />
 
       <main id="main">
         {/* ══ HERO ══ */}
@@ -38,7 +38,7 @@ export default async function HowToBuyPage() {
               <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
                 <li><Link href="/" className="hov-footerlink" style={{ color: "#80CEFF" }}>Home</Link></li>
                 <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
-                <li style={{ color: "#C9D8E8" }}>How to Buy</li>
+                <li style={{ color: "#C9D8E8" }}>Procurement &amp; Contracts</li>
               </ol>
             </nav>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>

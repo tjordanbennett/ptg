@@ -101,7 +101,7 @@ export const partners: Record<string, StandardPage> = {
         heading: "Ready to get more from Workday?",
         ctas: [
           { label: "Schedule a consultation", href: "/contact" },
-          { label: "See how to buy", href: "/procurement-contracts" },
+          { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },
     ],

@@ -25,7 +25,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
 
   return (
     <>
-      <SiteHeader site={site} currentLabel="How to Buy" />
+      <SiteHeader site={site} currentLabel="Procurement & Contracts" />
       <main id="main">
         {/* ══ HERO ══ */}
         <section aria-labelledby="hero-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
@@ -36,7 +36,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
               <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
                 <li><Link href="/" className="hov-footerlink" style={{ color: "#80CEFF" }}>Home</Link></li>
                 <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
-                <li><Link href="/procurement-contracts" className="hov-footerlink" style={{ color: "#80CEFF" }}>How to Buy</Link></li>
+                <li><Link href="/procurement-contracts" className="hov-footerlink" style={{ color: "#80CEFF" }}>Procurement &amp; Contracts</Link></li>
                 <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
                 <li style={{ color: "#C9D8E8" }}>{v.name}</li>
               </ol>
@@ -114,7 +114,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
           <div style={WRAP}>
             <div style={{ display: "grid", gridTemplateColumns: v.covered ? "repeat(auto-fit, minmax(280px,1fr))" : "1fr", gap: "clamp(28px,4vw,56px)" }}>
               <Reveal as="div">
-                <Label>Who can buy</Label>
+                <Label>Who is eligible</Label>
                 <ul style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {v.whoCanBuy.map((w) => (
                     <li key={w} style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: 16, lineHeight: 1.5, color: "#334155" }}>
@@ -218,7 +218,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         </section>
 
         <ClosingCTA
-          eyebrow="How to buy"
+          eyebrow="Procurement & contracts"
           heading="Not sure this is the right vehicle?"
           body="Tell us your organization type and state and we'll confirm which contract applies — or tell you if none does."
           ctas={[

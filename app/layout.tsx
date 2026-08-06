@@ -30,6 +30,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={montserrat.variable}>
+      <head>
+        {/*
+          Pre-paint JS gate. Runs BEFORE the browser paints the body, so the
+          hero's hidden state can be applied by CSS from the very first frame
+          instead of after hydration — which is what caused the page to flash
+          fully visible, vanish, then fade in.
+
+          Why a class rather than motion's `initial`: Framer serialises `initial`
+          into the server HTML, so a hidden initial state would leave the hero
+          invisible with JS disabled. Gating on `.js` keeps the no-JS render
+          fully visible while still avoiding the flash for everyone else.
+
+          SAFETY: if hydration never happens (JS error, chunk fails to load),
+          nothing would ever reveal the content. So the gate removes itself
+          after 2.5s unless React has marked the document hydrated.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var d=document.documentElement;d.classList.add('js');" +
+              "setTimeout(function(){if(!d.hasAttribute('data-hydrated'))" +
+              "d.classList.remove('js');},2500);})();",
+          }}
+        />
+      </head>
       <body>
         <a href="#main" className="skip-link">
           Skip to content

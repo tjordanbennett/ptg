@@ -52,12 +52,12 @@ export const site: SiteSettings = {
       ],
     },
     {
-      label: "How to Buy",
+      label: "Procurement & Contracts",
       groups: [
         {
           title: "Start here",
           items: [
-            { label: "How to Buy from PTG", href: "/procurement-contracts" },
+            { label: "Procurement & Contracts", href: "/procurement-contracts" },
             { label: "Contract vehicle finder", href: "/procurement-contracts#finder" },
           ],
         },
@@ -136,7 +136,7 @@ export const site: SiteSettings = {
         ],
       },
       {
-        title: "How to buy",
+        title: "Procurement & contracts",
         items: [
           { label: "Sourcewell 060624-PRT", href: "/procurement-contracts/sourcewell" },
           { label: "OMNIA Partners 01-140", href: "/procurement-contracts/omnia-partners" },

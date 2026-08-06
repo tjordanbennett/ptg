@@ -29,7 +29,7 @@ function resourcePage(slug: string, title: string, h1: string, sub: string): Sta
         body: "Tell us what you're trying to learn and we'll point you to the most useful resource — or the right person.",
         ctas: [
           { label: "Connect with us", href: "/contact" },
-          { label: "See how to buy", href: "/procurement-contracts" },
+          { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },
     ],

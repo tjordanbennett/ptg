@@ -78,7 +78,7 @@ export default async function ContactPage() {
                     href="/procurement-contracts"
                     image={{ src: "/images/evaluating-partner.png", alt: "Consultants reviewing plans with a client in a glass-walled meeting room overlooking a university campus", width: 1254, height: 1254 }}
                     kicker="Looking for a contract vehicle?"
-                    title="How to Buy from PTG"
+                    title="Procurement & Contracts"
                     ratio="16 / 10"
                   />
                   <PhotoLinkCard

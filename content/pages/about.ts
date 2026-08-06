@@ -95,16 +95,20 @@ export const leadership: StandardPage = {
   sections: [
     {
       kind: "people",
-      note: "Full bios and headshots are provided by PTG.",
+      // ⚠️ EVERY NAME HERE MUST BE VERIFIABLE. Reduced 2026-08-06 from eight to
+      // three. Removed: "Massey" (surname only, taken from a transcript in which
+      // Krisp demonstrably garbled other terms; CEO title was inferred, never
+      // stated) and "Mike" (first name only, shipping the literal string "Role to
+      // be confirmed"). Also removed Coopman, Garza and Chovanec — all real PTG
+      // people, but sourced from a business card, an email signature and an event
+      // graphic respectively. They are account executives and an industry
+      // advisor, not leadership; listing them misstates PTG's org to its own CEO.
+      // Do NOT re-add anyone without a source from PTG.
+      note: "This is a partial list. Full leadership profiles, bios and headshots come from PTG.",
       people: [
-        { name: "Massey", title: "Chief Executive Officer" },
         { name: "Vanessa Zuna", title: "Chief Operating Officer" },
         { name: "Stephen Camp", title: "Chief Technology Officer" },
         { name: "Kim Christenson", title: "VP, Marketing" },
-        { name: "Mike", title: "Role to be confirmed", unverifiedRole: true },
-        { name: 'Brian "Coop" Coopman', title: "Government Account Executive, East" },
-        { name: "Jeannette Garza", title: "Government Account Executive, West" },
-        { name: "Joshua Chovanec", title: "Higher Education Industry Advisor" },
       ],
     },
     {
@@ -241,7 +245,7 @@ export const customers: StandardPage = {
       body: "Tell us your sector and we'll talk through work like yours directly — including references.",
       ctas: [
         { label: "Connect with us", href: "/contact" },
-        { label: "See how to buy", href: "/procurement-contracts" },
+        { label: "See procurement options", href: "/procurement-contracts" },
       ],
     },
   ],

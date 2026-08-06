@@ -35,56 +35,140 @@ export const services: Record<string, StandardPage> = {
     },
     sections: [
       {
+        // Full service lists, verbatim from the client deck (XLS B42-B104,
+        // B186-B196). These were previously compressed to three bullets a card,
+        // which dropped ~20 named services PTG actually sells.
         kind: "cards",
-        eyebrow: "Capabilities",
+        eyebrow: "Advisory services",
         heading: "What our advisors do.",
         columns: 3,
         cards: [
           {
-            title: "Readiness & Planning",
-            hook: "Understand where you actually stand before implementation begins.",
+            title: "Workday Readiness & Planning",
+            hook: "Prepare your organization before implementation begins. We evaluate organizational, operational, technical and data readiness to identify opportunities, mitigate risk and establish a roadmap.",
             bullets: [
-              "Organizational and project readiness assessments",
-              "Current state analysis and future state planning",
-              "Governance planning and success criteria",
+              "Organizational Readiness Assessments",
+              "Project Readiness Reviews",
+              "Current State Analysis",
+              "Future State Planning",
+              "Executive Strategy Sessions",
+              "Success Criteria Definition",
+              "Governance Planning",
             ],
           },
           {
             title: "Alignment Workshops",
-            hook: "Get leadership to one answer before the project has to assume one.",
+            hook: "Create organizational alignment before major project decisions are made — executives, business stakeholders and project teams in one room.",
             bullets: [
-              "Executive vision and guiding principles",
-              "Business process and organizational design",
-              "Decision frameworks and implementation priorities",
+              "Business Process Alignment",
+              "Organizational Design",
+              "Decision Frameworks",
+              "Data Strategy",
+              "Executive Vision",
+              "Project Guiding Principles",
+              "Implementation Priorities",
             ],
           },
           {
             title: "Business Process Transformation",
-            hook: "Don't recreate old processes in a new system.",
+            hook: "Don't simply recreate old processes in a new system. We evaluate current workflows, identify inefficiencies and design streamlined, Workday-enabled processes.",
             bullets: [
-              "HR, Payroll, Finance and Procurement redesign",
-              "Recruiting, Talent and Planning workflows",
-              "Industry best-practice benchmarking",
-            ],
-          },
-          {
-            title: "Organizational Change Management",
-            hook: "Technology doesn't drive change. People do.",
-            bullets: [
-              "Leadership alignment and sponsor coaching",
-              "Communications strategy and employee engagement",
-              "Role-based training, job aids and adoption measurement",
+              "Human Resources",
+              "Payroll",
+              "Finance",
+              "Procurement",
+              "Talent",
+              "Planning",
             ],
           },
           {
             title: "Data & Organizational Readiness",
-            hook: "High-quality data drives high-quality outcomes.",
+            hook: "High-quality data drives high-quality outcomes. Before implementation begins we evaluate your data landscape, governance model and organizational maturity.",
             bullets: [
-              "Data quality assessment and cleanup planning",
-              "Organizational structure simplification",
-              "Reporting strategy and governance models",
+              "Improve data quality",
+              "Simplify organizational structures",
+              "Standardize business processes",
+              "Prepare for integrations",
+              "Define reporting strategy",
+              "Establish governance models",
             ],
           },
+        ],
+      },
+      {
+        kind: "pullQuote",
+        text: "Technology doesn't drive change. People do.",
+        body: [
+          "The most successful Workday deployments aren't defined by go-live. They're defined by adoption. Our change management practice prepares your workforce to embrace new ways of working through thoughtful planning, communication, leadership engagement and targeted learning.",
+        ],
+      },
+      {
+        // XLS B119-B173: the client details 23 change-management services across
+        // four groups. The page previously carried three of them.
+        kind: "cards",
+        eyebrow: "Organizational change management",
+        heading: "The work that decides whether people actually use it.",
+        columns: 2,
+        accent: "ember",
+        cards: [
+          {
+            title: "Leadership & Stakeholder Alignment",
+            bullets: [
+              "Executive engagement",
+              "Stakeholder analysis",
+              "Change governance",
+              "Sponsor coaching",
+              "Organizational risk mitigation",
+            ],
+          },
+          {
+            title: "Communications",
+            bullets: [
+              "Change communication strategy",
+              "Communication planning",
+              "Leadership messaging",
+              "Employee engagement campaigns",
+              "Executive presentations",
+            ],
+          },
+          {
+            title: "Training & Enablement",
+            bullets: [
+              "Role-based curriculum",
+              "Instructor-led training",
+              "Virtual learning",
+              "Job aids",
+              "Quick reference guides",
+              "Learning pathways",
+              "Administrator enablement",
+            ],
+          },
+          {
+            title: "Adoption & Readiness",
+            bullets: [
+              "Change readiness assessments",
+              "Adoption planning",
+              "Organizational impact analysis",
+              "User feedback programs",
+              "Success measurement",
+              "Post-go-live reinforcement",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "tags",
+        eyebrow: "Built around your organization",
+        heading: "No two organizations share the same challenges.",
+        intro:
+          "Whether you're a city government, a higher education institution, a healthcare provider or a nonprofit, we adapt our guidance to fit your environment — not the other way around. Our advisory approach is tailored to your:",
+        items: [
+          "Industry",
+          "Organizational maturity",
+          "Workforce size",
+          "Technology landscape",
+          "Strategic priorities",
+          "Business objectives",
         ],
       },
       {
@@ -108,9 +192,9 @@ export const services: Record<string, StandardPage> = {
         items: [
           { title: "Strategic before tactical", body: "Business outcomes, not just configuration." },
           { title: "Boutique attention", body: "Senior advisors work directly with your leadership team." },
-          { title: "Industry experience", body: "Public sector, higher education, healthcare and nonprofit realities." },
-          { title: "Grounded in delivery", body: "Recommendations from people who have implemented what they're advising." },
-          { title: "Long-term partnership", body: "We stay engaged well past go-live." },
+          { title: "Industry experience", body: "Our consultants understand the operational realities of public sector, higher education, healthcare, nonprofit and commercial organizations." },
+          { title: "Workday expertise", body: "Our advisory recommendations are grounded in real implementation experience and Workday best practices." },
+          { title: "Long-term partnership", body: "We remain engaged beyond deployment to help you optimize, expand and continuously improve your Workday investment." },
         ],
       },
       {
@@ -120,7 +204,7 @@ export const services: Record<string, StandardPage> = {
         items: [
           {
             q: "Do we need advisory if we've already selected Workday?",
-            a: "Often yes. Selection answers what you're buying. Advisory answers how your organization will actually run on it — governance, process ownership, data readiness and who decides what during configuration.",
+            a: "Often yes. Selection answers which platform you're on. Advisory answers how your organization will actually run on it — governance, process ownership, data readiness and who decides what during configuration.",
           },
           {
             q: "How long does an advisory engagement take?",
@@ -139,7 +223,7 @@ export const services: Record<string, StandardPage> = {
         body: "Every successful Workday transformation starts with the right strategy. Let's build yours before the clock starts.",
         ctas: [
           { label: "Schedule an advisory consultation", href: "/contact" },
-          { label: "See how to buy", href: "/procurement-contracts" },
+          { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },
     ],
@@ -238,7 +322,7 @@ export const services: Record<string, StandardPage> = {
       {
         kind: "faq",
         eyebrow: "FAQ",
-        heading: "What buyers want to know.",
+        heading: "What agencies ask first.",
         items: [
           {
             q: "How long does a Workday implementation take?",
@@ -261,7 +345,7 @@ export const services: Record<string, StandardPage> = {
         body: "Let's build a Workday solution that's scalable, flexible and designed around your organization's goals.",
         ctas: [
           { label: "Schedule a consultation", href: "/contact" },
-          { label: "See how to buy", href: "/procurement-contracts" },
+          { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },
     ],
@@ -295,26 +379,115 @@ export const services: Record<string, StandardPage> = {
         eyebrow: "Engagement models",
         heading: "Support shaped to how you work.",
         columns: 2,
+        intro:
+          "Your Workday needs evolve. Your support model should too. Whether you need occasional expert guidance, dedicated monthly support or strategic advisory, our engagement model scales alongside your organization.",
         cards: [
           { title: "Flexible Monthly Hours", hook: "Predictable monthly consulting hours with direct access to your aligned consultants." },
-          { title: "On-Demand Expertise", hook: "Certified functional and technical consultants whenever specialized expertise is needed." },
-          { title: "Dedicated Consultant", hook: "Long-term relationships with consultants who become an extension of your internal team." },
+          { title: "On-Demand Expertise", hook: "Leverage certified functional and technical consultants whenever specialized expertise is needed." },
+          { title: "Dedicated Consultant Model", hook: "Build long-term relationships with consultants who become an extension of your internal Workday team." },
           { title: "Strategic Advisory", hook: "Executive guidance, roadmap planning, governance and continuous optimization." },
         ],
       },
       {
+        // Full service lists, verbatim from the client deck (XLS B81-B248).
+        // Every one of these seven blocks was previously trimmed; Release
+        // Management had lost its list entirely.
         kind: "cards",
-        eyebrow: "What we cover",
+        eyebrow: "Comprehensive AMS services",
         heading: "The whole tenant, not just tickets.",
         columns: 3,
         cards: [
-          { title: "Tenant Health Assessment", hook: "Configuration review, business process optimization, security assessment, reporting analysis and technical debt review." },
-          { title: "Continuous Optimization", hook: "Process improvements, feature adoption, workflow enhancements, dashboards and automation." },
-          { title: "Release Management", hook: "Twice a year Workday ships hundreds of capabilities. We evaluate impact, prioritize, coordinate testing and deploy with minimal disruption." },
-          { title: "Phase X & Enhancements", hook: "Recruiting, Learning, Talent, Compensation, Adaptive Planning, Extend, Prism, Journeys, Peakon and integrations." },
-          { title: "Reporting & Analytics", hook: "Executive dashboards, composite reports, discovery boards, Prism and KPI strategy." },
-          { title: "Integrations & Extend", hook: "Monitoring, development, API strategy, middleware support and automation." },
-          { title: "Change & Adoption", hook: "Administrator training, new feature enablement, job aids and knowledge transfer." },
+          {
+            title: "Tenant Health Assessment & Optimization",
+            hook: "Our Workday architects evaluate your configuration, business processes, security, reporting, integrations and overall system health to identify opportunities.",
+            bullets: [
+              "Configuration Review",
+              "Business Process Optimization",
+              "Security Assessment",
+              "Reporting Analysis",
+              "Performance Recommendations",
+              "Technical Debt Review",
+              "Future Roadmap Planning",
+            ],
+          },
+          {
+            title: "Continuous Optimization",
+            hook: "Business doesn't stand still. Neither should your Workday tenant — we continuously simplify processes, improve experience and automate manual work.",
+            bullets: [
+              "Business Process Improvements",
+              "Feature Adoption",
+              "Workflow Enhancements",
+              "Reporting Modernization",
+              "Dashboard Development",
+              "User Experience Improvements",
+              "Automation Opportunities",
+            ],
+          },
+          {
+            title: "Release Management",
+            hook: "Twice each year Workday delivers hundreds of new capabilities. We evaluate what's changing, prioritize, coordinate testing and deploy with minimal disruption.",
+            bullets: [
+              "Release Impact Analysis",
+              "Feature Reviews",
+              "Regression Testing Support",
+              "Adoption Planning",
+              "Configuration Updates",
+              "Communication Planning",
+            ],
+          },
+          {
+            title: "Phase X & Enhancement Projects",
+            hook: "Whether you're expanding into new modules or modernizing existing processes, our AMS team helps you continuously increase platform value.",
+            bullets: [
+              "Recruiting",
+              "Learning",
+              "Talent",
+              "Compensation",
+              "Adaptive Planning",
+              "Extend",
+              "Prism Analytics",
+              "Journeys",
+              "Peakon",
+              "Integrations",
+            ],
+          },
+          {
+            title: "Reporting & Analytics",
+            hook: "Transform data into actionable insight — reporting strategies that give leaders real-time visibility into workforce, financial and operational performance.",
+            bullets: [
+              "Executive Dashboards",
+              "Composite Reports",
+              "Discovery Boards",
+              "Prism Analytics",
+              "Custom Reporting",
+              "KPI Strategy",
+              "Analytics Modernization",
+            ],
+          },
+          {
+            title: "Integrations & Extend",
+            hook: "Expand Workday beyond standard functionality. Our technical consultants design, maintain and optimize integrations and Extend applications.",
+            bullets: [
+              "Integration Monitoring",
+              "Integration Development",
+              "Extend Applications",
+              "API Strategy",
+              "Middleware Support",
+              "Automation Solutions",
+            ],
+          },
+          {
+            title: "Organizational Change & Adoption",
+            hook: "Technology only delivers value when people embrace it. As your organization evolves, we keep users engaged, informed and confident.",
+            bullets: [
+              "Administrator Training",
+              "New Feature Enablement",
+              "Communication Planning",
+              "Job Aids",
+              "Knowledge Transfer",
+              "User Adoption Programs",
+            ],
+          },
         ],
       },
       {
@@ -373,7 +546,7 @@ export const services: Record<string, StandardPage> = {
         body: "Let's build an AMS partnership that's flexible, proactive and focused on your future.",
         ctas: [
           { label: "Schedule an AMS consultation", href: "/contact" },
-          { label: "See how to buy", href: "/procurement-contracts" },
+          { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },
     ],
@@ -410,10 +583,54 @@ export const services: Record<string, StandardPage> = {
         heading: "Built to extend, not to complicate.",
         columns: 2,
         cards: [
-          { title: "Built on Workday", hook: "Custom applications that feel like a natural extension of Workday. Employee experience apps, manager self-service enhancements, industry-specific solutions." },
-          { title: "Workday Extend", hook: "Workflow automation, case management, approval applications, operational portals and mobile experiences." },
-          { title: "Integration & Digital Experience", hook: "Enterprise integrations, API development, middleware strategy, event-driven architecture and data synchronization." },
-          { title: "Reporting & Insights", hook: "Executive dashboards, discovery boards, Prism Analytics, KPI frameworks and predictive reporting." },
+          {
+            title: "Built on Workday Applications",
+            hook: "As a Built on Workday development partner, we design intuitive applications that feel like a natural extension of the Workday experience.",
+            bullets: [
+              "Custom Workday Applications",
+              "Employee Experience Apps",
+              "Manager Self-Service Enhancements",
+              "Executive Applications",
+              "Industry-Specific Solutions",
+              "Workday Marketplace Readiness",
+            ],
+          },
+          {
+            title: "Workday Extend Development",
+            hook: "Transform manual processes into seamless digital experiences with secure, scalable applications that automate workflows.",
+            bullets: [
+              "Workflow Automation",
+              "Case Management",
+              "Approval Applications",
+              "Operational Portals",
+              "Mobile Experiences",
+              "Business Process Extensions",
+            ],
+          },
+          {
+            title: "Integration & Digital Experience",
+            hook: "Connect Workday to the systems your organization depends on — improving data flow, eliminating manual effort and creating connected experiences.",
+            bullets: [
+              "Enterprise Integrations",
+              "API Development",
+              "Middleware Strategy",
+              "Third-Party Platform Integration",
+              "Event-Driven Architecture",
+              "Data Synchronization",
+            ],
+          },
+          {
+            title: "Reporting, Analytics & Insights",
+            hook: "Transform information into action with dashboards, operational analytics and interactive reporting that speed up decisions.",
+            bullets: [
+              "Executive Dashboards",
+              "Discovery Boards",
+              "Prism Analytics",
+              "KPI Frameworks",
+              "Predictive Reporting",
+              "Data Visualization",
+            ],
+          },
         ],
       },
       {
@@ -466,7 +683,7 @@ export const services: Record<string, StandardPage> = {
         body: "Let's turn your ideas into secure, scalable Workday solutions.",
         ctas: [
           { label: "Schedule an innovation consultation", href: "/contact" },
-          { label: "See how to buy", href: "/procurement-contracts" },
+          { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },
     ],
@@ -518,7 +735,7 @@ export const services: Record<string, StandardPage> = {
         heading: "Ready to modernize service delivery?",
         ctas: [
           { label: "Schedule a consultation", href: "/contact" },
-          { label: "See how to buy", href: "/procurement-contracts" },
+          { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },
     ],
