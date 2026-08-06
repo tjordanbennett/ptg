@@ -178,10 +178,20 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                 <p style={{ margin: 0, fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, lineHeight: 1.25, letterSpacing: "-0.018em", maxWidth: "26ch", textWrap: "balance" }}>Every term on this page is on the issuing authority&apos;s official record.</p>
               </div>
               <div style={{ justifySelf: "start" }}>
-                <Link href={v.official.href} data-unverified="" className="hov-cta-emberwhite hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 11 }}>
+                {/* External authority record: opens in a new tab so a buyer
+                    verifying the contract doesn't lose this page. No longer
+                    data-unverified — all six were confirmed live 2026-08-06. */}
+                <a
+                  href={v.official.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hov-cta-emberwhite hov-move cta"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 11 }}
+                >
                   {v.official.label}
+                  <span className="sr-only"> (opens in a new tab)</span>
                   <span aria-hidden="true" className="lnk-arrow"><span style={{ display: "block", width: 7, height: 7, borderTop: "2px solid currentColor", borderRight: "2px solid currentColor", transform: "rotate(45deg)" }} /></span>
-                </Link>
+                </a>
               </div>
             </Reveal>
           </div>

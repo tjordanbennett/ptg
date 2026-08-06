@@ -90,7 +90,7 @@ export const procurement: ProcurementPage = {
       ],
       authority:
         "Sourcewell publishes the awarded contract and pricing on its supplier record.",
-      href: "#",
+      href: "https://www.sourcewell-mn.gov/cooperative-purchasing/060624-PRT",
       verified: true,
     },
     {
@@ -107,7 +107,7 @@ export const procurement: ProcurementPage = {
       ],
       authority:
         "OMNIA Partners lists the awarded supplier contract in its public portfolio.",
-      href: "#",
+      href: "https://www.omniapartners.com/suppliers/precision-task-group/public-sector",
       verified: true,
     },
     {
@@ -124,7 +124,7 @@ export const procurement: ProcurementPage = {
       ],
       authority:
         "The Texas Department of Information Resources maintains the contract record and current pricing sheet.",
-      href: "#",
+      href: "https://dir.texas.gov/contracts/vendors/precision-task-group-inc",
       verified: true,
     },
     {
@@ -141,7 +141,7 @@ export const procurement: ProcurementPage = {
       ],
       authority:
         "Verify the schedule, SINs and pricing on GSA eLibrary and GSA Advantage.",
-      href: "#",
+      href: "https://www.gsaelibrary.gsa.gov/ElibMain/contractorInfo.do?contractNumber=GS-35F-035GA&contractorName=PRECISION+TASK+GROUP,+INC.&executeQuery=YES",
       verified: true,
     },
     {
@@ -158,7 +158,7 @@ export const procurement: ProcurementPage = {
       ],
       authority:
         "The California Department of General Services publishes the awarded SLP contract in Cal eProcure.",
-      href: "#",
+      href: "https://caleprocure.ca.gov/PSRelay/ZZ_PO.ZZ_CTR_SUP_CMP.GBL?Page=ZZ_CTR_SUP_PG&Action=U&SETID=STATE&CNTRCT_ID=SLP-24-70-0281B",
       verified: true,
     },
     {
@@ -175,7 +175,7 @@ export const procurement: ProcurementPage = {
       ],
       authority:
         "IPHEC publishes awarded cooperative contracts for member institutions.",
-      href: "#",
+      href: "https://www.iphec.org/erp-software-and-implementation-services-omnia-award",
       verified: true,
     },
   ],

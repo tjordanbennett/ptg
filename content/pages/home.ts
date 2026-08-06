@@ -9,7 +9,10 @@ import type { HomePage } from "../types";
 export const home: HomePage = {
   hero: {
     eyebrow: "Realize Value. Faster.",
-    headline: "Workday, delivered by people\nwho stay.",
+    // PTG's own campaign line, verbatim from their 2026 brand guide
+    // ("Brand in Action" presentation slide). Not ours — deliberate, so the
+    // loudest line on the site is one Massey already signed off on.
+    headline: "Big missions.\nBigger impact.",
     body:
       "Workday licensing, implementation and support for government, higher " +
       "education, health systems and nonprofits — from a family-owned firm where " +
@@ -252,7 +255,10 @@ export const home: HomePage = {
 
   closingCta: {
     eyebrow: "Your mission. Our purpose.",
-    heading: "Big missions. Bigger impact.",
+    // Also PTG's own, from the brand guide's social-post mockup
+    // ("Realize Value. FASTER. / Don't Wait for Perfect"). Replaces
+    // "Big missions. Bigger impact.", which moved up to the hero H1.
+    heading: "Don't wait for perfect.",
     // ▲ STRUCTURAL CHANGE (copy-FINAL §12): names the three states a prospect is
     // actually in and offers an honest answer.
     body:

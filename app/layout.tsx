@@ -12,7 +12,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "PTG — Workday, delivered by people who stay.",
+    default: "PTG — Big Missions. Bigger Impact.",
     template: "%s · PTG",
   },
   description:

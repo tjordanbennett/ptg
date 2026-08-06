@@ -112,10 +112,11 @@ export default async function HowToBuyPage() {
                     <div>
                       <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>Verify &amp; order</p>
                       <p style={{ margin: "0 0 16px", fontSize: 15, lineHeight: 1.6, color: "#334155" }}>{v.authority}</p>
-                      <Link href={v.href} className="hov-link" style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 14.5, fontWeight: 700 }}>
+                      <a href={v.href} target="_blank" rel="noopener noreferrer" className="hov-link" style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 14.5, fontWeight: 700 }}>
                         Official contract record
+                        <span className="sr-only"> (opens in a new tab)</span>
                         <span aria-hidden="true" style={{ width: 6, height: 6, borderTop: "2px solid currentColor", borderRight: "2px solid currentColor", transform: "rotate(45deg)", display: "block" }} />
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </article>

@@ -412,6 +412,20 @@
   .hov-card--flat:hover {
     box-shadow: none;
   }
+  /* Visually hidden, still read by screen readers. Used to announce
+     "(opens in a new tab)" on external authority-record links. */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
   /* Linked card titles: colour shift only — the whole card already lifts. */
   .hov-cardlink {
     transition: color 0.2s ease;

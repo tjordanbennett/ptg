@@ -19,15 +19,18 @@ export const about: StandardPage = {
     eyebrow: "About PTG",
     headline: "Your mission. Our purpose.",
     body:
-      "PTG is a boutique consulting firm specializing in Workday and ServiceNow for the organizations that serve the public. We've been family-owned for 45 years — stable, independent, and not for sale.",
+      "PTG is a boutique consulting firm specializing in Workday and ServiceNow for the organizations that serve the public. We've been family-owned for 45 years.",
   },
   sections: [
     {
-      kind: "prose",
+      // The independence point carries its own explanation in ONE section —
+      // it was previously the tail of the hero sentence plus a headless
+      // paragraph, which stranded the paragraph. See _handoff/DECISIONS.md.
+      kind: "pullQuote",
+      text: "Stable, independent, and not for sale.",
       body: [
         "That matters more than it sounds. Our clients aren't wondering who will own us next year or whether their team survives an acquisition. They get the same senior people, engagement after engagement.",
       ],
-      maxWidth: 780,
     },
     {
       kind: "prose",
@@ -39,7 +42,7 @@ export const about: StandardPage = {
     },
     {
       kind: "features",
-      eyebrow: "How we work",
+      eyebrow: "Our approach",
       heading: "How we work.",
       columns: 2,
       items: [

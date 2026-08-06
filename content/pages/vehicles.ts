@@ -2,9 +2,13 @@ import type { VehiclePageData } from "@/content/types";
 
 /**
  * Contract-vehicle detail pages. Numbers and terms are from the issuing
- * authorities' records (PTG-SITE-COPY.md). The official-record link on each page
- * is the most important element — currently a `#` placeholder until the real
- * deep link is pulled from content/verification/*.md (never guessed).
+ * authorities' records (PTG-SITE-COPY.md).
+ *
+ * The official-record link on each page is the most important element — it's what
+ * lets the page avoid asserting a contract is current and point at the authority
+ * instead. All six were pulled from ~/Ridge/work/business/ptg/content/verification/
+ * and re-confirmed live against the issuing authority on 2026-08-06. Never guess
+ * one of these; if a link can't be verified, leave it out rather than approximate.
  * Only populated fields render.
  */
 export const vehicles: Record<string, VehiclePageData> = {
@@ -39,7 +43,10 @@ export const vehicles: Record<string, VehiclePageData> = {
       "Contact PTG to scope the engagement and issue a quote.",
       "Purchase directly under the contract's terms — no separate solicitation.",
     ],
-    official: { label: "View PTG's contract on Sourcewell", href: "#" },
+    official: {
+      label: "View PTG's contract on Sourcewell",
+      href: "https://www.sourcewell-mn.gov/cooperative-purchasing/060624-PRT",
+    },
   },
 
   "omnia-partners": {
@@ -71,7 +78,10 @@ export const vehicles: Record<string, VehiclePageData> = {
       "Contact PTG to scope the work.",
       "Purchase under the contract's established terms.",
     ],
-    official: { label: "View PTG's contract on OMNIA Partners", href: "#" },
+    official: {
+      label: "View PTG's contract on OMNIA Partners",
+      href: "https://www.omniapartners.com/suppliers/precision-task-group/public-sector",
+    },
   },
 
   "texas-dir": {
@@ -112,7 +122,12 @@ export const vehicles: Record<string, VehiclePageData> = {
       "Issue your purchase order citing the contract number.",
       "DIR-eligible entities purchase directly under the contract's terms.",
     ],
-    official: { label: "View PTG's contracts on the Texas DIR site", href: "#" },
+    // Vendor page rather than a single contract page — this vehicle carries two
+    // contracts (DIR-CPO-5657 and DIR-CPO-6141) and DIR lists both here.
+    official: {
+      label: "View PTG's contracts on the Texas DIR site",
+      href: "https://dir.texas.gov/contracts/vendors/precision-task-group-inc",
+    },
   },
 
   gsa: {
@@ -136,7 +151,10 @@ export const vehicles: Record<string, VehiclePageData> = {
       "Contact PTG for a quote.",
       "Issue your order under GSA MAS ordering procedures (FAR 8.4).",
     ],
-    official: { label: "View PTG's contract on GSA eLibrary", href: "#" },
+    official: {
+      label: "View PTG's contract on GSA eLibrary",
+      href: "https://www.gsaelibrary.gsa.gov/ElibMain/contractorInfo.do?contractNumber=GS-35F-035GA&contractorName=PRECISION+TASK+GROUP,+INC.&executeQuery=YES",
+    },
   },
 
   "california-slp": {
@@ -162,7 +180,10 @@ export const vehicles: Record<string, VehiclePageData> = {
       "Issue your order under SLP procedures.",
       "For implementation services, ask us which additional vehicle applies.",
     ],
-    official: { label: "View this contract on Cal eProcure", href: "#" },
+    official: {
+      label: "View this contract on Cal eProcure",
+      href: "https://caleprocure.ca.gov/PSRelay/ZZ_PO.ZZ_CTR_SUP_CMP.GBL?Page=ZZ_CTR_SUP_PG&Action=U&SETID=STATE&CNTRCT_ID=SLP-24-70-0281B",
+    },
   },
 
   iphec: {
@@ -186,7 +207,10 @@ export const vehicles: Record<string, VehiclePageData> = {
       "Contact PTG for a quote.",
       "Issue your order through your institution's IPHEC procedures.",
     ],
-    official: { label: "View this award on the IPHEC site", href: "#" },
+    official: {
+      label: "View this award on the IPHEC site",
+      href: "https://www.iphec.org/erp-software-and-implementation-services-omnia-award",
+    },
   },
 };
 
