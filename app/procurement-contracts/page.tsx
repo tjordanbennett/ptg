@@ -56,7 +56,7 @@ export default async function HowToBuyPage() {
                   {p.hero.eyebrow}
                 </p>
                 <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.hero.headline}</h1>
-                <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "58ch", textWrap: "pretty" }}>{p.hero.body}</p>
+                <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "58ch", textWrap: "balance" }}>{p.hero.body}</p>
               </div>
               <ul style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 6 }}>
                 {p.hero.bullets.map((b) => (
@@ -76,7 +76,7 @@ export default async function HowToBuyPage() {
             <div style={{ maxWidth: 620, marginBottom: "clamp(28px,3vw,40px)" }}>
               <EyebrowBar label={p.finder.eyebrow} />
               <h2 id="finder-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.finder.heading}</h2>
-              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#334155", textWrap: "pretty" }}>{p.finder.intro}</p>
+              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#334155", textWrap: "balance" }}>{p.finder.intro}</p>
             </div>
             <ContractFinder finder={p.finder} vehicles={p.vehicles} />
             <p style={{ margin: "18px 0 0", fontSize: 13.5, lineHeight: 1.6, color: "#334155", maxWidth: "78ch" }}>{p.finder.disclaimer}</p>
@@ -107,7 +107,7 @@ export default async function HowToBuyPage() {
                   <div style={{ padding: "clamp(24px,2.8vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px,1fr))", gap: "clamp(24px,3vw,44px)", background: "#FFFFFF" }}>
                     <div>
                       <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>Who can order</p>
-                      <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "pretty" }}>{v.eligible}</p>
+                      <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{v.eligible}</p>
                     </div>
                     <div>
                       <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>What&apos;s covered</p>
@@ -142,7 +142,7 @@ export default async function HowToBuyPage() {
             <div style={{ maxWidth: 620, marginBottom: "clamp(32px,3.6vw,50px)" }}>
               <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>{p.ordering.eyebrow}</p>
               <h2 id="steps-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.ordering.heading}</h2>
-              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "pretty" }}>{p.ordering.intro}</p>
+              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{p.ordering.intro}</p>
             </div>
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(238px,1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {p.ordering.steps.map((s) => (
@@ -150,7 +150,7 @@ export default async function HowToBuyPage() {
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: s.bar, marginBottom: 22 }} />
                   <p style={{ margin: "0 0 14px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{s.num}</p>
                   <h3 style={{ margin: "0 0 12px", fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{s.name}</h3>
-                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "#D5E4F5", textWrap: "pretty" }}>{s.body}</p>
+                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{s.body}</p>
                 </li>
               ))}
             </ol>
@@ -164,7 +164,7 @@ export default async function HowToBuyPage() {
               <div>
                 <EyebrowBar label={p.faq.eyebrow} />
                 <h2 id="faq-h" style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.faq.heading}</h2>
-                <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "46ch", textWrap: "pretty" }}>{p.faq.intro}</p>
+                <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "46ch", textWrap: "balance" }}>{p.faq.intro}</p>
                 <Link href={p.faq.cta.href} className="hov-cta-blue" style={{ display: "inline-block", fontSize: 15, fontWeight: 700, padding: "16px 28px", borderRadius: 3 }}>{p.faq.cta.label}</Link>
               </div>
               <FaqAccordion items={p.faq.items} />
@@ -180,7 +180,7 @@ export default async function HowToBuyPage() {
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(64px,7vw,112px) clamp(20px,4vw,48px)" }}>
             <p style={{ margin: "0 0 20px", fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>{p.closingCta.eyebrow}</p>
             <h2 id="cta-h" style={{ margin: "0 0 22px", fontSize: "clamp(30px,4vw,58px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.03em", maxWidth: "24ch", textWrap: "balance" }}>{p.closingCta.heading}</h2>
-            <p style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.4vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "pretty" }}>{p.closingCta.body}</p>
+            <p style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.4vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{p.closingCta.body}</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
               <Link href={p.closingCta.ctas[0].href} className="hov-cta-emberwhite" style={{ fontSize: 16, fontWeight: 700, padding: "19px 36px", borderRadius: 3 }}>{p.closingCta.ctas[0].label}</Link>
               <Link href={p.closingCta.ctas[1].href} className="hov-underline" style={{ fontSize: 16, fontWeight: 700, padding: "19px 8px" }}>{p.closingCta.ctas[1].label}</Link>

@@ -42,7 +42,7 @@ export default async function ContactPage() {
               Connect with us
             </p>
             <h1 id="hero-h" style={{ margin: "0 0 22px", fontSize: "clamp(38px,5vw,72px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.03em" }}>Let&apos;s talk.</h1>
-            <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "pretty" }}>
+            <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "balance" }}>
               Tell us about your organization and what you&apos;re trying to accomplish. We&apos;ll point you to the right person — and if a cooperative contract makes the path easier, we&apos;ll tell you which one applies.
             </p>
           </div>

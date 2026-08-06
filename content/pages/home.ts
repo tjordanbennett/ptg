@@ -11,10 +11,9 @@ export const home: HomePage = {
     eyebrow: "Realize Value. Faster.",
     headline: "Workday, delivered by people\nwho stay.",
     body:
-      "PTG helps government agencies, universities, health systems and nonprofits " +
-      "get more from Workday — the licensing, the implementation, and the years " +
-      "after go-live. Family-owned for 45 years and independent by choice, so the " +
-      "team that wins your work is the team that does it.",
+      "Workday licensing, implementation and support for government, higher " +
+      "education, health systems and nonprofits — from a family-owned firm where " +
+      "the team that wins your work is the team that does it.",
     ctas: [
       { label: "Schedule a consultation", href: "/contact" },
       { label: "How to buy from PTG", href: "/procurement-contracts" },
@@ -25,12 +24,6 @@ export const home: HomePage = {
       width: 2400,
       height: 1600,
     },
-    credentialLine: "The largest public sector Workday reseller in the U.S.",
-    credentialChips: [
-      "Certified Workday Partner",
-      "Authorized Reseller",
-      "MBE · DBE Certified",
-    ],
   },
 
   twoPaths: [
@@ -42,6 +35,12 @@ export const home: HomePage = {
         "cooperative contract that covers PTG. If yours does, the sourcing work " +
         "is done — you can go straight to scoping.",
       cta: { label: "Find your contract vehicle", href: "/procurement-contracts" },
+      image: {
+        src: "/images/evaluating-partner.png",
+        alt: "Consultants reviewing plans with a client in a glass-walled meeting room overlooking a university campus",
+        width: 1254,
+        height: 1254,
+      },
     },
     {
       eyebrow: "I'm a consultant",
@@ -50,11 +49,24 @@ export const home: HomePage = {
         "Near-zero voluntary turnover, real ownership of public sector work, and " +
         "a firm small enough that leadership knows your name and what you're good at.",
       cta: { label: "See careers & culture", href: "/about/careers" },
+      image: {
+        src: "/images/consultant.png",
+        alt: "Consultants talking around a table covered in site plans and photographs in a warm studio office",
+        width: 1254,
+        height: 1254,
+      },
     },
   ],
 
   stats: {
+    eyebrow: "By the numbers",
     heading: "Four and a half decades of public sector work",
+    credentialLine: "The largest public sector Workday reseller in the U.S.",
+    credentialChips: [
+      "Certified Workday Partner",
+      "Authorized Reseller",
+      "MBE · DBE Certified",
+    ],
     items: [
       { figure: "45", label: "Years family-owned and independent", tint: "white" },
       { figure: "100+", label: "Government Workday projects", tint: "white" },
@@ -67,16 +79,16 @@ export const home: HomePage = {
   customers: {
     heading: "Trusted by the institutions that serve Texas and the nation",
     names: [
-      "City University of New York",
-      "The University of Texas at Austin",
-      "Texas A&M University",
-      "South Texas College",
-      "Lee College",
-      "Dallas Area Rapid Transit",
-      "Houston METRO",
-      "Orange County Transportation Authority",
-      "Tarrant Regional Water District",
-      "Lakehaven Water & Sewer District",
+      { name: "City University of New York", logo: "/logos/customers/cuny.svg" },
+      { name: "The University of Texas at Austin", logo: "/logos/customers/ut-austin.svg" },
+      { name: "Texas A&M University", logo: "/logos/customers/texas-am.svg" },
+      { name: "South Texas College" },
+      { name: "Lee College" },
+      { name: "Dallas Area Rapid Transit", logo: "/logos/customers/dart.svg" },
+      { name: "Houston METRO", logo: "/logos/customers/houston-metro.svg" },
+      { name: "Orange County Transportation Authority", logo: "/logos/customers/octa.svg" },
+      { name: "Tarrant Regional Water District" },
+      { name: "Lakehaven Water & Sewer District" },
     ],
     link: { label: "View customer stories", href: "/customers" },
   },
@@ -86,12 +98,10 @@ export const home: HomePage = {
     heading: "You may already be able to buy from us.",
     body: [
       "PTG holds six cooperative and government contract vehicles. If your " +
-        "organization participates in one, you can award Workday licensing and " +
-        "implementation to us under terms that have already been competitively bid " +
-        "— no RFP, no evaluation committee, no months of lead time.",
-      "Because we're an authorized reseller, licensing and implementation come " +
-        "through a single contract instead of two procurements and a handoff " +
-        "between vendors.",
+        "organization participates in one, the competitive bid is already done — " +
+        "no RFP, no evaluation committee, no months of lead time. And because " +
+        "we're an authorized reseller, licensing and implementation come through " +
+        "a single contract.",
     ],
     cta: {
       label: "Find the vehicle that applies to you",

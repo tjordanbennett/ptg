@@ -23,7 +23,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
               <span aria-hidden="true" style={{ flex: "0 0 auto", width: 11, height: 11, marginTop: 5, borderRight: "2.5px solid #EB4900", borderBottom: "2.5px solid #EB4900", transform: isOpen ? "rotate(225deg)" : "rotate(45deg)", display: "block" }} />
             </button>
             {isOpen ? (
-              <p style={{ margin: 0, padding: "0 clamp(20px,2.2vw,26px) clamp(22px,2.4vw,28px)", fontSize: 15.5, lineHeight: 1.65, color: "#334155", maxWidth: "70ch", textWrap: "pretty" }}>{f.a}</p>
+              <p style={{ margin: 0, padding: "0 clamp(20px,2.2vw,26px) clamp(22px,2.4vw,28px)", fontSize: 15.5, lineHeight: 1.65, color: "#334155", maxWidth: "70ch", textWrap: "balance" }}>{f.a}</p>
             ) : null}
           </li>
         );

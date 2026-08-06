@@ -60,10 +60,10 @@ export function SiteHeader({
         borderBottom: "1px solid #E5E7EB",
       }}
     >
-      <div style={{ ...CONTAINER, height: 78, display: "flex", alignItems: "center", gap: 40 }}>
+      <div style={{ ...CONTAINER, height: 62, display: "flex", alignItems: "center", gap: 40 }}>
         <Link href="/" aria-label="Precision Task Group home" style={{ display: "flex", alignItems: "center", flex: "0 0 auto" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/ptg-logo.svg" alt="" width={119} height={38} style={{ display: "block", width: "auto", height: 38 }} />
+          <img src="/ptg-logo.svg" alt="" width={100} height={32} style={{ display: "block", width: "auto", height: 32 }} />
         </Link>
 
         {!narrow ? (
@@ -82,7 +82,7 @@ export function SiteHeader({
                 />
               ))}
             </nav>
-            <Link href={site.headerCta.href} className="hov-cta-ember" style={{ flex: "0 0 auto", fontSize: 14.5, fontWeight: 700, padding: "14px 26px", borderRadius: 3 }}>
+            <Link href={site.headerCta.href} className="hov-cta-ember" style={{ flex: "0 0 auto", fontSize: 14, fontWeight: 700, padding: "9px 20px", borderRadius: 3 }}>
               {site.headerCta.label}
             </Link>
           </>
@@ -113,7 +113,7 @@ export function SiteHeader({
               onToggle={() => setOpenMenu((cur) => (cur === i ? null : i))}
             />
           ))}
-          <Link href={site.headerCta.href} className="hov-cta-ember" style={{ display: "block", marginTop: 22, textAlign: "center", fontSize: 15, fontWeight: 700, padding: "16px 26px", borderRadius: 3 }}>
+          <Link href={site.headerCta.href} className="hov-cta-ember" style={{ display: "block", marginTop: 22, textAlign: "center", fontSize: 15, fontWeight: 700, padding: "12px 24px", borderRadius: 3 }}>
             {site.headerCta.label}
           </Link>
         </nav>
@@ -157,7 +157,7 @@ function DesktopItem({
         aria-current={current ? "page" : undefined}
         onClick={onToggle}
         onFocus={onEnter}
-        style={{ display: "flex", alignItems: "center", gap: 6, background: "none", fontFamily: "inherit", fontSize: 15, fontWeight: 600, padding: "28px 16px", cursor: "pointer" }}
+        style={{ display: "flex", alignItems: "center", gap: 6, background: "none", fontFamily: "inherit", fontSize: 14.5, fontWeight: 600, padding: "21px 14px", cursor: "pointer" }}
       >
         {item.label}
         <Caret />

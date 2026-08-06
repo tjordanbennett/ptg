@@ -235,12 +235,27 @@
      and works with JS off. The signature Vivid Leaf accent shows up sparingly
      on the delivery-journey cards. */
 
+  /* Frosted-glass secondary CTA — sits over photography (hero). */
+  .hov-cta-glass {
+    background: rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .hov-cta-glass:hover {
+    background: #fff;
+    color: #021f43;
+    border-color: #fff;
+  }
+
   /* Buttons: colour swap (defined above) + a quiet lift and shadow. */
   .hov-cta-ember,
   .hov-cta-emberwhite,
   .hov-cta-blue,
   .hov-cta-navy,
-  .hov-cta-outline {
+  .hov-cta-outline,
+  .hov-cta-glass {
     transition: background-color 0.25s ease, color 0.25s ease,
       border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
@@ -248,7 +263,8 @@
   .hov-cta-emberwhite:hover,
   .hov-cta-blue:hover,
   .hov-cta-navy:hover,
-  .hov-cta-outline:hover {
+  .hov-cta-outline:hover,
+  .hov-cta-glass:hover {
     transform: translateY(-2px);
     box-shadow: 0 14px 28px -12px rgba(2, 31, 67, 0.45);
   }
@@ -256,9 +272,32 @@
   .hov-cta-emberwhite:active,
   .hov-cta-blue:active,
   .hov-cta-navy:active,
-  .hov-cta-outline:active {
+  .hov-cta-outline:active,
+  .hov-cta-glass:active {
     transform: translateY(0);
     box-shadow: none;
+  }
+
+  /* Carousel prev/next buttons. */
+  .hov-carouselbtn {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .hov-carouselbtn:hover:not(:disabled) {
+    background: #021f43;
+    border-color: #021f43;
+    color: #fff;
+  }
+
+  /* Overflow carousel track — scrollbar hidden, snap per card. */
+  .ptg-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .ptg-carousel::-webkit-scrollbar {
+    display: none;
   }
 
   /* Chevron/arrow that slides forward when its link is hovered or focused.
@@ -305,6 +344,21 @@
     box-shadow: 0 26px 50px -22px rgba(2, 31, 67, 0.4);
   }
 
+  /* Photo variant of the path card: same lift, slow zoom on the image. */
+  .hov-pathphoto {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hov-pathphoto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 50px -22px rgba(2, 31, 67, 0.4);
+  }
+  .hov-pathphoto img {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hov-pathphoto:hover img {
+    transform: scale(1.05);
+  }
+
   /* Content cards (industries): lift + a slow zoom on the photo inside. */
   .hov-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -313,6 +367,10 @@
     transform: translateY(-5px);
     border-color: #cbd5e1;
     box-shadow: 0 28px 54px -24px rgba(2, 31, 67, 0.32);
+  }
+  /* Industries carousel cards keep the lift but drop the shadow. */
+  .hov-card--flat:hover {
+    box-shadow: none;
   }
   .hov-card__media {
     overflow: hidden;
@@ -358,10 +416,10 @@
    fallback, always readable). The right-to-left scroller turns on only
    under prefers-reduced-motion: no-preference, and pauses on hover/focus. */
 .cust-static {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(216px, 1fr));
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px 40px;
 }
 .cust-marquee-wrap {
   display: none;

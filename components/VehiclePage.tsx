@@ -62,7 +62,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
             <div style={{ display: "grid", gridTemplateColumns: v.metaRows ? "minmax(0,1.6fr) minmax(220px,1fr)" : "1fr", gap: "clamp(28px,4vw,64px)", alignItems: "start" }}>
               <Reveal as="div" style={{ maxWidth: 760 }}>
                 {v.summary.map((p, i) => (
-                  <p key={i} style={{ margin: i === v.summary.length - 1 ? 0 : "0 0 18px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", textWrap: "pretty" }}>{p}</p>
+                  <p key={i} style={{ margin: i === v.summary.length - 1 ? 0 : "0 0 18px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", textWrap: "balance" }}>{p}</p>
                 ))}
               </Reveal>
               {v.metaRows ? (
@@ -98,7 +98,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                     <div aria-hidden="true" style={{ width: 34, height: 3, background: i === 0 ? "#0034A0" : "#EB4900", marginBottom: 18 }} />
                     <p style={{ margin: "0 0 10px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 15, fontWeight: 700, color: "#021F43" }}>{c.number}</p>
                     {c.term ? <p style={{ margin: "0 0 14px", fontSize: 13, color: "#94A3B8" }}>{c.term}</p> : null}
-                    {c.scope ? <p style={{ margin: "0 0 14px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "pretty" }}>{c.scope}</p> : null}
+                    {c.scope ? <p style={{ margin: "0 0 14px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.scope}</p> : null}
                     {c.useFor ? (
                       <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.55, color: "#021F43" }}>
                         <span style={{ fontWeight: 800 }}>Use it for: </span>{c.useFor}
@@ -163,7 +163,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                 <Reveal as="li" key={step} delay={i * 0.05} className="hov-step" style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", borderRadius: 3 }}>
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: ["#80CEFF", "#B4FF00", "#EB4900", "#FFFFFF"][i % 4], marginBottom: 20 }} />
                   <p style={{ margin: "0 0 12px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{`0${i + 1}`}</p>
-                  <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#FFFFFF", textWrap: "pretty" }}>{step}</p>
+                  <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#FFFFFF", textWrap: "balance" }}>{step}</p>
                 </Reveal>
               ))}
             </ol>
@@ -180,7 +180,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                 <p style={{ margin: 0, fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, lineHeight: 1.25, letterSpacing: "-0.018em", maxWidth: "26ch", textWrap: "balance" }}>Every term on this page is on the issuing authority&apos;s official record.</p>
               </div>
               <div style={{ justifySelf: "start" }}>
-                <Link href={v.official.href} data-unverified="" className="hov-cta-emberwhite hov-move" style={{ display: "inline-flex", alignItems: "center", gap: 11, fontSize: 15.5, fontWeight: 700, padding: "18px 30px", borderRadius: 3 }}>
+                <Link href={v.official.href} data-unverified="" className="hov-cta-emberwhite hov-move" style={{ display: "inline-flex", alignItems: "center", gap: 11, fontSize: 15.5, fontWeight: 700, padding: "12px 26px", borderRadius: 3 }}>
                   {v.official.label}
                   <span aria-hidden="true" className="lnk-arrow"><span style={{ display: "block", width: 7, height: 7, borderTop: "2px solid currentColor", borderRight: "2px solid currentColor", transform: "rotate(45deg)" }} /></span>
                 </Link>

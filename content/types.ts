@@ -66,22 +66,27 @@ export interface HomePage {
     body: string;
     ctas: Cta[];
     image: ImageRef;
-    credentialLine: string;
-    credentialChips: string[];
   };
   twoPaths: {
     eyebrow: string;
     heading: string;
     body: string;
     cta: Cta;
+    /** Optional photographic background — card renders as an image card. */
+    image?: ImageRef;
   }[];
   stats: {
+    eyebrow: string;
     heading: string;
+    /** Unconfirmed positioning claim — rendered with data-unverified. */
+    credentialLine: string;
+    credentialChips: string[];
     items: { figure: string; label: string; tint: "white" | "leaf" | "clear" }[];
   };
   customers: {
     heading: string;
-    names: string[];
+    /** logo is an optional white-treatable SVG path; falls back to the name as text */
+    names: { name: string; logo?: string }[];
     link: Cta;
   };
   contracts: {
