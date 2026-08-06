@@ -177,7 +177,8 @@ export type Section =
       bg?: SectionBg;
       columns?: 2 | 3;
       accent?: "blue" | "ember";
-      cards: { title: string; hook?: string; bullets?: string[] }[];
+      /** `href` turns the card title into a link into the relevant detail page. */
+      cards: { title: string; hook?: string; bullets?: string[]; href?: string; linkLabel?: string }[];
     }
   | {
       kind: "features";
@@ -191,7 +192,9 @@ export type Section =
   | { kind: "steps"; eyebrow?: string; heading?: string; intro?: string; band?: "blue" | "navy"; steps: { num: string; name: string; body: string }[] }
   | { kind: "tags"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; items: string[]; variant?: "diamond" | "chip"; columns?: 2 | 3 | 4 }
   | { kind: "outcomes"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; items: string[] }
-  | { kind: "pullQuote"; text: string; bg?: SectionBg }
+  /** `body` keeps the quote and the paragraph that elaborates it in ONE section.
+   *  Two adjacent sections double their vertical padding and strand the prose. */
+  | { kind: "pullQuote"; text: string; body?: string[]; bg?: SectionBg }
   | { kind: "testimonial"; quote: string; attribution: string; unverified?: boolean }
   | { kind: "stats"; eyebrow?: string; items: { value: string; label: string }[] }
   | { kind: "customers"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; groups: { title: string; names: string[] }[]; unverified?: boolean }

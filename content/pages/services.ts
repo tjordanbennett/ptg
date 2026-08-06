@@ -199,6 +199,30 @@ export const services: Record<string, StandardPage> = {
         ],
       },
       {
+        kind: "features",
+        eyebrow: "How we deliver",
+        heading: "What you get from a boutique partner.",
+        columns: 2,
+        items: [
+          {
+            title: "Built for your industry",
+            body: "Our consultants bring first-hand experience in the sectors we serve — government, higher education, healthcare and nonprofit. That lets us anticipate challenges and design around the realities of your workforce, operations and stakeholders.",
+          },
+          {
+            title: "Boutique attention, enterprise capability",
+            body: "The agility and personal attention of a boutique firm, with the depth and discipline complex enterprise transformation actually requires. We work directly with your leaders, project teams and subject matter experts.",
+          },
+          {
+            title: "Accelerated, scalable deployment",
+            body: "A proven methodology designed to accelerate timelines, minimize risk and support sustainable success — deploying solutions that adapt as your needs evolve rather than locking you in.",
+          },
+          {
+            title: "A partner past post-production",
+            body: "From planning through post-production we stay the same team. Prioritizing the human element, moving at speed and enabling innovation at scale is how organizations get impact now and stay ready for what's next.",
+          },
+        ],
+      },
+      {
         kind: "outcomes",
         eyebrow: "Outcomes",
         heading: "Results that last beyond go-live.",
@@ -256,15 +280,15 @@ export const services: Record<string, StandardPage> = {
       headline: "Your Workday journey doesn't end at go-live.",
       body:
         "The greatest value from Workday isn't realized during implementation. It comes from continuous optimization, strategic enhancements, and advisors who understand your organization long after deployment.",
+      tagline: "Optimize today. Innovate tomorrow.",
     },
     sections: [
-      { kind: "pullQuote", text: "People, not tickets." },
       {
-        kind: "prose",
+        kind: "pullQuote",
+        text: "People, not tickets.",
         body: [
           "Traditional AMS providers operate like a help desk. We operate like an extension of your team. Your consultants know your business processes, your configuration decisions and your roadmap — so there's no repeating your story and no starting from scratch.",
         ],
-        bg: "white",
       },
       {
         kind: "cards",
@@ -304,6 +328,24 @@ export const services: Record<string, StandardPage> = {
           { num: "03", name: "Enhance", body: "Deploy new modules, integrations and business functionality." },
           { num: "04", name: "Innovate", body: "Leverage automation, analytics and emerging Workday capability." },
         ],
+      },
+      {
+        kind: "features",
+        eyebrow: "Why PTG",
+        heading: "Why organizations choose PTG AMS.",
+        columns: 2,
+        items: [
+          { title: "Aligned consultant model", body: "Work directly with consultants who know your organization — not an anonymous ticket queue." },
+          { title: "Flexible engagement", body: "Scale support up or down as your priorities evolve." },
+          { title: "Proactive partnership", body: "We don't wait for problems. We identify opportunities before they become issues." },
+          { title: "Strategic roadmaps", body: "Every recommendation supports your long-term objectives, not just today's request." },
+          { title: "Full Workday expertise", body: "Functional, technical, integrations, reporting, Extend, security, analytics and advisory — all from one team." },
+          { title: "Enterprise support, boutique service", body: "Responsive, senior-level consultants who become an extension of your organization." },
+        ],
+      },
+      {
+        kind: "pullQuote",
+        text: "The best Workday tenants are never finished. They're continuously evolving.",
       },
       {
         kind: "faq",
@@ -350,8 +392,18 @@ export const services: Record<string, StandardPage> = {
       headline: "Extend what's possible with Workday.",
       body:
         "When standard functionality isn't enough, we design, build and deploy solutions that extend Workday while keeping the simplicity, security and user experience your organization expects.",
+      tagline: "Innovate faster. Solve smarter. Build for what's next.",
     },
     sections: [
+      {
+        kind: "prose",
+        eyebrow: "From ideas to impact",
+        heading: "Innovation isn't about technology alone.",
+        body: [
+          "It's about solving real business challenges. Our product strategists, solution architects, developers and Workday experts work alongside your teams to identify opportunities, prioritize investments and build solutions that improve productivity and create lasting value.",
+          "From concept through deployment, we combine modern development practices with deep Workday expertise — so delivery moves quickly and every solution is scalable, secure and built to last.",
+        ],
+      },
       {
         kind: "cards",
         eyebrow: "Capabilities",
@@ -365,17 +417,18 @@ export const services: Record<string, StandardPage> = {
         ],
       },
       {
-        kind: "tags",
+        kind: "cards",
         eyebrow: "Innovation areas",
         heading: "Where we build.",
-        variant: "chip",
-        items: [
-          "Built on Workday",
-          "Workday Extend",
-          "Artificial Intelligence",
-          "Automation",
-          "Analytics",
-          "Digital Employee Experience",
+        columns: 3,
+        accent: "ember",
+        cards: [
+          { title: "Built on Workday", hook: "Workday-native applications that extend platform capability without feeling bolted on." },
+          { title: "Workday Extend", hook: "Custom workflows, applications and business solutions built on Extend." },
+          { title: "Artificial Intelligence", hook: "Automate processes, improve decisions and personalize user experience where AI genuinely helps." },
+          { title: "Automation", hook: "Reduce manual work through intelligent business process automation." },
+          { title: "Analytics", hook: "Actionable insight through modern reporting and data visualization." },
+          { title: "Digital Employee Experience", hook: "Engaging, intuitive experiences that simplify work and improve adoption." },
         ],
       },
       {

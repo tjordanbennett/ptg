@@ -36,16 +36,42 @@ export const partners: Record<string, StandardPage> = {
         ],
       },
       {
-        kind: "tags",
+        kind: "cards",
         eyebrow: "Full lifecycle",
         heading: "Expertise across your entire Workday journey.",
-        variant: "chip",
-        items: [
-          "Implementation & Support",
-          "AMS & Managed Services",
-          "Optimization",
-          "Integrations",
-          "Extend & Innovation",
+        columns: 3,
+        accent: "ember",
+        cards: [
+          {
+            title: "Workday Implementation & Support",
+            hook: "A process built around your goals, industry and timeline. We bring structure and hands-on expertise to reduce risk and keep deployment aligned from planning through go-live.",
+            href: "/services/workday-implementation",
+          },
+          {
+            title: "AMS & Managed Services",
+            hook: "Built around flexibility and aligned consultants, not a ticketing center — day-to-day needs, production issues, new feature adoption and continuous improvement.",
+            href: "/services/workday-ams-optimization",
+          },
+          {
+            title: "Workday Optimization",
+            hook: "Already live? Unlock more value through targeted enhancements, process improvements, tenant assessments, feature adoption and reporting improvements.",
+            href: "/services/workday-ams-optimization",
+          },
+          {
+            title: "Workday Integrations",
+            hook: "Connect Workday with the systems, workflows and data your organization depends on — streamlining operations and reducing manual work.",
+            href: "/services/workday-innovation",
+          },
+          {
+            title: "Workday Extend & Innovation",
+            hook: "When standard functionality isn't enough: custom applications, workflow automation, executive dashboards and digital experiences built around your needs.",
+            href: "/services/workday-innovation",
+          },
+          {
+            title: "Advisory & Strategy",
+            hook: "Readiness assessments, roadmaps and alignment workshops that settle the hard questions before configuration locks them in.",
+            href: "/services/workday-advisory-strategy",
+          },
         ],
       },
       {
@@ -59,6 +85,14 @@ export const partners: Record<string, StandardPage> = {
           "Increase efficiency across departments",
           "Strengthen adoption and user confidence",
           "Drive continuous value beyond go-live",
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Experience that runs deep",
+        heading: "Workday success isn't a one-time event.",
+        body: [
+          "It requires ongoing alignment, thoughtful planning, practical solutioning and a partner who stays invested after go-live. Organizations that partner with PTG gain more than a Workday services provider — they gain a trusted advisor focused on simplifying complexity and accelerating results across the business.",
         ],
       },
       {

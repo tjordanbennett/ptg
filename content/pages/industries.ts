@@ -41,6 +41,31 @@ export const industries: Record<string, StandardPage> = {
         ],
       },
       {
+        kind: "prose",
+        eyebrow: "Experience that runs deep",
+        heading: "Trusted by government organizations for more than three decades.",
+        body: [
+          "Public sector transformation takes more than technology expertise. It takes understanding how government actually operates — procurement and budgeting, regulatory compliance, collective bargaining, public safety, grant management and governing board oversight. We bring three decades of that to every Workday engagement.",
+        ],
+      },
+      {
+        kind: "tags",
+        eyebrow: "What we deploy",
+        heading: "The Workday footprint for government operations.",
+        variant: "chip",
+        items: [
+          "Human Capital Management",
+          "Payroll",
+          "Financial Management",
+          "Adaptive Planning",
+          "Budgeting",
+          "Reporting & Analytics",
+          "Integrations",
+          "Workday Extend",
+          "AMS & Optimization",
+        ],
+      },
+      {
         kind: "features",
         eyebrow: "Why PTG",
         heading: "Why public sector organizations choose PTG.",
@@ -53,30 +78,68 @@ export const industries: Record<string, StandardPage> = {
         ],
       },
       {
-        kind: "tags",
+        kind: "cards",
         eyebrow: "Challenges we help solve",
         heading: "The problems that stall public sector modernization.",
-        items: [
-          "Modernizing legacy systems",
-          "Improving budgeting and decision support",
-          "Strengthening compliance and reporting",
-          "Reducing manual work",
-          "Supporting workforce transformation",
-          "Driving continuous value",
+        columns: 3,
+        cards: [
+          {
+            title: "Modernizing legacy systems",
+            hook: "Replace outdated, disconnected systems with one cloud platform for HR, finance, payroll, planning and reporting.",
+          },
+          {
+            title: "Improving budgeting and decision support",
+            hook: "Better planning, forecasting and budget visibility, so leaders can decide faster on better information.",
+          },
+          {
+            title: "Strengthening compliance and reporting",
+            hook: "Government reporting, audit readiness, financial controls, security and compliance-focused business processes.",
+          },
+          {
+            title: "Reducing manual work",
+            hook: "Automate approvals, workflows, reporting, integrations and the repetitive administrative work in between.",
+          },
+          {
+            title: "Supporting workforce transformation",
+            hook: "Recruiting, onboarding, talent management, employee self-service, manager tools and workforce planning.",
+          },
+          {
+            title: "Driving continuous value",
+            hook: "Adopt new functionality, optimize processes and evolve the platform as your needs change.",
+          },
         ],
       },
       {
-        kind: "tags",
+        kind: "cards",
         eyebrow: "Solutions",
         heading: "What we put in place.",
-        variant: "chip",
-        items: [
-          "Unified ERP for government operations",
-          "Budgeting and planning",
-          "Accounting and financial reporting",
-          "Workforce and payroll transformation",
-          "Reporting and analytics",
-          "Integration and innovation",
+        columns: 3,
+        accent: "ember",
+        cards: [
+          {
+            title: "Unified ERP for government operations",
+            hook: "Connect people, finance, payroll, planning and reporting in one system — a single source of truth for better decisions.",
+          },
+          {
+            title: "Budgeting and planning",
+            hook: "Planning models, decision packages, forecasting, dashboards and performance insight.",
+          },
+          {
+            title: "Accounting and financial reporting",
+            hook: "Streamline accounting, grants, procurement, reporting and financial controls while improving transparency and audit readiness.",
+          },
+          {
+            title: "Workforce and payroll transformation",
+            hook: "Modernize employee experience, payroll operations, time tracking, recruiting, talent and workforce planning.",
+          },
+          {
+            title: "Reporting and analytics",
+            hook: "Real-time visibility into workforce, finance, budget and operational performance.",
+          },
+          {
+            title: "Integration and innovation",
+            hook: "Connect Workday to the systems your agency depends on, and extend it through automation, dashboards and custom applications.",
+          },
         ],
       },
       {
@@ -84,13 +147,19 @@ export const industries: Record<string, StandardPage> = {
         eyebrow: "Outcomes",
         heading: "What changes after go-live.",
         items: [
-          "Streamlined HR, finance, payroll and planning",
-          "Reduced manual work and duplicate entry",
-          "Improved budget visibility",
+          "Streamlined HR, finance, payroll and planning operations",
+          "Reduced manual work and duplicate data entry",
+          "Improved budget visibility and financial decision-making",
           "Stronger compliance and reporting readiness",
-          "Better employee and manager experience",
-          "Greater operational resilience",
+          "Better employee and manager experiences",
+          "Faster access to real-time workforce and financial insight",
+          "Greater operational resilience and scalability",
+          "Continuous improvement beyond go-live",
         ],
+      },
+      {
+        kind: "pullQuote",
+        text: "Purpose-built for government. Proven through experience. Focused on your mission.",
       },
       {
         kind: "cta",
@@ -161,6 +230,7 @@ export const industries: Record<string, StandardPage> = {
           { title: "Tailored solutions", body: "Shaped around your governance structure, strategic plan and enrollment goals." },
           { title: "Proven results", body: "Measurable improvement in efficiency, employee experience and institutional decision-making." },
           { title: "Long-term partnership", body: "From planning through optimization and continuous innovation." },
+          { title: "Accelerated transformation", body: "Proven deployment methodologies and higher education accelerators reduce project effort while shortening time to value." },
         ],
       },
       {
@@ -172,22 +242,79 @@ export const industries: Record<string, StandardPage> = {
           "Recruit and retain faculty and staff",
           "Modernize legacy systems",
           "Improve financial stewardship",
+          "Increase operational efficiency",
           "Support data-driven leadership",
+          "Enhance institutional agility",
           "Strengthen reporting and compliance",
         ],
       },
       {
-        kind: "tags",
+        kind: "cards",
         eyebrow: "Solutions",
         heading: "What we put in place.",
-        variant: "chip",
+        columns: 3,
+        accent: "ember",
+        cards: [
+          {
+            title: "Human Capital Management",
+            hook: "Modernize recruiting, onboarding, talent management, compensation and employee experience.",
+          },
+          {
+            title: "Finance & Grants",
+            hook: "Improve budgeting, accounting, procurement, grants management and financial transparency.",
+          },
+          {
+            title: "Payroll & Workforce",
+            hook: "Simplify payroll operations, position management, faculty appointments and workforce planning.",
+          },
+          {
+            title: "Planning & Analytics",
+            hook: "Real-time insight into enrollment, workforce, finance and strategic performance.",
+          },
+          {
+            title: "Student & Academic Operations",
+            hook: "Support connected student experiences while improving collaboration across administrative offices.",
+          },
+          {
+            title: "Integrations & Innovation",
+            hook: "Connect campus systems while extending Workday through automation, APIs, reporting and custom applications.",
+          },
+        ],
+      },
+      {
+        kind: "outcomes",
+        eyebrow: "Outcomes",
+        heading: "What institutions get out of it.",
         items: [
-          "Human Capital Management",
-          "Finance & Grants",
-          "Payroll & Workforce",
-          "Planning & Analytics",
-          "Student & Academic Operations",
-          "Integrations & Innovation",
+          "Modern cloud-based campus operations",
+          "Improved employee and faculty experiences",
+          "Faster financial and operational reporting",
+          "Better enrollment and workforce insight",
+          "Streamlined business processes",
+          "Reduced administrative burden",
+          "Increased collaboration across departments",
+          "Better student service delivery",
+          "Long-term technology sustainability",
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "The PTG advantage",
+        heading: "What you get that you wouldn't from a generalist.",
+        columns: 3,
+        cards: [
+          {
+            title: "Higher education specialists",
+            hook: "Consultants who understand colleges and universities — not just the software they run on.",
+          },
+          {
+            title: "Student-centered transformation",
+            hook: "Technology strategy that improves the experience for students, faculty, staff and administrators alike.",
+          },
+          {
+            title: "Proven Workday expertise",
+            hook: "Advisory, implementation, AMS, optimization, integrations, Extend, reporting and innovation.",
+          },
         ],
       },
       {
@@ -196,6 +323,10 @@ export const industries: Record<string, StandardPage> = {
         quote:
           "PTG understood both the technology and the unique culture of higher education. Their collaborative approach, deep Workday expertise, and commitment to our success helped us modernize operations while keeping our institutional mission at the center of every decision.",
         attribution: "— Executive Sponsor, Public Higher Education Institution",
+      },
+      {
+        kind: "pullQuote",
+        text: "Purpose-built for higher education. Focused on institutional success.",
       },
       {
         kind: "cta",
@@ -249,6 +380,14 @@ export const industries: Record<string, StandardPage> = {
         ],
       },
       {
+        kind: "prose",
+        eyebrow: "Industry experience",
+        heading: "We understand the complexity behind essential service.",
+        body: [
+          "Transportation, water, power, infrastructure and public services run on operational realities most consultants never encounter. Our consultants have supported agencies through highly regulated environments, capital improvement programs, unionized workforces, field operations, customer billing and complex financial management.",
+        ],
+      },
+      {
         kind: "features",
         eyebrow: "Why PTG",
         heading: "Why these organizations choose PTG.",
@@ -258,6 +397,7 @@ export const industries: Record<string, StandardPage> = {
           { title: "Tailored solutions", body: "Utility billing, transportation operations, water infrastructure — shaped around your operating model." },
           { title: "Proven results", body: "Measurable improvement in efficiency, financial visibility and workforce management." },
           { title: "Long-term partnership", body: "AMS, optimization, strategic advisory and continuous innovation." },
+          { title: "Accelerated transformation", body: "Proven deployment methodologies and industry accelerators reduce project effort while shortening time to value." },
         ],
       },
       {
@@ -271,7 +411,43 @@ export const industries: Record<string, StandardPage> = {
           "Support unionized and field-based employees",
           "Improve capital project visibility",
           "Simplify regulatory compliance",
+          "Increase operational efficiency",
+          "Improve customer service",
           "Modernize utility billing operations",
+          "Connect critical enterprise systems",
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "Solutions",
+        heading: "What we put in place.",
+        columns: 3,
+        accent: "ember",
+        cards: [
+          {
+            title: "Human Capital Management",
+            hook: "Recruit, develop, retain and support employees across administrative offices and field operations.",
+          },
+          {
+            title: "Financial Management",
+            hook: "Improve budgeting, accounting, grants, procurement, project costing and capital planning.",
+          },
+          {
+            title: "Payroll & Workforce Management",
+            hook: "Support complex payroll, labor agreements, scheduling, overtime, certifications and workforce planning.",
+          },
+          {
+            title: "Planning & Analytics",
+            hook: "Real-time operational, financial, workforce and capital project insight through dashboards and analytics.",
+          },
+          {
+            title: "Integrations & Customer Information Systems",
+            hook: "Connect Workday with CIS, Enterprise Asset Management, GIS, procurement and scheduling platforms.",
+          },
+          {
+            title: "Innovation & Automation",
+            hook: "Workday Extend, automation, AI-enabled workflows, executive dashboards and modern integrations.",
+          },
         ],
       },
       {
@@ -279,7 +455,20 @@ export const industries: Record<string, StandardPage> = {
         eyebrow: "CIS and enterprise integration",
         heading: "Workday, connected to the systems billing depends on.",
         body: [
-          "Utility organizations depend on accurate customer information and billing. We integrate Workday with existing Customer Information Systems, Enterprise Asset Management, GIS and scheduling platforms — improving billing accuracy, reducing manual entry and automating financial reconciliation.",
+          "Utility organizations depend on accurate customer information and billing. We integrate Workday with existing Customer Information Systems, enabling clean synchronization between customer billing, finance, payroll, procurement and workforce operations — whether you're keeping your current CIS platform or planning to replace it.",
+        ],
+      },
+      {
+        kind: "tags",
+        eyebrow: "What integration delivers",
+        heading: "Where the connection pays off.",
+        items: [
+          "Improve billing accuracy",
+          "Reduce manual data entry",
+          "Automate financial reconciliation",
+          "Streamline customer service operations",
+          "Enhance reporting across enterprise systems",
+          "Support future CIS modernization",
         ],
       },
       {
@@ -297,6 +486,47 @@ export const industries: Record<string, StandardPage> = {
           "Port authorities",
           "Airport authorities",
         ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "The PTG advantage",
+        heading: "Why these organizations stay with us.",
+        columns: 3,
+        cards: [
+          {
+            title: "Industry specialists",
+            hook: "Consultants with real-world experience supporting public infrastructure organizations.",
+          },
+          {
+            title: "Integrated technology expertise",
+            hook: "Workday, CIS, ERP, asset management, integrations, reporting and analytics under one team.",
+          },
+          {
+            title: "Operational excellence",
+            hook: "Simplify complex business processes while improving both employee and customer experience.",
+          },
+        ],
+      },
+      {
+        kind: "outcomes",
+        eyebrow: "Outcomes",
+        heading: "What changes after go-live.",
+        items: [
+          "Connected enterprise operations",
+          "Improved workforce productivity",
+          "Better financial visibility",
+          "Modern cloud-based HR and finance",
+          "Improved regulatory compliance",
+          "More efficient capital project management",
+          "Streamlined utility billing integrations",
+          "Reduced manual processes",
+          "Better executive decision-making",
+          "Continuous optimization beyond go-live",
+        ],
+      },
+      {
+        kind: "pullQuote",
+        text: "Built for mission-critical operations. Focused on long-term success.",
       },
       {
         kind: "cta",
@@ -333,6 +563,7 @@ export const industries: Record<string, StandardPage> = {
           { title: "Tailored solutions", body: "Built around your mission, operating model and funding structure." },
           { title: "Proven results", body: "Measurable improvement in efficiency, financial visibility and mission delivery." },
           { title: "Long-term partnership", body: "More than a vendor — committed to your success beyond go-live." },
+          { title: "Smarter, faster transformation", body: "Proven deployment methods and nonprofit-specific accelerators reduce staff burden, increase adoption and shorten time to value." },
         ],
       },
       {
@@ -344,23 +575,62 @@ export const industries: Record<string, StandardPage> = {
           "Manual administrative processes",
           "Limited staff capacity",
           "Complex grant and fund reporting",
+          "Budget constraints",
           "Donor and board transparency",
-          "Workforce retention",
+          "Workforce retention and engagement",
+          "Program performance visibility",
           "Compliance and audit readiness",
+          "Technology adoption",
         ],
       },
       {
-        kind: "tags",
+        kind: "cards",
         eyebrow: "Solutions",
         heading: "What we put in place.",
-        variant: "chip",
+        columns: 3,
+        accent: "ember",
+        cards: [
+          {
+            title: "Human Capital Management",
+            hook: "Modern recruiting, onboarding, talent, compensation, performance and employee self-service.",
+          },
+          {
+            title: "Financial Management",
+            hook: "Improve accounting, budgeting, procurement, grants, fund tracking, reporting and financial transparency.",
+          },
+          {
+            title: "Payroll & Workforce",
+            hook: "Simplify payroll, time tracking, position management, workforce planning and compliance.",
+          },
+          {
+            title: "Planning & Analytics",
+            hook: "Better insight into funding, staffing, programs, budgets and outcomes.",
+          },
+          {
+            title: "Reporting & Transparency",
+            hook: "Real-time reporting and dashboards for executives, boards, funders and program leaders.",
+          },
+          {
+            title: "Integrations & Innovation",
+            hook: "Connect Workday with donor systems, program platforms, payroll providers and reporting tools.",
+          },
+        ],
+      },
+      {
+        kind: "outcomes",
+        eyebrow: "Outcomes",
+        heading: "What the mission gets back.",
         items: [
-          "Human Capital Management",
-          "Financial Management",
-          "Payroll & Workforce",
-          "Planning & Analytics",
-          "Reporting & Transparency",
-          "Integrations & Innovation",
+          "Reduce administrative burden",
+          "Improve financial transparency",
+          "Strengthen grant and fund reporting",
+          "Increase employee and manager self-service",
+          "Improve data visibility across programs",
+          "Support better board and donor reporting",
+          "Streamline HR, finance, payroll and planning",
+          "Build a scalable foundation for growth",
+          "Increase adoption and user confidence",
+          "Focus more time on mission delivery",
         ],
       },
       { kind: "pullQuote", text: "Technology alone does not create impact. People do." },
@@ -407,6 +677,7 @@ export const industries: Record<string, StandardPage> = {
           { title: "Tailored solutions", body: "Shaped around your care delivery model and organizational structure." },
           { title: "Proven results", body: "Improved efficiency, reduced administrative burden and stronger financial performance." },
           { title: "Long-term partnership", body: "Strategic planning through optimization." },
+          { title: "Accelerated transformation", body: "Proven implementation methodologies and healthcare-focused accelerators reduce project effort while shortening time to value." },
         ],
       },
       {
@@ -419,22 +690,136 @@ export const industries: Record<string, StandardPage> = {
           "Fragmented legacy systems",
           "Complex payroll and compensation",
           "Regulatory compliance",
+          "Supply chain visibility",
+          "Financial sustainability",
           "Recruiting and retaining talent",
           "Executive reporting",
+          "Operational efficiency across the enterprise",
         ],
       },
       {
-        kind: "tags",
+        kind: "cards",
         eyebrow: "Solutions",
         heading: "What we put in place.",
-        variant: "chip",
+        columns: 2,
+        accent: "ember",
+        cards: [
+          {
+            title: "Workforce Transformation",
+            hook: "Recruit, retain, develop and engage healthcare professionals through modern Human Capital Management.",
+            bullets: [
+              "Talent acquisition",
+              "Onboarding",
+              "Performance management",
+              "Learning",
+              "Succession planning",
+              "Employee experience",
+            ],
+          },
+          {
+            title: "Financial Management",
+            hook: "Stronger financial visibility across budgeting, accounting, procurement, grants, project costing and operational planning.",
+            bullets: [
+              "Real-time financial reporting",
+              "Budget transparency",
+              "Automated workflows",
+              "Improved reimbursement visibility",
+              "Cost management",
+            ],
+          },
+          {
+            title: "Payroll & Workforce Management",
+            hook: "Support healthcare's most complex workforce environments with flexible payroll and workforce management.",
+            bullets: [
+              "Multiple pay groups",
+              "Shift differentials",
+              "Overtime rules",
+              "Union contracts",
+              "On-call pay",
+              "Premium pay calculations",
+            ],
+          },
+          {
+            title: "Planning & Analytics",
+            hook: "Real-time insight into workforce, financial performance, labor costs, operational metrics and strategic planning.",
+            bullets: [
+              "Executive dashboards",
+              "Workforce planning",
+              "Financial forecasting",
+              "Labor analytics",
+              "Operational reporting",
+              "KPI management",
+            ],
+          },
+          {
+            title: "Integrations & Connected Healthcare",
+            hook: "Integrate Workday with the broader healthcare technology ecosystem, so one connected set of systems delivers trusted data across the organization.",
+            bullets: [
+              "Electronic Health Records (EHR)",
+              "Clinical systems",
+              "ERP platforms",
+              "Supply chain systems",
+              "Scheduling platforms",
+              "Identity management",
+              "Third-party payroll",
+              "Financial applications",
+            ],
+          },
+          {
+            title: "Innovation & Automation",
+            hook: "Extend Workday beyond standard functionality to reduce administrative workload.",
+            bullets: [
+              "Process automation",
+              "AI-enabled workflows",
+              "Intelligent reporting",
+              "Custom applications",
+            ],
+          },
+        ],
+      },
+      {
+        kind: "prose",
+        eyebrow: "Why it matters",
+        heading: "Better operations mean better care.",
+        body: [
+          "When healthcare operations run efficiently, caregivers spend less time navigating administrative tasks and more time caring for patients. That is the point of the work, and it's the measure we hold ourselves to.",
+        ],
+      },
+      {
+        kind: "outcomes",
+        eyebrow: "Outcomes",
+        heading: "What health systems get out of it.",
         items: [
-          "Workforce transformation",
-          "Financial management",
-          "Payroll and workforce management",
-          "Planning and analytics",
-          "Integrations across EHR, clinical, supply chain and scheduling",
-          "Innovation and automation",
+          "Improved workforce efficiency",
+          "Better financial visibility",
+          "Faster recruiting and onboarding",
+          "Simplified payroll administration",
+          "Enhanced compliance and reporting",
+          "Reduced administrative burden",
+          "Better executive decision-making",
+          "Increased employee engagement",
+          "Greater operational agility",
+          "More time dedicated to patient care",
+        ],
+      },
+      {
+        kind: "cards",
+        eyebrow: "The PTG advantage",
+        heading: "How we work with health systems.",
+        columns: 3,
+        cards: [
+          {
+            title: "People-first transformation",
+            hook: "Technology should support caregivers, not create more work for them.",
+          },
+          {
+            title: "Operational excellence",
+            hook: "Modernize administrative processes while improving financial performance and workforce effectiveness.",
+          },
+          {
+            title: "Connected technology",
+            hook: "HR, finance, payroll, planning, supply chain and reporting unified on one Workday platform.",
+          },
         ],
       },
       {
@@ -443,6 +828,10 @@ export const industries: Record<string, StandardPage> = {
         quote:
           "PTG became a true extension of our organization. Their healthcare expertise and Workday knowledge helped us modernize operations while minimizing disruption to our clinical teams.",
         attribution: "— Chief Financial Officer, Regional Health System",
+      },
+      {
+        kind: "pullQuote",
+        text: "Technology built for healthcare. Focused on better patient outcomes.",
       },
       {
         kind: "cta",

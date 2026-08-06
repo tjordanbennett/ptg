@@ -412,6 +412,15 @@
   .hov-card--flat:hover {
     box-shadow: none;
   }
+  /* Linked card titles: colour shift only — the whole card already lifts. */
+  .hov-cardlink {
+    transition: color 0.2s ease;
+  }
+  .hov-card:hover .hov-cardlink,
+  .hov-cardlink:hover,
+  .hov-cardlink:focus-visible {
+    color: #0034a0;
+  }
   .hov-card__media {
     overflow: hidden;
   }

@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     "systems and nonprofits maximize the value of their Workday investment.",
   metadataBase: new URL("http://localhost:3000"),
   robots: { index: false, follow: false }, // speculative build — never indexed
+  icons: { icon: "/favicon.png" },
 };
 
 export default function RootLayout({

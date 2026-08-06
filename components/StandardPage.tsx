@@ -143,16 +143,33 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
             {s.cards.map((c, i) => (
               <Reveal as="article" key={c.title} delay={i * 0.05} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(24px,2.6vw,32px)", display: "flex", flexDirection: "column" }}>
                 <div aria-hidden="true" style={{ width: 34, height: 3, background: accent, marginBottom: 18 }} />
-                <h3 style={{ margin: "0 0 10px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.018em" }}>{c.title}</h3>
-                {c.hook ? <p style={{ margin: c.bullets ? "0 0 16px" : 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.hook}</p> : null}
+                <h3 style={{ margin: "0 0 10px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.018em" }}>
+                  {c.href ? (
+                    <Link href={c.href} className="hov-cardlink" style={{ color: "inherit", textDecoration: "none" }}>
+                      {c.title}
+                    </Link>
+                  ) : (
+                    c.title
+                  )}
+                </h3>
+                {c.hook ? <p style={{ margin: c.bullets || c.href ? "0 0 16px" : 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.hook}</p> : null}
                 {c.bullets ? (
-                  <ul style={{ display: "flex", flexDirection: "column", gap: 9, marginTop: "auto" }}>
+                  <ul style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: c.href ? 18 : 0, marginTop: c.href ? 0 : "auto" }}>
                     {c.bullets.map((b) => (
                       <li key={b} style={{ display: "flex", gap: 11, alignItems: "flex-start", fontSize: 14.5, fontWeight: 600, lineHeight: 1.45, color: "#021F43" }}>
                         <Diamond color={accent} size={7} mt={6} /> {b}
                       </li>
                     ))}
                   </ul>
+                ) : null}
+                {c.href ? (
+                  <Link
+                    href={c.href}
+                    className="hov-link"
+                    style={{ marginTop: "auto", fontSize: 14, fontWeight: 700, letterSpacing: ".04em", textTransform: "uppercase", color: "#0034A0", textDecoration: "none" }}
+                  >
+                    {c.linkLabel ?? "Learn more"} <span aria-hidden="true">&rarr;</span>
+                  </Link>
                 ) : null}
               </Reveal>
             ))}
@@ -253,6 +270,21 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
         <Light key={key} bg={s.bg ?? bg}>
           <Reveal as="div" style={{ maxWidth: 900, borderLeft: "4px solid #EB4900", paddingLeft: "clamp(22px,3vw,40px)" }}>
             <p style={{ margin: 0, fontSize: "clamp(24px,3vw,40px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.022em", color: "#021F43", textWrap: "balance" }}>{s.text}</p>
+            {s.body?.map((p, i) => (
+              <p
+                key={i}
+                style={{
+                  margin: i === 0 ? "clamp(20px,2.2vw,28px) 0 0" : "16px 0 0",
+                  maxWidth: "68ch",
+                  fontSize: "clamp(16.5px,1.3vw,19px)",
+                  lineHeight: 1.65,
+                  color: "#334155",
+                  textWrap: "balance",
+                }}
+              >
+                {p}
+              </p>
+            ))}
           </Reveal>
         </Light>
       );
