@@ -82,7 +82,7 @@ export function SiteHeader({
                 />
               ))}
             </nav>
-            <Link href={site.headerCta.href} className="hov-cta-ember" style={{ flex: "0 0 auto", fontSize: 14, fontWeight: 700, padding: "9px 20px", borderRadius: 3 }}>
+            <Link href={site.headerCta.href} className="hov-cta-ember cta-sm" style={{ flex: "0 0 auto" }}>
               {site.headerCta.label}
             </Link>
           </>
@@ -113,7 +113,7 @@ export function SiteHeader({
               onToggle={() => setOpenMenu((cur) => (cur === i ? null : i))}
             />
           ))}
-          <Link href={site.headerCta.href} className="hov-cta-ember" style={{ display: "block", marginTop: 22, textAlign: "center", fontSize: 15, fontWeight: 700, padding: "12px 24px", borderRadius: 3 }}>
+          <Link href={site.headerCta.href} className="hov-cta-ember cta" style={{ display: "block", marginTop: 22, textAlign: "center" }}>
             {site.headerCta.label}
           </Link>
         </nav>

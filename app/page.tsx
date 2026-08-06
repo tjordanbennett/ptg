@@ -8,6 +8,8 @@ import { Reveal } from "@/components/Reveal";
 import { ParallaxStars } from "@/components/ParallaxStars";
 import { HomeHero } from "@/components/HomeHero";
 import { IndustriesCarousel } from "@/components/IndustriesCarousel";
+import { EyebrowBar } from "@/components/EyebrowBar";
+import { PhotoLinkCard } from "@/components/PhotoLinkCard";
 
 /** Matches public/_design/homepage.html. Section order, type scale, spacing and
  *  colour placement extracted verbatim from that file (the approved spec). */
@@ -20,14 +22,6 @@ const WRAP: React.CSSProperties = {
 const JOURNEY_STAR =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E')";
 
-function EyebrowBar({ label, color = "#0034A0", size = 12, mb = 18 }: { label: string; color?: string; size?: number; mb?: number }) {
-  return (
-    <p style={{ margin: `0 0 ${mb}px`, display: "flex", alignItems: "center", gap: 12, fontSize: size, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color }}>
-      <span aria-hidden="true" style={{ width: 30, height: 2, background: "#EB4900", display: "block" }} />
-      {label}
-    </p>
-  );
-}
 // Outer .lnk-arrow carries the hover slide (see globals.css); inner square holds
 // the rotation, so the two transforms compose instead of overwriting.
 function Arrow({ size = 7, w = 2, color = "currentColor" }: { size?: number; w?: number; color?: string }) {
@@ -36,9 +30,6 @@ function Arrow({ size = 7, w = 2, color = "currentColor" }: { size?: number; w?:
       <span style={{ width: size, height: size, borderTop: `${w}px solid ${color}`, borderRight: `${w}px solid ${color}`, transform: "rotate(45deg)", display: "block" }} />
     </span>
   );
-}
-function Diamond({ color = "#EB4900", size = 7, mt = 6 }: { color?: string; size?: number; mt?: number }) {
-  return <span aria-hidden="true" style={{ flex: "0 0 auto", width: size, height: size, background: color, transform: "rotate(45deg)", marginTop: mt, display: "block" }} />;
 }
 
 export default async function HomePage() {
@@ -61,18 +52,7 @@ export default async function HomePage() {
             <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
               {h.twoPaths.map((p) =>
                 p.image ? (
-                  <Link key={p.heading} href={p.cta.href} className="hov-pathphoto hov-move" style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "flex-end", aspectRatio: "1 / 1", padding: "clamp(28px,3vw,40px)", borderRadius: 3, overflow: "hidden", color: "#FFFFFF" }}>
-                    <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width:1040px) 50vw, 100vw" style={{ objectFit: "cover" }} />
-                    {/* Progressive backdrop blur — masked so it fades in toward the bottom, under the colour gradient */}
-                    <div aria-hidden="true" style={{ position: "absolute", inset: "auto 0 0 0", height: "62%", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", WebkitMaskImage: "linear-gradient(to top, #000 0%, #000 45%, transparent 100%)", maskImage: "linear-gradient(to top, #000 0%, #000 45%, transparent 100%)" }} />
-                    <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(2,31,67,.92) 0%, rgba(2,31,67,.55) 42%, rgba(2,31,67,.12) 68%, transparent 100%)" }} />
-                    <div style={{ position: "relative" }}>
-                      <p style={{ margin: "0 0 14px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: "#80CEFF" }}>{p.eyebrow}</p>
-                      <p style={{ margin: "0 0 12px", fontSize: "clamp(23px,2.2vw,31px)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em" }}>{p.heading}</p>
-                      <p style={{ margin: "0 0 20px", fontSize: 16, lineHeight: 1.6, color: "rgba(255,255,255,.85)", maxWidth: "44ch", textWrap: "balance" }}>{p.body}</p>
-                      <span style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 15, fontWeight: 700 }}>{p.cta.label} <Arrow /></span>
-                    </div>
-                  </Link>
+                  <PhotoLinkCard key={p.heading} href={p.cta.href} image={p.image} kicker={p.eyebrow} title={p.heading} body={p.body} ctaLabel={p.cta.label} />
                 ) : (
                   <Link key={p.heading} href={p.cta.href} className="hov-pathcard hov-move" style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", aspectRatio: "1 / 1", padding: "clamp(28px,3vw,40px)", borderRadius: 3 }}>
                     <p style={{ margin: "0 0 14px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: "#EB4900" }}>{p.eyebrow}</p>
@@ -115,7 +95,7 @@ export default async function HomePage() {
                 {h.contracts.body.map((para, i) => (
                   <p key={i} style={{ margin: i === h.contracts.body.length - 1 ? "0 0 30px" : "0 0 20px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", maxWidth: "52ch", textWrap: "balance" }}>{para}</p>
                 ))}
-                <Link href={h.contracts.cta.href} className="hov-cta-blue hov-move" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 15.5, fontWeight: 700, padding: "12px 26px", borderRadius: 3 }}>{h.contracts.cta.label} <Arrow /></Link>
+                <Link href={h.contracts.cta.href} className="hov-cta-blue hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{h.contracts.cta.label} <Arrow /></Link>
               </Reveal>
               <Reveal as="ul" delay={0.08} style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", border: "1px solid #E5E7EB", borderRadius: 3, overflow: "hidden" }}>
                 {h.contracts.vehicles.map((v) => (
@@ -227,7 +207,7 @@ export default async function HomePage() {
                 <div style={{ border: "1px dashed #94A3B8", borderRadius: 3, padding: "clamp(24px,3vw,34px)", textAlign: "center", background: "#F5F7F9" }}>
                   <p style={{ margin: "0 0 10px", fontSize: 17, fontWeight: 800, color: "#021F43" }}>{h.careers.openRoles.emptyTitle}</p>
                   <p style={{ margin: "0 auto 22px", fontSize: 15, lineHeight: 1.6, color: "#334155", maxWidth: "38ch", textWrap: "balance" }}>{h.careers.openRoles.emptyBody}</p>
-                  <Link href={h.careers.openRoles.cta.href} className="hov-cta-navy" style={{ display: "inline-block", fontSize: 14.5, fontWeight: 700, padding: "10px 22px", borderRadius: 3 }}>{h.careers.openRoles.cta.label}</Link>
+                  <Link href={h.careers.openRoles.cta.href} className="hov-cta-navy cta" style={{ display: "inline-block" }}>{h.careers.openRoles.cta.label}</Link>
                 </div>
               </Reveal>
             </div>
@@ -244,8 +224,8 @@ export default async function HomePage() {
             <h2 id="cta-h" style={{ margin: "0 0 22px", fontSize: "clamp(32px,4.4vw,64px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.03em", maxWidth: "20ch", textWrap: "balance" }}>{h.closingCta.heading}</h2>
             <p style={{ margin: "0 0 36px", fontSize: "clamp(17px,1.4vw,21px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{h.closingCta.body}</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
-              <Link href={h.closingCta.ctas[0].href} className="hov-cta-emberwhite" style={{ fontSize: 16, fontWeight: 700, padding: "13px 30px", borderRadius: 3 }}>{h.closingCta.ctas[0].label}</Link>
-              <Link href={h.closingCta.ctas[1].href} className="hov-cta-glass" style={{ fontSize: 16, fontWeight: 700, padding: "13px 30px", borderRadius: 3 }}>{h.closingCta.ctas[1].label}</Link>
+              <Link href={h.closingCta.ctas[0].href} className="hov-cta-emberwhite cta">{h.closingCta.ctas[0].label}</Link>
+              <Link href={h.closingCta.ctas[1].href} className="hov-cta-glass cta">{h.closingCta.ctas[1].label}</Link>
             </div>
           </Reveal>
         </section>

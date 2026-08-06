@@ -198,6 +198,7 @@ export type Section =
   | { kind: "faq"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; cta?: Cta; items: { q: string; a: string }[] }
   | { kind: "people"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; note?: string; people: { name: string; title: string; unverifiedRole?: boolean }[] }
   | { kind: "emptyState"; eyebrow?: string; heading?: string; sub?: string; title: string; body: string; cta?: Cta; bg?: SectionBg }
+  | { kind: "applicationForm"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; id?: string }
   | { kind: "cta"; eyebrow?: string; heading: string; body?: string; ctas: Cta[] };
 
 export interface StandardPage {

@@ -235,6 +235,32 @@
      and works with JS off. The signature Vivid Leaf accent shows up sparingly
      on the delivery-journey cards. */
 
+  /* ── Button sizing (one scale, defined once) ──────────────────────────
+     Colour + hover live in the .hov-cta-* classes; these three set SIZE.
+     Padding/size used to be repeated inline at every call site, which let
+     values drift (hero 12px, closing 13px, procurement 19px…). Call sites
+     now add a size class and drop the inline padding/font, so a future
+     change to button proportions is one edit here, not a hunt across files. */
+  .cta {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 13px 28px;
+    border-radius: 3px;
+  }
+  /* Compact — header, dense contexts. */
+  .cta-sm {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 3px;
+  }
+  /* Text-style secondary (underline links) — no box, matched vertical rhythm. */
+  .cta-text {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 13px 4px;
+  }
+
   /* Frosted-glass secondary CTA — sits over photography (hero). */
   .hov-cta-glass {
     background: rgba(255, 255, 255, 0.12);
@@ -276,6 +302,20 @@
   .hov-cta-glass:active {
     transform: translateY(0);
     box-shadow: none;
+  }
+
+  /* Résumé dropzone — the file <input> is visually hidden but focusable, so the
+     styled label surfaces hover and (via focus-within) the input's focus ring. */
+  .hov-dropzone {
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hov-dropzone:hover {
+    border-color: #021f43;
+    background: #eef2f6;
+  }
+  .hov-dropzone:focus-within {
+    border-color: #eb4900;
+    box-shadow: 0 0 0 3px rgba(235, 73, 0, 0.18);
   }
 
   /* Carousel prev/next buttons. */

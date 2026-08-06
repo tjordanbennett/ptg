@@ -10,12 +10,10 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px,1fr))", gap: "clamp(28px,3vw,44px)", paddingBottom: "clamp(40px,4vw,56px)" }}>
           {/* Brand block */}
           <div style={{ minWidth: 200 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 18 }}>
-              <span aria-hidden="true" style={{ width: 34, height: 34, display: "grid", placeItems: "center", background: "#FFFFFF", borderRadius: 3 }}>
-                <span style={{ width: 14, height: 14, background: "#021F43", transform: "rotate(45deg)", display: "block" }} />
-              </span>
-              <span style={{ fontSize: 25, fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>PTG</span>
-            </div>
+            {/* Same logo asset as the nav (public/ptg-logo.svg), whitened for the
+                dark footer with the filter the customer marquee also uses. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/ptg-logo.svg" alt="Precision Task Group" width={113} height={36} style={{ display: "block", width: "auto", height: 36, marginBottom: 18, filter: "brightness(0) invert(1)" }} />
             <p style={{ margin: "0 0 20px", fontSize: 14.5, fontWeight: 700, lineHeight: 1.5, color: "#FFFFFF" }}>{site.tagline}</p>
             <p style={{ margin: "0 0 6px", fontSize: 14, lineHeight: 1.65 }}>
               {f.address.lines.map((line, i) => (

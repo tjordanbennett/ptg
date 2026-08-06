@@ -6,6 +6,7 @@ import { CopyNumber } from "@/components/CopyNumber";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxStars } from "@/components/ParallaxStars";
 import { ClosingCTA } from "@/components/StandardPage";
+import { EyebrowBar } from "@/components/EyebrowBar";
 
 const STAR_BLUE =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z%22 fill=%22%230034A0%22/%3E%3C/svg%3E')";
@@ -40,10 +41,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                 <li style={{ color: "#C9D8E8" }}>{v.name}</li>
               </ol>
             </nav>
-            <p style={{ margin: "0 0 18px", display: "flex", alignItems: "center", gap: 12, fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>
-              <span aria-hidden="true" style={{ width: 34, height: 2, background: "#EB4900", display: "block" }} />
-              {v.eyebrow}
-            </p>
+            <EyebrowBar label={v.eyebrow} dark mb={18} />
             <h1 id="hero-h" style={{ margin: "0 0 26px", fontSize: "clamp(34px,4.6vw,62px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{v.name}</h1>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 22, alignItems: "center" }}>
               {v.contracts.map((c) => (
@@ -155,7 +153,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
           <ParallaxStars amount={40} style={{ backgroundImage: STAR_NAVY, backgroundSize: "74px 74px", opacity: 0.42 }} />
           <div style={{ position: "relative", ...WRAP }}>
             <Reveal as="div" style={{ maxWidth: 620, marginBottom: "clamp(28px,3.4vw,44px)" }}>
-              <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>How to order</p>
+              <EyebrowBar label="How to order" dark />
               <h2 style={{ margin: 0, fontSize: "clamp(26px,3vw,42px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.026em", textWrap: "balance" }}>Straight to purchase order.</h2>
             </Reveal>
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px,1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
@@ -180,7 +178,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                 <p style={{ margin: 0, fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, lineHeight: 1.25, letterSpacing: "-0.018em", maxWidth: "26ch", textWrap: "balance" }}>Every term on this page is on the issuing authority&apos;s official record.</p>
               </div>
               <div style={{ justifySelf: "start" }}>
-                <Link href={v.official.href} data-unverified="" className="hov-cta-emberwhite hov-move" style={{ display: "inline-flex", alignItems: "center", gap: 11, fontSize: 15.5, fontWeight: 700, padding: "12px 26px", borderRadius: 3 }}>
+                <Link href={v.official.href} data-unverified="" className="hov-cta-emberwhite hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 11 }}>
                   {v.official.label}
                   <span aria-hidden="true" className="lnk-arrow"><span style={{ display: "block", width: 7, height: 7, borderTop: "2px solid currentColor", borderRight: "2px solid currentColor", transform: "rotate(45deg)" }} /></span>
                 </Link>

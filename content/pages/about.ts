@@ -156,15 +156,24 @@ export const careers: StandardPage = {
       heading: "Open roles",
       sub: "Workday, ServiceNow, change management — remote-first, U.S.",
       title: "No postings open right now.",
-      body: "We're not in a hiring push at the moment, but we're always glad to meet good people. Tell us what you do and we'll be in touch when something fits.",
-      cta: { label: "Send us your résumé", href: "/contact" },
+      body: "We're not in a hiring push at the moment, but we're always glad to meet good people. Send your résumé below and we'll be in touch when something fits.",
+      cta: { label: "Send us your résumé", href: "#apply" },
+    },
+    {
+      kind: "applicationForm",
+      id: "apply",
+      bg: "offwhite",
+      eyebrow: "Introduce yourself",
+      heading: "Send us your résumé.",
+      intro:
+        "No open posting is no reason to wait. Tell us who you are and attach your résumé — we keep applications on file and reach out when a role fits your background.",
     },
     {
       kind: "cta",
       eyebrow: "Careers & culture",
       heading: "We're always glad to meet good people.",
       ctas: [
-        { label: "Send us your résumé", href: "/contact" },
+        { label: "Send us your résumé", href: "#apply" },
         { label: "Learn about PTG", href: "/about" },
       ],
     },

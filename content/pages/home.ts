@@ -246,7 +246,7 @@ export const home: HomePage = {
       emptyBody:
         "We're not in a hiring push at the moment, but we're always glad to meet " +
         "good people. Tell us what you do and we'll be in touch when something fits.",
-      cta: { label: "Send us your résumé", href: "/contact" },
+      cta: { label: "Send us your résumé", href: "/about/careers#apply" },
     },
   },
 

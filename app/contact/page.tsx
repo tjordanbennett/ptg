@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ContactForm } from "@/components/ContactForm";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxStars } from "@/components/ParallaxStars";
+import { EyebrowBar } from "@/components/EyebrowBar";
+import { PhotoLinkCard } from "@/components/PhotoLinkCard";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -37,10 +39,7 @@ export default async function ContactPage() {
                 <li style={{ color: "#C9D8E8" }}>Contact</li>
               </ol>
             </nav>
-            <p style={{ margin: "0 0 18px", display: "flex", alignItems: "center", gap: 12, fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>
-              <span aria-hidden="true" style={{ width: 34, height: 2, background: "#EB4900", display: "block" }} />
-              Connect with us
-            </p>
+            <EyebrowBar label="Connect with us" dark mb={18} />
             <h1 id="hero-h" style={{ margin: "0 0 22px", fontSize: "clamp(38px,5vw,72px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.03em" }}>Let&apos;s talk.</h1>
             <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "balance" }}>
               Tell us about your organization and what you&apos;re trying to accomplish. We&apos;ll point you to the right person — and if a cooperative contract makes the path easier, we&apos;ll tell you which one applies.
@@ -73,14 +72,22 @@ export default async function ContactPage() {
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                  <Link href="/procurement-contracts" className="hov-card hov-move" style={{ display: "flex", flexDirection: "column", gap: 5, background: "#F5F7F9", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(18px,2vw,24px)" }}>
-                    <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#94A3B8" }}>Looking for a contract vehicle?</span>
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 17, fontWeight: 800, letterSpacing: "-0.015em", color: "#021F43" }}>How to Buy from PTG <span aria-hidden="true" className="lnk-arrow"><span style={{ display: "block", width: 6, height: 6, borderTop: "2px solid #0034A0", borderRight: "2px solid #0034A0", transform: "rotate(45deg)" }} /></span></span>
-                  </Link>
-                  <Link href="/about/careers" className="hov-card hov-move" style={{ display: "flex", flexDirection: "column", gap: 5, background: "#F5F7F9", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(18px,2vw,24px)" }}>
-                    <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#94A3B8" }}>Interested in joining PTG?</span>
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 17, fontWeight: 800, letterSpacing: "-0.015em", color: "#021F43" }}>Careers &amp; Culture <span aria-hidden="true" className="lnk-arrow"><span style={{ display: "block", width: 6, height: 6, borderTop: "2px solid #0034A0", borderRight: "2px solid #0034A0", transform: "rotate(45deg)" }} /></span></span>
-                  </Link>
+                  {/* Same photographic treatment and images the homepage uses for
+                      these two destinations — keeps the visual language consistent. */}
+                  <PhotoLinkCard
+                    href="/procurement-contracts"
+                    image={{ src: "/images/evaluating-partner.png", alt: "Consultants reviewing plans with a client in a glass-walled meeting room overlooking a university campus", width: 1254, height: 1254 }}
+                    kicker="Looking for a contract vehicle?"
+                    title="How to Buy from PTG"
+                    ratio="16 / 10"
+                  />
+                  <PhotoLinkCard
+                    href="/about/careers"
+                    image={{ src: "/images/consultant.png", alt: "Consultants talking around a table covered in site plans and photographs in a warm studio office", width: 1254, height: 1254 }}
+                    kicker="Interested in joining PTG?"
+                    title="Careers & Culture"
+                    ratio="16 / 10"
+                  />
                 </div>
               </Reveal>
             </div>

@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ContractFinder } from "@/components/ContractFinder";
 import { CopyNumber } from "@/components/CopyNumber";
 import { FaqAccordion } from "@/components/FaqAccordion";
+import { EyebrowBar } from "@/components/EyebrowBar";
 
 export const metadata: Metadata = {
   title: "How to Buy from PTG",
@@ -18,15 +19,6 @@ export const metadata: Metadata = {
 
 const JOURNEY_STAR =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E')";
-
-function EyebrowBar({ label, color = "#0034A0" }: { label: string; color?: string }) {
-  return (
-    <p style={{ margin: "0 0 16px", display: "flex", alignItems: "center", gap: 12, fontSize: 12, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color }}>
-      <span aria-hidden="true" style={{ width: 30, height: 2, background: "#EB4900", display: "block" }} />
-      {label}
-    </p>
-  );
-}
 
 export default async function HowToBuyPage() {
   const site = await getSiteSettings();
@@ -51,10 +43,7 @@ export default async function HowToBuyPage() {
             </nav>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
               <div style={{ maxWidth: 660 }}>
-                <p style={{ margin: "0 0 20px", display: "flex", alignItems: "center", gap: 12, fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>
-                  <span aria-hidden="true" style={{ width: 34, height: 2, background: "#EB4900", display: "block" }} />
-                  {p.hero.eyebrow}
-                </p>
+                <EyebrowBar label={p.hero.eyebrow} dark mb={20} />
                 <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.hero.headline}</h1>
                 <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "58ch", textWrap: "balance" }}>{p.hero.body}</p>
               </div>
@@ -140,7 +129,7 @@ export default async function HowToBuyPage() {
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: JOURNEY_STAR, backgroundSize: "74px 74px", opacity: 0.42 }} />
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,96px) clamp(20px,4vw,48px)" }}>
             <div style={{ maxWidth: 620, marginBottom: "clamp(32px,3.6vw,50px)" }}>
-              <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>{p.ordering.eyebrow}</p>
+              <EyebrowBar label={p.ordering.eyebrow} dark />
               <h2 id="steps-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.ordering.heading}</h2>
               <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{p.ordering.intro}</p>
             </div>
@@ -165,7 +154,7 @@ export default async function HowToBuyPage() {
                 <EyebrowBar label={p.faq.eyebrow} />
                 <h2 id="faq-h" style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.faq.heading}</h2>
                 <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "46ch", textWrap: "balance" }}>{p.faq.intro}</p>
-                <Link href={p.faq.cta.href} className="hov-cta-blue" style={{ display: "inline-block", fontSize: 15, fontWeight: 700, padding: "16px 28px", borderRadius: 3 }}>{p.faq.cta.label}</Link>
+                <Link href={p.faq.cta.href} className="hov-cta-blue cta" style={{ display: "inline-block" }}>{p.faq.cta.label}</Link>
               </div>
               <FaqAccordion items={p.faq.items} />
             </div>
@@ -178,12 +167,12 @@ export default async function HowToBuyPage() {
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(2,31,67,.96) 0%, rgba(2,31,67,.72) 55%, rgba(0,52,160,.35) 100%)" }} />
           <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 5, background: "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)" }} />
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(64px,7vw,112px) clamp(20px,4vw,48px)" }}>
-            <p style={{ margin: "0 0 20px", fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>{p.closingCta.eyebrow}</p>
+            <EyebrowBar label={p.closingCta.eyebrow} dark mb={20} />
             <h2 id="cta-h" style={{ margin: "0 0 22px", fontSize: "clamp(30px,4vw,58px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.03em", maxWidth: "24ch", textWrap: "balance" }}>{p.closingCta.heading}</h2>
             <p style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.4vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{p.closingCta.body}</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
-              <Link href={p.closingCta.ctas[0].href} className="hov-cta-emberwhite" style={{ fontSize: 16, fontWeight: 700, padding: "19px 36px", borderRadius: 3 }}>{p.closingCta.ctas[0].label}</Link>
-              <Link href={p.closingCta.ctas[1].href} className="hov-underline" style={{ fontSize: 16, fontWeight: 700, padding: "19px 8px" }}>{p.closingCta.ctas[1].label}</Link>
+              <Link href={p.closingCta.ctas[0].href} className="hov-cta-emberwhite cta">{p.closingCta.ctas[0].label}</Link>
+              <Link href={p.closingCta.ctas[1].href} className="hov-underline cta-text">{p.closingCta.ctas[1].label}</Link>
             </div>
           </div>
         </section>

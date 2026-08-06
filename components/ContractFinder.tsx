@@ -151,7 +151,7 @@ export function ContractFinder({
           <div style={{ border: "1px dashed #94A3B8", borderRadius: 3, padding: "clamp(24px,3vw,34px)", background: "#F5F7F9" }}>
             <p style={{ margin: "0 0 10px", fontSize: 17, fontWeight: 800, color: "#021F43" }}>{finder.noMatch.title}</p>
             <p style={{ margin: "0 0 20px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", maxWidth: "62ch", textWrap: "balance" }}>{finder.noMatch.body}</p>
-            <Link href={finder.noMatch.cta.href} className="hov-cta-navy" style={{ display: "inline-block", fontSize: 14.5, fontWeight: 700, padding: "10px 22px", borderRadius: 3 }}>{finder.noMatch.cta.label}</Link>
+            <Link href={finder.noMatch.cta.href} className="hov-cta-navy cta" style={{ display: "inline-block" }}>{finder.noMatch.cta.label}</Link>
           </div>
         ) : null}
       </div>

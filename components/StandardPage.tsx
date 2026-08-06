@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxStars } from "@/components/ParallaxStars";
+import { EyebrowBar } from "@/components/EyebrowBar";
+import { ApplicationForm } from "@/components/ApplicationForm";
 
 /**
  * StandardPageView — one renderer for every interior page (services, industries,
@@ -25,15 +27,6 @@ const HAIRLINE = "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)";
 const CONTAINER = { maxWidth: 1320, margin: "0 auto", padding: "clamp(56px,6vw,96px) clamp(20px,4vw,48px)" } as const;
 
 /* ── small parts ─────────────────────────────────────────────── */
-
-function EyebrowBar({ label, dark = false }: { label: string; dark?: boolean }) {
-  return (
-    <p style={{ margin: "0 0 16px", display: "flex", alignItems: "center", gap: 12, fontSize: 12, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: dark ? "#80CEFF" : "#0034A0" }}>
-      <span aria-hidden="true" style={{ width: 30, height: 2, background: "#EB4900", display: "block" }} />
-      {label}
-    </p>
-  );
-}
 
 function Arrow({ size = 7 }: { size?: number }) {
   return (
@@ -92,10 +85,7 @@ function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crum
         </nav>
         <div style={{ display: "grid", gridTemplateColumns: hero.bullets ? "repeat(auto-fit, minmax(320px,1fr))" : "1fr", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
           <div style={{ maxWidth: 760 }}>
-            <p style={{ margin: "0 0 20px", display: "flex", alignItems: "center", gap: 12, fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>
-              <span aria-hidden="true" style={{ width: 34, height: 2, background: "#EB4900", display: "block" }} />
-              {hero.eyebrow}
-            </p>
+            <EyebrowBar label={hero.eyebrow} dark mb={20} />
             <h1 id="hero-h" style={{ margin: hero.body ? "0 0 24px" : 0, fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{hero.headline}</h1>
             {hero.body ? <p style={{ margin: hero.tagline ? "0 0 20px" : 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "balance" }}>{hero.body}</p> : null}
             {hero.tagline ? <p style={{ margin: 0, fontSize: "clamp(15px,1.15vw,17px)", fontWeight: 700, letterSpacing: "-0.01em", color: "#80CEFF" }}>{hero.tagline}</p> : null}
@@ -328,7 +318,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
               {s.eyebrow ? <EyebrowBar label={s.eyebrow} /> : null}
               <h2 style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{s.heading ?? "Common questions"}</h2>
               {s.intro ? <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "46ch", textWrap: "balance" }}>{s.intro}</p> : null}
-              {s.cta ? <Link href={s.cta.href} className="hov-cta-blue hov-move" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 15, fontWeight: 700, padding: "11px 24px", borderRadius: 3 }}>{s.cta.label} <Arrow /></Link> : null}
+              {s.cta ? <Link href={s.cta.href} className="hov-cta-blue hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{s.cta.label} <Arrow /></Link> : null}
             </Reveal>
             <FaqAccordion items={s.items} />
           </div>
@@ -363,8 +353,20 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
             <div aria-hidden="true" style={{ width: 40, height: 40, margin: "0 auto 22px", background: "#B4FF00", transform: "rotate(45deg)", opacity: 0.9 }} />
             <p style={{ margin: "0 0 12px", fontSize: "clamp(19px,2vw,25px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>{s.title}</p>
             <p style={{ margin: "0 auto 26px", fontSize: 16, lineHeight: 1.6, color: "#334155", maxWidth: "52ch", textWrap: "balance" }}>{s.body}</p>
-            {s.cta ? <Link href={s.cta.href} className="hov-cta-navy hov-move" style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 15, fontWeight: 700, padding: "11px 26px", borderRadius: 3 }}>{s.cta.label} <Arrow /></Link> : null}
+            {s.cta ? <Link href={s.cta.href} className="hov-cta-navy hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{s.cta.label} <Arrow /></Link> : null}
           </Reveal>
+        </Light>
+      );
+
+    case "applicationForm":
+      return (
+        <Light key={key} bg={s.bg ?? bg} id={s.id ?? "apply"}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
+            <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} maxWidth={460} />
+            <Reveal as="div" delay={0.06} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 4, padding: "clamp(24px,3vw,40px)" }}>
+              <ApplicationForm />
+            </Reveal>
+          </div>
         </Light>
       );
 
@@ -383,12 +385,12 @@ export function ClosingCTA({ eyebrow, heading, body, ctas, id = "connect" }: { e
       <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 5, background: HAIRLINE }} />
       <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(64px,7vw,112px) clamp(20px,4vw,48px)" }}>
         <Reveal as="div">
-          {eyebrow ? <p style={{ margin: "0 0 20px", fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>{eyebrow}</p> : null}
+          {eyebrow ? <EyebrowBar label={eyebrow} dark mb={20} /> : null}
           <h2 id="cta-h" style={{ margin: body ? "0 0 22px" : "0 0 34px", fontSize: "clamp(30px,4vw,58px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.03em", maxWidth: "24ch", textWrap: "balance" }}>{heading}</h2>
           {body ? <p style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.4vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{body}</p> : null}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
             {ctas.map((c, i) => (
-              <Link key={c.href + c.label} href={c.href} className={i === 0 ? "hov-cta-emberwhite" : "hov-underline"} style={i === 0 ? { fontSize: 16, fontWeight: 700, padding: "13px 30px", borderRadius: 3 } : { fontSize: 16, fontWeight: 700, padding: "13px 8px" }}>{c.label}</Link>
+              <Link key={c.href + c.label} href={c.href} className={i === 0 ? "hov-cta-emberwhite cta" : "hov-underline cta-text"}>{c.label}</Link>
             ))}
           </div>
         </Reveal>

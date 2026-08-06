@@ -123,7 +123,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <button type="submit" className="hov-cta-ember" style={{ fontFamily: "inherit", fontSize: 15.5, fontWeight: 700, padding: "11px 28px", borderRadius: 3, border: 0, cursor: "pointer" }}>
+        <button type="submit" className="hov-cta-ember cta" style={{ fontFamily: "inherit", border: 0, cursor: "pointer" }}>
           Send message
         </button>
       </div>

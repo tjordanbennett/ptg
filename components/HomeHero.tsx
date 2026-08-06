@@ -102,8 +102,8 @@ export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customer
             animate={{ opacity: show ? 1 : 0, y: show ? 0 : 24 }}
             transition={t(0.25 + lines.length * 0.1)}
           >
-            <Link href={hero.ctas[0].href} className="hov-cta-emberwhite" style={{ fontSize: 15, fontWeight: 700, padding: "12px 28px", borderRadius: 3 }}>{hero.ctas[0].label}</Link>
-            <Link href={hero.ctas[1].href} className="hov-cta-glass" style={{ fontSize: 15, fontWeight: 700, padding: "12px 28px", borderRadius: 3 }}>{hero.ctas[1].label}</Link>
+            <Link href={hero.ctas[0].href} className="hov-cta-emberwhite cta">{hero.ctas[0].label}</Link>
+            <Link href={hero.ctas[1].href} className="hov-cta-glass cta">{hero.ctas[1].label}</Link>
           </motion.div>
         </div>
       </div>
