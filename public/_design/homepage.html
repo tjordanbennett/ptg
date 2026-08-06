@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Montserrat, Helvetica, Arial, sans-serif; background: #FFFFFF; color: #021F43; -webkit-font-smoothing: antialiased; }
+  a { color: #0034A0; text-decoration: none; }
+  a:hover { color: #EB4900; }
+  :focus-visible { outline: 3px solid #EB4900; outline-offset: 2px; }
+  ul, ol { margin: 0; padding: 0; }
+  li { list-style: none; }
+  @keyframes ptgRise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="width:100%; overflow-x:hidden;">
+
+<a href="#main" style="position:absolute; left:-9999px; top:0; z-index:200; background:#EB4900; color:#fff; padding:12px 20px; font-weight:700; font-size:14px;" style-focus="left:12px; top:12px;">Skip to content</a>
+
+<!-- ══ HEADER ══ -->
+<header style="position:sticky; top:0; z-index:100; background:#FFFFFF; border-bottom:1px solid #E5E7EB;">
+  <div style="max-width:1320px; margin:0 auto; padding:0 clamp(20px,4vw,48px); height:78px; display:flex; align-items:center; gap:40px;">
+
+    <a href="#main" aria-label="Precision Task Group home" style="display:flex; align-items:center; gap:11px; flex:0 0 auto;">
+      <span aria-hidden="true" style="width:36px; height:36px; display:grid; place-items:center; background:#021F43; border-radius:3px;">
+        <span style="width:15px; height:15px; background:#80CEFF; transform:rotate(45deg); display:block;"></span>
+      </span>
+      <span style="font-size:27px; font-weight:800; letter-spacing:-0.02em; color:#021F43; line-height:1;">PTG</span>
+    </a>
+
+    <sc-if value="{{ showDesktopNav }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Primary" style="flex:1 1 auto; display:flex; align-items:center; gap:2px;">
+        <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+          <div style="position:relative;" onMouseEnter="{{ item.onEnter }}" onMouseLeave="{{ item.onLeave }}">
+            <button type="button" aria-expanded="{{ item.expanded }}" onClick="{{ item.onToggle }}" style="display:flex; align-items:center; gap:6px; background:none; border:0; font-family:inherit; font-size:15px; font-weight:600; color:#021F43; padding:28px 16px; cursor:pointer; border-bottom:3px solid transparent;" style-hover="color:#0034A0; border-bottom-color:#EB4900;">
+              {{ item.label }}
+              <span aria-hidden="true" style="width:6px; height:6px; border-right:2px solid #94A3B8; border-bottom:2px solid #94A3B8; transform:translateY(-2px) rotate(45deg); display:block;"></span>
+            </button>
+
+            <sc-if value="{{ item.isOpen }}">
+              <div style="position:absolute; top:100%; left:0; background:#FFFFFF; border:1px solid #E5E7EB; border-top:3px solid #EB4900; box-shadow:0 24px 48px -12px rgba(2,31,67,.22); padding:26px 30px; display:flex; gap:38px; animation:ptgRise .16s ease-out;">
+                <sc-for list="{{ item.groups }}" as="group" hint-placeholder-count="1">
+                  <div style="min-width:212px;">
+                    <p style="margin:0 0 12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#94A3B8;">{{ group.title }}</p>
+                    <ul style="display:flex; flex-direction:column; gap:1px;">
+                      <sc-for list="{{ group.items }}" as="link" hint-placeholder-count="4">
+                        <li>
+                          <a href="{{ link.href }}" style="display:block; padding:8px 10px; margin-left:-10px; font-size:14.5px; font-weight:600; color:#021F43; border-radius:3px; line-height:1.35;" style-hover="background:#F5F7F9; color:#0034A0;">{{ link.label }}</a>
+                        </li>
+                      </sc-for>
+                    </ul>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </nav>
+
+      <a href="#connect" style="flex:0 0 auto; background:#EB4900; color:#FFFFFF; font-size:14.5px; font-weight:700; padding:14px 26px; border-radius:3px;" style-hover="background:#021F43; color:#FFFFFF;">Connect with Us</a>
+    </sc-if>
+
+    <sc-if value="{{ showMobileToggle }}">
+      <div style="flex:1 1 auto; display:flex; justify-content:flex-end;">
+        <button type="button" aria-expanded="{{ mobileExpanded }}" aria-label="Menu" onClick="{{ toggleMobile }}" style="display:flex; flex-direction:column; gap:5px; background:none; border:1px solid #E5E7EB; border-radius:3px; padding:12px 13px; cursor:pointer;">
+          <span aria-hidden="true" style="display:block; width:20px; height:2px; background:#021F43;"></span>
+          <span aria-hidden="true" style="display:block; width:20px; height:2px; background:#021F43;"></span>
+          <span aria-hidden="true" style="display:block; width:20px; height:2px; background:#021F43;"></span>
+        </button>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ mobileOpen }}">
+    <nav aria-label="Primary" style="border-top:1px solid #E5E7EB; background:#F5F7F9; padding:8px 20px 26px; max-height:76vh; overflow-y:auto;">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #E5E7EB; padding:4px 0;">
+          <button type="button" aria-expanded="{{ item.expanded }}" onClick="{{ item.onToggle }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; background:none; border:0; font-family:inherit; font-size:16px; font-weight:700; color:#021F43; padding:16px 2px; cursor:pointer; text-align:left;">
+            {{ item.label }}
+            <span aria-hidden="true" style="width:7px; height:7px; border-right:2px solid #EB4900; border-bottom:2px solid #EB4900; transform:rotate(45deg); display:block;"></span>
+          </button>
+          <sc-if value="{{ item.isOpen }}">
+            <ul style="display:flex; flex-direction:column; gap:2px; padding:0 0 14px 2px;">
+              <sc-for list="{{ item.flatItems }}" as="link" hint-placeholder-count="4">
+                <li><a href="{{ link.href }}" style="display:block; padding:11px 0; font-size:15px; font-weight:600; color:#334155;">{{ link.label }}</a></li>
+              </sc-for>
+            </ul>
+          </sc-if>
+        </div>
+      </sc-for>
+      <a href="#connect" style="display:block; margin-top:22px; text-align:center; background:#EB4900; color:#FFFFFF; font-size:15px; font-weight:700; padding:16px 26px; border-radius:3px;">Connect with Us</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main id="main">
+
+  <!-- ══ HERO ══ -->
+  <section aria-labelledby="hero-h" style="position:relative; background:#021F43; color:#FFFFFF; overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z%22 fill=%22%230034A0%22/%3E%3C/svg%3E'); background-size:74px 74px; opacity:.5; mask-image:linear-gradient(115deg, transparent 42%, #000 100%); -webkit-mask-image:linear-gradient(115deg, transparent 42%, #000 100%);"></div>
+    <div aria-hidden="true" style="position:absolute; right:0; bottom:0; width:46%; height:100%; background:linear-gradient(200deg, rgba(0,52,160,.42), rgba(2,31,67,0) 62%);"></div>
+
+    <div style="position:relative; max-width:1320px; margin:0 auto; padding:clamp(64px,7vw,104px) clamp(20px,4vw,48px) clamp(56px,6vw,88px); display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:clamp(36px,5vw,72px); align-items:center;">
+      <div style="max-width:660px;">
+        <p style="margin:0 0 22px; display:flex; align-items:center; gap:12px; font-size:12.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#80CEFF;">
+          <span aria-hidden="true" style="width:34px; height:2px; background:#EB4900; display:block;"></span>
+          Realize Value. Faster.
+        </p>
+        <h1 id="hero-h" style="margin:0 0 26px; font-size:clamp(37px,5vw,72px); font-weight:800; line-height:1.02; letter-spacing:-0.025em; text-wrap:balance;">
+          Workday, delivered by people<br />who stay.
+        </h1>
+        <p style="margin:0 0 38px; font-size:clamp(17px,1.35vw,20px); line-height:1.6; color:#DDE6F0; max-width:600px; text-wrap:pretty;">
+          PTG helps government agencies, universities, health systems and nonprofits maximize the value of their Workday investment. Family-owned for 45 years, one of a handful of authorized Workday resellers, and independent by choice — so the team that wins your work is the team that does it.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px;">
+          <a href="#connect" style="background:#EB4900; color:#FFFFFF; font-size:15.5px; font-weight:700; padding:18px 32px; border-radius:3px;" style-hover="background:#FFFFFF; color:#021F43;">Schedule a consultation</a>
+          <a href="#contracts" style="background:transparent; color:#FFFFFF; font-size:15.5px; font-weight:700; padding:18px 32px; border-radius:3px; border:1.5px solid rgba(255,255,255,.45);" style-hover="background:#FFFFFF; color:#021F43; border-color:#FFFFFF;">How to buy from PTG</a>
+        </div>
+      </div>
+
+      <div style="position:relative; min-height:clamp(280px,32vw,436px); border-radius:4px; overflow:hidden; background:repeating-linear-gradient(135deg, #0A2C58 0 11px, #072448 11px 22px); display:grid; place-items:center; border:1px solid rgba(128,206,255,.24);">
+        <p style="margin:0; padding:20px; text-align:center; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; line-height:1.7; letter-spacing:.04em; color:#80CEFF;">
+          HOUSTON SKYLINE AT DUSK<br />6016 × 4000 · supplied<br /><span style="color:#5B7FA8;">full-bleed, right two-fifths</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- credential band -->
+    <div style="position:relative; border-top:1px solid rgba(128,206,255,.2); background:rgba(0,52,160,.28);">
+      <div style="max-width:1320px; margin:0 auto; padding:clamp(22px,2.6vw,30px) clamp(20px,4vw,48px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(18px,3vw,44px);">
+        <p style="margin:0; font-size:clamp(16px,1.5vw,21px); font-weight:800; line-height:1.35; letter-spacing:-0.01em;">
+          The largest public sector Workday reseller in the U.S.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <span style="font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#80CEFF; border:1px solid rgba(128,206,255,.4); padding:8px 14px; border-radius:2px;">Certified Workday Partner</span>
+          <span style="font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#80CEFF; border:1px solid rgba(128,206,255,.4); padding:8px 14px; border-radius:2px;">Authorized Reseller</span>
+          <span style="font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#80CEFF; border:1px solid rgba(128,206,255,.4); padding:8px 14px; border-radius:2px;">MBE · DBE Certified</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TWO PATHS ══ -->
+  <sc-if value="{{ twoPaths }}" hint-placeholder-val="{{ true }}">
+    <section aria-labelledby="paths-h" style="background:#FFFFFF; border-bottom:1px solid #E5E7EB;">
+      <div style="max-width:1320px; margin:0 auto; padding:clamp(48px,5vw,76px) clamp(20px,4vw,48px);">
+        <h2 id="paths-h" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);">Where would you like to start?</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:clamp(20px,2.5vw,32px);">
+
+          <a href="#contracts" style="display:block; padding:clamp(28px,3vw,40px); background:#F5F7F9; border-left:4px solid #0034A0; border-radius:3px; color:#021F43;" style-hover="background:#021F43; color:#FFFFFF; border-left-color:#EB4900;">
+            <p style="margin:0 0 14px; font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#EB4900;">I'm evaluating partners</p>
+            <p style="margin:0 0 12px; font-size:clamp(23px,2.2vw,31px); font-weight:800; line-height:1.15; letter-spacing:-0.02em; color:inherit;">Buy without running an RFP</p>
+            <p style="margin:0 0 20px; font-size:16px; line-height:1.6; color:inherit; opacity:.82; max-width:44ch; text-wrap:pretty;">Most public agencies and universities can purchase PTG through a cooperative contract they already hold. Six vehicles, one path to award.</p>
+            <span style="display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:700; color:inherit;">Find your contract vehicle <span aria-hidden="true" style="width:7px; height:7px; border-top:2px solid currentColor; border-right:2px solid currentColor; transform:rotate(45deg); display:block;"></span></span>
+          </a>
+
+          <a href="#careers" style="display:block; padding:clamp(28px,3vw,40px); background:#F5F7F9; border-left:4px solid #0034A0; border-radius:3px; color:#021F43;" style-hover="background:#021F43; color:#FFFFFF; border-left-color:#EB4900;">
+            <p style="margin:0 0 14px; font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#EB4900;">I'm a consultant</p>
+            <p style="margin:0 0 12px; font-size:clamp(23px,2.2vw,31px); font-weight:800; line-height:1.15; letter-spacing:-0.02em; color:inherit;">Build a career you don't leave</p>
+            <p style="margin:0 0 20px; font-size:16px; line-height:1.6; color:inherit; opacity:.82; max-width:44ch; text-wrap:pretty;">Near-zero voluntary turnover, real autonomy on real public sector work, and a firm small enough that your name is known.</p>
+            <span style="display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:700; color:inherit;">See careers &amp; culture <span aria-hidden="true" style="width:7px; height:7px; border-top:2px solid currentColor; border-right:2px solid currentColor; transform:rotate(45deg); display:block;"></span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ══ STATS ══ -->
+  <section aria-labelledby="stats-h" style="position:relative; background:#021F43; color:#FFFFFF; overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:radial-gradient(rgba(128,206,255,.19) 1px, transparent 1px); background-size:22px 22px;"></div>
+    <div aria-hidden="true" style="position:absolute; left:0; top:0; right:0; height:4px; background:linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900);"></div>
+
+    <div style="position:relative; max-width:1320px; margin:0 auto; padding:clamp(58px,6vw,92px) clamp(20px,4vw,48px);">
+      <h2 id="stats-h" style="margin:0 0 clamp(38px,4vw,56px); font-size:clamp(13px,1.2vw,15px); font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#80CEFF;">Four and a half decades of public sector work</h2>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:0; border-top:1px solid rgba(128,206,255,.25); border-bottom:1px solid rgba(128,206,255,.25);">
+        <sc-for list="{{ stats }}" as="stat" hint-placeholder-count="5">
+          <div style="padding:clamp(26px,3vw,38px) clamp(14px,2vw,26px) clamp(26px,3vw,38px) 0;">
+            <p style="margin:0 0 6px; font-size:clamp(46px,5.6vw,92px); font-weight:800; line-height:.92; letter-spacing:-0.045em; color:{{ stat.tint }};">{{ stat.figure }}</p>
+            <p style="margin:0; font-size:clamp(14px,1.15vw,16px); font-weight:600; line-height:1.4; color:#C9D8E8; max-width:20ch; text-wrap:pretty;">{{ stat.label }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CUSTOMERS ══ -->
+  <section aria-labelledby="cust-h" style="background:#F5F7F9; border-bottom:1px solid #E5E7EB;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(48px,5vw,72px) clamp(20px,4vw,48px);">
+      <h2 id="cust-h" style="margin:0 0 clamp(28px,3vw,40px); font-size:clamp(13px,1.2vw,15px); font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#334155;">Trusted by the institutions that serve Texas and the nation</h2>
+      <ul style="display:grid; grid-template-columns:repeat(auto-fill, minmax(216px,1fr)); gap:0; background:#FFFFFF; border:1px solid #E5E7EB;">
+        <sc-for list="{{ customers }}" as="c" hint-placeholder-count="10">
+          <li style="background:#FFFFFF; padding:24px 22px; display:flex; align-items:center; min-height:96px; border-right:1px solid #E5E7EB; border-bottom:1px solid #E5E7EB; margin:0 -1px -1px 0;">
+            <span style="font-size:15px; font-weight:700; line-height:1.35; color:#021F43; letter-spacing:-0.01em; text-wrap:pretty;">{{ c }}</span>
+          </li>
+        </sc-for>
+      </ul>
+      <p style="margin:18px 0 0; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11.5px; letter-spacing:.04em; color:#94A3B8;">WORDMARKS — swap for logo files once cleared</p>
+    </div>
+  </section>
+
+  <!-- ══ COOPERATIVE CONTRACTS ══ -->
+  <section id="contracts" aria-labelledby="contracts-h" style="position:relative; background:#FFFFFF; scroll-margin-top:90px;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(64px,7vw,104px) clamp(20px,4vw,48px);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:clamp(34px,4vw,64px); align-items:start;">
+
+        <div>
+          <p style="margin:0 0 18px; display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0034A0;">
+            <span aria-hidden="true" style="width:30px; height:2px; background:#EB4900; display:block;"></span>
+            How to buy
+          </p>
+          <h2 id="contracts-h" style="margin:0 0 22px; font-size:clamp(29px,3.4vw,48px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">You may already be able to buy from us.</h2>
+          <p style="margin:0 0 20px; font-size:clamp(16.5px,1.3vw,19px); line-height:1.65; color:#334155; max-width:52ch; text-wrap:pretty;">
+            PTG holds six cooperative and government contract vehicles. If your organization is a member of one, you can procure Workday licensing and implementation from us under terms that are already competitively bid — no RFP, no separate solicitation, and often weeks instead of months.
+          </p>
+          <p style="margin:0 0 30px; font-size:clamp(16.5px,1.3vw,19px); line-height:1.65; color:#334155; max-width:52ch; text-wrap:pretty;">
+            Because we're an authorized reseller, licensing and implementation come through a single contract and a single point of accountability.
+          </p>
+          <a href="PTG%20How%20to%20Buy.dc.html" style="display:inline-flex; align-items:center; gap:10px; background:#0034A0; color:#FFFFFF; font-size:15.5px; font-weight:700; padding:18px 30px; border-radius:3px;" style-hover="background:#EB4900; color:#FFFFFF;">
+            Find the vehicle that applies to you
+            <span aria-hidden="true" style="width:7px; height:7px; border-top:2px solid currentColor; border-right:2px solid currentColor; transform:rotate(45deg); display:block;"></span>
+          </a>
+        </div>
+
+        <ul style="display:flex; flex-direction:column; gap:1px; background:#E5E7EB; border:1px solid #E5E7EB; border-radius:3px; overflow:hidden;">
+          <sc-for list="{{ vehicles }}" as="v" hint-placeholder-count="6">
+            <li style="background:#FFFFFF;">
+              <a href="PTG%20How%20to%20Buy.dc.html" style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; padding:22px clamp(18px,2vw,26px); color:#021F43;" style-hover="background:#F5F7F9; color:#0034A0;">
+                <span style="font-size:clamp(16px,1.4vw,19px); font-weight:800; letter-spacing:-0.015em; color:inherit;">{{ v.name }}</span>
+                <span style="font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:13px; font-weight:400; letter-spacing:.02em; color:#334155; text-align:right; white-space:nowrap;">{{ v.number }}</span>
+              </a>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INDUSTRIES ══ -->
+  <section id="industries" aria-labelledby="ind-h" style="background:#F5F7F9; border-top:1px solid #E5E7EB; scroll-margin-top:90px;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(64px,7vw,104px) clamp(20px,4vw,48px);">
+      <div style="max-width:640px; margin-bottom:clamp(34px,4vw,52px);">
+        <p style="margin:0 0 18px; display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0034A0;">
+          <span aria-hidden="true" style="width:30px; height:2px; background:#EB4900; display:block;"></span>
+          Industries
+        </p>
+        <h2 id="ind-h" style="margin:0 0 18px; font-size:clamp(29px,3.4vw,48px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">Public missions have their own rules.</h2>
+        <p style="margin:0; font-size:clamp(16.5px,1.3vw,19px); line-height:1.65; color:#334155; text-wrap:pretty;">Fund accounting, grant reporting, union rules, board calendars, FTA and Title IV compliance. We've spent three decades inside them.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(18px,2vw,26px);">
+        <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="5">
+          <article style="background:#FFFFFF; border:1px solid #E5E7EB; border-radius:3px; overflow:hidden; display:flex; flex-direction:column;">
+            <div aria-hidden="true" style="height:150px; background:repeating-linear-gradient(135deg, #E9EEF4 0 10px, #DFE7EF 10px 20px); display:grid; place-items:center; border-bottom:1px solid #E5E7EB;">
+              <span style="font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; letter-spacing:.06em; color:#7C8DA3; text-align:center; padding:0 16px;">{{ ind.imageNote }}</span>
+            </div>
+            <div style="padding:clamp(22px,2.4vw,30px); display:flex; flex-direction:column; flex:1 1 auto;">
+              <h3 style="margin:0 0 10px; font-size:clamp(19px,1.7vw,23px); font-weight:800; line-height:1.2; letter-spacing:-0.018em;">{{ ind.name }}</h3>
+              <p style="margin:0 0 18px; font-size:15.5px; line-height:1.6; color:#334155; text-wrap:pretty;">{{ ind.hook }}</p>
+              <ul style="display:flex; flex-direction:column; gap:9px; margin:0 0 22px;">
+                <sc-for list="{{ ind.outcomes }}" as="o" hint-placeholder-count="3">
+                  <li style="display:flex; gap:11px; align-items:flex-start; font-size:14.5px; font-weight:600; line-height:1.45; color:#021F43;">
+                    <span aria-hidden="true" style="flex:0 0 auto; width:7px; height:7px; background:#EB4900; transform:rotate(45deg); margin-top:6px; display:block;"></span>
+                    {{ o }}
+                  </li>
+                </sc-for>
+              </ul>
+              <a href="#industries" style="margin-top:auto; display:inline-flex; align-items:center; gap:9px; font-size:14.5px; font-weight:700; color:#0034A0;" style-hover="color:#EB4900;">
+                {{ ind.cta }}
+                <span aria-hidden="true" style="width:6px; height:6px; border-top:2px solid currentColor; border-right:2px solid currentColor; transform:rotate(45deg); display:block;"></span>
+              </a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVICES ══ -->
+  <section id="services" aria-labelledby="svc-h" style="background:#FFFFFF; scroll-margin-top:90px;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(64px,7vw,104px) clamp(20px,4vw,48px);">
+      <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:clamp(30px,3.4vw,46px);">
+        <div style="max-width:600px;">
+          <p style="margin:0 0 18px; display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0034A0;">
+            <span aria-hidden="true" style="width:30px; height:2px; background:#EB4900; display:block;"></span>
+            Services
+          </p>
+          <h2 id="svc-h" style="margin:0; font-size:clamp(29px,3.4vw,48px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">The full Workday lifecycle, plus ServiceNow.</h2>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; padding-bottom:6px;">
+          <span style="font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#334155; border:1px solid #E5E7EB; background:#F5F7F9; padding:9px 15px; border-radius:2px;">Workday Partner</span>
+          <span style="font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#334155; border:1px solid #E5E7EB; background:#F5F7F9; padding:9px 15px; border-radius:2px;">ServiceNow Partner</span>
+        </div>
+      </div>
+
+      <ul style="display:flex; flex-direction:column; gap:1px; background:#E5E7EB; border-top:1px solid #E5E7EB; border-bottom:1px solid #E5E7EB;">
+        <sc-for list="{{ services }}" as="svc" hint-placeholder-count="5">
+          <li style="background:#FFFFFF;">
+            <a href="#services" style="display:flex; flex-wrap:wrap; gap:clamp(14px,3vw,44px); align-items:center; padding:clamp(24px,2.8vw,36px) clamp(6px,1.5vw,20px); color:#021F43; border-left:3px solid transparent;" style-hover="background:#F5F7F9; border-left-color:#EB4900;">
+              <div style="flex:1 1 260px; display:flex; gap:clamp(14px,2vw,26px); align-items:baseline;">
+                <span style="font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:13px; color:#94A3B8; flex:0 0 auto;">{{ svc.num }}</span>
+                <h3 style="margin:0; font-size:clamp(21px,2.1vw,29px); font-weight:800; line-height:1.14; letter-spacing:-0.022em; color:inherit;">{{ svc.name }}</h3>
+              </div>
+              <p style="flex:1 1 320px; margin:0; font-size:16px; line-height:1.6; color:#334155; text-wrap:pretty;">{{ svc.summary }}</p>
+              <span aria-hidden="true" style="flex:0 0 auto; margin-left:auto; width:9px; height:9px; border-top:2px solid #0034A0; border-right:2px solid #0034A0; transform:rotate(45deg); display:block;"></span>
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ DELIVERY JOURNEY ══ -->
+  <section aria-labelledby="journey-h" style="position:relative; background:#0034A0; color:#FFFFFF; overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E'); background-size:74px 74px; opacity:.42;"></div>
+
+    <div style="position:relative; max-width:1320px; margin:0 auto; padding:clamp(64px,7vw,100px) clamp(20px,4vw,48px);">
+      <div style="max-width:620px; margin-bottom:clamp(34px,4vw,52px);">
+        <p style="margin:0 0 18px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#80CEFF;">Our delivery journey</p>
+        <h2 id="journey-h" style="margin:0 0 16px; font-size:clamp(29px,3.4vw,48px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">Strategy to impact, without the handoffs.</h2>
+        <p style="margin:0; font-size:clamp(16.5px,1.3vw,19px); line-height:1.65; color:#D5E4F5; text-wrap:pretty;">One team stays with you from planning through innovation. No re-badging between phases, no re-learning your organization.</p>
+      </div>
+
+      <ol style="display:grid; grid-template-columns:repeat(auto-fit, minmax(238px,1fr)); gap:clamp(14px,1.6vw,18px);">
+        <sc-for list="{{ journey }}" as="step" hint-placeholder-count="4">
+          <li style="background:#0034A0; padding:clamp(24px,2.6vw,32px); position:relative; border:1px solid rgba(255,255,255,.3); border-radius:3px;">
+            <div aria-hidden="true" style="height:3px; width:100%; background:{{ step.bar }}; margin-bottom:22px;"></div>
+            <p style="margin:0 0 14px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; letter-spacing:.1em; color:#80CEFF;">{{ step.num }}</p>
+            <h3 style="margin:0 0 12px; font-size:clamp(21px,1.9vw,27px); font-weight:800; letter-spacing:-0.02em; line-height:1.15;">{{ step.name }}</h3>
+            <p style="margin:0; font-size:15px; line-height:1.6; color:#D5E4F5; text-wrap:pretty;">{{ step.body }}</p>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIAL ══ -->
+  <section aria-labelledby="quote-h" style="background:#FFFFFF;">
+    <div style="max-width:1000px; margin:0 auto; padding:clamp(64px,7vw,110px) clamp(20px,4vw,48px); text-align:center;">
+      <h2 id="quote-h" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);">What our customers say</h2>
+      <div aria-hidden="true" style="width:44px; height:44px; margin:0 auto 30px; background:#B4FF00; transform:rotate(45deg); display:{{ emphasisDisplay }};"></div>
+      <blockquote style="margin:0;">
+        <p style="margin:0 0 28px; font-size:clamp(22px,2.6vw,36px); font-weight:600; line-height:1.35; letter-spacing:-0.018em; color:#021F43; text-wrap:pretty;">
+          “We've worked with the large firms. The difference here is that the people who showed up in the pitch are the same people who were still in the room eighteen months later. That continuity is worth more than any methodology deck.”
+        </p>
+        <footer style="font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#334155;">
+          CIO · Large public transit authority
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ══ CAREERS ══ -->
+  <section id="careers" aria-labelledby="careers-h" style="background:#F5F7F9; border-top:1px solid #E5E7EB; scroll-margin-top:90px;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(64px,7vw,104px) clamp(20px,4vw,48px);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:clamp(34px,4vw,64px); align-items:center;">
+
+        <div>
+          <p style="margin:0 0 18px; display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0034A0;">
+            <span aria-hidden="true" style="width:30px; height:2px; background:#EB4900; display:block;"></span>
+            Careers &amp; culture
+          </p>
+          <h2 id="careers-h" style="margin:0 0 20px; font-size:clamp(29px,3.4vw,48px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">People First isn't a value on a wall.</h2>
+          <p style="margin:0 0 20px; font-size:clamp(16.5px,1.3vw,19px); line-height:1.65; color:#334155; max-width:52ch; text-wrap:pretty;">
+            We've had close to zero voluntary turnover in recent years. Not because we're the biggest payer — because consultants here own their work, know their leadership by name, and don't get moved off a project to fill a bench somewhere else.
+          </p>
+          <ul style="display:flex; flex-wrap:wrap; gap:10px; margin:0 0 30px;">
+            <sc-for list="{{ values }}" as="val" hint-placeholder-count="5">
+              <li style="font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#021F43; background:#FFFFFF; border:1px solid #E5E7EB; padding:10px 16px; border-radius:2px;">{{ val }}</li>
+            </sc-for>
+          </ul>
+        </div>
+
+        <div style="background:#FFFFFF; border:1px solid #E5E7EB; border-radius:3px; padding:clamp(26px,3vw,40px);">
+          <h3 style="margin:0 0 6px; font-size:clamp(19px,1.7vw,23px); font-weight:800; letter-spacing:-0.018em;">Open roles</h3>
+          <p style="margin:0 0 24px; font-size:15px; color:#334155;">Workday &amp; ServiceNow consulting · remote-first, U.S.</p>
+
+          <div style="border:1px dashed #94A3B8; border-radius:3px; padding:clamp(24px,3vw,34px); text-align:center; background:#F5F7F9;">
+            <p style="margin:0 0 10px; font-size:17px; font-weight:800; color:#021F43;">No postings open right now.</p>
+            <p style="margin:0 0 22px; font-size:15px; line-height:1.6; color:#334155; max-width:38ch; margin-left:auto; margin-right:auto; text-wrap:pretty;">We hire on a rolling basis and read every résumé that comes in. Tell us what you do and we'll be in touch when something fits.</p>
+            <a href="#connect" style="display:inline-block; background:#021F43; color:#FFFFFF; font-size:14.5px; font-weight:700; padding:15px 26px; border-radius:3px;" style-hover="background:#EB4900; color:#FFFFFF;">Send us your résumé</a>
+          </div>
+
+          <p style="margin:22px 0 0; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11.5px; line-height:1.6; letter-spacing:.03em; color:#94A3B8;">EMPTY STATE — listings render here automatically when the job board has postings</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CLOSING CTA ══ -->
+  <section id="connect" aria-labelledby="cta-h" style="position:relative; background:#021F43; color:#FFFFFF; overflow:hidden; scroll-margin-top:78px;">
+    <div aria-hidden="true" style="position:absolute; inset:0; background:repeating-linear-gradient(135deg, #041F44 0 12px, #021B3B 12px 24px);"></div>
+    <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(2,31,67,.96) 0%, rgba(2,31,67,.72) 55%, rgba(0,52,160,.35) 100%);"></div>
+    <div aria-hidden="true" style="position:absolute; left:0; bottom:0; right:0; height:5px; background:linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900);"></div>
+
+    <div style="position:relative; max-width:1320px; margin:0 auto; padding:clamp(70px,8vw,124px) clamp(20px,4vw,48px);">
+      <p style="margin:0 0 22px; font-size:12.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#80CEFF;">Your mission. Our purpose.</p>
+      <h2 id="cta-h" style="margin:0 0 22px; font-size:clamp(32px,4.4vw,64px); font-weight:800; line-height:1.03; letter-spacing:-0.03em; max-width:20ch; text-wrap:balance;">Big missions. Bigger impact.</h2>
+      <p style="margin:0 0 36px; font-size:clamp(17px,1.4vw,21px); line-height:1.6; color:#DDE6F0; max-width:56ch; text-wrap:pretty;">Tell us where your Workday investment isn't paying off yet. We'll tell you honestly whether we're the right firm to fix it.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center;">
+        <a href="#connect" style="background:#EB4900; color:#FFFFFF; font-size:16px; font-weight:700; padding:19px 36px; border-radius:3px;" style-hover="background:#FFFFFF; color:#021F43;">Connect with us</a>
+        <a href="PTG%20How%20to%20Buy.dc.html" style="color:#FFFFFF; font-size:16px; font-weight:700; padding:19px 8px; border-bottom:2px solid rgba(255,255,255,.4);" style-hover="color:#80CEFF; border-bottom-color:#80CEFF;">Or start with how to buy</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#011733; color:#C9D8E8;">
+  <div style="max-width:1320px; margin:0 auto; padding:clamp(52px,5.5vw,80px) clamp(20px,4vw,48px) 0;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:clamp(28px,3vw,44px); padding-bottom:clamp(40px,4vw,56px);">
+
+      <div style="min-width:200px;">
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:18px;">
+          <span aria-hidden="true" style="width:34px; height:34px; display:grid; place-items:center; background:#FFFFFF; border-radius:3px;">
+            <span style="width:14px; height:14px; background:#021F43; transform:rotate(45deg); display:block;"></span>
+          </span>
+          <span style="font-size:25px; font-weight:800; letter-spacing:-0.02em; color:#FFFFFF; line-height:1;">PTG</span>
+        </div>
+        <p style="margin:0 0 20px; font-size:14.5px; font-weight:700; line-height:1.5; color:#FFFFFF;">Realize Value. Faster.</p>
+        <p style="margin:0 0 6px; font-size:14px; line-height:1.65;">[Street address]<br />Houston, TX [ZIP]</p>
+        <p style="margin:0; font-size:14px; line-height:1.65;">[Main phone]</p>
+        <ul style="display:flex; gap:8px; margin-top:20px;">
+          <sc-for list="{{ social }}" as="s" hint-placeholder-count="3">
+            <li>
+              <a href="#connect" aria-label="{{ s.label }}" style="display:grid; place-items:center; width:38px; height:38px; border:1px solid rgba(201,216,232,.32); border-radius:2px; font-size:12px; font-weight:700; color:#C9D8E8;" style-hover="background:#EB4900; color:#FFFFFF; border-color:#EB4900;">{{ s.abbr }}</a>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="4">
+        <div>
+          <p style="margin:0 0 16px; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#80CEFF;">{{ col.title }}</p>
+          <ul style="display:flex; flex-direction:column; gap:11px;">
+            <sc-for list="{{ col.items }}" as="link" hint-placeholder-count="5">
+              <li><a href="{{ link.href }}" style="font-size:14.5px; line-height:1.4; color:#C9D8E8;" style-hover="color:#FFFFFF;">{{ link.label }}</a></li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="border-top:1px solid rgba(201,216,232,.18); padding:26px 0 34px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:center; justify-content:space-between;">
+      <p style="margin:0; font-size:13px; letter-spacing:.02em;">© 2026 Precision Task Group, Inc. · Certified MBE · DBE certified in multiple states</p>
+      <ul style="display:flex; flex-wrap:wrap; gap:22px;">
+        <li><a href="#main" style="font-size:13px; color:#C9D8E8;" style-hover="color:#FFFFFF;">Accessibility</a></li>
+        <li><a href="#main" style="font-size:13px; color:#C9D8E8;" style-hover="color:#FFFFFF;">Privacy</a></li>
+        <li><a href="#main" style="font-size:13px; color:#C9D8E8;" style-hover="color:#FFFFFF;">Terms</a></li>
+      </ul>
+    </div>
+    <p style="margin:0; padding:0 0 22px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; letter-spacing:.04em; color:#5B7FA8;">DRAFT COPY — written for layout review, not client-approved. Bracketed items awaiting real content.</p>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;twoPaths&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Homepage&quot;},&quot;leafAccents&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Homepage&quot;}}">
+class Component extends DCLogic {
+  state = { openMenu: null, isNarrow: false, mobileOpen: false };
+
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 1040px)");
+    this.onMQ = () => this.setState({ isNarrow: this.mq.matches, openMenu: null, mobileOpen: false });
+    this.setState({ isNarrow: this.mq.matches });
+    this.mq.addEventListener("change", this.onMQ);
+  }
+
+  componentWillUnmount() {
+    if (this.mq) this.mq.removeEventListener("change", this.onMQ);
+  }
+
+  nav() {
+    return [
+      { label: "Services", groups: [
+        { title: "Workday", items: [
+          { label: "Advisory & Strategy", href: "#services" },
+          { label: "Implementation", href: "#services" },
+          { label: "AMS & Optimization", href: "#services" },
+          { label: "Innovation", href: "#services" }
+        ]},
+        { title: "ServiceNow", items: [
+          { label: "ServiceNow Implementation", href: "#services" }
+        ]},
+        { title: "Partners", items: [
+          { label: "Workday", href: "#services" },
+          { label: "ServiceNow", href: "#services" }
+        ]}
+      ]},
+      { label: "Industries", groups: [
+        { title: "Who we serve", items: [
+          { label: "Government / Public Sector", href: "#industries" },
+          { label: "Higher Education", href: "#industries" },
+          { label: "Transit, Utilities & Special Districts", href: "#industries" },
+          { label: "Nonprofit", href: "#industries" },
+          { label: "Healthcare", href: "#industries" }
+        ]}
+      ]},
+      { label: "How to Buy", groups: [
+        { title: "Start here", items: [
+          { label: "How to Buy from PTG", href: "PTG%20How%20to%20Buy.dc.html" }
+        ]},
+        { title: "Cooperative contracts", items: [
+          { label: "Sourcewell", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "OMNIA Partners", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "Texas DIR", href: "PTG%20How%20to%20Buy.dc.html" }
+        ]},
+        { title: "Government contracts", items: [
+          { label: "GSA MAS", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "California SLP", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "IPHEC", href: "PTG%20How%20to%20Buy.dc.html" }
+        ]}
+      ]},
+      { label: "About", groups: [
+        { title: "The firm", items: [
+          { label: "About PTG", href: "#main" },
+          { label: "Our Leadership", href: "#main" },
+          { label: "Careers & Culture", href: "#careers" }
+        ]}
+      ]},
+      { label: "Resources", groups: [
+        { title: "Insights", items: [
+          { label: "Blog", href: "#main" },
+          { label: "Webinars", href: "#main" },
+          { label: "Upcoming Events", href: "#main" },
+          { label: "Customer Stories", href: "#main" }
+        ]}
+      ]}
+    ];
+  }
+
+  renderVals() {
+    const narrow = this.state.isNarrow;
+    const open = this.state.openMenu;
+
+    const navItems = this.nav().map((item, i) => {
+      const isOpen = open === i;
+      const flat = [];
+      item.groups.forEach(g => g.items.forEach(it => flat.push(it)));
+      return {
+        label: item.label,
+        groups: item.groups,
+        flatItems: flat,
+        isOpen,
+        expanded: isOpen ? "true" : "false",
+        onEnter: narrow ? undefined : () => this.setState({ openMenu: i }),
+        onLeave: narrow ? undefined : () => this.setState({ openMenu: null }),
+        onToggle: () => this.setState(s => ({ openMenu: s.openMenu === i ? null : i }))
+      };
+    });
+
+    return {
+      navItems,
+      showDesktopNav: !narrow,
+      showMobileToggle: narrow,
+      mobileOpen: narrow && this.state.mobileOpen,
+      mobileExpanded: this.state.mobileOpen ? "true" : "false",
+      toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen, openMenu: null })),
+
+      twoPaths: this.props.twoPaths ?? true,
+      emphasisDisplay: (this.props.leafAccents ?? true) ? "block" : "none",
+
+      stats: [
+        { figure: "45", label: "Years family-owned and independent", tint: "#FFFFFF" },
+        { figure: "100+", label: "Government Workday projects", tint: "#FFFFFF" },
+        { figure: "50+", label: "Higher education Workday projects", tint: (this.props.leafAccents ?? true) ? "#B4FF00" : "#80CEFF" },
+        { figure: "30+", label: "Years in public sector consulting", tint: "#FFFFFF" },
+        { figure: "2017", label: "Certified Workday partner since", tint: "#80CEFF" }
+      ],
+
+      customers: [
+        "City University of New York",
+        "The University of Texas at Austin",
+        "Texas A&M University",
+        "South Texas College",
+        "Lee College",
+        "Dallas Area Rapid Transit",
+        "Houston METRO",
+        "Orange County Transportation Authority",
+        "Tarrant Regional Water District",
+        "Lakehaven Water & Sewer District"
+      ],
+
+      vehicles: [
+        { name: "Sourcewell", number: "060624-PRT" },
+        { name: "OMNIA Partners", number: "01-140" },
+        { name: "Texas DIR", number: "DIR-CPO-5657 · 6141" },
+        { name: "GSA MAS", number: "GS-35F-035GA" },
+        { name: "California SLP", number: "SLP-24-70-0281B" },
+        { name: "IPHEC", number: "2509GAL" }
+      ],
+
+      industries: [
+        { name: "Government & Public Sector", hook: "100+ Workday projects for agencies that answer to the public record.", outcomes: ["Fund accounting and grant compliance", "Procurement and budget transparency", "Civil service and union rules"], cta: "Public sector work", imageNote: "PHOTO — CITY / COUNTY STAFF" },
+        { name: "Higher Education", hook: "Student, HCM and Financials for institutions from 2,000 to 250,000 students.", outcomes: ["Title IV and financial aid readiness", "Faculty and adjunct pay structures", "Multi-campus system rollouts"], cta: "Higher education work", imageNote: "PHOTO — CAMPUS / ADVISING" },
+        { name: "Transit, Utilities & Special Districts", hook: "DART, Houston METRO, OCTA and TRWD run on work we delivered.", outcomes: ["FTA reporting and grant tracking", "Operator scheduling and overtime", "Capital project cost accounting"], cta: "Transit & utilities work", imageNote: "PHOTO — TRANSIT OPERATIONS" },
+        { name: "Nonprofit", hook: "Restricted funds, lean back offices, and boards that need clear numbers.", outcomes: ["Grant and restricted fund reporting", "Volunteer and program staffing", "Right-sized implementation scope"], cta: "Nonprofit work", imageNote: "PHOTO — COMMUNITY PROGRAM" },
+        { name: "Healthcare", hook: "Clinical scheduling and workforce cost control, without disrupting care.", outcomes: ["Credentialing and licensure tracking", "Premium pay and differentials", "Supply chain and labor analytics"], cta: "Healthcare work", imageNote: "PHOTO — CLINICAL TEAM" }
+      ],
+
+      services: [
+        { num: "01", name: "Workday Advisory & Strategy", summary: "Readiness assessments, roadmaps, business cases and phasing decisions — before you spend the first dollar of implementation budget." },
+        { num: "02", name: "Workday Implementation", summary: "Full-suite HCM, Financials, Student and Payroll deployments, delivered by the same team that scoped them." },
+        { num: "03", name: "Workday AMS & Optimization", summary: "Ongoing support, release management and the backlog of things that never made it into go-live." },
+        { num: "04", name: "Workday Innovation", summary: "Extend, integrate and automate — Workday Extend, Prism, and the reporting your board actually asks for." },
+        { num: "05", name: "ServiceNow Implementation", summary: "ITSM, HRSD and workflow automation for organizations standardizing service delivery alongside Workday." }
+      ],
+
+      journey: [
+        { num: "STAGE 01", name: "Plan", body: "Assess readiness, define scope honestly, and build a phasing plan your budget cycle can actually absorb.", bar: "#80CEFF" },
+        { num: "STAGE 02", name: "Deploy", body: "Configure, test and go live with a named team that stays through stabilization — not just cutover.", bar: "#80CEFF" },
+        { num: "STAGE 03", name: "Optimize", body: "Close the gap between what went live and what you were promised. Reporting, adoption, process.", bar: "#EB4900" },
+        { num: "STAGE 04", name: "Innovate", body: "Extend the platform into the work you couldn't justify at go-live. Automation, integrations, analytics.", bar: "#EB4900" }
+      ],
+
+      values: ["Mission Driven", "People First", "Drive Results", "Embrace Change", "Own It"],
+
+      social: [
+        { label: "PTG on LinkedIn", abbr: "in" },
+        { label: "PTG on X", abbr: "X" },
+        { label: "PTG on YouTube", abbr: "YT" }
+      ],
+
+      footerCols: [
+        { title: "Services", items: [
+          { label: "Advisory & Strategy", href: "#services" },
+          { label: "Implementation", href: "#services" },
+          { label: "AMS & Optimization", href: "#services" },
+          { label: "Innovation", href: "#services" },
+          { label: "ServiceNow", href: "#services" }
+        ]},
+        { title: "Industries", items: [
+          { label: "Government", href: "#industries" },
+          { label: "Higher Education", href: "#industries" },
+          { label: "Transit & Utilities", href: "#industries" },
+          { label: "Nonprofit", href: "#industries" },
+          { label: "Healthcare", href: "#industries" }
+        ]},
+        { title: "How to buy", items: [
+          { label: "Sourcewell 060624-PRT", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "OMNIA Partners 01-140", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "Texas DIR", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "GSA MAS", href: "PTG%20How%20to%20Buy.dc.html" },
+          { label: "California SLP · IPHEC", href: "PTG%20How%20to%20Buy.dc.html" }
+        ]},
+        { title: "Company", items: [
+          { label: "About PTG", href: "#main" },
+          { label: "Our Leadership", href: "#main" },
+          { label: "Careers & Culture", href: "#careers" },
+          { label: "Resources", href: "#main" },
+          { label: "Connect with Us", href: "#connect" }
+        ]}
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

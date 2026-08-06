@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Montserrat, Helvetica, Arial, sans-serif; background: #FFFFFF; color: #021F43; -webkit-font-smoothing: antialiased; }
+  a { color: #0034A0; text-decoration: none; }
+  a:hover { color: #EB4900; }
+  :focus-visible { outline: 3px solid #EB4900; outline-offset: 2px; }
+  ul, ol { margin: 0; padding: 0; }
+  li { list-style: none; }
+  select { font-family: Montserrat, Helvetica, Arial, sans-serif; }
+  @keyframes ptgRise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="width:100%; overflow-x:hidden;">
+
+<a href="#main" style="position:absolute; left:-9999px; top:0; z-index:200; background:#EB4900; color:#fff; padding:12px 20px; font-weight:700; font-size:14px;" style-focus="left:12px; top:12px;">Skip to content</a>
+
+<!-- ══ HEADER ══ -->
+<header style="position:sticky; top:0; z-index:100; background:#FFFFFF; border-bottom:1px solid #E5E7EB;">
+  <div style="max-width:1320px; margin:0 auto; padding:0 clamp(20px,4vw,48px); height:78px; display:flex; align-items:center; gap:40px;">
+
+    <a href="PTG%20Homepage.dc.html" aria-label="Precision Task Group home" style="display:flex; align-items:center; gap:11px; flex:0 0 auto;">
+      <span aria-hidden="true" style="width:36px; height:36px; display:grid; place-items:center; background:#021F43; border-radius:3px;">
+        <span style="width:15px; height:15px; background:#80CEFF; transform:rotate(45deg); display:block;"></span>
+      </span>
+      <span style="font-size:27px; font-weight:800; letter-spacing:-0.02em; color:#021F43; line-height:1;">PTG</span>
+    </a>
+
+    <sc-if value="{{ showDesktopNav }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Primary" style="flex:1 1 auto; display:flex; align-items:center; gap:2px;">
+        <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+          <div style="position:relative;" onMouseEnter="{{ item.onEnter }}" onMouseLeave="{{ item.onLeave }}">
+            <button type="button" aria-expanded="{{ item.expanded }}" aria-current="{{ item.current }}" onClick="{{ item.onToggle }}" style="display:flex; align-items:center; gap:6px; background:none; border:0; font-family:inherit; font-size:15px; font-weight:600; color:{{ item.color }}; padding:28px 16px; cursor:pointer; border-bottom:3px solid {{ item.underline }};" style-hover="color:#0034A0; border-bottom-color:#EB4900;">
+              {{ item.label }}
+              <span aria-hidden="true" style="width:6px; height:6px; border-right:2px solid #94A3B8; border-bottom:2px solid #94A3B8; transform:translateY(-2px) rotate(45deg); display:block;"></span>
+            </button>
+
+            <sc-if value="{{ item.isOpen }}">
+              <div style="position:absolute; top:100%; left:0; background:#FFFFFF; border:1px solid #E5E7EB; border-top:3px solid #EB4900; box-shadow:0 24px 48px -12px rgba(2,31,67,.22); padding:26px 30px; display:flex; gap:38px; animation:ptgRise .16s ease-out;">
+                <sc-for list="{{ item.groups }}" as="group" hint-placeholder-count="1">
+                  <div style="min-width:212px;">
+                    <p style="margin:0 0 12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#94A3B8;">{{ group.title }}</p>
+                    <ul style="display:flex; flex-direction:column; gap:1px;">
+                      <sc-for list="{{ group.items }}" as="link" hint-placeholder-count="4">
+                        <li>
+                          <a href="{{ link.href }}" style="display:block; padding:8px 10px; margin-left:-10px; font-size:14.5px; font-weight:600; color:#021F43; border-radius:3px; line-height:1.35;" style-hover="background:#F5F7F9; color:#0034A0;">{{ link.label }}</a>
+                        </li>
+                      </sc-for>
+                    </ul>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </nav>
+
+      <a href="#connect" style="flex:0 0 auto; background:#EB4900; color:#FFFFFF; font-size:14.5px; font-weight:700; padding:14px 26px; border-radius:3px;" style-hover="background:#021F43; color:#FFFFFF;">Connect with Us</a>
+    </sc-if>
+
+    <sc-if value="{{ showMobileToggle }}">
+      <div style="flex:1 1 auto; display:flex; justify-content:flex-end;">
+        <button type="button" aria-expanded="{{ mobileExpanded }}" aria-label="Menu" onClick="{{ toggleMobile }}" style="display:flex; flex-direction:column; gap:5px; background:none; border:1px solid #E5E7EB; border-radius:3px; padding:12px 13px; cursor:pointer;">
+          <span aria-hidden="true" style="display:block; width:20px; height:2px; background:#021F43;"></span>
+          <span aria-hidden="true" style="display:block; width:20px; height:2px; background:#021F43;"></span>
+          <span aria-hidden="true" style="display:block; width:20px; height:2px; background:#021F43;"></span>
+        </button>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ mobileOpen }}">
+    <nav aria-label="Primary" style="border-top:1px solid #E5E7EB; background:#F5F7F9; padding:8px 20px 26px; max-height:76vh; overflow-y:auto;">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid #E5E7EB; padding:4px 0;">
+          <button type="button" aria-expanded="{{ item.expanded }}" onClick="{{ item.onToggle }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; background:none; border:0; font-family:inherit; font-size:16px; font-weight:700; color:#021F43; padding:16px 2px; cursor:pointer; text-align:left;">
+            {{ item.label }}
+            <span aria-hidden="true" style="width:7px; height:7px; border-right:2px solid #EB4900; border-bottom:2px solid #EB4900; transform:rotate(45deg); display:block;"></span>
+          </button>
+          <sc-if value="{{ item.isOpen }}">
+            <ul style="display:flex; flex-direction:column; gap:2px; padding:0 0 14px 2px;">
+              <sc-for list="{{ item.flatItems }}" as="link" hint-placeholder-count="4">
+                <li><a href="{{ link.href }}" style="display:block; padding:11px 0; font-size:15px; font-weight:600; color:#334155;">{{ link.label }}</a></li>
+              </sc-for>
+            </ul>
+          </sc-if>
+        </div>
+      </sc-for>
+      <a href="#connect" style="display:block; margin-top:22px; text-align:center; background:#EB4900; color:#FFFFFF; font-size:15px; font-weight:700; padding:16px 26px; border-radius:3px;">Connect with Us</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main id="main">
+
+  <!-- ══ HERO ══ -->
+  <section aria-labelledby="hero-h" style="position:relative; background:#021F43; color:#FFFFFF; overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z%22 fill=%22%230034A0%22/%3E%3C/svg%3E'); background-size:74px 74px; opacity:.5; mask-image:linear-gradient(115deg, transparent 45%, #000 100%); -webkit-mask-image:linear-gradient(115deg, transparent 45%, #000 100%);"></div>
+    <div aria-hidden="true" style="position:absolute; left:0; bottom:0; right:0; height:4px; background:linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900);"></div>
+
+    <div style="position:relative; max-width:1320px; margin:0 auto; padding:clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) clamp(56px,6vw,88px);">
+      <nav aria-label="Breadcrumb" style="margin-bottom:clamp(32px,4vw,52px);">
+        <ol style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-size:13px; font-weight:600;">
+          <li><a href="PTG%20Homepage.dc.html" style="color:#80CEFF;" style-hover="color:#FFFFFF;">Home</a></li>
+          <li aria-hidden="true" style="color:#5B7FA8;">/</li>
+          <li style="color:#C9D8E8;">How to Buy</li>
+        </ol>
+      </nav>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:clamp(30px,4vw,64px); align-items:end;">
+        <div style="max-width:660px;">
+          <p style="margin:0 0 20px; display:flex; align-items:center; gap:12px; font-size:12.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#80CEFF;">
+            <span aria-hidden="true" style="width:34px; height:2px; background:#EB4900; display:block;"></span>
+            Procurement &amp; contracts
+          </p>
+          <h1 id="hero-h" style="margin:0 0 24px; font-size:clamp(34px,4.6vw,66px); font-weight:800; line-height:1.03; letter-spacing:-0.028em; text-wrap:balance;">
+            You may not need an RFP.
+          </h1>
+          <p style="margin:0; font-size:clamp(17px,1.35vw,20px); line-height:1.6; color:#DDE6F0; max-width:58ch; text-wrap:pretty;">
+            PTG holds six cooperative and government contract vehicles. If your organization participates in one, you can award Workday licensing and implementation to us under terms that have already been competitively bid — no solicitation, no separate procurement cycle.
+          </p>
+        </div>
+
+        <ul style="display:flex; flex-direction:column; gap:14px; padding-bottom:6px;">
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span aria-hidden="true" style="flex:0 0 auto; width:9px; height:9px; background:#EB4900; transform:rotate(45deg); margin-top:7px; display:block;"></span>
+            <span style="font-size:16px; font-weight:600; line-height:1.5; color:#FFFFFF;">Licensing and implementation on one contract — we're an authorized Workday reseller.</span>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span aria-hidden="true" style="flex:0 0 auto; width:9px; height:9px; background:#EB4900; transform:rotate(45deg); margin-top:7px; display:block;"></span>
+            <span style="font-size:16px; font-weight:600; line-height:1.5; color:#FFFFFF;">Pricing already established. No bid evaluation to defend to a committee.</span>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span aria-hidden="true" style="flex:0 0 auto; width:9px; height:9px; background:#EB4900; transform:rotate(45deg); margin-top:7px; display:block;"></span>
+            <span style="font-size:16px; font-weight:600; line-height:1.5; color:#FFFFFF;">Weeks to award instead of months.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FINDER ══ -->
+  <section id="finder" aria-labelledby="finder-h" style="background:#F5F7F9; border-bottom:1px solid #E5E7EB; scroll-margin-top:90px;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(52px,6vw,88px) clamp(20px,4vw,48px);">
+
+      <div style="max-width:620px; margin-bottom:clamp(28px,3vw,40px);">
+        <p style="margin:0 0 16px; display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0034A0;">
+          <span aria-hidden="true" style="width:30px; height:2px; background:#EB4900; display:block;"></span>
+          Contract vehicle finder
+        </p>
+        <h2 id="finder-h" style="margin:0 0 16px; font-size:clamp(28px,3.3vw,46px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">Which contract applies to you?</h2>
+        <p style="margin:0; font-size:clamp(16px,1.25vw,18px); line-height:1.65; color:#334155; text-wrap:pretty;">Two questions. No form, no email required.</p>
+      </div>
+
+      <div style="background:#FFFFFF; border:1px solid #E5E7EB; border-top:4px solid #0034A0; border-radius:3px; overflow:hidden;">
+        <div style="padding:clamp(24px,3vw,38px); display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:clamp(18px,2.4vw,30px); align-items:end; border-bottom:1px solid #E5E7EB;">
+
+          <div>
+            <label for="orgType" style="display:block; margin-bottom:9px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#334155;">Organization type</label>
+            <select id="orgType" value="{{ orgType }}" onChange="{{ onOrgChange }}" style="width:100%; font-size:16px; font-weight:600; color:#021F43; background:#F5F7F9; border:1.5px solid #94A3B8; border-radius:3px; padding:15px 14px; cursor:pointer;">
+              <sc-for list="{{ orgOptions }}" as="o" hint-placeholder-count="9">
+                <option value="{{ o.value }}">{{ o.label }}</option>
+              </sc-for>
+            </select>
+          </div>
+
+          <div>
+            <label for="stateSel" style="display:block; margin-bottom:9px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#334155;">State</label>
+            <select id="stateSel" value="{{ stateVal }}" onChange="{{ onStateChange }}" style="width:100%; font-size:16px; font-weight:600; color:#021F43; background:#F5F7F9; border:1.5px solid #94A3B8; border-radius:3px; padding:15px 14px; cursor:pointer;">
+              <sc-for list="{{ stateOptions }}" as="s" hint-placeholder-count="12">
+                <option value="{{ s.value }}">{{ s.label }}</option>
+              </sc-for>
+            </select>
+          </div>
+
+          <div style="display:flex; gap:10px; align-items:center;">
+            <button type="button" onClick="{{ onReset }}" style="font-family:inherit; font-size:14.5px; font-weight:700; color:#334155; background:none; border:1.5px solid #E5E7EB; border-radius:3px; padding:15px 22px; cursor:pointer;" style-hover="border-color:#021F43; color:#021F43;">Reset</button>
+          </div>
+        </div>
+
+        <div aria-live="polite" style="padding:clamp(24px,3vw,38px); background:#FFFFFF;">
+          <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <p style="margin:0 0 22px; font-size:15px; font-weight:600; line-height:1.55; color:#334155;">{{ resultSummary }}</p>
+              <ul style="display:flex; flex-direction:column; gap:14px;">
+                <sc-for list="{{ results }}" as="r" hint-placeholder-count="2">
+                  <li style="border:1px solid #E5E7EB; border-left:4px solid {{ r.edge }}; border-radius:3px; padding:clamp(20px,2.2vw,26px); background:{{ r.bg }};">
+                    <div style="display:flex; flex-wrap:wrap; gap:12px 20px; align-items:baseline; justify-content:space-between; margin-bottom:12px;">
+                      <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;">
+                        <h3 style="margin:0; font-size:clamp(19px,1.8vw,25px); font-weight:800; letter-spacing:-0.02em;">{{ r.name }}</h3>
+                        <span style="font-size:10.5px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:#FFFFFF; background:{{ r.edge }}; padding:5px 10px; border-radius:2px;">{{ r.badge }}</span>
+                      </div>
+                      <span style="font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:14px; font-weight:400; color:#021F43;">{{ r.number }}</span>
+                    </div>
+                    <p style="margin:0 0 16px; font-size:15.5px; line-height:1.6; color:#334155; max-width:76ch; text-wrap:pretty;">{{ r.why }}</p>
+                    <a href="{{ r.anchor }}" style="display:inline-flex; align-items:center; gap:9px; font-size:14.5px; font-weight:700; color:#0034A0;" style-hover="color:#EB4900;">
+                      Ordering steps &amp; scope
+                      <span aria-hidden="true" style="width:6px; height:6px; border-top:2px solid currentColor; border-right:2px solid currentColor; transform:rotate(45deg); display:block;"></span>
+                    </a>
+                  </li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ noResults }}">
+            <div style="border:1px dashed #94A3B8; border-radius:3px; padding:clamp(24px,3vw,34px); background:#F5F7F9;">
+              <p style="margin:0 0 10px; font-size:17px; font-weight:800; color:#021F43;">No cooperative vehicle covers that combination.</p>
+              <p style="margin:0 0 20px; font-size:15.5px; line-height:1.6; color:#334155; max-width:62ch; text-wrap:pretty;">That doesn't mean you can't work with us. We respond to direct solicitations, and we can often be added to a contract you already hold. Tell us your situation and we'll map the fastest route.</p>
+              <a href="#connect" style="display:inline-block; background:#021F43; color:#FFFFFF; font-size:14.5px; font-weight:700; padding:15px 26px; border-radius:3px;" style-hover="background:#EB4900; color:#FFFFFF;">Talk to our contracts team</a>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <p style="margin:18px 0 0; font-size:13.5px; line-height:1.6; color:#334155; max-width:78ch;">Eligibility shown here is a guide, not a determination. Your procurement office makes the final call, and we're glad to talk to them directly.</p>
+    </div>
+  </section>
+
+  <!-- ══ VEHICLES ══ -->
+  <section id="vehicles" aria-labelledby="veh-h" style="background:#FFFFFF; scroll-margin-top:90px;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(60px,6.5vw,100px) clamp(20px,4vw,48px);">
+      <div style="max-width:640px; margin-bottom:clamp(32px,3.6vw,50px);">
+        <p style="margin:0 0 16px; display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0034A0;">
+          <span aria-hidden="true" style="width:30px; height:2px; background:#EB4900; display:block;"></span>
+          All six vehicles
+        </p>
+        <h2 id="veh-h" style="margin:0; font-size:clamp(28px,3.3vw,46px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">Contract numbers, scope and who can order.</h2>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:clamp(16px,2vw,22px);">
+        <sc-for list="{{ vehicles }}" as="v" hint-placeholder-count="6">
+          <article id="{{ v.id }}" style="border:1px solid #E5E7EB; border-radius:3px; scroll-margin-top:96px; overflow:hidden;">
+
+            <div style="background:#021F43; color:#FFFFFF; padding:clamp(22px,2.4vw,30px) clamp(22px,2.6vw,34px); display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:20px; align-items:center;">
+              <div>
+                <p style="margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#80CEFF;">{{ v.kind }}</p>
+                <h3 style="margin:0; font-size:clamp(22px,2.2vw,32px); font-weight:800; letter-spacing:-0.024em; line-height:1.1;">{{ v.name }}</h3>
+              </div>
+              <div style="justify-self:end; display:flex; flex-wrap:wrap; gap:10px;">
+                <sc-for list="{{ v.numbers }}" as="n" hint-placeholder-count="1">
+                  <button type="button" onClick="{{ n.onCopy }}" title="Copy contract number" style="display:flex; align-items:center; gap:11px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:15px; font-weight:400; color:#FFFFFF; background:rgba(128,206,255,.14); border:1px solid rgba(128,206,255,.42); border-radius:3px; padding:13px 16px; cursor:pointer;" style-hover="background:#EB4900; border-color:#EB4900;">
+                    {{ n.value }}
+                    <span style="font-family:Montserrat, sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:{{ n.hintColor }};">{{ n.hint }}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="padding:clamp(24px,2.8vw,34px); display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:clamp(24px,3vw,44px); background:#FFFFFF;">
+              <div>
+                <p style="margin:0 0 12px; font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#94A3B8;">Who can order</p>
+                <p style="margin:0; font-size:15.5px; line-height:1.6; color:#334155; text-wrap:pretty;">{{ v.eligible }}</p>
+              </div>
+              <div>
+                <p style="margin:0 0 12px; font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#94A3B8;">What's covered</p>
+                <ul style="display:flex; flex-direction:column; gap:8px;">
+                  <sc-for list="{{ v.covered }}" as="c" hint-placeholder-count="3">
+                    <li style="display:flex; gap:10px; align-items:flex-start; font-size:15px; line-height:1.5; color:#334155;">
+                      <span aria-hidden="true" style="flex:0 0 auto; width:6px; height:6px; background:#0034A0; transform:rotate(45deg); margin-top:6px; display:block;"></span>
+                      {{ c }}
+                    </li>
+                  </sc-for>
+                </ul>
+              </div>
+              <div>
+                <p style="margin:0 0 12px; font-size:11.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#94A3B8;">Verify &amp; order</p>
+                <p style="margin:0 0 16px; font-size:15px; line-height:1.6; color:#334155;">{{ v.authority }}</p>
+                <a href="{{ v.href }}" style="display:inline-flex; align-items:center; gap:9px; font-size:14.5px; font-weight:700; color:#0034A0;" style-hover="color:#EB4900;">
+                  Official contract record
+                  <span aria-hidden="true" style="width:6px; height:6px; border-top:2px solid currentColor; border-right:2px solid currentColor; transform:rotate(45deg); display:block;"></span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ORDERING STEPS ══ -->
+  <section aria-labelledby="steps-h" style="position:relative; background:#0034A0; color:#FFFFFF; overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E'); background-size:74px 74px; opacity:.42;"></div>
+
+    <div style="position:relative; max-width:1320px; margin:0 auto; padding:clamp(60px,6.5vw,96px) clamp(20px,4vw,48px);">
+      <div style="max-width:620px; margin-bottom:clamp(32px,3.6vw,50px);">
+        <p style="margin:0 0 16px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#80CEFF;">Ordering process</p>
+        <h2 id="steps-h" style="margin:0 0 16px; font-size:clamp(28px,3.3vw,46px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">Four steps from first call to signed order.</h2>
+        <p style="margin:0; font-size:clamp(16px,1.25vw,18px); line-height:1.65; color:#D5E4F5; text-wrap:pretty;">Typical timeline is three to six weeks, most of it on your side for internal approval.</p>
+      </div>
+
+      <ol style="display:grid; grid-template-columns:repeat(auto-fit, minmax(238px,1fr)); gap:clamp(14px,1.6vw,18px);">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <li style="background:#0034A0; padding:clamp(24px,2.6vw,32px); border:1px solid rgba(255,255,255,.3); border-radius:3px;">
+            <div aria-hidden="true" style="height:3px; width:100%; background:{{ s.bar }}; margin-bottom:22px;"></div>
+            <p style="margin:0 0 14px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; letter-spacing:.1em; color:#80CEFF;">{{ s.num }}</p>
+            <h3 style="margin:0 0 12px; font-size:clamp(19px,1.8vw,25px); font-weight:800; letter-spacing:-0.02em; line-height:1.15;">{{ s.name }}</h3>
+            <p style="margin:0; font-size:15px; line-height:1.6; color:#D5E4F5; text-wrap:pretty;">{{ s.body }}</p>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ══ -->
+  <section aria-labelledby="faq-h" style="background:#F5F7F9; border-bottom:1px solid #E5E7EB;">
+    <div style="max-width:1320px; margin:0 auto; padding:clamp(60px,6.5vw,96px) clamp(20px,4vw,48px);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(32px,4vw,64px); align-items:start;">
+        <div>
+          <p style="margin:0 0 16px; display:flex; align-items:center; gap:12px; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#0034A0;">
+            <span aria-hidden="true" style="width:30px; height:2px; background:#EB4900; display:block;"></span>
+            Common questions
+          </p>
+          <h2 id="faq-h" style="margin:0 0 22px; font-size:clamp(28px,3.3vw,46px); font-weight:800; line-height:1.06; letter-spacing:-0.028em; text-wrap:balance;">What procurement usually asks.</h2>
+          <p style="margin:0 0 26px; font-size:16.5px; line-height:1.65; color:#334155; max-width:46ch; text-wrap:pretty;">If your question isn't here, our contracts team answers directly — no sales handoff.</p>
+          <a href="#connect" style="display:inline-block; background:#0034A0; color:#FFFFFF; font-size:15px; font-weight:700; padding:16px 28px; border-radius:3px;" style-hover="background:#EB4900; color:#FFFFFF;">Ask a contracts question</a>
+        </div>
+
+        <ul style="display:flex; flex-direction:column; gap:1px; background:#E5E7EB; border:1px solid #E5E7EB; border-radius:3px; overflow:hidden;">
+          <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+            <li style="background:#FFFFFF;">
+              <button type="button" aria-expanded="{{ f.expanded }}" onClick="{{ f.onToggle }}" style="width:100%; display:flex; gap:20px; align-items:flex-start; justify-content:space-between; text-align:left; background:none; border:0; font-family:inherit; padding:clamp(20px,2.2vw,26px); cursor:pointer;" style-hover="background:#F5F7F9;">
+                <span style="font-size:clamp(16px,1.4vw,18.5px); font-weight:700; line-height:1.4; color:#021F43; letter-spacing:-0.01em;">{{ f.q }}</span>
+                <span aria-hidden="true" style="flex:0 0 auto; width:11px; height:11px; margin-top:5px; border-right:2.5px solid #EB4900; border-bottom:2.5px solid #EB4900; transform:{{ f.caret }}; display:block;"></span>
+              </button>
+              <sc-if value="{{ f.open }}">
+                <p style="margin:0; padding:0 clamp(20px,2.2vw,26px) clamp(22px,2.4vw,28px); font-size:15.5px; line-height:1.65; color:#334155; max-width:70ch; text-wrap:pretty;">{{ f.a }}</p>
+              </sc-if>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CLOSING CTA ══ -->
+  <section id="connect" aria-labelledby="cta-h" style="position:relative; background:#021F43; color:#FFFFFF; overflow:hidden; scroll-margin-top:78px;">
+    <div aria-hidden="true" style="position:absolute; inset:0; background:repeating-linear-gradient(135deg, #041F44 0 12px, #021B3B 12px 24px);"></div>
+    <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(2,31,67,.96) 0%, rgba(2,31,67,.72) 55%, rgba(0,52,160,.35) 100%);"></div>
+    <div aria-hidden="true" style="position:absolute; left:0; bottom:0; right:0; height:5px; background:linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900);"></div>
+
+    <div style="position:relative; max-width:1320px; margin:0 auto; padding:clamp(64px,7vw,112px) clamp(20px,4vw,48px);">
+      <p style="margin:0 0 20px; font-size:12.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#80CEFF;">Your mission. Our purpose.</p>
+      <h2 id="cta-h" style="margin:0 0 22px; font-size:clamp(30px,4vw,58px); font-weight:800; line-height:1.04; letter-spacing:-0.03em; max-width:24ch; text-wrap:balance;">Send us your vehicle. We'll send back a scope.</h2>
+      <p style="margin:0 0 34px; font-size:clamp(17px,1.4vw,20px); line-height:1.6; color:#DDE6F0; max-width:56ch; text-wrap:pretty;">Tell us which contract you hold and what you're trying to accomplish. You'll hear from a person who has done this before, not a form autoresponder.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center;">
+        <a href="#connect" style="background:#EB4900; color:#FFFFFF; font-size:16px; font-weight:700; padding:19px 36px; border-radius:3px;" style-hover="background:#FFFFFF; color:#021F43;">Connect with us</a>
+        <a href="#finder" style="color:#FFFFFF; font-size:16px; font-weight:700; padding:19px 8px; border-bottom:2px solid rgba(255,255,255,.4);" style-hover="color:#80CEFF; border-bottom-color:#80CEFF;">Back to the finder</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#011733; color:#C9D8E8;">
+  <div style="max-width:1320px; margin:0 auto; padding:clamp(52px,5.5vw,80px) clamp(20px,4vw,48px) 0;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:clamp(28px,3vw,44px); padding-bottom:clamp(40px,4vw,56px);">
+
+      <div style="min-width:200px;">
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:18px;">
+          <span aria-hidden="true" style="width:34px; height:34px; display:grid; place-items:center; background:#FFFFFF; border-radius:3px;">
+            <span style="width:14px; height:14px; background:#021F43; transform:rotate(45deg); display:block;"></span>
+          </span>
+          <span style="font-size:25px; font-weight:800; letter-spacing:-0.02em; color:#FFFFFF; line-height:1;">PTG</span>
+        </div>
+        <p style="margin:0 0 20px; font-size:14.5px; font-weight:700; line-height:1.5; color:#FFFFFF;">Realize Value. Faster.</p>
+        <p style="margin:0 0 6px; font-size:14px; line-height:1.65;">[Street address]<br />Houston, TX [ZIP]</p>
+        <p style="margin:0; font-size:14px; line-height:1.65;">[Main phone]</p>
+        <ul style="display:flex; gap:8px; margin-top:20px;">
+          <sc-for list="{{ social }}" as="s" hint-placeholder-count="3">
+            <li>
+              <a href="#connect" aria-label="{{ s.label }}" style="display:grid; place-items:center; width:38px; height:38px; border:1px solid rgba(201,216,232,.32); border-radius:2px; font-size:12px; font-weight:700; color:#C9D8E8;" style-hover="background:#EB4900; color:#FFFFFF; border-color:#EB4900;">{{ s.abbr }}</a>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="4">
+        <div>
+          <p style="margin:0 0 16px; font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#80CEFF;">{{ col.title }}</p>
+          <ul style="display:flex; flex-direction:column; gap:11px;">
+            <sc-for list="{{ col.items }}" as="link" hint-placeholder-count="5">
+              <li><a href="{{ link.href }}" style="font-size:14.5px; line-height:1.4; color:#C9D8E8;" style-hover="color:#FFFFFF;">{{ link.label }}</a></li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="border-top:1px solid rgba(201,216,232,.18); padding:26px 0 34px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:center; justify-content:space-between;">
+      <p style="margin:0; font-size:13px; letter-spacing:.02em;">© 2026 Precision Task Group, Inc. · Certified MBE · DBE certified in multiple states</p>
+      <ul style="display:flex; flex-wrap:wrap; gap:22px;">
+        <li><a href="#main" style="font-size:13px; color:#C9D8E8;" style-hover="color:#FFFFFF;">Accessibility</a></li>
+        <li><a href="#main" style="font-size:13px; color:#C9D8E8;" style-hover="color:#FFFFFF;">Privacy</a></li>
+        <li><a href="#main" style="font-size:13px; color:#C9D8E8;" style-hover="color:#FFFFFF;">Terms</a></li>
+      </ul>
+    </div>
+    <p style="margin:0; padding:0 0 22px; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; letter-spacing:.04em; color:#5B7FA8;">DRAFT COPY — written for layout review, not client-approved. Eligibility rules require legal review before publication.</p>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { openMenu: null, isNarrow: false, mobileOpen: false, orgType: "", stateVal: "", copied: null, openFaq: 0 };
+
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 1040px)");
+    this.onMQ = () => this.setState({ isNarrow: this.mq.matches, openMenu: null, mobileOpen: false });
+    this.setState({ isNarrow: this.mq.matches });
+    this.mq.addEventListener("change", this.onMQ);
+  }
+
+  componentWillUnmount() {
+    if (this.mq) this.mq.removeEventListener("change", this.onMQ);
+    if (this.copyTimer) clearTimeout(this.copyTimer);
+  }
+
+  copy(value) {
+    if (navigator.clipboard) navigator.clipboard.writeText(value).catch(() => {});
+    this.setState({ copied: value });
+    if (this.copyTimer) clearTimeout(this.copyTimer);
+    this.copyTimer = setTimeout(() => this.setState({ copied: null }), 1800);
+  }
+
+  nav() {
+    return [
+      { label: "Services", groups: [
+        { title: "Workday", items: [
+          { label: "Advisory & Strategy", href: "PTG%20Homepage.dc.html#services" },
+          { label: "Implementation", href: "PTG%20Homepage.dc.html#services" },
+          { label: "AMS & Optimization", href: "PTG%20Homepage.dc.html#services" },
+          { label: "Innovation", href: "PTG%20Homepage.dc.html#services" }
+        ]},
+        { title: "ServiceNow", items: [
+          { label: "ServiceNow Implementation", href: "PTG%20Homepage.dc.html#services" }
+        ]},
+        { title: "Partners", items: [
+          { label: "Workday", href: "PTG%20Homepage.dc.html#services" },
+          { label: "ServiceNow", href: "PTG%20Homepage.dc.html#services" }
+        ]}
+      ]},
+      { label: "Industries", groups: [
+        { title: "Who we serve", items: [
+          { label: "Government / Public Sector", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Higher Education", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Transit, Utilities & Special Districts", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Nonprofit", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Healthcare", href: "PTG%20Homepage.dc.html#industries" }
+        ]}
+      ]},
+      { label: "How to Buy", current: true, groups: [
+        { title: "Start here", items: [
+          { label: "How to Buy from PTG", href: "#main" },
+          { label: "Contract vehicle finder", href: "#finder" }
+        ]},
+        { title: "Cooperative contracts", items: [
+          { label: "Sourcewell", href: "#sourcewell" },
+          { label: "OMNIA Partners", href: "#omnia" },
+          { label: "Texas DIR", href: "#dir" }
+        ]},
+        { title: "Government contracts", items: [
+          { label: "GSA MAS", href: "#gsa" },
+          { label: "California SLP", href: "#slp" },
+          { label: "IPHEC", href: "#iphec" }
+        ]}
+      ]},
+      { label: "About", groups: [
+        { title: "The firm", items: [
+          { label: "About PTG", href: "PTG%20Homepage.dc.html" },
+          { label: "Our Leadership", href: "PTG%20Homepage.dc.html" },
+          { label: "Careers & Culture", href: "PTG%20Homepage.dc.html#careers" }
+        ]}
+      ]},
+      { label: "Resources", groups: [
+        { title: "Insights", items: [
+          { label: "Blog", href: "PTG%20Homepage.dc.html" },
+          { label: "Webinars", href: "PTG%20Homepage.dc.html" },
+          { label: "Upcoming Events", href: "PTG%20Homepage.dc.html" },
+          { label: "Customer Stories", href: "PTG%20Homepage.dc.html" }
+        ]}
+      ]}
+    ];
+  }
+
+  states() {
+    return ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+  }
+
+  orgs() {
+    return [
+      { value: "state", label: "State agency or department" },
+      { value: "local", label: "City, county or local government" },
+      { value: "hied-public", label: "Public college or university" },
+      { value: "hied-private", label: "Private college or university" },
+      { value: "k12", label: "K–12 school district" },
+      { value: "transit", label: "Transit authority or special district" },
+      { value: "health", label: "Hospital or health system" },
+      { value: "nonprofit", label: "Nonprofit organization" },
+      { value: "federal", label: "Federal agency" }
+    ];
+  }
+
+  match(org, st) {
+    const out = [];
+    const pub = ["state", "local", "hied-public", "k12", "transit", "health"];
+
+    if (org === "hied-public" && st === "Illinois")
+      out.push({ key: "iphec", badge: "Best fit", why: "IPHEC is the Illinois Public Higher Education Cooperative. As an Illinois public institution you can order directly under our IPHEC award without a separate solicitation." });
+
+    if (pub.indexOf(org) > -1 && st === "Texas")
+      out.push({ key: "dir", badge: "Best fit", why: "Texas DIR is the fastest route for Texas public entities. State agencies, local government, public districts and public institutions of higher education all purchase IT services through DIR every day — and PTG is Houston-based." });
+
+    if (pub.indexOf(org) > -1 && st === "California")
+      out.push({ key: "slp", badge: "Best fit", why: "The California Software Licensing Program covers state agencies and, through participation, California local government and public education. Your procurement office will already know the vehicle." });
+
+    if (org !== "federal")
+      out.push({ key: "sourcewell", badge: "Nationwide", why: "Sourcewell membership is open to government, education and nonprofit organizations in all 50 states, and it is free to join. Their solicitation process satisfies competitive bid requirements in most jurisdictions." });
+
+    if (org !== "federal")
+      out.push({ key: "omnia", badge: "Nationwide", why: "OMNIA Partners is a national cooperative widely used by public agencies and higher education. If you already hold an OMNIA membership, no new agreement is needed." });
+
+    if (org === "federal")
+      out.push({ key: "gsa", badge: "Best fit", why: "Our GSA Multiple Award Schedule contract is the standard path for federal agencies. Pricing and terms are pre-negotiated with GSA." });
+    else if (pub.indexOf(org) > -1)
+      out.push({ key: "gsa", badge: "Also available", why: "State and local entities can order from our GSA Schedule under the Cooperative Purchasing program for eligible IT special item numbers. Worth checking if your office prefers a federal schedule." });
+
+    return out;
+  }
+
+  renderVals() {
+    const narrow = this.state.isNarrow;
+    const open = this.state.openMenu;
+    const copied = this.state.copied;
+
+    const navItems = this.nav().map((item, i) => {
+      const isOpen = open === i;
+      const flat = [];
+      item.groups.forEach(g => g.items.forEach(it => flat.push(it)));
+      return {
+        label: item.label,
+        groups: item.groups,
+        flatItems: flat,
+        isOpen,
+        expanded: isOpen ? "true" : "false",
+        current: item.current ? "page" : undefined,
+        color: item.current ? "#0034A0" : "#021F43",
+        underline: item.current ? "#EB4900" : "transparent",
+        onEnter: narrow ? undefined : () => this.setState({ openMenu: i }),
+        onLeave: narrow ? undefined : () => this.setState({ openMenu: null }),
+        onToggle: () => this.setState(s => ({ openMenu: s.openMenu === i ? null : i }))
+      };
+    });
+
+    const VEH = {
+      sourcewell: { id: "sourcewell", name: "Sourcewell", kind: "National cooperative", numbers: ["060624-PRT"], anchor: "#sourcewell",
+        eligible: "Government, education and nonprofit organizations nationwide. Membership is free and can usually be completed the same week.",
+        covered: ["Workday software licensing", "Implementation and advisory services", "Application management and optimization"],
+        authority: "Sourcewell publishes the awarded contract and pricing on its supplier record.", href: "#sourcewell" },
+      omnia: { id: "omnia", name: "OMNIA Partners", kind: "National cooperative", numbers: ["01-140"], anchor: "#omnia",
+        eligible: "Public sector and higher education members nationwide, plus participating nonprofits.",
+        covered: ["Technology consulting and implementation", "Workday licensing through PTG as reseller", "Ongoing managed services"],
+        authority: "OMNIA Partners lists the awarded supplier contract in its public portfolio.", href: "#omnia" },
+      dir: { id: "dir", name: "Texas DIR", kind: "State contract · Texas", numbers: ["DIR-CPO-5657", "DIR-CPO-6141"], anchor: "#dir",
+        eligible: "Texas state agencies, local government, public school districts, public institutions of higher education, and other DIR-eligible customers.",
+        covered: ["IT staffing and technology services", "Workday implementation and support", "Website content accessibility compliance"],
+        authority: "The Texas Department of Information Resources maintains the contract record and current pricing sheet.", href: "#dir" },
+      gsa: { id: "gsa", name: "GSA MAS", kind: "Federal schedule", numbers: ["GS-35F-035GA"], anchor: "#gsa",
+        eligible: "Federal agencies. State and local entities may order for eligible special item numbers under GSA Cooperative Purchasing.",
+        covered: ["IT professional services", "Systems integration and implementation", "Ongoing operations support"],
+        authority: "Verify the schedule, SINs and pricing on GSA eLibrary and GSA Advantage.", href: "#gsa" },
+      slp: { id: "slp", name: "California SLP", kind: "State contract · California", numbers: ["SLP-24-70-0281B"], anchor: "#slp",
+        eligible: "California state agencies, and California local government and public education entities through program participation.",
+        covered: ["Software licensing", "Implementation services", "Support and maintenance"],
+        authority: "The California Department of General Services publishes the awarded SLP contract in Cal eProcure.", href: "#slp" },
+      iphec: { id: "iphec", name: "IPHEC", kind: "Cooperative · Illinois higher ed", numbers: ["2509GAL"], anchor: "#iphec",
+        eligible: "Illinois public universities and community colleges participating in the Illinois Public Higher Education Cooperative.",
+        covered: ["Workday licensing and implementation", "Student, HCM and Financials deployments", "Post-go-live optimization"],
+        authority: "IPHEC publishes awarded cooperative contracts for member institutions.", href: "#iphec" }
+    };
+
+    const order = ["sourcewell", "omnia", "dir", "gsa", "slp", "iphec"];
+
+    const vehicles = order.map(k => {
+      const v = VEH[k];
+      return Object.assign({}, v, {
+        numbers: v.numbers.map(n => ({
+          value: n,
+          onCopy: () => this.copy(n),
+          hint: copied === n ? "Copied" : "Copy",
+          hintColor: copied === n ? "#B4FF00" : "#80CEFF"
+        }))
+      });
+    });
+
+    const org = this.state.orgType;
+    const st = this.state.stateVal;
+    const ready = org !== "" && st !== "";
+    const raw = ready ? this.match(org, st) : [];
+
+    const results = raw.map((r, i) => {
+      const v = VEH[r.key];
+      return {
+        name: v.name,
+        number: v.numbers.join("  ·  "),
+        badge: r.badge,
+        why: r.why,
+        anchor: v.anchor,
+        edge: i === 0 ? "#EB4900" : "#0034A0",
+        bg: i === 0 ? "#FFF7F3" : "#FFFFFF"
+      };
+    });
+
+    const orgLabel = (this.orgs().find(o => o.value === org) || {}).label;
+    const summary = ready
+      ? results.length + " vehicle" + (results.length === 1 ? "" : "s") + " available to a " + String(orgLabel).toLowerCase() + " in " + st + ", strongest fit first."
+      : "Choose an organization type and state to see the vehicles you can order under.";
+
+    const FAQ = [
+      { q: "Does buying through a cooperative satisfy our competitive bid requirement?", a: "In most jurisdictions, yes. Cooperative contracts are awarded through a public competitive solicitation run by the lead agency, and statutes in most states let members rely on that process. Your counsel or procurement office confirms it for your jurisdiction — we can supply the solicitation documentation they need." },
+      { q: "Can you sell us the Workday licenses too, or just the implementation?", a: "Both. PTG is one of a small number of authorized Workday resellers, so licensing and implementation come through one contract with one accountable party. That removes a coordination problem most firms hand back to you." },
+      { q: "We're not a member of any of these cooperatives. Now what?", a: "Sourcewell membership is free and typically takes a few days. If that isn't a fit, we respond to direct solicitations and can often be added to a contract vehicle you already hold. Start with a conversation." },
+      { q: "How long does it actually take to get to a signed order?", a: "Three to six weeks is typical, and most of that is your internal approval cycle rather than anything on our side. Scoping usually takes one to two weeks once we understand your environment." },
+      { q: "Is there a price premium for buying off a cooperative contract?", a: "No. Cooperative pricing is established in the original award and is generally at or better than what a standalone solicitation would produce, because the lead agency bid it on behalf of thousands of members." }
+    ].map((f, i) => ({
+      q: f.q,
+      a: f.a,
+      open: this.state.openFaq === i,
+      expanded: this.state.openFaq === i ? "true" : "false",
+      caret: this.state.openFaq === i ? "rotate(225deg)" : "rotate(45deg)",
+      onToggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i }))
+    }));
+
+    return {
+      navItems,
+      showDesktopNav: !narrow,
+      showMobileToggle: narrow,
+      mobileOpen: narrow && this.state.mobileOpen,
+      mobileExpanded: this.state.mobileOpen ? "true" : "false",
+      toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen, openMenu: null })),
+
+      orgType: org,
+      stateVal: st,
+      orgOptions: [{ value: "", label: "Select organization type…" }].concat(this.orgs()),
+      stateOptions: [{ value: "", label: "Select state…" }].concat(this.states().map(s => ({ value: s, label: s }))),
+      onOrgChange: e => this.setState({ orgType: e.target.value }),
+      onStateChange: e => this.setState({ stateVal: e.target.value }),
+      onReset: () => this.setState({ orgType: "", stateVal: "" }),
+
+      results,
+      hasResults: !ready || results.length > 0,
+      noResults: ready && results.length === 0,
+      resultSummary: summary,
+
+      vehicles,
+      faqs: FAQ,
+
+      steps: [
+        { num: "STEP 01", name: "Confirm your vehicle", body: "Use the finder above or send us your membership details. We verify eligibility with the issuing authority before anything else.", bar: "#80CEFF" },
+        { num: "STEP 02", name: "Scope the work", body: "A working session with the people who would actually deliver. You get a written scope, phasing and a price built on contract rates.", bar: "#80CEFF" },
+        { num: "STEP 03", name: "Issue the order", body: "Your procurement office issues a purchase order or task order referencing the contract number. No solicitation, no evaluation committee.", bar: "#EB4900" },
+        { num: "STEP 04", name: "Start", body: "Kickoff within two to three weeks of order, with the named team from the scoping session.", bar: "#EB4900" }
+      ],
+
+      social: [
+        { label: "PTG on LinkedIn", abbr: "in" },
+        { label: "PTG on X", abbr: "X" },
+        { label: "PTG on YouTube", abbr: "YT" }
+      ],
+
+      footerCols: [
+        { title: "Services", items: [
+          { label: "Advisory & Strategy", href: "PTG%20Homepage.dc.html#services" },
+          { label: "Implementation", href: "PTG%20Homepage.dc.html#services" },
+          { label: "AMS & Optimization", href: "PTG%20Homepage.dc.html#services" },
+          { label: "Innovation", href: "PTG%20Homepage.dc.html#services" },
+          { label: "ServiceNow", href: "PTG%20Homepage.dc.html#services" }
+        ]},
+        { title: "Industries", items: [
+          { label: "Government", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Higher Education", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Transit & Utilities", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Nonprofit", href: "PTG%20Homepage.dc.html#industries" },
+          { label: "Healthcare", href: "PTG%20Homepage.dc.html#industries" }
+        ]},
+        { title: "How to buy", items: [
+          { label: "Sourcewell 060624-PRT", href: "#sourcewell" },
+          { label: "OMNIA Partners 01-140", href: "#omnia" },
+          { label: "Texas DIR", href: "#dir" },
+          { label: "GSA MAS", href: "#gsa" },
+          { label: "California SLP · IPHEC", href: "#slp" }
+        ]},
+        { title: "Company", items: [
+          { label: "About PTG", href: "PTG%20Homepage.dc.html" },
+          { label: "Our Leadership", href: "PTG%20Homepage.dc.html" },
+          { label: "Careers & Culture", href: "PTG%20Homepage.dc.html#careers" },
+          { label: "Resources", href: "PTG%20Homepage.dc.html" },
+          { label: "Connect with Us", href: "#connect" }
+        ]}
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

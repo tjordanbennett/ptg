@@ -1,0 +1,195 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { getProcurementPage, getSiteSettings } from "@/lib/content";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ContractFinder } from "@/components/ContractFinder";
+import { CopyNumber } from "@/components/CopyNumber";
+import { FaqAccordion } from "@/components/FaqAccordion";
+
+export const metadata: Metadata = {
+  title: "How to Buy from PTG",
+  description:
+    "PTG holds six cooperative and government contract vehicles. Find the one " +
+    "that lets your organization buy Workday licensing and implementation without an RFP.",
+};
+
+/** Matches public/_design/howtobuy.html — the template for all internal pages. */
+
+const JOURNEY_STAR =
+  "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E')";
+
+function EyebrowBar({ label, color = "#0034A0" }: { label: string; color?: string }) {
+  return (
+    <p style={{ margin: "0 0 16px", display: "flex", alignItems: "center", gap: 12, fontSize: 12, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color }}>
+      <span aria-hidden="true" style={{ width: 30, height: 2, background: "#EB4900", display: "block" }} />
+      {label}
+    </p>
+  );
+}
+
+export default async function HowToBuyPage() {
+  const site = await getSiteSettings();
+  const p = await getProcurementPage();
+
+  return (
+    <>
+      <SiteHeader site={site} currentLabel="How to Buy" />
+
+      <main id="main">
+        {/* ══ HERO ══ */}
+        <section aria-labelledby="hero-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: JOURNEY_STAR.replace("%23021F43", "%230034A0"), backgroundSize: "74px 74px", opacity: 0.5, WebkitMaskImage: "linear-gradient(115deg, transparent 45%, #000 100%)", maskImage: "linear-gradient(115deg, transparent 45%, #000 100%)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 4, background: "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)" }} />
+          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) clamp(56px,6vw,88px)" }}>
+            <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(32px,4vw,52px)" }}>
+              <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
+                <li><Link href="/" className="hov-footerlink" style={{ color: "#80CEFF" }}>Home</Link></li>
+                <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
+                <li style={{ color: "#C9D8E8" }}>How to Buy</li>
+              </ol>
+            </nav>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
+              <div style={{ maxWidth: 660 }}>
+                <p style={{ margin: "0 0 20px", display: "flex", alignItems: "center", gap: 12, fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>
+                  <span aria-hidden="true" style={{ width: 34, height: 2, background: "#EB4900", display: "block" }} />
+                  {p.hero.eyebrow}
+                </p>
+                <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.hero.headline}</h1>
+                <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "58ch", textWrap: "pretty" }}>{p.hero.body}</p>
+              </div>
+              <ul style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 6 }}>
+                {p.hero.bullets.map((b) => (
+                  <li key={b} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                    <span aria-hidden="true" style={{ flex: "0 0 auto", width: 9, height: 9, background: "#EB4900", transform: "rotate(45deg)", marginTop: 7, display: "block" }} />
+                    <span style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.5, color: "#FFFFFF" }}>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ══ FINDER ══ */}
+        <section id="finder" aria-labelledby="finder-h" style={{ background: "#F5F7F9", borderBottom: "1px solid #E5E7EB", scrollMarginTop: 90 }}>
+          <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,6vw,88px) clamp(20px,4vw,48px)" }}>
+            <div style={{ maxWidth: 620, marginBottom: "clamp(28px,3vw,40px)" }}>
+              <EyebrowBar label={p.finder.eyebrow} />
+              <h2 id="finder-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.finder.heading}</h2>
+              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#334155", textWrap: "pretty" }}>{p.finder.intro}</p>
+            </div>
+            <ContractFinder finder={p.finder} vehicles={p.vehicles} />
+            <p style={{ margin: "18px 0 0", fontSize: 13.5, lineHeight: 1.6, color: "#334155", maxWidth: "78ch" }}>{p.finder.disclaimer}</p>
+          </div>
+        </section>
+
+        {/* ══ VEHICLES ══ */}
+        <section id="vehicles" aria-labelledby="veh-h" style={{ background: "#FFFFFF", scrollMarginTop: 90 }}>
+          <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,100px) clamp(20px,4vw,48px)" }}>
+            <div style={{ maxWidth: 640, marginBottom: "clamp(32px,3.6vw,50px)" }}>
+              <EyebrowBar label={p.vehiclesSection.eyebrow} />
+              <h2 id="veh-h" style={{ margin: 0, fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.vehiclesSection.heading}</h2>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px,2vw,22px)" }}>
+              {p.vehicles.map((v) => (
+                <article key={v.id} id={v.id} style={{ border: "1px solid #E5E7EB", borderRadius: 3, scrollMarginTop: 96, overflow: "hidden" }}>
+                  <div style={{ background: "#021F43", color: "#FFFFFF", padding: "clamp(22px,2.4vw,30px) clamp(22px,2.6vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px,1fr))", gap: 20, alignItems: "center" }}>
+                    <div>
+                      <p style={{ margin: "0 0 8px", fontSize: 11, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#80CEFF" }}>{v.kind}</p>
+                      <h3 style={{ margin: 0, fontSize: "clamp(22px,2.2vw,32px)", fontWeight: 800, letterSpacing: "-0.024em", lineHeight: 1.1 }}>{v.name}</h3>
+                    </div>
+                    <div style={{ justifySelf: "end", display: "flex", flexWrap: "wrap", gap: 10 }}>
+                      {v.numbers.map((n) => (
+                        <CopyNumber key={n} value={n} />
+                      ))}
+                    </div>
+                  </div>
+                  <div style={{ padding: "clamp(24px,2.8vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px,1fr))", gap: "clamp(24px,3vw,44px)", background: "#FFFFFF" }}>
+                    <div>
+                      <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>Who can order</p>
+                      <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "pretty" }}>{v.eligible}</p>
+                    </div>
+                    <div>
+                      <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>What&apos;s covered</p>
+                      <ul style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        {v.covered.map((c) => (
+                          <li key={c} style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 15, lineHeight: 1.5, color: "#334155" }}>
+                            <span aria-hidden="true" style={{ flex: "0 0 auto", width: 6, height: 6, background: "#0034A0", transform: "rotate(45deg)", marginTop: 6, display: "block" }} />
+                            {c}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>Verify &amp; order</p>
+                      <p style={{ margin: "0 0 16px", fontSize: 15, lineHeight: 1.6, color: "#334155" }}>{v.authority}</p>
+                      <Link href={v.href} className="hov-link" style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 14.5, fontWeight: 700 }}>
+                        Official contract record
+                        <span aria-hidden="true" style={{ width: 6, height: 6, borderTop: "2px solid currentColor", borderRight: "2px solid currentColor", transform: "rotate(45deg)", display: "block" }} />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══ ORDERING STEPS ══ */}
+        <section aria-labelledby="steps-h" style={{ position: "relative", background: "#0034A0", color: "#FFFFFF", overflow: "hidden" }}>
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: JOURNEY_STAR, backgroundSize: "74px 74px", opacity: 0.42 }} />
+          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,96px) clamp(20px,4vw,48px)" }}>
+            <div style={{ maxWidth: 620, marginBottom: "clamp(32px,3.6vw,50px)" }}>
+              <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>{p.ordering.eyebrow}</p>
+              <h2 id="steps-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.ordering.heading}</h2>
+              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "pretty" }}>{p.ordering.intro}</p>
+            </div>
+            <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(238px,1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
+              {p.ordering.steps.map((s) => (
+                <li key={s.num} style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", border: "1px solid rgba(255,255,255,.3)", borderRadius: 3 }}>
+                  <div aria-hidden="true" style={{ height: 3, width: "100%", background: s.bar, marginBottom: 22 }} />
+                  <p style={{ margin: "0 0 14px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{s.num}</p>
+                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{s.name}</h3>
+                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "#D5E4F5", textWrap: "pretty" }}>{s.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* ══ FAQ ══ */}
+        <section aria-labelledby="faq-h" style={{ background: "#F5F7F9", borderBottom: "1px solid #E5E7EB" }}>
+          <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,96px) clamp(20px,4vw,48px)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
+              <div>
+                <EyebrowBar label={p.faq.eyebrow} />
+                <h2 id="faq-h" style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.faq.heading}</h2>
+                <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "46ch", textWrap: "pretty" }}>{p.faq.intro}</p>
+                <Link href={p.faq.cta.href} className="hov-cta-blue" style={{ display: "inline-block", fontSize: 15, fontWeight: 700, padding: "16px 28px", borderRadius: 3 }}>{p.faq.cta.label}</Link>
+              </div>
+              <FaqAccordion items={p.faq.items} />
+            </div>
+          </div>
+        </section>
+
+        {/* ══ CLOSING CTA ══ */}
+        <section id="connect" aria-labelledby="cta-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden", scrollMarginTop: 78 }}>
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, #041F44 0 12px, #021B3B 12px 24px)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(2,31,67,.96) 0%, rgba(2,31,67,.72) 55%, rgba(0,52,160,.35) 100%)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 5, background: "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)" }} />
+          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(64px,7vw,112px) clamp(20px,4vw,48px)" }}>
+            <p style={{ margin: "0 0 20px", fontSize: 12.5, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "#80CEFF" }}>{p.closingCta.eyebrow}</p>
+            <h2 id="cta-h" style={{ margin: "0 0 22px", fontSize: "clamp(30px,4vw,58px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.03em", maxWidth: "24ch", textWrap: "balance" }}>{p.closingCta.heading}</h2>
+            <p style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.4vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "pretty" }}>{p.closingCta.body}</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
+              <Link href={p.closingCta.ctas[0].href} className="hov-cta-emberwhite" style={{ fontSize: 16, fontWeight: 700, padding: "19px 36px", borderRadius: 3 }}>{p.closingCta.ctas[0].label}</Link>
+              <Link href={p.closingCta.ctas[1].href} className="hov-underline" style={{ fontSize: 16, fontWeight: 700, padding: "19px 8px" }}>{p.closingCta.ctas[1].label}</Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter site={site} />
+    </>
+  );
+}

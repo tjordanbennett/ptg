@@ -1,0 +1,414 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Design system extracted verbatim from public/_design/*.html
+   (the approved spec). White is the default; navy is structure.
+   ============================================================ */
+
+:root {
+  --font-montserrat: "Montserrat", Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-montserrat);
+    background: #ffffff;
+    color: #021f43;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: #0034a0;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #eb4900;
+  }
+
+  :focus-visible {
+    outline: 3px solid #eb4900;
+    outline-offset: 2px;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style: none;
+  }
+
+  select {
+    font-family: var(--font-montserrat);
+  }
+}
+
+/* Dropdown / disclosure entrance from the design. */
+@keyframes ptgRise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ── Interactive elements: base + :hover (the design's `style-hover`).
+   Kept in CSS because inline styles can't express :hover. Values verbatim. ── */
+@layer components {
+  .hov-navbtn {
+    color: #021f43;
+    border-bottom: 3px solid transparent;
+  }
+  .hov-navbtn:hover,
+  .hov-navbtn[data-current="true"] {
+    color: #0034a0;
+    border-bottom-color: #eb4900;
+  }
+
+  .hov-droplink {
+    color: #021f43;
+  }
+  .hov-droplink:hover {
+    background: #f5f7f9;
+    color: #0034a0;
+  }
+
+  .hov-cta-ember {
+    background: #eb4900;
+    color: #fff;
+  }
+  .hov-cta-ember:hover {
+    background: #021f43;
+    color: #fff;
+  }
+
+  /* hero + closing primary: ember → white */
+  .hov-cta-emberwhite {
+    background: #eb4900;
+    color: #fff;
+  }
+  .hov-cta-emberwhite:hover {
+    background: #fff;
+    color: #021f43;
+  }
+
+  .hov-cta-outline {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+  }
+  .hov-cta-outline:hover {
+    background: #fff;
+    color: #021f43;
+    border-color: #fff;
+  }
+
+  .hov-cta-blue {
+    background: #0034a0;
+    color: #fff;
+  }
+  .hov-cta-blue:hover {
+    background: #eb4900;
+    color: #fff;
+  }
+
+  .hov-cta-navy {
+    background: #021f43;
+    color: #fff;
+  }
+  .hov-cta-navy:hover {
+    background: #eb4900;
+    color: #fff;
+  }
+
+  .hov-underline {
+    color: #fff;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  .hov-underline:hover {
+    color: #80ceff;
+    border-bottom-color: #80ceff;
+  }
+
+  .hov-pathcard {
+    background: #f5f7f9;
+    border-left: 4px solid #0034a0;
+    color: #021f43;
+  }
+  .hov-pathcard:hover {
+    background: #021f43;
+    color: #fff;
+    border-left-color: #eb4900;
+  }
+
+  .hov-vehrow {
+    color: #021f43;
+  }
+  .hov-vehrow:hover {
+    background: #f5f7f9;
+    color: #0034a0;
+  }
+
+  .hov-svcrow {
+    color: #021f43;
+    border-left: 3px solid transparent;
+  }
+  .hov-svcrow:hover {
+    background: #f5f7f9;
+    border-left-color: #eb4900;
+  }
+
+  .hov-link {
+    color: #0034a0;
+  }
+  .hov-link:hover {
+    color: #eb4900;
+  }
+
+  .hov-footerlink {
+    color: #c9d8e8;
+  }
+  .hov-footerlink:hover {
+    color: #fff;
+  }
+
+  .hov-social {
+    color: #c9d8e8;
+    border: 1px solid rgba(201, 216, 232, 0.32);
+  }
+  .hov-social:hover {
+    background: #eb4900;
+    color: #fff;
+    border-color: #eb4900;
+  }
+
+  .hov-copybtn {
+    background: rgba(128, 206, 255, 0.14);
+    border: 1px solid rgba(128, 206, 255, 0.42);
+    color: #fff;
+  }
+  .hov-copybtn:hover {
+    background: #eb4900;
+    border-color: #eb4900;
+  }
+
+  .hov-faqbtn:hover {
+    background: #f5f7f9;
+  }
+
+  .hov-reset {
+    color: #334155;
+    border: 1.5px solid #e5e7eb;
+  }
+  .hov-reset:hover {
+    border-color: #021f43;
+    color: #021f43;
+  }
+
+  /* ── Motion / hover language (carries through the whole site) ──────────
+     Kept CSS-only so every hover state is keyboard-reachable via :focus-visible
+     and works with JS off. The signature Vivid Leaf accent shows up sparingly
+     on the delivery-journey cards. */
+
+  /* Buttons: colour swap (defined above) + a quiet lift and shadow. */
+  .hov-cta-ember,
+  .hov-cta-emberwhite,
+  .hov-cta-blue,
+  .hov-cta-navy,
+  .hov-cta-outline {
+    transition: background-color 0.25s ease, color 0.25s ease,
+      border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .hov-cta-ember:hover,
+  .hov-cta-emberwhite:hover,
+  .hov-cta-blue:hover,
+  .hov-cta-navy:hover,
+  .hov-cta-outline:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -12px rgba(2, 31, 67, 0.45);
+  }
+  .hov-cta-ember:active,
+  .hov-cta-emberwhite:active,
+  .hov-cta-blue:active,
+  .hov-cta-navy:active,
+  .hov-cta-outline:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  /* Chevron/arrow that slides forward when its link is hovered or focused.
+     The arrow markup is an outer .lnk-arrow (transformed here) wrapping an
+     inner rotated square, so this translate composes cleanly with the rotate. */
+  .lnk-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+  .hov-move:hover .lnk-arrow,
+  .hov-move:focus-visible .lnk-arrow {
+    transform: translateX(5px);
+  }
+
+  /* Text links: an underline that wipes in from the left. */
+  .hov-link {
+    position: relative;
+    transition: color 0.2s ease;
+  }
+  .hov-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    width: 100%;
+    background: #eb4900;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hov-link:hover::after,
+  .hov-link:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* Path cards: existing colour flip + lift and shadow. */
+  .hov-pathcard {
+    transition: background-color 0.3s ease, color 0.3s ease,
+      border-left-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hov-pathcard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 50px -22px rgba(2, 31, 67, 0.4);
+  }
+
+  /* Content cards (industries): lift + a slow zoom on the photo inside. */
+  .hov-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .hov-card:hover {
+    transform: translateY(-5px);
+    border-color: #cbd5e1;
+    box-shadow: 0 28px 54px -24px rgba(2, 31, 67, 0.32);
+  }
+  .hov-card__media {
+    overflow: hidden;
+  }
+  .hov-card__media img {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hov-card:hover .hov-card__media img {
+    transform: scale(1.06);
+  }
+
+  /* Rows: smooth the colour flip that was previously instant. */
+  .hov-vehrow,
+  .hov-svcrow {
+    transition: background-color 0.25s ease, color 0.25s ease,
+      border-left-color 0.25s ease;
+  }
+
+  /* Delivery-journey steps: lift + the signature Vivid Leaf edge on hover. */
+  .hov-step {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .hov-step:hover {
+    transform: translateY(-4px);
+    border-color: rgba(180, 255, 0, 0.65);
+    box-shadow: 0 24px 48px -22px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Social icon buttons: existing fill + a small lift. */
+  .hov-social {
+    transition: background-color 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease, transform 0.2s ease;
+  }
+  .hov-social:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* ── Customer marquee ──────────────────────────────────────────
+   Pure CSS. Base = a static wrapped grid (the no-JS / reduced-motion
+   fallback, always readable). The right-to-left scroller turns on only
+   under prefers-reduced-motion: no-preference, and pauses on hover/focus. */
+.cust-static {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(216px, 1fr));
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+.cust-marquee-wrap {
+  display: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cust-static {
+    display: none;
+  }
+  .cust-marquee-wrap {
+    display: block;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  }
+  .cust-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: cust-scroll 46s linear infinite;
+  }
+  .cust-marquee-wrap:hover .cust-marquee-track,
+  .cust-marquee-wrap:focus-within .cust-marquee-track {
+    animation-play-state: paused;
+  }
+}
+@keyframes cust-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Skip-link: off-screen until focused (matches the design's inline behavior). */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: #eb4900;
+  color: #fff;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  color: #fff;
+}
