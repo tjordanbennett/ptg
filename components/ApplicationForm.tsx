@@ -127,7 +127,7 @@ export function ApplicationForm() {
     <form noValidate onSubmit={onSubmit} aria-describedby="apply-status" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div aria-live="polite" id="apply-status" />
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(220px,100%),1fr))", gap: 20 }}>
         <div>
           <label htmlFor="name" style={labelStyle}>Full name {req}</label>
           <input id="name" name="name" type="text" autoComplete="name" required aria-required="true" aria-invalid={errors.name ? "true" : undefined} aria-describedby={describe("name")} style={fieldStyle} />
@@ -140,7 +140,7 @@ export function ApplicationForm() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(220px,100%),1fr))", gap: 20 }}>
         <div>
           <label htmlFor="phone" style={labelStyle}>Phone</label>
           <input id="phone" name="phone" type="tel" autoComplete="tel" style={fieldStyle} />
@@ -151,7 +151,7 @@ export function ApplicationForm() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(220px,100%),1fr))", gap: 20 }}>
         <div>
           <label htmlFor="interest" style={labelStyle}>Area of interest</label>
           <select id="interest" name="interest" defaultValue="" style={fieldStyle}>

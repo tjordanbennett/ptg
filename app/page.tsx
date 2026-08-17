@@ -49,7 +49,7 @@ export default async function HomePage() {
         <section aria-labelledby="paths-h" style={{ background: "#FFFFFF", borderBottom: "1px solid #E5E7EB" }}>
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(48px,5vw,76px) clamp(20px,4vw,48px)" }}>
             <h2 id="paths-h" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>Where would you like to start?</h2>
-            <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
+            <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
               {h.twoPaths.map((p) =>
                 p.image ? (
                   <PhotoLinkCard key={p.heading} href={p.cta.href} image={p.image} kicker={p.eyebrow} title={p.heading} body={p.body} ctaLabel={p.cta.label} />
@@ -88,7 +88,7 @@ export default async function HomePage() {
         {/* ══ COOPERATIVE CONTRACTS ══ */}
         <section id="contracts" aria-labelledby="contracts-h" style={{ position: "relative", background: "#FFFFFF", scrollMarginTop: 90 }}>
           <div style={WRAP}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(34px,4vw,64px)", alignItems: "start" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(34px,4vw,64px)", alignItems: "start" }}>
               <Reveal as="div">
                 <EyebrowBar label={h.contracts.eyebrow} />
                 <h2 id="contracts-h" style={{ margin: "0 0 22px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.contracts.heading}</h2>
@@ -160,7 +160,7 @@ export default async function HomePage() {
               <h2 id="journey-h" style={{ margin: "0 0 16px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.journey.heading}</h2>
               <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{h.journey.intro}</p>
             </Reveal>
-            <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(238px,1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
+            <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(238px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {h.journey.steps.map((step, i) => (
                 <Reveal as="li" key={step.num} delay={i * 0.06} className="hov-step" style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", position: "relative", borderRadius: 3 }}>
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: step.bar, marginBottom: 22 }} />
@@ -190,7 +190,7 @@ export default async function HomePage() {
         {/* ══ CAREERS ══ */}
         <section id="careers" aria-labelledby="careers-h" style={{ background: "#F5F7F9", borderTop: "1px solid #E5E7EB", scrollMarginTop: 90 }}>
           <div style={WRAP}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(34px,4vw,64px)", alignItems: "center" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(34px,4vw,64px)", alignItems: "center" }}>
               <Reveal as="div">
                 <EyebrowBar label={h.careers.eyebrow} />
                 <h2 id="careers-h" style={{ margin: "0 0 20px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.careers.heading}</h2>

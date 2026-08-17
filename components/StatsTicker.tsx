@@ -78,7 +78,7 @@ export function StatsTicker({ items }: { items: StatItem[] }) {
   }, [shown]);
 
   return (
-    <div ref={ref} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px,1fr))", gap: 0, borderTop: "1px solid rgba(128,206,255,.25)", borderBottom: "1px solid rgba(128,206,255,.25)" }}>
+    <div ref={ref} style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(180px,100%),1fr))", gap: 0, borderTop: "1px solid rgba(128,206,255,.25)", borderBottom: "1px solid rgba(128,206,255,.25)" }}>
       {items.map((stat, i) => {
         const p = parsed[i];
         const text = p.target === null ? stat.figure : `${vals[i]}${p.suffix}`;

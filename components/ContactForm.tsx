@@ -81,7 +81,7 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(220px,100%),1fr))", gap: 20 }}>
         <div>
           <label htmlFor="name" style={labelStyle}>Name <span aria-hidden="true" style={{ color: "#EB4900" }}>*</span></label>
           <input id="name" name="name" type="text" autoComplete="name" required aria-required="true" aria-invalid={errors.name ? "true" : undefined} aria-describedby={describe("name")} style={fieldStyle} />
@@ -94,7 +94,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(220px,100%),1fr))", gap: 20 }}>
         <div>
           <label htmlFor="org" style={labelStyle}>Organization</label>
           <input id="org" name="org" type="text" autoComplete="organization" style={fieldStyle} />

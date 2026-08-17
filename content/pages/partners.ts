@@ -95,12 +95,24 @@ export const partners: Record<string, StandardPage> = {
           "It requires ongoing alignment, thoughtful planning, practical solutioning and a partner who stays invested after go-live. Organizations that partner with PTG gain more than a Workday services provider — they gain a trusted advisor focused on simplifying complexity and accelerating results across the business.",
         ],
       },
+      // ▲ Mirrored from the ServiceNow partner page per Kim Christenson's
+      // 2026-08-07 feedback ("We might consider having this on both the
+      // ServiceNow and Workday pages"). Same words on both pages, deliberately.
+      {
+        kind: "prose",
+        eyebrow: "The advantage of one partner",
+        heading: "Where Workday and ServiceNow meet, value gets lost — or found.",
+        body: [
+          "Many organizations run Workday and ServiceNow side by side, and the seams between them are where value gets lost. Because we deliver both, we design for those connection points from the start — and one team is accountable for the outcome.",
+        ],
+      },
       {
         kind: "cta",
         eyebrow: "Get started",
-        heading: "Ready to get more from Workday?",
+        heading: "Run both? Get one accountable team.",
         ctas: [
           { label: "Schedule a consultation", href: "/contact" },
+          { label: "Explore ServiceNow implementation", href: "/services/servicenow-implementation" },
           { label: "See procurement options", href: "/procurement-contracts" },
         ],
       },

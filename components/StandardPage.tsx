@@ -83,7 +83,7 @@ function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crum
             ))}
           </ol>
         </nav>
-        <div style={{ display: "grid", gridTemplateColumns: hero.bullets ? "repeat(auto-fit, minmax(320px,1fr))" : "1fr", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
+        <div style={{ display: "grid", gridTemplateColumns: hero.bullets ? "repeat(auto-fit, minmax(min(320px,100%),1fr))" : "1fr", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
           <div style={{ maxWidth: 760 }}>
             <EyebrowBar label={hero.eyebrow} dark mb={20} />
             <h1 id="hero-h" style={{ margin: hero.body ? "0 0 24px" : 0, fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{hero.headline}</h1>
@@ -139,7 +139,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(${cols === 2 ? 320 : 288}px,1fr))`, gap: "clamp(18px,2vw,26px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(min(${cols === 2 ? 320 : 288}px,100%),1fr))`, gap: "clamp(18px,2vw,26px)" }}>
             {s.cards.map((c, i) => (
               <Reveal as="article" key={c.title} delay={i * 0.05} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(24px,2.6vw,32px)", display: "flex", flexDirection: "column" }}>
                 <div aria-hidden="true" style={{ width: 34, height: 3, background: accent, marginBottom: 18 }} />
@@ -183,7 +183,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(${cols === 3 ? 300 : 360}px,1fr))`, gap: "clamp(4px,0.6vw,8px) clamp(28px,4vw,64px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(min(${cols === 3 ? 300 : 360}px,100%),1fr))`, gap: "clamp(4px,0.6vw,8px) clamp(28px,4vw,64px)" }}>
             {s.items.map((it, i) => (
               <Reveal as="div" key={it.title} delay={i * 0.04} style={{ display: "flex", gap: 16, alignItems: "flex-start", padding: "clamp(18px,2vw,24px) 0", borderTop: "1px solid #E5E7EB" }}>
                 <Diamond color="#EB4900" size={9} mt={7} />
@@ -208,7 +208,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
           {band === "navy" ? <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: HAIRLINE }} /> : null}
           <div style={{ position: "relative", ...CONTAINER }}>
             <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} dark maxWidth={620} />
-            <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px,1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
+            <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(230px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {s.steps.map((st, i) => (
                 <Reveal as="li" key={st.num} delay={i * 0.05} className="hov-step" style={{ background: bgcol, padding: "clamp(24px,2.6vw,32px)", borderRadius: 3 }}>
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: bars[i % bars.length], marginBottom: 22 }} />
@@ -240,7 +240,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <ul style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(${cols === 4 ? 220 : cols === 3 ? 280 : 340}px,1fr))`, gap: "clamp(2px,0.5vw,6px) clamp(24px,3vw,44px)" }}>
+          <ul style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(min(${cols === 4 ? 220 : cols === 3 ? 280 : 340}px,100%),1fr))`, gap: "clamp(2px,0.5vw,6px) clamp(24px,3vw,44px)" }}>
             {s.items.map((t, i) => (
               <Reveal as="li" key={t} delay={i * 0.03} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "13px 0", borderTop: "1px solid #E5E7EB", fontSize: 15.5, fontWeight: 600, lineHeight: 1.45, color: "#021F43" }}>
                 <Diamond color="#0034A0" size={7} mt={6} /> {t}
@@ -255,7 +255,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <ul style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(4px,0.6vw,10px) clamp(28px,4vw,56px)" }}>
+          <ul style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(4px,0.6vw,10px) clamp(28px,4vw,56px)" }}>
             {s.items.map((t, i) => (
               <Reveal as="li" key={t} delay={i * 0.03} style={{ display: "flex", gap: 13, alignItems: "flex-start", padding: "14px 0", borderBottom: "1px solid #E5E7EB", fontSize: 16, lineHeight: 1.5, color: "#334155" }}>
                 <Check /> {t}
@@ -311,7 +311,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
           <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: HAIRLINE }} />
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(44px,5vw,72px) clamp(20px,4vw,48px)" }}>
             {s.eyebrow ? <Reveal as="div" style={{ marginBottom: "clamp(26px,3vw,40px)" }}><EyebrowBar label={s.eyebrow} dark /></Reveal> : null}
-            <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))", gap: 0, borderTop: "1px solid rgba(128,206,255,.25)", borderBottom: "1px solid rgba(128,206,255,.25)" }}>
+            <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(200px,100%),1fr))", gap: 0, borderTop: "1px solid rgba(128,206,255,.25)", borderBottom: "1px solid rgba(128,206,255,.25)" }}>
               {s.items.map((it, i) => (
                 <div key={it.label} style={{ padding: "clamp(24px,3vw,34px) clamp(14px,2vw,26px) clamp(24px,3vw,34px) 0" }}>
                   <p style={{ margin: "0 0 8px", fontSize: "clamp(34px,4.4vw,62px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "-0.04em", color: i === 1 ? "#B4FF00" : i === 2 ? "#80CEFF" : "#FFFFFF" }}>{it.value}</p>
@@ -327,7 +327,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
             {s.groups.map((g, gi) => (
               <Reveal as="div" key={g.title} delay={gi * 0.06} data-unverified={s.unverified ? "" : undefined}>
                 <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#0034A0" }}>{g.title}</p>
@@ -345,7 +345,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
     case "faq":
       return (
         <Light key={key} bg={s.bg ?? "offwhite"}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
             <Reveal as="div">
               {s.eyebrow ? <EyebrowBar label={s.eyebrow} /> : null}
               <h2 style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{s.heading ?? "Common questions"}</h2>
@@ -361,7 +361,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px,1fr))", gap: "clamp(16px,2vw,22px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(250px,100%),1fr))", gap: "clamp(16px,2vw,22px)" }}>
             {s.people.map((pn, i) => (
               <Reveal as="article" key={pn.name} delay={i * 0.04} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(22px,2.4vw,28px)", display: "flex", flexDirection: "column", gap: 4 }}>
                 <div aria-hidden="true" style={{ width: 46, height: 46, marginBottom: 14, borderRadius: 3, background: "#021F43", display: "grid", placeItems: "center" }}>
@@ -393,7 +393,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
     case "applicationForm":
       return (
         <Light key={key} bg={s.bg ?? bg} id={s.id ?? "apply"}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
             <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} maxWidth={460} />
             <Reveal as="div" delay={0.06} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 4, padding: "clamp(24px,3vw,40px)" }}>
               <ApplicationForm />

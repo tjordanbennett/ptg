@@ -584,3 +584,94 @@
   top: 12px;
   color: #fff;
 }
+
+/* ==========================================================================
+   HEADER — responsive switch (added 2026-08-17)
+
+   The desktop nav and the mobile trigger are BOTH in the server HTML; these
+   rules decide which one is visible. This used to be a JS matchMedia flag in
+   SiteHeader state, which meant the pre-hydration HTML always shipped the
+   desktop nav — mobile visitors got a ~500px-wide overflowing header until JS
+   booted, and a permanently broken one if it never did.
+   Breakpoint 1040/1041px matches the original matchMedia query exactly.
+   ========================================================================== */
+.ptg-nav-desktop {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.ptg-header-cta {
+  flex: 0 0 auto;
+}
+.ptg-nav-mobile {
+  display: none;
+}
+
+@media (max-width: 1040px) {
+  .ptg-nav-desktop,
+  .ptg-header-cta {
+    display: none;
+  }
+  .ptg-nav-mobile {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+/* Mega-menu: anchored left, but nudged back inside the viewport for the
+   right-hand items at tablet widths where a left-aligned panel would overhang. */
+.ptg-megamenu {
+  left: 0;
+}
+@media (max-width: 1180px) {
+  .ptg-megamenu {
+    left: auto;
+    right: 0;
+  }
+}
+
+/* Mobile drawer.
+   Height was `max-height: 76vh`, which on an 844px viewport capped the panel at
+   641px while 782px was available — the last nav item was sliced mid-word and
+   the "Connect with Us" CTA was unreachable, with no visible scroll affordance.
+   dvh tracks the *dynamic* viewport so the collapsing mobile URL bar can't push
+   the bottom of the drawer off-screen; the vh line above it is the fallback for
+   browsers without dvh. */
+.ptg-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f5f7f9;
+  padding: 8px 20px calc(26px + env(safe-area-inset-bottom, 0px));
+  max-height: calc(100vh - var(--ptg-header-h, 62px));
+  max-height: calc(100dvh - var(--ptg-header-h, 62px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 24px 40px -20px rgba(2, 31, 67, 0.35);
+}
+
+/* Scrim: dims the page behind the open drawer and gives tap-outside-to-close. */
+.ptg-scrim {
+  position: fixed;
+  inset: var(--ptg-header-h, 62px) 0 0;
+  z-index: 98;
+  border: 0;
+  padding: 0;
+  background: rgba(2, 31, 67, 0.34);
+  cursor: default;
+}
+
+@media (min-width: 1041px) {
+  .ptg-drawer,
+  .ptg-scrim {
+    display: none;
+  }
+}

@@ -28,16 +28,17 @@ const US_STATES = [
 export const procurement: ProcurementPage = {
   hero: {
     eyebrow: "Procurement & contracts",
-    headline: "You may not need an RFP.",
+    headline: "You may already hold a contract that covers us.",
     body:
-      "PTG holds six cooperative and government contract vehicles. If your " +
-      "organization participates in one, you can award Workday licensing and " +
-      "implementation to us under terms that have already been competitively bid " +
-      "— no solicitation, no separate procurement cycle.",
+      "PTG holds six cooperative and government contract vehicles. Each was " +
+      "awarded through a public competitive solicitation run by its lead agency, " +
+      "and members can contract under that award. If your organization " +
+      "participates in one, Workday licensing and implementation are available " +
+      "to you under terms that are already established.",
     bullets: [
       "Licensing and implementation on one contract — we're an authorized Workday reseller.",
-      "Pricing already established. No bid evaluation to defend to a committee.",
-      "Weeks to award instead of months.",
+      "Pricing already established under a competitively awarded contract.",
+      "A shorter path to award, subject to your jurisdiction's requirements.",
     ],
   },
 
@@ -188,7 +189,7 @@ export const procurement: ProcurementPage = {
     steps: [
       { num: "STEP 01", name: "Confirm your vehicle", body: "Use the finder above or send us your membership details. We verify eligibility with the issuing authority before anything else.", bar: "#80CEFF" },
       { num: "STEP 02", name: "Scope the work", body: "A working session with the people who would actually deliver. You get a written scope, phasing and a price built on contract rates.", bar: "#80CEFF" },
-      { num: "STEP 03", name: "Issue the order", body: "Your procurement office issues a purchase order or task order referencing the contract number. No solicitation, no evaluation committee.", bar: "#EB4900" },
+      { num: "STEP 03", name: "Issue the order", body: "Your procurement office issues a purchase order or task order referencing the contract number, under the lead agency's award.", bar: "#EB4900" },
       { num: "STEP 04", name: "Start", body: "Kickoff within two to three weeks of order, with the named team from the scoping session.", bar: "#EB4900" },
     ],
   },

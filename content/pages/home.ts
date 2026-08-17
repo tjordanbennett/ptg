@@ -13,10 +13,17 @@ export const home: HomePage = {
     // ("Brand in Action" presentation slide). Not ours — deliberate, so the
     // loudest line on the site is one Massey already signed off on.
     headline: "Big missions.\nBigger impact.",
+    // ▲ REBALANCED 2026-08-17 per Kim (#3, "landing page should be
+    // technology-focused vs just Workday") and Vanessa ("reads more like we are
+    // a 'Workday plus ServiceNow' organization"). Leads with the audience and
+    // the outcome rather than a single platform; names both, ranks neither.
+    // No new ServiceNow capability is claimed anywhere — PTG hasn't supplied
+    // that content yet.
     body:
-      "Workday licensing, implementation and support for government, higher " +
-      "education, health systems and nonprofits — from a family-owned firm where " +
-      "the team that wins your work is the team that does it.",
+      "Enterprise technology consulting for government, higher education, health " +
+      "systems and nonprofits — Workday and ServiceNow, delivered by a " +
+      "family-owned firm where the team that wins your work is the team that " +
+      "does it.",
     ctas: [
       { label: "Schedule a consultation", href: "/contact" },
       { label: "Procurement & contracts", href: "/procurement-contracts" },
@@ -32,11 +39,12 @@ export const home: HomePage = {
   twoPaths: [
     {
       eyebrow: "I'm evaluating partners",
-      heading: "No RFP required",
+      heading: "Buy through a contract you may already hold",
       body:
         "Most public agencies and universities already participate in a " +
-        "cooperative contract that covers PTG. If yours does, the sourcing work " +
-        "is done — you can go straight to scoping.",
+        "cooperative contract that covers PTG. Each one was awarded through a " +
+        "public competitive solicitation run by its lead agency — so if yours " +
+        "applies, you can go straight to scoping.",
       cta: { label: "Find your contract vehicle", href: "/procurement-contracts" },
       image: {
         src: "/images/evaluating-partner.png",
@@ -98,13 +106,14 @@ export const home: HomePage = {
 
   contracts: {
     eyebrow: "Procurement & contracts",
-    heading: "The competitive bid may already be done.",
+    heading: "You may already hold a contract that covers us.",
     body: [
-      "PTG holds six cooperative and government contract vehicles. If your " +
-        "organization participates in one, the competitive bid is already done — " +
-        "no RFP, no evaluation committee, no months of lead time. And because " +
-        "we're an authorized reseller, licensing and implementation come through " +
-        "a single contract.",
+      "PTG holds six cooperative and government contract vehicles, each awarded " +
+        "through a public competitive solicitation run by its lead agency. If your " +
+        "organization participates in one, you can contract under that award " +
+        "rather than running a solicitation of your own. And because we're an " +
+        "authorized reseller, licensing and implementation come through a single " +
+        "contract.",
     ],
     cta: {
       label: "Find the vehicle that applies to you",
@@ -192,7 +201,11 @@ export const home: HomePage = {
 
   services: {
     eyebrow: "Services",
-    heading: "The full Workday lifecycle, plus ServiceNow.",
+    // ▲ REBALANCED 2026-08-17. Was "The full Workday lifecycle, plus ServiceNow."
+    // — which is almost verbatim the "Workday plus ServiceNow" framing Vanessa
+    // objected to. Neutral now; the item list below is still Workday-weighted
+    // because that is the only content PTG has supplied.
+    heading: "Two platforms, one accountable team.",
     chips: ["Workday Partner", "ServiceNow Partner"],
     items: [
       { num: "01", name: "Workday Advisory & Strategy", summary: "Readiness assessments, roadmaps, business cases and change decisions — before you commit to a configuration or a go-live date.", href: "/services/workday-advisory-strategy" },
@@ -262,7 +275,7 @@ export const home: HomePage = {
     // ▲ STRUCTURAL CHANGE (copy-FINAL §12): names the three states a prospect is
     // actually in and offers an honest answer.
     body:
-      "Tell us where you are with Workday — considering it, mid-implementation, or " +
+      "Tell us where you are — evaluating a platform, mid-implementation, or " +
       "years past go-live — and we'll tell you honestly whether we're the right firm for it.",
     ctas: [
       { label: "Connect with us", href: "/contact" },

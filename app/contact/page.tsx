@@ -50,7 +50,7 @@ export default async function ContactPage() {
         {/* ══ FORM + PANEL ══ */}
         <section style={{ background: "#FFFFFF" }}>
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,6vw,88px) clamp(20px,4vw,48px)" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "clamp(34px,4.5vw,72px)", alignItems: "start" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(34px,4.5vw,72px)", alignItems: "start" }}>
               <Reveal as="div" style={{ order: 0 }}>
                 <h2 style={{ margin: "0 0 24px", fontSize: "clamp(22px,2.2vw,30px)", fontWeight: 800, letterSpacing: "-0.022em" }}>Send us a message</h2>
                 <ContactForm />

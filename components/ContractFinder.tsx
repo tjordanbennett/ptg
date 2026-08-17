@@ -96,7 +96,7 @@ export function ContractFinder({
 
   return (
     <div style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderTop: "4px solid #0034A0", borderRadius: 3, overflow: "hidden" }}>
-      <div style={{ padding: "clamp(24px,3vw,38px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px,1fr))", gap: "clamp(18px,2.4vw,30px)", alignItems: "end", borderBottom: "1px solid #E5E7EB" }}>
+      <div style={{ padding: "clamp(24px,3vw,38px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%),1fr))", gap: "clamp(18px,2.4vw,30px)", alignItems: "end", borderBottom: "1px solid #E5E7EB" }}>
         <div>
           <label htmlFor="orgType" style={LABEL}>Organization type</label>
           <select id="orgType" value={orgType} onChange={(e) => setOrgType(e.target.value)} style={SELECT}>

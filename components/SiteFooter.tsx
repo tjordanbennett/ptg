@@ -7,7 +7,7 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
   return (
     <footer style={{ background: "#011733", color: "#C9D8E8" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,5.5vw,80px) clamp(20px,4vw,48px) 0" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px,1fr))", gap: "clamp(28px,3vw,44px)", paddingBottom: "clamp(40px,4vw,56px)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(180px,100%),1fr))", gap: "clamp(28px,3vw,44px)", paddingBottom: "clamp(40px,4vw,56px)" }}>
           {/* Brand block */}
           <div style={{ minWidth: 200 }}>
             {/* Same logo asset as the nav (public/ptg-logo.svg), whitened for the

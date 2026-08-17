@@ -207,7 +207,7 @@ export default async function NotFound() {
                 display: "grid",
                 // 260 not 288: at the 1320 container, 288 lands 4 columns just
                 // over the available width and drops to an orphaned 3+1.
-                gridTemplateColumns: "repeat(auto-fit, minmax(260px,1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%),1fr))",
                 gap: "clamp(18px,2vw,26px)",
               }}
             >

@@ -11,8 +11,9 @@ import { EyebrowBar } from "@/components/EyebrowBar";
 export const metadata: Metadata = {
   title: "Procurement & Contracts",
   description:
-    "PTG holds six cooperative and government contract vehicles. Find the one " +
-    "that lets your organization contract for Workday licensing and implementation without an RFP.",
+    "PTG holds six cooperative and government contract vehicles, each competitively " +
+    "awarded by its lead agency. Find the one your organization can contract under " +
+    "for Workday licensing and implementation.",
 };
 
 /** Matches public/_design/howtobuy.html — the template for all internal pages. */
@@ -41,7 +42,7 @@ export default async function HowToBuyPage() {
                 <li style={{ color: "#C9D8E8" }}>Procurement &amp; Contracts</li>
               </ol>
             </nav>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px,1fr))", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
               <div style={{ maxWidth: 660 }}>
                 <EyebrowBar label={p.hero.eyebrow} dark mb={20} />
                 <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.hero.headline}</h1>
@@ -82,7 +83,7 @@ export default async function HowToBuyPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px,2vw,22px)" }}>
               {p.vehicles.map((v) => (
                 <article key={v.id} id={v.id} style={{ border: "1px solid #E5E7EB", borderRadius: 3, scrollMarginTop: 96, overflow: "hidden" }}>
-                  <div style={{ background: "#021F43", color: "#FFFFFF", padding: "clamp(22px,2.4vw,30px) clamp(22px,2.6vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px,1fr))", gap: 20, alignItems: "center" }}>
+                  <div style={{ background: "#021F43", color: "#FFFFFF", padding: "clamp(22px,2.4vw,30px) clamp(22px,2.6vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px,100%),1fr))", gap: 20, alignItems: "center" }}>
                     <div>
                       <p style={{ margin: "0 0 8px", fontSize: 11, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#80CEFF" }}>{v.kind}</p>
                       <h3 style={{ margin: 0, fontSize: "clamp(22px,2.2vw,32px)", fontWeight: 800, letterSpacing: "-0.024em", lineHeight: 1.1 }}>{v.name}</h3>
@@ -93,7 +94,7 @@ export default async function HowToBuyPage() {
                       ))}
                     </div>
                   </div>
-                  <div style={{ padding: "clamp(24px,2.8vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px,1fr))", gap: "clamp(24px,3vw,44px)", background: "#FFFFFF" }}>
+                  <div style={{ padding: "clamp(24px,2.8vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(250px,100%),1fr))", gap: "clamp(24px,3vw,44px)", background: "#FFFFFF" }}>
                     <div>
                       <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>Who can order</p>
                       <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{v.eligible}</p>
@@ -134,7 +135,7 @@ export default async function HowToBuyPage() {
               <h2 id="steps-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.ordering.heading}</h2>
               <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{p.ordering.intro}</p>
             </div>
-            <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(238px,1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
+            <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(238px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {p.ordering.steps.map((s) => (
                 <li key={s.num} style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", border: "1px solid rgba(255,255,255,.3)", borderRadius: 3 }}>
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: s.bar, marginBottom: 22 }} />
@@ -150,7 +151,7 @@ export default async function HowToBuyPage() {
         {/* ══ FAQ ══ */}
         <section aria-labelledby="faq-h" style={{ background: "#F5F7F9", borderBottom: "1px solid #E5E7EB" }}>
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,96px) clamp(20px,4vw,48px)" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px,1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
               <div>
                 <EyebrowBar label={p.faq.eyebrow} />
                 <h2 id="faq-h" style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.faq.heading}</h2>

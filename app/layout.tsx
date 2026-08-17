@@ -17,7 +17,8 @@ export const metadata: Metadata = {
   },
   description:
     "Precision Task Group (PTG) helps government agencies, universities, health " +
-    "systems and nonprofits maximize the value of their Workday investment.",
+    "systems and nonprofits realize the value of their enterprise technology — " +
+    "Workday and ServiceNow.",
   metadataBase: new URL("http://localhost:3000"),
   robots: { index: false, follow: false }, // speculative build — never indexed
   icons: { icon: "/favicon.png" },
