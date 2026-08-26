@@ -18,7 +18,7 @@ export const services: Record<string, StandardPage> = {
     meta: {
       title: "Workday Advisory & Strategy",
       description:
-        "Readiness assessments, roadmaps, alignment workshops and change strategy — before you commit to a configuration or a go-live date.",
+        "Readiness assessments, roadmaps, alignment workshops and change strategy, before you commit to a configuration or a go-live date.",
     },
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday Advisory & Strategy"),
@@ -26,7 +26,7 @@ export const services: Record<string, StandardPage> = {
       eyebrow: "Workday Advisory & Strategy",
       headline: "Strategy before software. Confidence before configuration.",
       body:
-        "Successful Workday deployments begin long before configuration starts. We help organizations align leadership, evaluate readiness, prepare for change and define a clear roadmap — so every decision that follows supports the outcome you actually want.",
+        "Successful Workday deployments begin long before configuration starts. We help organizations align leadership, evaluate readiness, prepare for change and define a clear roadmap, so every decision that follows supports the outcome you actually want.",
       bullets: [
         "Know your risks before they become change orders",
         "Decide the hard questions before configuration locks them in",
@@ -58,7 +58,7 @@ export const services: Record<string, StandardPage> = {
           },
           {
             title: "Alignment Workshops",
-            hook: "Create organizational alignment before major project decisions are made — executives, business stakeholders and project teams in one room.",
+            hook: "Create organizational alignment before major project decisions are made: executives, business stakeholders and project teams in one room.",
             bullets: [
               "Business Process Alignment",
               "Organizational Design",
@@ -161,7 +161,7 @@ export const services: Record<string, StandardPage> = {
         eyebrow: "Built around your organization",
         heading: "No two organizations share the same challenges.",
         intro:
-          "Whether you're a city government, a higher education institution, a healthcare provider or a nonprofit, we adapt our guidance to fit your environment — not the other way around. Our advisory approach is tailored to your:",
+          "Whether you're a city government, a higher education institution, a healthcare provider or a nonprofit, we adapt our guidance to fit your environment, not the other way around. Our advisory approach is tailored to your:",
         items: [
           "Industry",
           "Organizational maturity",
@@ -204,7 +204,7 @@ export const services: Record<string, StandardPage> = {
         items: [
           {
             q: "Do we need advisory if we've already selected Workday?",
-            a: "Often yes. Selection answers which platform you're on. Advisory answers how your organization will actually run on it — governance, process ownership, data readiness and who decides what during configuration.",
+            a: "Often yes. Selection answers which platform you're on. Advisory answers how your organization will actually run on it: governance, process ownership, data readiness and who decides what during configuration.",
           },
           {
             q: "How long does an advisory engagement take?",
@@ -233,7 +233,7 @@ export const services: Record<string, StandardPage> = {
     meta: {
       title: "Workday Implementation",
       description:
-        "Full-suite HCM, Financials, Student and Payroll deployments, delivered by the same team that scoped them — licensing through go-live and everything after.",
+        "Full-suite HCM, Financials, Student and Payroll deployments, delivered by the same team that scoped them, licensing through go-live and everything after.",
     },
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday Implementation"),
@@ -290,7 +290,7 @@ export const services: Record<string, StandardPage> = {
         items: [
           {
             title: "Built for your industry",
-            body: "Our consultants bring first-hand experience in the sectors we serve — government, higher education, healthcare and nonprofit. That lets us anticipate challenges and design around the realities of your workforce, operations and stakeholders.",
+            body: "Our consultants bring first-hand experience in the sectors we serve: government, higher education, healthcare and nonprofit. That lets us anticipate challenges and design around the realities of your workforce, operations and stakeholders.",
           },
           {
             title: "Boutique attention, enterprise capability",
@@ -298,7 +298,7 @@ export const services: Record<string, StandardPage> = {
           },
           {
             title: "Accelerated, scalable deployment",
-            body: "A proven methodology designed to accelerate timelines, minimize risk and support sustainable success — deploying solutions that adapt as your needs evolve rather than locking you in.",
+            body: "A proven methodology designed to accelerate timelines, minimize risk and support sustainable success. We deploy solutions that adapt as your needs evolve rather than locking you in.",
           },
           {
             title: "A partner past post-production",
@@ -355,7 +355,7 @@ export const services: Record<string, StandardPage> = {
     meta: {
       title: "Workday AMS & Optimization",
       description:
-        "Ongoing support, release management and feature adoption — with named consultants who already know your tenant, not a ticket queue.",
+        "Ongoing support, release management and feature adoption, with named consultants who already know your tenant instead of a ticket queue.",
     },
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday AMS & Optimization"),
@@ -371,7 +371,7 @@ export const services: Record<string, StandardPage> = {
         kind: "pullQuote",
         text: "People, not tickets.",
         body: [
-          "Traditional AMS providers operate like a help desk. We operate like an extension of your team. Your consultants know your business processes, your configuration decisions and your roadmap — so there's no repeating your story and no starting from scratch.",
+          "Traditional AMS providers operate like a help desk. We operate like an extension of your team. Your consultants know your business processes, your configuration decisions and your roadmap, so there's no repeating your story and no starting from scratch.",
         ],
       },
       {
@@ -412,7 +412,7 @@ export const services: Record<string, StandardPage> = {
           },
           {
             title: "Continuous Optimization",
-            hook: "Business doesn't stand still. Neither should your Workday tenant — we continuously simplify processes, improve experience and automate manual work.",
+            hook: "Business doesn't stand still. Neither should your Workday tenant. We continuously simplify processes, improve experience and automate manual work.",
             bullets: [
               "Business Process Improvements",
               "Feature Adoption",
@@ -453,7 +453,7 @@ export const services: Record<string, StandardPage> = {
           },
           {
             title: "Reporting & Analytics",
-            hook: "Transform data into actionable insight — reporting strategies that give leaders real-time visibility into workforce, financial and operational performance.",
+            hook: "Transform data into actionable insight: reporting strategies that give leaders real-time visibility into workforce, financial and operational performance.",
             bullets: [
               "Executive Dashboards",
               "Composite Reports",
@@ -508,11 +508,11 @@ export const services: Record<string, StandardPage> = {
         heading: "Why organizations choose PTG AMS.",
         columns: 2,
         items: [
-          { title: "Aligned consultant model", body: "Work directly with consultants who know your organization — not an anonymous ticket queue." },
+          { title: "Aligned consultant model", body: "Work directly with consultants who know your organization, not an anonymous ticket queue." },
           { title: "Flexible engagement", body: "Scale support up or down as your priorities evolve." },
           { title: "Proactive partnership", body: "We don't wait for problems. We identify opportunities before they become issues." },
           { title: "Strategic roadmaps", body: "Every recommendation supports your long-term objectives, not just today's request." },
-          { title: "Full Workday expertise", body: "Functional, technical, integrations, reporting, Extend, security, analytics and advisory — all from one team." },
+          { title: "Full Workday expertise", body: "Functional, technical, integrations, reporting, Extend, security, analytics and advisory, all from one team." },
           { title: "Enterprise support, boutique service", body: "Responsive, senior-level consultants who become an extension of your organization." },
         ],
       },
@@ -527,7 +527,7 @@ export const services: Record<string, StandardPage> = {
         items: [
           {
             q: "How is this different from Workday support?",
-            a: "Workday support handles the platform. We handle your tenant — the configuration decisions, business processes and roadmap specific to your organization.",
+            a: "Workday support handles the platform. We handle your tenant: the configuration decisions, business processes and roadmap specific to your organization.",
           },
           {
             q: "Do we get the same consultants each time?",
@@ -574,7 +574,7 @@ export const services: Record<string, StandardPage> = {
         heading: "Innovation isn't about technology alone.",
         body: [
           "It's about solving real business challenges. Our product strategists, solution architects, developers and Workday experts work alongside your teams to identify opportunities, prioritize investments and build solutions that improve productivity and create lasting value.",
-          "From concept through deployment, we combine modern development practices with deep Workday expertise — so delivery moves quickly and every solution is scalable, secure and built to last.",
+          "From concept through deployment, we combine modern development practices with deep Workday expertise, so delivery moves quickly and every solution is scalable, secure and built to last.",
         ],
       },
       {
@@ -609,7 +609,7 @@ export const services: Record<string, StandardPage> = {
           },
           {
             title: "Integration & Digital Experience",
-            hook: "Connect Workday to the systems your organization depends on — improving data flow, eliminating manual effort and creating connected experiences.",
+            hook: "Connect Workday to the systems your organization depends on, improving data flow, eliminating manual effort and creating connected experiences.",
             bullets: [
               "Enterprise Integrations",
               "API Development",
@@ -672,7 +672,7 @@ export const services: Record<string, StandardPage> = {
           },
           {
             q: "Where does AI actually help in Workday today?",
-            a: "Mostly in reducing manual review — routing, classification, anomaly detection in reporting. We'll tell you where it's genuinely useful and where it isn't yet.",
+            a: "Mostly in reducing manual review: routing, classification, anomaly detection in reporting. We'll tell you where it's genuinely useful and where it isn't yet.",
           },
         ],
       },
@@ -693,7 +693,7 @@ export const services: Record<string, StandardPage> = {
     meta: {
       title: "ServiceNow Implementation",
       description:
-        "ITSM, service portals and workflow automation for organizations standardizing service delivery — the same senior consultants behind our Workday practice.",
+        "ITSM, service portals and workflow automation for organizations standardizing service delivery, from the same senior consultants behind our Workday practice.",
     },
     currentLabel: "Services",
     breadcrumbs: crumbs("ServiceNow Implementation"),
@@ -701,7 +701,7 @@ export const services: Record<string, StandardPage> = {
       eyebrow: "ServiceNow",
       headline: "Modern service management, delivered by people who know your world.",
       body:
-        "Service management should make work easier, not add another system to manage. We help public sector and mission-driven organizations implement ServiceNow the way they actually operate — with the same senior consultants and delivery discipline behind our Workday practice.",
+        "Service management should make work easier, not add another system to manage. We help public sector and mission-driven organizations implement ServiceNow the way they actually operate, with the same senior consultants and delivery discipline behind our Workday practice.",
     },
     sections: [
       {

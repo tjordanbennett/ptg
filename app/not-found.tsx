@@ -62,7 +62,7 @@ const ROUTES = [
   {
     label: "Services",
     href: "/#services",
-    body: "Workday advisory, implementation, AMS and innovation — plus ServiceNow.",
+    body: "Workday advisory, implementation, AMS and innovation, plus ServiceNow.",
     accent: "#0034A0",
   },
   {
@@ -174,7 +174,7 @@ export default async function NotFound() {
                 }}
               >
                 The page you were after moved, got renamed, or never existed. Helping
-                people find the right route is more or less the whole job here — so
+                people find the right route is more or less the whole job here, so
                 let&apos;s get you back on one.
               </p>
             </Reveal>

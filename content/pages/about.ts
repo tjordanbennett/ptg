@@ -11,7 +11,7 @@ export const about: StandardPage = {
   meta: {
     title: "About PTG",
     description:
-      "PTG is a boutique Workday and ServiceNow consulting firm for the organizations that serve the public — family-owned, independent, and not for sale.",
+      "PTG is a boutique Workday and ServiceNow consulting firm for the organizations that serve the public. Family-owned, independent, and not for sale.",
   },
   currentLabel: "About",
   breadcrumbs: [{ label: "Home", href: "/" }, { label: "About" }],
@@ -36,8 +36,8 @@ export const about: StandardPage = {
       kind: "prose",
       eyebrow: "What we do",
       body: [
-        "We help organizations get the most from their technology investment — planning it, implementing it, optimizing it and extending it as the organization changes. We work across Workday and ServiceNow for government, higher education, healthcare, transit and utilities, and nonprofit organizations.",
-        "As an authorized Workday reseller, we can also guide licensing and procurement — so strategy, software and implementation come together as one path instead of three separate conversations.",
+        "We help organizations get the most from their technology investment: planning it, implementing it, optimizing it and extending it as the organization changes. We work across Workday and ServiceNow for government, higher education, healthcare, transit and utilities, and nonprofit organizations.",
+        "As an authorized Workday reseller, we can also guide licensing and procurement, so strategy, software and implementation come together as one path instead of three separate conversations.",
       ],
     },
     {
@@ -63,7 +63,7 @@ export const about: StandardPage = {
       kind: "prose",
       eyebrow: "Where we are",
       body: [
-        "Headquartered in Houston, Texas, with consultants across the United States. We are certified as a minority business enterprise and hold Disadvantaged Business Enterprise certifications through multiple state transportation programs.",
+        "Headquartered in Houston, Texas, with consultants across the United States. We're certified as a minority business enterprise and hold Disadvantaged Business Enterprise certifications through multiple state transportation programs.",
       ],
       maxWidth: 780,
     },
@@ -82,7 +82,7 @@ export const about: StandardPage = {
 export const leadership: StandardPage = {
   meta: {
     title: "Our Leadership",
-    description: "The people behind the work at PTG — leaders who have spent careers in the operational realities our clients live in.",
+    description: "The people behind the work at PTG, leaders who have spent careers in the operational realities our clients live in.",
   },
   currentLabel: "About",
   breadcrumbs: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Our Leadership" }],
@@ -90,7 +90,7 @@ export const leadership: StandardPage = {
     eyebrow: "Our Leadership",
     headline: "The people behind the work.",
     body:
-      "Our leadership team has spent careers in the operational realities our clients live in — public sector, higher education, healthcare and technology. They stay close to the work.",
+      "Our leadership team has spent careers in the operational realities our clients live in: public sector, higher education, healthcare and technology. They stay close to the work.",
   },
   sections: [
     {
@@ -135,7 +135,7 @@ export const careers: StandardPage = {
     eyebrow: "Careers & Culture",
     headline: "People First isn't a value on a wall.",
     body:
-      "We've had close to zero voluntary turnover in recent years. Not because we say people come first — because consultants here own their work, know their leadership by name, and don't get moved off a project to fill a bench somewhere else.",
+      "We've had close to zero voluntary turnover in recent years. Not because we say people come first. It's because consultants here own their work, know their leadership by name, and don't get moved off a project to fill a bench somewhere else.",
   },
   sections: [
     {
@@ -161,7 +161,7 @@ export const careers: StandardPage = {
       kind: "emptyState",
       eyebrow: "Open roles",
       heading: "Open roles",
-      sub: "Workday, ServiceNow, change management — remote-first, U.S.",
+      sub: "Workday, ServiceNow and change management. Remote-first, U.S.",
       title: "No postings open right now.",
       body: "We're not in a hiring push at the moment, but we're always glad to meet good people. Send your résumé below and we'll be in touch when something fits.",
       cta: { label: "Send us your résumé", href: "#apply" },
@@ -173,7 +173,7 @@ export const careers: StandardPage = {
       eyebrow: "Introduce yourself",
       heading: "Send us your résumé.",
       intro:
-        "No open posting is no reason to wait. Tell us who you are and attach your résumé — we keep applications on file and reach out when a role fits your background.",
+        "No open posting is no reason to wait. Tell us who you are and attach your résumé. We keep applications on file and reach out when a role fits your background.",
     },
     {
       kind: "cta",
@@ -199,7 +199,7 @@ export const customers: StandardPage = {
     eyebrow: "Our customers",
     headline: "Trusted by the organizations that serve communities.",
     body:
-      "Cities, universities, transit authorities and water districts run on systems most people never see. We help make those systems work better — so the people behind them can focus on the communities they serve.",
+      "Cities, universities, transit authorities and water districts run on systems most people never see. We help make those systems work better, so the people behind them can focus on the communities they serve.",
   },
   sections: [
     {
@@ -235,14 +235,14 @@ export const customers: StandardPage = {
       eyebrow: "Case studies",
       heading: "Case studies",
       title: "Detailed case studies are on the way.",
-      body: "We're working with our clients on what we can share publicly. In the meantime, we're glad to talk through comparable work directly — including references.",
+      body: "We're working with our clients on what we can share publicly. In the meantime, we're glad to talk through comparable work directly, including references.",
       cta: { label: "Ask about our work in your sector", href: "/contact" },
     },
     {
       kind: "cta",
       eyebrow: "Connect with us",
       heading: "Ask about comparable work.",
-      body: "Tell us your sector and we'll talk through work like yours directly — including references.",
+      body: "Tell us your sector and we'll talk through work like yours directly, including references.",
       ctas: [
         { label: "Connect with us", href: "/contact" },
         { label: "See procurement options", href: "/procurement-contracts" },

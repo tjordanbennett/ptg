@@ -18,9 +18,9 @@ import { useRef, useState } from "react";
  */
 
 const INTEREST_AREAS = [
-  "Workday — HCM",
-  "Workday — Financials",
-  "Workday — Integrations / Technology",
+  "Workday: HCM",
+  "Workday: Financials",
+  "Workday: Integrations / Technology",
   "ServiceNow",
   "Project / Program Management (PMO)",
   "Change Management",
@@ -47,7 +47,7 @@ function fileError(file: File | undefined): string | null {
   const okExt = /\.(pdf|doc|docx)$/i.test(file.name);
   const okMime = file.type === "" || ACCEPT_MIME.includes(file.type);
   if (!okExt || !okMime) return "Résumé must be a PDF or Word document (.pdf, .doc, .docx).";
-  if (file.size > MAX_BYTES) return "That file is over 10 MB — please attach a smaller version.";
+  if (file.size > MAX_BYTES) return "That file is over 10 MB. Please attach a smaller version.";
   return null;
 }
 
@@ -103,12 +103,12 @@ export function ApplicationForm() {
       <div aria-live="polite" style={{ border: "1px solid #BBF7D0", background: "#F0FDF4", borderRadius: 8, padding: "clamp(26px,3vw,38px)" }}>
         <div aria-hidden="true" style={{ width: 40, height: 40, marginBottom: 18, background: "#B4FF00", transform: "rotate(45deg)" }} />
         <p role="status" style={{ margin: "0 0 10px", fontSize: "clamp(18px,1.8vw,22px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>
-          Thanks — your application is in.
+          Thanks. Your application is in.
         </p>
         <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.6, color: "#166534", maxWidth: "60ch" }}>
           We read every one and we&apos;ll be in touch when there&apos;s a fit.{" "}
           <span data-unverified="" style={{ color: "#3F6B4A" }}>
-            (This preview build doesn&apos;t transmit files — connect the form to PTG&apos;s applicant inbox before launch.)
+            (This preview build doesn&apos;t transmit files. Connect the form to PTG&apos;s applicant inbox before launch.)
           </span>
         </p>
         <button
@@ -176,7 +176,7 @@ export function ApplicationForm() {
         >
           <span className="hov-cta-navy cta-sm" style={{ display: "inline-block", flex: "0 0 auto" }}>Choose file</span>
           <span style={{ fontSize: 14.5, color: fileName ? "#021F43" : "#64748B", fontWeight: fileName ? 700 : 500, wordBreak: "break-all" }}>
-            {fileName || "PDF or Word — up to 10 MB"}
+            {fileName || "PDF or Word, up to 10 MB"}
           </span>
         </label>
         <input

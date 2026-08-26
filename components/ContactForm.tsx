@@ -76,7 +76,7 @@ export function ContactForm() {
       <div aria-live="polite" id="form-status">
         {sent ? (
           <p role="status" style={{ margin: 0, padding: "14px 16px", background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 6, fontSize: 14.5, fontWeight: 600, color: "#166534" }}>
-            Thanks — we&apos;ll be in touch. (This preview build doesn&apos;t transmit the form; connect it to PTG&apos;s CRM before launch.)
+            Thanks, we&apos;ll be in touch. (This preview build doesn&apos;t transmit the form; connect it to PTG&apos;s CRM before launch.)
           </p>
         ) : null}
       </div>

@@ -12,12 +12,12 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "PTG — Big Missions. Bigger Impact.",
+    default: "PTG · Big Missions. Bigger Impact.",
     template: "%s · PTG",
   },
   description:
     "Precision Task Group (PTG) helps government agencies, universities, health " +
-    "systems and nonprofits realize the value of their enterprise technology — " +
+    "systems and nonprofits realize the value of their enterprise technology: " +
     "Workday and ServiceNow.",
   metadataBase: new URL("http://localhost:3000"),
   robots: { index: false, follow: false }, // speculative build — never indexed

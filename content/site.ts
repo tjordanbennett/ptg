@@ -27,10 +27,10 @@ export const site: SiteSettings = {
    * message will never see the new one.
    */
   announcement: {
-    id: "workday-rising-2026",
+    id: "workday-rising-2026-b",
     before: "PTG will be at ",
     linkText: "Workday Rising",
-    after: " — Las Vegas, October 12–15, 2026.",
+    after: " in Las Vegas, October 12–15, 2026.",
     unverified: true,
   },
   nav: [

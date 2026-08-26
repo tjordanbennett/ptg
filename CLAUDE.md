@@ -139,8 +139,27 @@ ordering reference only.
 
 ### Copy
 
-`~/Ridge/work/business/ptg/PTG-SITE-COPY.md` is the **single source of truth**
-for every word on all ~30 pages.
+`~/Ridge/work/business/ptg/PTG-SITE-COPY.md` was written 2026-08-05 as the
+single source of truth for every word on all ~30 pages. **It has since gone
+stale.** As of 2026-08-26, 45 strings live in `content/` with no counterpart in
+that document, because the ServiceNow rebalance and the copy-FINAL structural
+changes were made in the repo and never written back.
+
+**Until it is regenerated, `content/` is the source of truth for copy, not the
+document.** Do not port from `PTG-SITE-COPY.md` over the top of a string that
+already exists in `content/` — you will regress it. Use the document for pages
+and slots that `content/` does not yet cover.
+
+**House rules for all rendered copy (set by Jordan 2026-08-26):**
+
+- **No em dashes (—) anywhere a user can read them.** Rewrite instead of
+  substituting: period when what follows is a full clause, colon when it is a
+  list that defines what came before, comma only for a short trailing tag.
+  Never a hyphen (` - `) standing in for one. Code comments are exempt.
+- **Contractions wherever they fit.** `isn't`, `we'll`, `doesn't`, `you're`.
+- **Hyphens in compound modifiers are untouched** and always fine:
+  `mid-implementation`, `family-owned`, `twice-yearly`, `off-the-shelf`.
+- **En dashes (–) stay** in date ranges and `K–12`. They are correct.
 
 Superseded, do not read, do not port from:
 `content/homepage-copy-FINAL.md`, `content/procurement-copy.md`,

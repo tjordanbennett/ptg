@@ -89,7 +89,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         {multi ? (
           <section style={{ background: "#F5F7F9", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
             <div style={WRAP}>
-              <Reveal as="h2" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Two contracts, two scopes — cite the right one.</Reveal>
+              <Reveal as="h2" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Two contracts, two scopes. Cite the right one.</Reveal>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(18px,2vw,26px)" }}>
                 {v.contracts.map((c, i) => (
                   <Reveal as="article" key={c.number} delay={i * 0.06} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(24px,2.6vw,32px)" }}>
@@ -221,7 +221,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
           from="#F5F7F9"
           eyebrow="Procurement & contracts"
           heading="Not sure this is the right vehicle?"
-          body="Tell us your organization type and state and we'll confirm which contract applies — or tell you if none does."
+          body="Tell us your organization type and state and we'll confirm which contract applies, or tell you if none does."
           ctas={[
             { label: "Talk to our contracts team", href: "/contact" },
             { label: "Back to all vehicles", href: "/procurement-contracts" },

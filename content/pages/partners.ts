@@ -14,7 +14,7 @@ export const partners: Record<string, StandardPage> = {
     meta: {
       title: "Workday Partner",
       description:
-        "A certified Workday partner and authorized reseller — plan, deploy, optimize and extend Workday on a single accountable contract.",
+        "A certified Workday partner and authorized reseller. Plan, deploy, optimize and extend Workday on a single accountable contract.",
     },
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday Partner"),
@@ -32,7 +32,7 @@ export const partners: Record<string, StandardPage> = {
         columns: 2,
         cards: [
           { title: "Certified Workday Partner Since 2017", hook: "A long-standing partnership built on delivering transformation, adoption and lasting value." },
-          { title: "Authorized Workday Reseller", hook: "We guide licensing and procurement, so you get the right solution from day one — on one contract instead of two." },
+          { title: "Authorized Workday Reseller", hook: "We guide licensing and procurement, so you get the right solution from day one, on one contract instead of two." },
         ],
       },
       {
@@ -49,7 +49,7 @@ export const partners: Record<string, StandardPage> = {
           },
           {
             title: "AMS & Managed Services",
-            hook: "Built around flexibility and aligned consultants, not a ticketing center — day-to-day needs, production issues, new feature adoption and continuous improvement.",
+            hook: "Built around flexibility and aligned consultants, not a ticketing center: day-to-day needs, production issues, new feature adoption and continuous improvement.",
             href: "/services/workday-ams-optimization",
           },
           {
@@ -59,7 +59,7 @@ export const partners: Record<string, StandardPage> = {
           },
           {
             title: "Workday Integrations",
-            hook: "Connect Workday with the systems, workflows and data your organization depends on — streamlining operations and reducing manual work.",
+            hook: "Connect Workday with the systems, workflows and data your organization depends on, streamlining operations and reducing manual work.",
             href: "/services/workday-innovation",
           },
           {
@@ -92,7 +92,7 @@ export const partners: Record<string, StandardPage> = {
         eyebrow: "Experience that runs deep",
         heading: "Workday success isn't a one-time event.",
         body: [
-          "It requires ongoing alignment, thoughtful planning, practical solutioning and a partner who stays invested after go-live. Organizations that partner with PTG gain more than a Workday services provider — they gain a trusted advisor focused on simplifying complexity and accelerating results across the business.",
+          "It requires ongoing alignment, thoughtful planning, practical solutioning and a partner who stays invested after go-live. Organizations that partner with PTG gain more than a Workday services provider. They gain a trusted advisor focused on simplifying complexity and accelerating results across the business.",
         ],
       },
       // ▲ Mirrored from the ServiceNow partner page per Kim Christenson's
@@ -101,9 +101,9 @@ export const partners: Record<string, StandardPage> = {
       {
         kind: "prose",
         eyebrow: "The advantage of one partner",
-        heading: "Where Workday and ServiceNow meet, value gets lost — or found.",
+        heading: "Where Workday and ServiceNow meet, value gets lost. Or found.",
         body: [
-          "Many organizations run Workday and ServiceNow side by side, and the seams between them are where value gets lost. Because we deliver both, we design for those connection points from the start — and one team is accountable for the outcome.",
+          "Many organizations run Workday and ServiceNow side by side, and the seams between them are where value gets lost. Because we deliver both, we design for those connection points from the start, and one team is accountable for the outcome.",
         ],
       },
       {
@@ -137,9 +137,9 @@ export const partners: Record<string, StandardPage> = {
       {
         kind: "prose",
         eyebrow: "The advantage of one partner",
-        heading: "Where Workday and ServiceNow meet, value gets lost — or found.",
+        heading: "Where Workday and ServiceNow meet, value gets lost. Or found.",
         body: [
-          "Many organizations run Workday and ServiceNow side by side, and the seams between them are where value gets lost. Because we deliver both, we design for those connection points from the start — and one team is accountable for the outcome.",
+          "Many organizations run Workday and ServiceNow side by side, and the seams between them are where value gets lost. Because we deliver both, we design for those connection points from the start, and one team is accountable for the outcome.",
         ],
       },
       {

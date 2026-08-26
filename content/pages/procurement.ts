@@ -36,7 +36,7 @@ export const procurement: ProcurementPage = {
       "participates in one, Workday licensing and implementation are available " +
       "to you under terms that are already established.",
     bullets: [
-      "Licensing and implementation on one contract — we're an authorized Workday reseller.",
+      "Licensing and implementation on one contract. We're an authorized Workday reseller.",
       "Pricing already established under a competitively awarded contract.",
       "A shorter path to award, subject to your jurisdiction's requirements.",
     ],
@@ -198,10 +198,10 @@ export const procurement: ProcurementPage = {
     eyebrow: "Common questions",
     heading: "What procurement usually asks.",
     intro:
-      "If your question isn't here, our contracts team answers directly — no sales handoff.",
+      "If your question isn't here, our contracts team answers directly, with no sales handoff.",
     cta: { label: "Ask a contracts question", href: "#connect" },
     items: [
-      { q: "Does contracting through a cooperative satisfy our competitive bid requirement?", a: "In most jurisdictions, yes. Cooperative contracts are awarded through a public competitive solicitation run by the lead agency, and statutes in most states let members rely on that process. Your counsel or procurement office confirms it for your jurisdiction — we can supply the solicitation documentation they need." },
+      { q: "Does contracting through a cooperative satisfy our competitive bid requirement?", a: "In most jurisdictions, yes. Cooperative contracts are awarded through a public competitive solicitation run by the lead agency, and statutes in most states let members rely on that process. Your counsel or procurement office confirms it for your jurisdiction. We can supply the solicitation documentation they need." },
       { q: "Can you sell us the Workday licenses too, or just the implementation?", a: "Both. PTG is one of a small number of authorized Workday resellers, so licensing and implementation come through one contract with one accountable party. That removes a coordination problem most firms hand back to you." },
       { q: "We're not a member of any of these cooperatives. Now what?", a: "Sourcewell membership is free and typically takes a few days. If that isn't a fit, we respond to direct solicitations and can often be added to a contract vehicle you already hold. Start with a conversation." },
       { q: "How long does it actually take to get to a signed order?", a: "Three to six weeks is typical, and most of that is your internal approval cycle rather than anything on our side. Scoping usually takes one to two weeks once we understand your environment." },

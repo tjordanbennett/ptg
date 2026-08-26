@@ -21,7 +21,7 @@ export const home: HomePage = {
     // that content yet.
     body:
       "Enterprise technology consulting for government, higher education, health " +
-      "systems and nonprofits — Workday and ServiceNow, delivered by a " +
+      "systems and nonprofits. Workday and ServiceNow, delivered by a " +
       "family-owned firm where the team that wins your work is the team that " +
       "does it.",
     ctas: [
@@ -43,7 +43,7 @@ export const home: HomePage = {
       body:
         "Most public agencies and universities already participate in a " +
         "cooperative contract that covers PTG. Each one was awarded through a " +
-        "public competitive solicitation run by its lead agency — so if yours " +
+        "public competitive solicitation run by its lead agency, so if yours " +
         "applies, you can go straight to scoping.",
       cta: { label: "Find your contract vehicle", href: "/procurement-contracts" },
       image: {
@@ -208,9 +208,9 @@ export const home: HomePage = {
     heading: "Two platforms, one accountable team.",
     chips: ["Workday Partner", "ServiceNow Partner"],
     items: [
-      { num: "01", name: "Workday Advisory & Strategy", summary: "Readiness assessments, roadmaps, business cases and change decisions — before you commit to a configuration or a go-live date.", href: "/services/workday-advisory-strategy" },
+      { num: "01", name: "Workday Advisory & Strategy", summary: "Readiness assessments, roadmaps, business cases and change decisions, before you commit to a configuration or a go-live date.", href: "/services/workday-advisory-strategy" },
       { num: "02", name: "Workday Implementation", summary: "Full-suite HCM, Financials, Student and Payroll deployments, delivered by the same team that scoped them.", href: "/services/workday-implementation" },
-      { num: "03", name: "Workday AMS & Optimization", summary: "Ongoing support, release management and twice-yearly feature adoption — with named consultants who already know your tenant, not a ticket queue.", href: "/services/workday-ams-optimization" },
+      { num: "03", name: "Workday AMS & Optimization", summary: "Ongoing support, release management and twice-yearly feature adoption, with named consultants who already know your tenant instead of a ticket queue.", href: "/services/workday-ams-optimization" },
       { num: "04", name: "Workday Innovation", summary: "Extend, Prism, integrations and AI-enabled workflows for the problems standard functionality doesn't cover.", href: "/services/workday-innovation" },
       { num: "05", name: "ServiceNow Implementation", summary: "ITSM, service portals and workflow automation for organizations standardizing service delivery alongside Workday.", href: "/services/servicenow-implementation" },
     ],
@@ -224,7 +224,7 @@ export const home: HomePage = {
       "between phases. No relearning your organization.",
     steps: [
       { num: "STAGE 01", name: "Plan", body: "Readiness, roadmap and the business case. We find the constraints before they become change orders.", bar: "#80CEFF" },
-      { num: "STAGE 02", name: "Deploy", body: "Configuration, data, integrations and testing — run by the consultants who scoped the work.", bar: "#80CEFF" },
+      { num: "STAGE 02", name: "Deploy", body: "Configuration, data, integrations and testing, run by the consultants who scoped the work.", bar: "#80CEFF" },
       { num: "STAGE 03", name: "Optimize", body: "Post-go-live stabilization, release management and the feature adoption most teams never get to.", bar: "#EB4900" },
       { num: "STAGE 04", name: "Innovate", body: "Extend, Prism, automation and AI, once the foundation is solid enough to build on.", bar: "#EB4900" },
     ],
@@ -249,13 +249,13 @@ export const home: HomePage = {
     heading: "People First isn't a value on a wall.",
     body:
       "We've had close to zero voluntary turnover in recent years. Not because we " +
-      "say people come first — because consultants here own their work, know their " +
+      "say people come first. It's because consultants here own their work, know their " +
       "leadership by name, and don't get moved off a project to fill a bench " +
       "somewhere else.",
     values: ["Mission Driven", "People First", "Drive Results", "Embrace Change", "Own It"],
     openRoles: {
       heading: "Open roles",
-      sub: "Workday, ServiceNow, change management — remote-first, U.S.",
+      sub: "Workday, ServiceNow and change management. Remote-first, U.S.",
       // ▲ STRUCTURAL CHANGE (copy-FINAL §11): reframed so no openings reads as a
       // position, not an error.
       emptyTitle: "No postings open right now.",
@@ -275,8 +275,8 @@ export const home: HomePage = {
     // ▲ STRUCTURAL CHANGE (copy-FINAL §12): names the three states a prospect is
     // actually in and offers an honest answer.
     body:
-      "Tell us where you are — evaluating a platform, mid-implementation, or " +
-      "years past go-live — and we'll tell you honestly whether we're the right firm for it.",
+      "Evaluating a platform, mid-implementation, or years past go-live: tell us " +
+      "where you are and we'll tell you honestly whether we're the right firm for it.",
     ctas: [
       { label: "Connect with us", href: "/contact" },
       { label: "Or start with procurement", href: "/procurement-contracts" },

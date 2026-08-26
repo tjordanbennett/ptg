@@ -20,7 +20,7 @@ export const industries: Record<string, StandardPage> = {
     meta: {
       title: "Government & Public Sector",
       description:
-        "Workday for cities, counties, state agencies, utilities and transit — modernize operations, empower your workforce and strengthen public service.",
+        "Workday for cities, counties, state agencies, utilities and transit. Modernize operations, empower your workforce and strengthen public service.",
     },
     currentLabel: "Industries",
     breadcrumbs: crumbs("Government & Public Sector"),
@@ -45,7 +45,7 @@ export const industries: Record<string, StandardPage> = {
         eyebrow: "Experience that runs deep",
         heading: "Trusted by government organizations for more than three decades.",
         body: [
-          "Public sector transformation takes more than technology expertise. It takes understanding how government actually operates — procurement and budgeting, regulatory compliance, collective bargaining, public safety, grant management and governing board oversight. We bring three decades of that to every Workday engagement.",
+          "Public sector transformation takes more than technology expertise. It takes understanding how government actually operates: procurement and budgeting, regulatory compliance, collective bargaining, public safety, grant management and governing board oversight. We bring three decades of that to every Workday engagement.",
         ],
       },
       {
@@ -118,7 +118,7 @@ export const industries: Record<string, StandardPage> = {
         cards: [
           {
             title: "Unified ERP for government operations",
-            hook: "Connect people, finance, payroll, planning and reporting in one system — a single source of truth for better decisions.",
+            hook: "Connect people, finance, payroll, planning and reporting in one system, a single source of truth for better decisions.",
           },
           {
             title: "Budgeting and planning",
@@ -174,7 +174,7 @@ export const industries: Record<string, StandardPage> = {
     meta: {
       title: "Higher Education",
       description:
-        "Workday Student, HCM and Financials for colleges and universities — modernize administrative operations and build a connected campus.",
+        "Workday Student, HCM and Financials for colleges and universities. Modernize administrative operations and build a connected campus.",
     },
     currentLabel: "Industries",
     breadcrumbs: crumbs("Higher Education"),
@@ -217,7 +217,7 @@ export const industries: Record<string, StandardPage> = {
         eyebrow: "What makes it different",
         heading: "Higher education isn't like other sectors.",
         body: [
-          "Faculty governance, decentralized operations, complex funding models, research administration and shared governance require a partner who understands the culture — not just the software.",
+          "Faculty governance, decentralized operations, complex funding models, research administration and shared governance require a partner who understands the culture, not just the software.",
         ],
       },
       {
@@ -305,7 +305,7 @@ export const industries: Record<string, StandardPage> = {
         cards: [
           {
             title: "Higher education specialists",
-            hook: "Consultants who understand colleges and universities — not just the software they run on.",
+            hook: "Consultants who understand colleges and universities, not just the software they run on.",
           },
           {
             title: "Student-centered transformation",
@@ -322,7 +322,7 @@ export const industries: Record<string, StandardPage> = {
         unverified: true,
         quote:
           "PTG understood both the technology and the unique culture of higher education. Their collaborative approach, deep Workday expertise, and commitment to our success helped us modernize operations while keeping our institutional mission at the center of every decision.",
-        attribution: "— Executive Sponsor, Public Higher Education Institution",
+        attribution: "Executive Sponsor, Public Higher Education Institution",
       },
       {
         kind: "pullQuote",
@@ -341,7 +341,7 @@ export const industries: Record<string, StandardPage> = {
     meta: {
       title: "Transit, Utilities & Special Districts",
       description:
-        "Workday for transit agencies, utilities, water districts and transportation authorities — improve efficiency, financial stewardship and service delivery.",
+        "Workday for transit agencies, utilities, water districts and transportation authorities. Improve efficiency, financial stewardship and service delivery.",
     },
     currentLabel: "Industries",
     breadcrumbs: crumbs("Transit, Utilities & Special Districts"),
@@ -394,7 +394,7 @@ export const industries: Record<string, StandardPage> = {
         columns: 2,
         items: [
           { title: "Deep industry expertise", body: "Capital projects, maintenance operations, labor agreements, regulatory compliance, grants and customer service." },
-          { title: "Tailored solutions", body: "Utility billing, transportation operations, water infrastructure — shaped around your operating model." },
+          { title: "Tailored solutions", body: "Utility billing, transportation operations and water infrastructure, shaped around your operating model." },
           { title: "Proven results", body: "Measurable improvement in efficiency, financial visibility and workforce management." },
           { title: "Long-term partnership", body: "AMS, optimization, strategic advisory and continuous innovation." },
           { title: "Accelerated transformation", body: "Proven deployment methodologies and industry accelerators reduce project effort while shortening time to value." },
@@ -455,7 +455,7 @@ export const industries: Record<string, StandardPage> = {
         eyebrow: "CIS and enterprise integration",
         heading: "Workday, connected to the systems billing depends on.",
         body: [
-          "Utility organizations depend on accurate customer information and billing. We integrate Workday with existing Customer Information Systems, enabling clean synchronization between customer billing, finance, payroll, procurement and workforce operations — whether you're keeping your current CIS platform or planning to replace it.",
+          "Utility organizations depend on accurate customer information and billing. We integrate Workday with existing Customer Information Systems, enabling clean synchronization between customer billing, finance, payroll, procurement and workforce operations, whether you're keeping your current CIS platform or planning to replace it.",
         ],
       },
       {
@@ -541,7 +541,7 @@ export const industries: Record<string, StandardPage> = {
     meta: {
       title: "Nonprofit",
       description:
-        "Workday for nonprofits — spend less time on administration and more time advancing the mission, with clean grant, fund and donor reporting.",
+        "Workday for nonprofits. Spend less time on administration and more time advancing the mission, with clean grant, fund and donor reporting.",
     },
     currentLabel: "Industries",
     breadcrumbs: crumbs("Nonprofit"),
@@ -549,7 +549,7 @@ export const industries: Record<string, StandardPage> = {
       eyebrow: "Nonprofit",
       headline: "Technology that amplifies your mission.",
       body:
-        "Nonprofits are asked to do more with less — serve more people, manage tighter budgets, improve transparency and demonstrate measurable impact to funders and boards. We help nonprofit organizations spend less time on administration and more time advancing the mission.",
+        "Nonprofits are asked to do more with less: serve more people, manage tighter budgets, improve transparency and demonstrate measurable impact to funders and boards. We help nonprofit organizations spend less time on administration and more time advancing the mission.",
       tagline: "Amplify impact. Strengthen operations. Focus on what matters most.",
     },
     sections: [
@@ -562,7 +562,7 @@ export const industries: Record<string, StandardPage> = {
           { title: "Deep nonprofit knowledge", body: "Limited resources, grant requirements, compliance, donor expectations and program reporting." },
           { title: "Tailored solutions", body: "Built around your mission, operating model and funding structure." },
           { title: "Proven results", body: "Measurable improvement in efficiency, financial visibility and mission delivery." },
-          { title: "Long-term partnership", body: "More than a vendor — committed to your success beyond go-live." },
+          { title: "Long-term partnership", body: "More than a vendor. Committed to your success beyond go-live." },
           { title: "Smarter, faster transformation", body: "Proven deployment methods and nonprofit-specific accelerators reduce staff burden, increase adoption and shorten time to value." },
         ],
       },
@@ -647,7 +647,7 @@ export const industries: Record<string, StandardPage> = {
     meta: {
       title: "Healthcare",
       description:
-        "Workday for hospitals, health systems and academic medical centers — modernize operations so clinicians can focus on delivering care.",
+        "Workday for hospitals, health systems and academic medical centers. Modernize operations so clinicians can focus on delivering care.",
     },
     currentLabel: "Industries",
     breadcrumbs: crumbs("Healthcare"),
@@ -782,7 +782,7 @@ export const industries: Record<string, StandardPage> = {
         eyebrow: "Why it matters",
         heading: "Better operations mean better care.",
         body: [
-          "When healthcare operations run efficiently, caregivers spend less time navigating administrative tasks and more time caring for patients. That is the point of the work, and it's the measure we hold ourselves to.",
+          "When healthcare operations run efficiently, caregivers spend less time navigating administrative tasks and more time caring for patients. That's the point of the work, and it's the measure we hold ourselves to.",
         ],
       },
       {
@@ -827,7 +827,7 @@ export const industries: Record<string, StandardPage> = {
         unverified: true,
         quote:
           "PTG became a true extension of our organization. Their healthcare expertise and Workday knowledge helped us modernize operations while minimizing disruption to our clinical teams.",
-        attribution: "— Chief Financial Officer, Regional Health System",
+        attribution: "Chief Financial Officer, Regional Health System",
       },
       {
         kind: "pullQuote",

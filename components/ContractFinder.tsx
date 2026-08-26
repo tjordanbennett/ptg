@@ -19,7 +19,7 @@ function matchVehicles(org: string, st: string): Match[] {
   if (org === "hied-public" && st === "Illinois")
     out.push({ key: "iphec", badge: "Best fit", why: "IPHEC is the Illinois Public Higher Education Cooperative. As an Illinois public institution you can order directly under our IPHEC award without a separate solicitation." });
   if (pub.includes(org) && st === "Texas")
-    out.push({ key: "dir", badge: "Best fit", why: "Texas DIR is the fastest route for Texas public entities. State agencies, local government, public districts and public institutions of higher education all purchase IT services through DIR every day — and PTG is Houston-based." });
+    out.push({ key: "dir", badge: "Best fit", why: "Texas DIR is the fastest route for Texas public entities. State agencies, local government, public districts and public institutions of higher education all purchase IT services through DIR every day. PTG is Houston-based." });
   if (pub.includes(org) && st === "California")
     out.push({ key: "slp", badge: "Best fit", why: "The California Software Licensing Program covers state agencies and, through participation, California local government and public education. Your procurement office will already know the vehicle." });
   if (org !== "federal")

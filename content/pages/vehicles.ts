@@ -15,7 +15,7 @@ export const vehicles: Record<string, VehiclePageData> = {
   sourcewell: {
     slug: "sourcewell",
     meta: {
-      title: "Sourcewell — 060624-PRT",
+      title: "Sourcewell: 060624-PRT",
       description:
         "PTG's Sourcewell cooperative contract (060624-PRT) covers Workday software and services for government, education and nonprofit members in the U.S. and Canada.",
     },
@@ -23,7 +23,7 @@ export const vehicles: Record<string, VehiclePageData> = {
     name: "Sourcewell",
     contracts: [{ number: "060624-PRT", term: "Through 10/25/2028, up to three one-year extensions" }],
     summary: [
-      "Sourcewell is a Minnesota-based cooperative serving government, education and nonprofit members across the United States and Canada. PTG's contract covers Workday software and the full range of services around it — so members can purchase licensing and implementation under a single vehicle.",
+      "Sourcewell is a Minnesota-based cooperative serving government, education and nonprofit members across the United States and Canada. PTG's contract covers Workday software and the full range of services around it, so members can purchase licensing and implementation under a single vehicle.",
     ],
     whoCanBuy: [
       "Government agencies, education institutions and nonprofits holding Sourcewell membership",
@@ -41,7 +41,7 @@ export const vehicles: Record<string, VehiclePageData> = {
       "Confirm your organization's Sourcewell membership (free to join).",
       "Reference contract 060624-PRT on your purchase order.",
       "Contact PTG to scope the engagement and issue a quote.",
-      "Purchase directly under the contract's terms — no separate solicitation.",
+      "Purchase directly under the contract's terms, with no separate solicitation.",
     ],
     official: {
       label: "View PTG's contract on Sourcewell",
@@ -52,7 +52,7 @@ export const vehicles: Record<string, VehiclePageData> = {
   "omnia-partners": {
     slug: "omnia-partners",
     meta: {
-      title: "OMNIA Partners — 01-140",
+      title: "OMNIA Partners: 01-140",
       description:
         "PTG's OMNIA Partners contract (01-140), competitively solicited by Region 14 ESC in Texas and available to OMNIA participants nationwide.",
     },
@@ -87,7 +87,7 @@ export const vehicles: Record<string, VehiclePageData> = {
   "texas-dir": {
     slug: "texas-dir",
     meta: {
-      title: "Texas DIR — DIR-CPO-5657 & DIR-CPO-6141",
+      title: "Texas DIR: DIR-CPO-5657 & DIR-CPO-6141",
       description:
         "PTG holds two Texas DIR contracts: DIR-CPO-5657 (COTS software and services) and DIR-CPO-6141 (DBITS consulting) for eligible Texas entities.",
     },
@@ -97,18 +97,18 @@ export const vehicles: Record<string, VehiclePageData> = {
       {
         number: "DIR-CPO-5657",
         term: "12/10/2024 – 12/10/2026",
-        scope: "Commercial off-the-shelf software and related services — Workday and ServiceNow licensing, implementation and training.",
+        scope: "Commercial off-the-shelf software and related services: Workday and ServiceNow licensing, implementation and training.",
         useFor: "Software purchases and the implementation and training that goes with them.",
       },
       {
         number: "DIR-CPO-6141",
         term: "01/27/2026 – 01/27/2028",
-        scope: "Deliverables-Based Information Technology Services (DBITS) — application development and maintenance, ERP, business intelligence and analytics, project and program management.",
+        scope: "Deliverables-Based Information Technology Services (DBITS): application development and maintenance, ERP, business intelligence and analytics, project and program management.",
         useFor: "Deliverables-based consulting engagements.",
       },
     ],
     summary: [
-      "The Texas Department of Information Resources negotiates technology contracts on behalf of state agencies, local government, public education and other eligible Texas entities. PTG holds two DIR contracts covering different scopes of work — cite the one that matches your purchase.",
+      "The Texas Department of Information Resources negotiates technology contracts on behalf of state agencies, local government, public education and other eligible Texas entities. PTG holds two DIR contracts covering different scopes of work. Cite the one that matches your purchase.",
     ],
     whoCanBuy: [
       "Texas state agencies",
@@ -133,7 +133,7 @@ export const vehicles: Record<string, VehiclePageData> = {
   gsa: {
     slug: "gsa",
     meta: {
-      title: "GSA Multiple Award Schedule (MAS) — GS-35F-035GA",
+      title: "GSA Multiple Award Schedule (MAS): GS-35F-035GA",
       description:
         "PTG's GSA MAS contract (GS-35F-035GA) lets federal agencies acquire IT professional services under terms GSA has already negotiated.",
     },
@@ -160,7 +160,7 @@ export const vehicles: Record<string, VehiclePageData> = {
   "california-slp": {
     slug: "california-slp",
     meta: {
-      title: "California SLP — SLP-24-70-0281B",
+      title: "California SLP: SLP-24-70-0281B",
       description:
         "PTG's California Software Licensing Program contract (SLP-24-70-0281B) covers Workday software licensing for California public agencies.",
     },
@@ -173,7 +173,7 @@ export const vehicles: Record<string, VehiclePageData> = {
     whoCanBuy: ["California state agencies", "California local government entities eligible under the SLP"],
     covered: ["Workday software licensing", "Software maintenance and support"],
     scopeNote:
-      "Scope is software, not services. California DGS classifies this contract as IT Goods — it does not cover implementation consulting. For implementation services, ask us which additional vehicle applies.",
+      "Scope is software, not services. California DGS classifies this contract as IT Goods. It doesn't cover implementation consulting. For implementation services, ask us which additional vehicle applies.",
     howToOrder: [
       "Reference contract SLP-24-70-0281B.",
       "Contact PTG for a quote.",
@@ -189,7 +189,7 @@ export const vehicles: Record<string, VehiclePageData> = {
   iphec: {
     slug: "iphec",
     meta: {
-      title: "IPHEC — 2509GAL",
+      title: "IPHEC: 2509GAL",
       description:
         "PTG's IPHEC availability (solicitation 2509GAL) gives Illinois public universities and community colleges a direct route to Workday software and implementation.",
     },
@@ -198,7 +198,7 @@ export const vehicles: Record<string, VehiclePageData> = {
     contracts: [{ number: "2509GAL", term: "11/12/2024 – 08/31/2027, five one-year renewals" }],
     summary: [
       "The Illinois Public Higher Education Cooperative extends competitively awarded contracts to Illinois public universities and community colleges. PTG's IPHEC availability comes through the OMNIA Partners award, giving Illinois institutions a direct route to Workday software and implementation services.",
-      "This availability is extended from PTG's OMNIA Partners award 01-140 — note the matching 08/31/2027 end date. It is not a solicitation PTG won independently.",
+      "This availability is extended from PTG's OMNIA Partners award 01-140. Note the matching 08/31/2027 end date. It isn't a solicitation PTG won independently.",
     ],
     whoCanBuy: ["Illinois public universities", "Illinois community colleges", "IPHEC member institutions"],
     covered: ["ERP software and implementation services"],
