@@ -152,10 +152,9 @@ export default async function HomePage() {
             </Reveal>
             <ul style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
               {h.services.items.map((svc, i) => (
-                <Reveal as="li" key={svc.num} delay={i * 0.05} style={{ background: "#FFFFFF" }}>
+                <Reveal as="li" key={svc.href} delay={i * 0.05} style={{ background: "#FFFFFF" }}>
                   <Link href={svc.href} className="hov-svcrow hov-move" style={{ display: "flex", flexWrap: "wrap", gap: "clamp(14px,3vw,44px)", alignItems: "center", padding: "clamp(24px,2.8vw,36px) clamp(6px,1.5vw,20px)" }}>
-                    <div style={{ flex: "1 1 260px", display: "flex", gap: "clamp(14px,2vw,26px)", alignItems: "baseline" }}>
-                      <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 13, color: "#475569", flex: "0 0 auto" }}>{svc.num}</span>
+                    <div style={{ flex: "1 1 260px" }}>
                       <h3 style={{ margin: 0, fontSize: "clamp(20px,1.9vw,26px)", fontWeight: 800, lineHeight: 1.14, letterSpacing: "-0.022em", color: "inherit" }}>{svc.name}</h3>
                     </div>
                     <p style={{ flex: "1 1 320px", margin: 0, fontSize: 17, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{svc.summary}</p>
@@ -177,7 +176,7 @@ export default async function HomePage() {
         <section aria-labelledby="journey-h" style={{ position: "relative", background: "#0034A0", color: "#FFFFFF", overflow: "hidden" }}>
           <AngleField id="journey-field" />
           <SectionWedge from={WHITE} to={BLUE} slant="right" overlay edge="top" />
-          <SectionWedge from={BLUE} to={WHITE} slant="right" overlay edge="bottom" />
+          <SectionWedge from={BLUE} to={OFFWHITE} slant="right" overlay edge="bottom" />
           <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `calc(clamp(64px,7vw,100px) + ${WEDGE_H}) clamp(20px,4vw,48px)` }}>
             <Reveal as="div" style={{ maxWidth: 620, marginBottom: "clamp(34px,4vw,52px)" }}>
               <EyebrowBar label={h.journey.eyebrow} color="#80CEFF" />
@@ -208,25 +207,25 @@ export default async function HomePage() {
                 </Reveal>
               ))}
             </ol>
-          </div>
-        </section>
 
-        {/* ══ TESTIMONIAL ══ */}
-        <section aria-labelledby="quote-h" style={{ background: "#FFFFFF" }}>
-          <div style={{ maxWidth: 1000, margin: "0 auto", padding: "clamp(64px,7vw,110px) clamp(20px,4vw,48px)", textAlign: "center" }}>
-            <h2 id="quote-h" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>What our customers say</h2>
-            <Reveal as="div">
-              <div aria-hidden="true" style={{ width: 44, height: 44, margin: "0 auto 30px", background: "#B4FF00", transform: "rotate(45deg)" }} />
+            {/* Was its own white band between here and Careers — the smallest
+                section on the page at 541px, and this band already had empty
+                gradient below the cards. Folding it in trades a section break
+                for proof at the moment the delivery claim is made, and gives
+                the page one fewer subject change. */}
+            <Reveal as="div" delay={0.12} style={{ marginTop: "clamp(40px,4.6vw,68px)", paddingTop: "clamp(34px,3.6vw,52px)", borderTop: "1px solid rgba(255,255,255,.16)", maxWidth: 880, marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
+              <h3 id="quote-h" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>What our customers say</h3>
+              <div aria-hidden="true" style={{ width: 34, height: 34, margin: "0 auto 24px", background: "#B4FF00", transform: "rotate(45deg)" }} />
               <blockquote style={{ margin: 0 }} data-unverified={h.testimonial.placeholder ? "" : undefined}>
-                <p style={{ margin: "0 0 28px", fontSize: "clamp(21px,2.3vw,32px)", fontWeight: 600, lineHeight: 1.35, letterSpacing: "-0.018em", color: "#021F43", textWrap: "balance" }}>&ldquo;{h.testimonial.quote}&rdquo;</p>
-                <footer style={{ fontSize: 14, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#334155" }}>{h.testimonial.attribution}</footer>
+                <p style={{ margin: "0 0 22px", fontSize: "clamp(20px,2.1vw,29px)", fontWeight: 600, lineHeight: 1.35, letterSpacing: "-0.018em", color: "#FFFFFF", textWrap: "balance" }}>&ldquo;{h.testimonial.quote}&rdquo;</p>
+                <footer style={{ fontSize: 13.5, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#9FD3F5" }}>{h.testimonial.attribution}</footer>
               </blockquote>
             </Reveal>
           </div>
         </section>
 
         {/* ══ CAREERS ══ */}
-        <section id="careers" aria-labelledby="careers-h" style={{ background: "#F0F2F4", borderTop: "1px solid #CBD5DF", scrollMarginTop: 90 }}>
+        <section id="careers" aria-labelledby="careers-h" style={{ background: "#F0F2F4", scrollMarginTop: 90 }}>
           <div style={WRAP}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(34px,4vw,64px)", alignItems: "center" }}>
               <Reveal as="div">

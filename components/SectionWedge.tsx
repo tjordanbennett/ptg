@@ -77,12 +77,33 @@ export function SectionWedge({
 
   // viewBox is 100×10 and stretched, so these are proportions, not pixels. The
   // two triangles are complementary halves of the band, split by the diagonal.
-  const upper = slant === "right" ? "0,0 100,0 100,10" : "0,0 100,0 0,10";
-  const lower = slant === "right" ? "0,0 0,10 100,10" : "100,0 100,10 0,10";
+  //
+  // OVERSHOOT (`O`): every vertex that is NOT on the diagonal is pushed outside
+  // the viewBox, and the diagonal's own endpoints are extended along the same
+  // slope. The <svg> clips to its bounds, so the overshoot costs nothing — but
+  // it means the fill reaches the very last device pixel on all three outer
+  // edges. Without it the polygon edge can land mid-pixel on fractional-DPR or
+  // zoomed displays, antialias, and leave a hairline of whatever sits BEHIND
+  // the wedge showing through: on the delivery-journey band that was a 1px
+  // strip of the gradient reading as a stray horizontal rule above Careers.
+  // The diagonal itself is untouched — only its endpoints move, along its own
+  // line, so the visible cut is exactly where it was.
+  const O = 3;                    // overshoot, in viewBox units
+  const dy = O / 10;              // the cut rises 10 units over 100, so 0.1 per unit
+  // The cut, extended past both edges along its own slope.
+  const cut = slant === "right"
+    ? { x1: -O, y1: -dy, x2: 100 + O, y2: 10 + dy }   // descends to the right
+    : { x1: -O, y1: 10 + dy, x2: 100 + O, y2: -dy };  // descends to the left
+  const T = -O;                   // outer top
+  const B = 10 + O;               // outer bottom
+  // Each triangle: both cut endpoints, then out to the two far corners.
+  const upper = `${cut.x1},${cut.y1} ${cut.x2},${cut.y2} ${cut.x2},${T} ${cut.x1},${T}`;
+  const lower = `${cut.x1},${cut.y1} ${cut.x2},${cut.y2} ${cut.x2},${B} ${cut.x1},${B}`;
   const bottomEdge = overlay && edge === "bottom";
   const points = bottomEdge ? lower : upper;
   const fill = bottomEdge ? to : from;
-  const [x1, y1, x2, y2] = slant === "right" ? [0, 0, 100, 10] : [0, 10, 100, 0];
+  // Hairline runs the extended cut too, so it reaches both outer edges.
+  const { x1, y1, x2, y2 } = cut;
 
   return (
     <div

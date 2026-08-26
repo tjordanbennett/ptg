@@ -411,10 +411,22 @@
     color: #fff;
   }
 
-  /* Overflow carousel track — scrollbar hidden, snap per card. */
+  /* Overflow carousel track — scrollbar hidden, snap per card.
+
+     `overflow-y: hidden` is REQUIRED, not tidy-up. With only `overflow-x: auto`
+     set, the other axis computes to `auto` too (CSS Overflow: a `visible` axis
+     becomes `auto` when the other is scrollable). The track then had 8px of
+     vertical scroll room, so a wheel over the carousel was captured by it — the
+     page stopped and the track nudged up and down instead.
+
+     `overscroll-behavior-x` only: it stops a horizontal overscroll from
+     triggering the browser's back-swipe, while leaving VERTICAL wheel events
+     free to chain to the page. Using the shorthand here would re-trap the page. */
   .ptg-carousel {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     -ms-overflow-style: none;
     scrollbar-width: none;

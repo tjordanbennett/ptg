@@ -93,7 +93,10 @@ export function IndustriesCarousel({ cards }: { cards: HomePage["industries"]["c
           gap: "clamp(18px,2vw,26px)",
           paddingLeft: TRACK_PAD,
           paddingRight: TRACK_PAD,
-          paddingBottom: 4,
+          // Room for the card's 5px hover lift and its 3px focus ring at 2px
+          // offset, now that overflow-y is clipped rather than scrollable.
+          paddingTop: 10,
+          paddingBottom: 12,
           scrollPaddingLeft: TRACK_PAD,
           scrollPaddingRight: TRACK_PAD,
         }}

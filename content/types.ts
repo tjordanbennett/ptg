@@ -141,7 +141,7 @@ export interface HomePage {
     eyebrow: string;
     heading: string;
     chips: string[];
-    items: { num: string; name: string; summary: string; href: string }[];
+    items: { name: string; summary: string; href: string }[];
   };
   journey: {
     eyebrow: string;
