@@ -39,7 +39,7 @@ const SELECT: React.CSSProperties = {
   fontSize: 16,
   fontWeight: 600,
   color: "#021F43",
-  background: "#F5F7F9",
+  background: "#F0F2F4",
   border: "1.5px solid #94A3B8",
   borderRadius: 6,
   padding: "15px 14px",
@@ -148,7 +148,7 @@ export function ContractFinder({
         ) : null}
 
         {noResults ? (
-          <div style={{ border: "1px dashed #94A3B8", borderRadius: 6, padding: "clamp(24px,3vw,34px)", background: "#F5F7F9" }}>
+          <div style={{ border: "1px dashed #94A3B8", borderRadius: 6, padding: "clamp(24px,3vw,34px)", background: "#F0F2F4" }}>
             <p style={{ margin: "0 0 10px", fontSize: 17, fontWeight: 800, color: "#021F43" }}>{finder.noMatch.title}</p>
             <p style={{ margin: "0 0 20px", fontSize: 16.5, lineHeight: 1.6, color: "#334155", maxWidth: "62ch", textWrap: "balance" }}>{finder.noMatch.body}</p>
             <Link href={finder.noMatch.cta.href} className="hov-cta-navy cta" style={{ display: "inline-block" }}>{finder.noMatch.cta.label}</Link>

@@ -127,13 +127,13 @@ export const careers: StandardPage = {
   meta: {
     title: "Careers & Culture",
     description:
-      "People First isn't a value on a wall. Near-zero voluntary turnover, real ownership of public sector work, and leadership that knows your name.",
+      "People First isn't just a value on a wall. Near-zero voluntary turnover, real ownership of public sector work, and leadership that knows your name.",
   },
   currentLabel: "About",
   breadcrumbs: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Careers & Culture" }],
   hero: {
     eyebrow: "Careers & Culture",
-    headline: "People First isn't a value on a wall.",
+    headline: "People First isn't just a value on a wall.",
     body:
       "We've had close to zero voluntary turnover in recent years. Not because we say people come first. It's because consultants here own their work, know their leadership by name, and don't get moved off a project to fill a bench somewhere else.",
   },

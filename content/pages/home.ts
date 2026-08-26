@@ -246,7 +246,7 @@ export const home: HomePage = {
 
   careers: {
     eyebrow: "Careers & culture",
-    heading: "People First isn't a value on a wall.",
+    heading: "People First isn't just a value on a wall.",
     body:
       "We've had close to zero voluntary turnover in recent years. Not because we " +
       "say people come first. It's because consultants here own their work, know their " +

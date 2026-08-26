@@ -40,7 +40,7 @@ export default async function ContactPage() {
               </ol>
             </nav>
             <EyebrowBar label="Connect with us" dark mb={18} />
-            <h1 id="hero-h" style={{ margin: "0 0 22px", fontSize: "clamp(33px,4.1vw,58px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.03em" }}>Let&apos;s talk.</h1>
+            <h1 id="hero-h" style={{ margin: "0 0 22px", fontSize: "clamp(33px,4.1vw,58px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.03em" }}>Let&apos;s talk.</h1>
             <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "balance" }}>
               Tell us about your organization and what you&apos;re trying to accomplish. We&apos;ll point you to the right person. If a cooperative contract makes the path easier, we&apos;ll tell you which one applies.
             </p>

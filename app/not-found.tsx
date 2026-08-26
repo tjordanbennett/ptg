@@ -155,7 +155,7 @@ export default async function NotFound() {
                   margin: "0 0 22px",
                   fontSize: "clamp(27px,3.4vw,47px)",
                   fontWeight: 800,
-                  lineHeight: 1.04,
+                  lineHeight: 1.1,
                   letterSpacing: "-0.028em",
                   textWrap: "balance",
                 }}
@@ -169,7 +169,7 @@ export default async function NotFound() {
                   fontSize: "clamp(17px,1.35vw,20px)",
                   lineHeight: 1.6,
                   color: "#DDE6F0",
-                  maxWidth: "56ch",
+                  maxWidth: "62ch",
                   textWrap: "balance",
                 }}
               >
@@ -192,7 +192,7 @@ export default async function NotFound() {
                   margin: 0,
                   fontSize: "clamp(26px,2.8vw,39px)",
                   fontWeight: 800,
-                  lineHeight: 1.06,
+                  lineHeight: 1.12,
                   letterSpacing: "-0.028em",
                   color: "#021F43",
                   textWrap: "balance",

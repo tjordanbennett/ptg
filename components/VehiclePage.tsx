@@ -16,7 +16,7 @@ const HAIRLINE = "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)";
 const WRAP = { maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,6vw,88px) clamp(20px,4vw,48px)" } as const;
 
 function Label({ children }: { children: React.ReactNode }) {
-  return <p style={{ margin: "0 0 14px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#94A3B8" }}>{children}</p>;
+  return <p style={{ margin: "0 0 14px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#475569" }}>{children}</p>;
 }
 
 export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageData; others: { slug: string; name: string; eyebrow: string }[]; site: SiteSettings }) {
@@ -42,12 +42,12 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
               </ol>
             </nav>
             <EyebrowBar label={v.eyebrow} dark mb={18} />
-            <h1 id="hero-h" style={{ margin: "0 0 26px", fontSize: "clamp(30px,3.8vw,52px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{v.name}</h1>
+            <h1 id="hero-h" style={{ margin: "0 0 26px", fontSize: "clamp(30px,3.8vw,52px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.028em", textWrap: "balance" }}>{v.name}</h1>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 22, alignItems: "center" }}>
               {v.contracts.map((c) => (
                 <div key={c.number} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   <CopyNumber value={c.number} />
-                  {c.term ? <span style={{ fontSize: 13, color: "#C9D8E8", maxWidth: "34ch" }}>{c.term}</span> : null}
+                  {c.term ? <span style={{ fontSize: 13, color: "#C9D8E8", maxWidth: "40ch" }}>{c.term}</span> : null}
                 </div>
               ))}
             </div>
@@ -64,17 +64,17 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                 ))}
               </Reveal>
               {v.metaRows ? (
-                <Reveal as="div" delay={0.06} style={{ border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(20px,2.2vw,26px)", background: "#F5F7F9" }}>
+                <Reveal as="div" delay={0.06} style={{ border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(20px,2.2vw,26px)", background: "#F0F2F4" }}>
                   <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
                     {!multi && v.contracts[0].term ? (
                       <div>
-                        <dt style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#94A3B8", marginBottom: 5 }}>Term</dt>
+                        <dt style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#475569", marginBottom: 5 }}>Term</dt>
                         <dd style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#021F43", lineHeight: 1.5 }}>{v.contracts[0].term}</dd>
                       </div>
                     ) : null}
                     {v.metaRows.map((r) => (
                       <div key={r.label}>
-                        <dt style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#94A3B8", marginBottom: 5 }}>{r.label}</dt>
+                        <dt style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#475569", marginBottom: 5 }}>{r.label}</dt>
                         <dd style={{ margin: 0, fontSize: 15, fontWeight: 600, color: "#021F43", lineHeight: 1.5 }}>{r.value}</dd>
                       </div>
                     ))}
@@ -87,7 +87,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
 
         {/* ══ MULTI-CONTRACT CARDS (Texas DIR) ══ */}
         {multi ? (
-          <section style={{ background: "#F5F7F9", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
+          <section style={{ background: "#F0F2F4", borderTop: "1px solid #CBD5DF", borderBottom: "1px solid #CBD5DF" }}>
             <div style={WRAP}>
               <Reveal as="h2" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Two contracts, two scopes. Cite the right one.</Reveal>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(18px,2vw,26px)" }}>
@@ -95,7 +95,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                   <Reveal as="article" key={c.number} delay={i * 0.06} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(24px,2.6vw,32px)" }}>
                     <div aria-hidden="true" style={{ width: 34, height: 3, background: i === 0 ? "#0034A0" : "#EB4900", marginBottom: 18 }} />
                     <p style={{ margin: "0 0 10px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 15, fontWeight: 700, color: "#021F43" }}>{c.number}</p>
-                    {c.term ? <p style={{ margin: "0 0 14px", fontSize: 13, color: "#94A3B8" }}>{c.term}</p> : null}
+                    {c.term ? <p style={{ margin: "0 0 14px", fontSize: 13, color: "#475569" }}>{c.term}</p> : null}
                     {c.scope ? <p style={{ margin: "0 0 14px", fontSize: 16.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.scope}</p> : null}
                     {c.useFor ? (
                       <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.55, color: "#021F43" }}>
@@ -110,7 +110,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         ) : null}
 
         {/* ══ WHO / COVERED ══ */}
-        <section style={{ background: multi ? "#FFFFFF" : "#F5F7F9", borderTop: multi ? undefined : "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
+        <section style={{ background: multi ? "#FFFFFF" : "#F0F2F4", borderTop: multi ? undefined : "1px solid #CBD5DF", borderBottom: "1px solid #E5E7EB" }}>
           <div style={WRAP}>
             <div style={{ display: "grid", gridTemplateColumns: v.covered ? "repeat(auto-fit, minmax(min(280px,100%),1fr))" : "1fr", gap: "clamp(28px,4vw,56px)" }}>
               <Reveal as="div">
@@ -198,14 +198,14 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         </section>
 
         {/* ══ OTHER VEHICLES ══ */}
-        <section aria-labelledby="others-h" style={{ background: "#F5F7F9", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
+        <section aria-labelledby="others-h" style={{ background: "#F0F2F4", borderTop: "1px solid #CBD5DF", borderBottom: "1px solid #CBD5DF" }}>
           <div style={WRAP}>
             <Reveal as="h2" id="others-h" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Other contract vehicles</Reveal>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%),1fr))", gap: "clamp(14px,1.6vw,20px)" }}>
               {others.map((o, i) => (
                 <Reveal as="div" key={o.slug} delay={i * 0.04}>
                   <Link href={`/procurement-contracts/${o.slug}`} className="hov-card hov-move" style={{ display: "flex", flexDirection: "column", gap: 8, background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(20px,2.2vw,26px)", height: "100%" }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#94A3B8" }}>{o.eyebrow}</span>
+                    <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#475569" }}>{o.eyebrow}</span>
                     <span style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, letterSpacing: "-0.018em", color: "#021F43" }}>
                       {o.name}
                       <span aria-hidden="true" className="lnk-arrow"><span style={{ display: "block", width: 6, height: 6, borderTop: "2px solid #0034A0", borderRight: "2px solid #0034A0", transform: "rotate(45deg)" }} /></span>
@@ -218,7 +218,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         </section>
 
         <ClosingCTA
-          from="#F5F7F9"
+          from="#F0F2F4"
           eyebrow="Procurement & contracts"
           heading="Not sure this is the right vehicle?"
           body="Tell us your organization type and state and we'll confirm which contract applies, or tell you if none does."

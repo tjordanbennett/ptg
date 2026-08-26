@@ -215,7 +215,7 @@ function DesktopItem({
         >
           {item.groups.map((group) => (
             <div key={group.title} style={{ minWidth: 212 }}>
-              <p style={{ margin: "0 0 12px", fontSize: 11, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>{group.title}</p>
+              <p style={{ margin: "0 0 12px", fontSize: 11, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#475569" }}>{group.title}</p>
               <ul style={{ display: "flex", flexDirection: "column", gap: 1 }}>
                 {group.items.map((link) => (
                   <li key={link.label}>

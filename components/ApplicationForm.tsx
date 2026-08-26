@@ -172,10 +172,10 @@ export function ApplicationForm() {
         <label
           htmlFor="resume"
           className="hov-dropzone"
-          style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", border: `1.5px dashed ${errors.resume ? "#B42318" : "#94A3B8"}`, borderRadius: 6, background: "#F5F7F9", padding: "16px 18px", cursor: "pointer" }}
+          style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", border: `1.5px dashed ${errors.resume ? "#B42318" : "#94A3B8"}`, borderRadius: 6, background: "#F0F2F4", padding: "16px 18px", cursor: "pointer" }}
         >
           <span className="hov-cta-navy cta-sm" style={{ display: "inline-block", flex: "0 0 auto" }}>Choose file</span>
-          <span style={{ fontSize: 14.5, color: fileName ? "#021F43" : "#64748B", fontWeight: fileName ? 700 : 500, wordBreak: "break-all" }}>
+          <span style={{ fontSize: 14.5, color: fileName ? "#021F43" : "#475569", fontWeight: fileName ? 700 : 500, wordBreak: "break-all" }}>
             {fileName || "PDF or Word, up to 10 MB"}
           </span>
         </label>

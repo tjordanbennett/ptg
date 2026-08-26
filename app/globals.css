@@ -94,7 +94,7 @@
     color: #021f43;
   }
   .hov-droplink:hover {
-    background: #f5f7f9;
+    background: #f0f2f4;
     color: #0034a0;
   }
 
@@ -156,7 +156,7 @@
   }
 
   .hov-pathcard {
-    background: #f5f7f9;
+    background: #f0f2f4;
     border-left: 4px solid #0034a0;
     color: #021f43;
   }
@@ -166,12 +166,14 @@
     border-left-color: #eb4900;
   }
 
+  /* Used only by the homepage contract-vehicle table, which sits on a navy
+     panel — so the base is white and the hover lifts rather than darkens. */
   .hov-vehrow {
-    color: #021f43;
+    color: #ffffff;
   }
   .hov-vehrow:hover {
-    background: #f5f7f9;
-    color: #0034a0;
+    background: #0a2e5a;
+    color: #80ceff;
   }
 
   .hov-svcrow {
@@ -179,7 +181,7 @@
     border-left: 3px solid transparent;
   }
   .hov-svcrow:hover {
-    background: #f5f7f9;
+    background: #f0f2f4;
     border-left-color: #eb4900;
   }
 
@@ -218,7 +220,7 @@
   }
 
   .hov-faqbtn:hover {
-    background: #f5f7f9;
+    background: #f0f2f4;
   }
 
   .hov-reset {
@@ -727,9 +729,9 @@
   left: 0;
   right: 0;
   z-index: 99;
-  border-top: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
-  background: #f5f7f9;
+  border-top: 1px solid #cbd5df;
+  border-bottom: 1px solid #cbd5df;
+  background: #f0f2f4;
   padding: 8px 20px calc(26px + env(safe-area-inset-bottom, 0px));
   max-height: calc(100vh - var(--ptg-header-h, 62px));
   max-height: calc(100dvh - var(--ptg-header-h, 62px));

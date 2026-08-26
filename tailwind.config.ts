@@ -19,7 +19,7 @@ const config: Config = {
           slate: "#334155", // = slate-700
           steel: "#94A3B8", // = slate-400
           lightgray: "#E5E7EB", // = gray-200
-          offwhite: "#F5F7F9",
+          offwhite: "#F0F2F4",
         },
       },
       fontFamily: {

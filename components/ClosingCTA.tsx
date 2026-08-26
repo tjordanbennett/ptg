@@ -58,8 +58,8 @@ export function ClosingCTA({
       <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `calc(clamp(70px,8vw,124px) + ${WEDGE_H}) clamp(20px,4vw,48px) clamp(70px,8vw,124px)` }}>
         <Reveal as="div">
           {eyebrow ? <EyebrowBar label={eyebrow} dark mb={22} /> : null}
-          <h2 id="cta-h" style={{ margin: body ? "0 0 22px" : "0 0 34px", fontSize: "clamp(29px,3.7vw,52px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.03em", maxWidth: "20ch", textWrap: "balance" }}>{heading}</h2>
-          {body ? <p style={{ margin: "0 0 36px", fontSize: "clamp(17px,1.4vw,21px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{body}</p> : null}
+          <h2 id="cta-h" style={{ margin: body ? "0 0 22px" : "0 0 34px", fontSize: "clamp(29px,3.7vw,52px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.03em", maxWidth: "20ch", textWrap: "balance" }}>{heading}</h2>
+          {body ? <p style={{ margin: "0 0 36px", fontSize: "clamp(17px,1.4vw,21px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "62ch", textWrap: "balance" }}>{body}</p> : null}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
             {ctas.map((c, i) => (
               <Link

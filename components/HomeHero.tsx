@@ -25,6 +25,12 @@ import type { HomePage } from "@/content/types";
  * that script — the base state is fully visible.
  *
  * Reduced motion is handled in globals.css (fade kept, movement dropped).
+ *
+ * MEASURES ARE IN `ch`, NOT px — deliberately. The type here scales with the
+ * viewport (`clamp(..vw..)`), so a fixed px measure holds FEWER characters as
+ * the window gets wider: this paragraph ran 69ch at 1380px and 64ch at 1520px,
+ * and rewrapped from three lines to four at 1452px. A font-relative measure
+ * keeps the character count — and so the wrap — constant at every width.
  */
 
 export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customers: HomePage["customers"] }) {
@@ -77,7 +83,7 @@ export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customer
           symmetric padding is only a floor for short viewports. */}
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)", minHeight: "calc(100svh - 62px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <div style={{ maxWidth: 700, paddingTop: "clamp(40px,6vh,72px)", paddingBottom: "clamp(40px,6vh,72px)" }}>
-          <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(36px,4.4vw,64px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.028em" }}>
+          <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(36px,4.4vw,64px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.028em" }}>
             {lines.map((line, i) => {
               const r = rv(0.15 + i * 0.1, 36);
               return (
@@ -92,7 +98,7 @@ export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customer
             return (
               <p
                 className={r.className}
-                style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: 560, textWrap: "balance", ...r.style }}
+                style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "59ch", textWrap: "balance", ...r.style }}
               >
                 {hero.body}
               </p>
@@ -112,9 +118,9 @@ export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customer
 
       {/* customer logo band */}
       <div style={{ position: "relative", zIndex: 1, borderTop: "1px solid rgba(128,206,255,.2)", background: "rgba(2,31,67,.6)", backdropFilter: "blur(6px)" }}>
-        <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(20px,2.4vw,28px) clamp(20px,4vw,48px)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "clamp(20px,3vw,48px)" }}>
+        <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(13px,1.5vw,17px) clamp(20px,4vw,48px)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "clamp(20px,3vw,48px)" }}>
           {/* Small headline, not a label — wraps into a short stack on the left third */}
-          <p style={{ margin: 0, flex: "1 1 220px", maxWidth: 300, fontSize: "clamp(16px,1.3vw,19px)", fontWeight: 700, lineHeight: 1.4, letterSpacing: "-0.01em", color: "#FFFFFF", textWrap: "balance" }}>{customers.heading}</p>
+          <p style={{ margin: 0, flex: "0 1 auto", maxWidth: "30ch", fontSize: "clamp(13.5px,1.05vw,15px)", fontWeight: 700, lineHeight: 1.35, letterSpacing: "-0.01em", color: "#FFFFFF", textWrap: "balance" }}>{customers.heading}</p>
           <div style={{ flex: "0 1 74%", minWidth: 280 }}>
             <CustomerMarquee customers={customers.names} />
           </div>
