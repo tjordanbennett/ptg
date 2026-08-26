@@ -34,7 +34,7 @@ const STATES = [
 ];
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13.5, fontWeight: 700, letterSpacing: ".01em", color: "#021F43", marginBottom: 7 };
-const fieldStyle: React.CSSProperties = { width: "100%", fontFamily: "inherit", fontSize: 15.5, color: "#021F43", background: "#FFFFFF", border: "1.5px solid #E5E7EB", borderRadius: 3, padding: "13px 14px" };
+const fieldStyle: React.CSSProperties = { width: "100%", fontFamily: "inherit", fontSize: 15.5, color: "#021F43", background: "#FFFFFF", border: "1.5px solid #E5E7EB", borderRadius: 6, padding: "13px 14px" };
 const errStyle: React.CSSProperties = { margin: "6px 0 0", fontSize: 13, fontWeight: 600, color: "#B42318" };
 
 type Errors = Record<string, string>;
@@ -75,7 +75,7 @@ export function ContactForm() {
     <form ref={formRef} noValidate onSubmit={onSubmit} aria-describedby="form-status" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div aria-live="polite" id="form-status">
         {sent ? (
-          <p role="status" style={{ margin: 0, padding: "14px 16px", background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 3, fontSize: 14.5, fontWeight: 600, color: "#166534" }}>
+          <p role="status" style={{ margin: 0, padding: "14px 16px", background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 6, fontSize: 14.5, fontWeight: 600, color: "#166534" }}>
             Thanks — we&apos;ll be in touch. (This preview build doesn&apos;t transmit the form; connect it to PTG&apos;s CRM before launch.)
           </p>
         ) : null}

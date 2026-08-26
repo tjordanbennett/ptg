@@ -84,8 +84,8 @@ export function StatsTicker({ items }: { items: StatItem[] }) {
         const text = p.target === null ? stat.figure : `${vals[i]}${p.suffix}`;
         return (
           <div key={stat.label} style={{ padding: "clamp(26px,3vw,38px) clamp(14px,2vw,26px) clamp(26px,3vw,38px) 0" }}>
-            <p style={{ margin: "0 0 6px", fontSize: "clamp(46px,5.6vw,92px)", fontWeight: 800, lineHeight: 0.92, letterSpacing: "-0.045em", color: TINT[stat.tint], fontVariantNumeric: "tabular-nums" }}>{text}</p>
-            <p style={{ margin: 0, fontSize: "clamp(14px,1.15vw,16px)", fontWeight: 600, lineHeight: 1.4, color: "#C9D8E8", maxWidth: "20ch", textWrap: "balance" }}>{stat.label}</p>
+            <p style={{ margin: "0 0 6px", fontSize: "clamp(38px,4.6vw,68px)", fontWeight: 800, lineHeight: 0.92, letterSpacing: "-0.045em", color: TINT[stat.tint], fontVariantNumeric: "tabular-nums" }}>{text}</p>
+            <p style={{ margin: 0, fontSize: "clamp(15px,1.15vw,16.5px)", fontWeight: 600, lineHeight: 1.4, color: "#C9D8E8", maxWidth: "20ch", textWrap: "balance" }}>{stat.label}</p>
           </div>
         );
       })}

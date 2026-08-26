@@ -72,10 +72,12 @@ export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customer
         <div style={{ position: "absolute", inset: "auto 0 0 0", height: 160, background: "linear-gradient(to bottom, transparent, rgba(2,31,67,.9) 78%, #021F43 100%)" }} />
       </div>
 
-      {/* Content — pinned lower-left, sc-pitch style */}
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)", minHeight: "calc(100svh - 62px)", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-        <div style={{ maxWidth: 700, paddingBottom: "clamp(48px,6vw,72px)", paddingTop: "clamp(120px,18vh,220px)" }}>
-          <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(40px,5.6vw,80px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.028em" }}>
+      {/* Content — centred on the left. `minHeight` is the viewport less the
+          62px header, so `center` centres against what's actually visible; the
+          symmetric padding is only a floor for short viewports. */}
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)", minHeight: "calc(100svh - 62px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ maxWidth: 700, paddingTop: "clamp(40px,6vh,72px)", paddingBottom: "clamp(40px,6vh,72px)" }}>
+          <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(36px,4.4vw,64px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.028em" }}>
             {lines.map((line, i) => {
               const r = rv(0.15 + i * 0.1, 36);
               return (

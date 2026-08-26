@@ -52,7 +52,15 @@ export default function RootLayout({
             __html:
               "(function(){var d=document.documentElement;d.classList.add('js');" +
               "setTimeout(function(){if(!d.hasAttribute('data-hydrated'))" +
-              "d.classList.remove('js');},2500);})();",
+              "d.classList.remove('js');},2500);})();" +
+              // Announcement bar: hide it before first paint if this visitor has
+              // already dismissed THIS id, so it never paints and then vanishes.
+              // Keyed by id, so a new announcement shows again. localStorage can
+              // throw (private mode, blocked site data) — failing just means the
+              // bar shows, which is the safe direction.
+              "(function(){try{var v=localStorage.getItem('ptg-ann-dismissed');" +
+              "if(v)document.documentElement.setAttribute('data-ann-dismissed',v);}" +
+              "catch(e){}})();",
           }}
         />
       </head>

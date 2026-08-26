@@ -41,7 +41,7 @@ const SELECT: React.CSSProperties = {
   color: "#021F43",
   background: "#F5F7F9",
   border: "1.5px solid #94A3B8",
-  borderRadius: 3,
+  borderRadius: 6,
   padding: "15px 14px",
   cursor: "pointer",
 };
@@ -95,7 +95,7 @@ export function ContractFinder({
   const noResults = ready && results.length === 0;
 
   return (
-    <div style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderTop: "4px solid #0034A0", borderRadius: 3, overflow: "hidden" }}>
+    <div style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderTop: "4px solid #0034A0", borderRadius: 6, overflow: "hidden" }}>
       <div style={{ padding: "clamp(24px,3vw,38px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%),1fr))", gap: "clamp(18px,2.4vw,30px)", alignItems: "end", borderBottom: "1px solid #E5E7EB" }}>
         <div>
           <label htmlFor="orgType" style={LABEL}>Organization type</label>
@@ -116,7 +116,7 @@ export function ContractFinder({
           </select>
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          <button type="button" onClick={() => { setOrgType(""); setStateVal(""); }} className="hov-reset" style={{ fontFamily: "inherit", fontSize: 14.5, fontWeight: 700, background: "none", borderRadius: 3, padding: "15px 22px", cursor: "pointer" }}>Reset</button>
+          <button type="button" onClick={() => { setOrgType(""); setStateVal(""); }} className="hov-reset" style={{ fontFamily: "inherit", fontSize: 14.5, fontWeight: 700, background: "none", borderRadius: 6, padding: "15px 22px", cursor: "pointer" }}>Reset</button>
         </div>
       </div>
 
@@ -127,15 +127,15 @@ export function ContractFinder({
             {results.length > 0 ? (
               <ul style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                 {results.map((r) => (
-                  <li key={r.name} style={{ border: "1px solid #E5E7EB", borderLeft: `4px solid ${r.edge}`, borderRadius: 3, padding: "clamp(20px,2.2vw,26px)", background: r.bg }}>
+                  <li key={r.name} style={{ border: "1px solid #E5E7EB", borderLeft: `4px solid ${r.edge}`, borderRadius: 6, padding: "clamp(20px,2.2vw,26px)", background: r.bg }}>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: "12px 20px", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "baseline" }}>
-                        <h3 style={{ margin: 0, fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, letterSpacing: "-0.02em" }}>{r.name}</h3>
-                        <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".11em", textTransform: "uppercase", color: "#FFFFFF", background: r.edge, padding: "5px 10px", borderRadius: 2 }}>{r.badge}</span>
+                        <h3 style={{ margin: 0, fontSize: "clamp(18px,1.65vw,23px)", fontWeight: 800, letterSpacing: "-0.02em" }}>{r.name}</h3>
+                        <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".11em", textTransform: "uppercase", color: "#FFFFFF", background: r.edge, padding: "5px 10px", borderRadius: 4 }}>{r.badge}</span>
                       </div>
                       <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 14, fontWeight: 400, color: "#021F43" }}>{r.number}</span>
                     </div>
-                    <p style={{ margin: "0 0 16px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", maxWidth: "76ch", textWrap: "balance" }}>{r.why}</p>
+                    <p style={{ margin: "0 0 16px", fontSize: 16.5, lineHeight: 1.6, color: "#334155", maxWidth: "76ch", textWrap: "balance" }}>{r.why}</p>
                     <Link href={r.anchor} className="hov-link" style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 14.5, fontWeight: 700 }}>
                       Ordering steps &amp; scope
                       <span aria-hidden="true" style={{ width: 6, height: 6, borderTop: "2px solid currentColor", borderRight: "2px solid currentColor", transform: "rotate(45deg)", display: "block" }} />
@@ -148,9 +148,9 @@ export function ContractFinder({
         ) : null}
 
         {noResults ? (
-          <div style={{ border: "1px dashed #94A3B8", borderRadius: 3, padding: "clamp(24px,3vw,34px)", background: "#F5F7F9" }}>
+          <div style={{ border: "1px dashed #94A3B8", borderRadius: 6, padding: "clamp(24px,3vw,34px)", background: "#F5F7F9" }}>
             <p style={{ margin: "0 0 10px", fontSize: 17, fontWeight: 800, color: "#021F43" }}>{finder.noMatch.title}</p>
-            <p style={{ margin: "0 0 20px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", maxWidth: "62ch", textWrap: "balance" }}>{finder.noMatch.body}</p>
+            <p style={{ margin: "0 0 20px", fontSize: 16.5, lineHeight: 1.6, color: "#334155", maxWidth: "62ch", textWrap: "balance" }}>{finder.noMatch.body}</p>
             <Link href={finder.noMatch.cta.href} className="hov-cta-navy cta" style={{ display: "inline-block" }}>{finder.noMatch.cta.label}</Link>
           </div>
         ) : null}

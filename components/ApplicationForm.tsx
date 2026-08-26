@@ -36,7 +36,7 @@ const ACCEPT_MIME = [
 const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13.5, fontWeight: 700, letterSpacing: ".01em", color: "#021F43", marginBottom: 7 };
-const fieldStyle: React.CSSProperties = { width: "100%", fontFamily: "inherit", fontSize: 15.5, color: "#021F43", background: "#FFFFFF", border: "1.5px solid #E5E7EB", borderRadius: 3, padding: "13px 14px" };
+const fieldStyle: React.CSSProperties = { width: "100%", fontFamily: "inherit", fontSize: 15.5, color: "#021F43", background: "#FFFFFF", border: "1.5px solid #E5E7EB", borderRadius: 6, padding: "13px 14px" };
 const errStyle: React.CSSProperties = { margin: "6px 0 0", fontSize: 13, fontWeight: 600, color: "#B42318" };
 const req = <span aria-hidden="true" style={{ color: "#EB4900" }}>*</span>;
 
@@ -100,12 +100,12 @@ export function ApplicationForm() {
 
   if (sent) {
     return (
-      <div aria-live="polite" style={{ border: "1px solid #BBF7D0", background: "#F0FDF4", borderRadius: 4, padding: "clamp(26px,3vw,38px)" }}>
+      <div aria-live="polite" style={{ border: "1px solid #BBF7D0", background: "#F0FDF4", borderRadius: 8, padding: "clamp(26px,3vw,38px)" }}>
         <div aria-hidden="true" style={{ width: 40, height: 40, marginBottom: 18, background: "#B4FF00", transform: "rotate(45deg)" }} />
-        <p role="status" style={{ margin: "0 0 10px", fontSize: "clamp(19px,2vw,24px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>
+        <p role="status" style={{ margin: "0 0 10px", fontSize: "clamp(18px,1.8vw,22px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>
           Thanks — your application is in.
         </p>
-        <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#166534", maxWidth: "60ch" }}>
+        <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.6, color: "#166534", maxWidth: "60ch" }}>
           We read every one and we&apos;ll be in touch when there&apos;s a fit.{" "}
           <span data-unverified="" style={{ color: "#3F6B4A" }}>
             (This preview build doesn&apos;t transmit files — connect the form to PTG&apos;s applicant inbox before launch.)
@@ -172,7 +172,7 @@ export function ApplicationForm() {
         <label
           htmlFor="resume"
           className="hov-dropzone"
-          style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", border: `1.5px dashed ${errors.resume ? "#B42318" : "#94A3B8"}`, borderRadius: 3, background: "#F5F7F9", padding: "16px 18px", cursor: "pointer" }}
+          style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", border: `1.5px dashed ${errors.resume ? "#B42318" : "#94A3B8"}`, borderRadius: 6, background: "#F5F7F9", padding: "16px 18px", cursor: "pointer" }}
         >
           <span className="hov-cta-navy cta-sm" style={{ display: "inline-block", flex: "0 0 auto" }}>Choose file</span>
           <span style={{ fontSize: 14.5, color: fileName ? "#021F43" : "#64748B", fontWeight: fileName ? 700 : 500, wordBreak: "break-all" }}>

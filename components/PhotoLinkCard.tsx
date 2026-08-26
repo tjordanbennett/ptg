@@ -42,18 +42,18 @@ export function PhotoLinkCard({
   kickerColor?: string;
 }) {
   return (
-    <Link href={href} className="hov-pathphoto hov-move" style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "flex-end", aspectRatio: ratio, padding: "clamp(28px,3vw,40px)", borderRadius: 3, overflow: "hidden", color: "#FFFFFF" }}>
+    <Link href={href} className="hov-pathphoto hov-move" style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "flex-end", aspectRatio: ratio, padding: "clamp(28px,3vw,40px)", borderRadius: 6, overflow: "hidden", color: "#FFFFFF" }}>
       <Image src={image.src} alt={image.alt} fill sizes="(min-width:1040px) 50vw, 100vw" style={{ objectFit: "cover" }} />
       {/* Progressive backdrop blur — masked so it fades in toward the bottom, under the colour gradient */}
       <div aria-hidden="true" style={{ position: "absolute", inset: "auto 0 0 0", height: "62%", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", WebkitMaskImage: "linear-gradient(to top, #000 0%, #000 45%, transparent 100%)", maskImage: "linear-gradient(to top, #000 0%, #000 45%, transparent 100%)" }} />
       <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(2,31,67,.92) 0%, rgba(2,31,67,.55) 42%, rgba(2,31,67,.12) 68%, transparent 100%)" }} />
       <div style={{ position: "relative" }}>
         <p style={{ margin: "0 0 14px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: kickerColor }}>{kicker}</p>
-        <p style={{ margin: body || ctaLabel ? "0 0 12px" : 0, display: "inline-flex", alignItems: "center", gap: 10, fontSize: "clamp(23px,2.2vw,31px)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
+        <p style={{ margin: body || ctaLabel ? "0 0 12px" : 0, display: "inline-flex", alignItems: "center", gap: 10, fontSize: "clamp(19.5px,1.75vw,25px)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em" }}>
           {title}
           {!ctaLabel ? <Arrow /> : null}
         </p>
-        {body ? <p style={{ margin: "0 0 20px", fontSize: 16, lineHeight: 1.6, color: "rgba(255,255,255,.85)", maxWidth: "44ch", textWrap: "balance" }}>{body}</p> : null}
+        {body ? <p style={{ margin: "0 0 20px", fontSize: 17, lineHeight: 1.6, color: "rgba(255,255,255,.85)", maxWidth: "44ch", textWrap: "balance" }}>{body}</p> : null}
         {ctaLabel ? <span style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 15, fontWeight: 700 }}>{ctaLabel} <Arrow /></span> : null}
       </div>
     </Link>

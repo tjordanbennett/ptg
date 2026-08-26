@@ -10,6 +10,29 @@ export const site: SiteSettings = {
   name: "PTG",
   legalName: "Precision Task Group, Inc.",
   tagline: "Realize Value. Faster.",
+
+  /**
+   * ⚠ UNVERIFIED — logged in _handoff/FOR-RIDGE.md.
+   *
+   * The event itself is confirmed from rising.workday.com: Workday Rising,
+   * Las Vegas, Nevada, October 12–15 2026. What is NOT confirmed is that PTG
+   * is attending or exhibiting, which is what this line asserts. It renders
+   * with `data-unverified` until PTG says yes. Do not ship without that.
+   *
+   * `linkHref` is deliberately absent: there's no Workday Rising page yet, so
+   * "Workday Rising" renders as emphasised text rather than a dead anchor. Add
+   * the href here and it becomes a real link — no other change needed.
+   *
+   * Bump `id` whenever the copy changes, or anyone who dismissed the previous
+   * message will never see the new one.
+   */
+  announcement: {
+    id: "workday-rising-2026",
+    before: "PTG will be at ",
+    linkText: "Workday Rising",
+    after: " — Las Vegas, October 12–15, 2026.",
+    unverified: true,
+  },
   nav: [
     {
       label: "Services",

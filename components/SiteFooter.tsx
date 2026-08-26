@@ -27,7 +27,7 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
             <ul style={{ display: "flex", gap: 8, marginTop: 20 }}>
               {f.social.map((s) => (
                 <li key={s.abbr}>
-                  <a href={s.href} aria-label={s.label} className="hov-social" style={{ display: "grid", placeItems: "center", width: 38, height: 38, borderRadius: 2, fontSize: 12, fontWeight: 700 }}>
+                  <a href={s.href} aria-label={s.label} className="hov-social" style={{ display: "grid", placeItems: "center", width: 38, height: 38, borderRadius: 4, fontSize: 12, fontWeight: 700 }}>
                     {s.abbr}
                   </a>
                 </li>
@@ -53,7 +53,28 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
         </div>
 
         <div style={{ borderTop: "1px solid rgba(201,216,232,.18)", padding: "26px 0 34px", display: "flex", flexWrap: "wrap", gap: "16px 32px", alignItems: "center", justifyContent: "space-between" }}>
-          <p style={{ margin: 0, fontSize: 13, letterSpacing: ".02em" }}>{f.copyright}</p>
+          {/*
+            Copyright and the builder credit are grouped as ONE flex child on
+            the left. The bar is space-between, so a third top-level child
+            would push the legal links to the middle and read as a mistake.
+
+            The credit is deliberately absent from public/_design/*.html: those
+            files are the client-approved design spec, and this is a RidgeX
+            addition to it, not part of what PTG signed off on. The divergence
+            is intentional — do not "fix" it by editing the spec.
+          */}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "6px 22px" }}>
+            <p style={{ margin: 0, fontSize: 13, letterSpacing: ".02em" }}>{f.copyright}</p>
+            <a
+              href="https://www.ridgexventures.com"
+              target="_blank"
+              rel="noopener"
+              className="credit-link"
+              style={{ fontSize: 13, letterSpacing: ".02em" }}
+            >
+              Site Built by RidgeX
+            </a>
+          </div>
           <ul style={{ display: "flex", flexWrap: "wrap", gap: 22 }}>
             {f.legalLinks.map((l) => (
               <li key={l.label}>

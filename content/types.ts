@@ -33,6 +33,8 @@ export interface SiteSettings {
   name: string;
   legalName: string;
   tagline: string;
+  /** Dismissible strip above the header. Omit entirely to ship no banner. */
+  announcement?: Announcement;
   nav: NavItem[];
   headerCta: NavLink;
   footer: {
@@ -43,6 +45,32 @@ export interface SiteSettings {
     /** bottom copyright + credential line */
     copyright: string;
   };
+}
+
+/**
+ * Announcement banner content.
+ *
+ * `id` is the dismissal key: a visitor who closes the banner never sees THAT id
+ * again, so changing the copy without changing the id would silently hide the
+ * new message from everyone who dismissed the old one. Bump the id whenever the
+ * message changes.
+ *
+ * `linkHref` is optional on purpose. With no href the `linkText` renders as
+ * emphasised text rather than an anchor — a link that goes nowhere is worse
+ * than no link, especially for keyboard and screen-reader users. Set the href
+ * once the destination page exists and it becomes a real link, no other change.
+ */
+export interface Announcement {
+  id: string;
+  /** Text before the highlighted phrase. */
+  before: string;
+  /** The highlighted phrase — becomes a link once `linkHref` is set. */
+  linkText: string;
+  linkHref?: string;
+  /** Text after the highlighted phrase. */
+  after: string;
+  /** Renders with data-unverified until PTG confirms the claim. */
+  unverified?: boolean;
 }
 
 export interface ImageRef {

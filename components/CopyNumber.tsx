@@ -28,7 +28,7 @@ export function CopyNumber({ value }: { value: string }) {
       onClick={onCopy}
       title="Copy contract number"
       className="hov-copybtn"
-      style={{ display: "flex", alignItems: "center", gap: 11, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 15, fontWeight: 400, borderRadius: 3, padding: "13px 16px", cursor: "pointer" }}
+      style={{ display: "flex", alignItems: "center", gap: 11, fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 15, fontWeight: 400, borderRadius: 6, padding: "13px 16px", cursor: "pointer" }}
     >
       {value}
       <span aria-live="polite" style={{ fontFamily: "var(--font-montserrat), sans-serif", fontSize: 10.5, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: copied ? "#B4FF00" : "#80CEFF" }}>

@@ -40,7 +40,7 @@ export default async function ContactPage() {
               </ol>
             </nav>
             <EyebrowBar label="Connect with us" dark mb={18} />
-            <h1 id="hero-h" style={{ margin: "0 0 22px", fontSize: "clamp(38px,5vw,72px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.03em" }}>Let&apos;s talk.</h1>
+            <h1 id="hero-h" style={{ margin: "0 0 22px", fontSize: "clamp(33px,4.1vw,58px)", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-0.03em" }}>Let&apos;s talk.</h1>
             <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "balance" }}>
               Tell us about your organization and what you&apos;re trying to accomplish. We&apos;ll point you to the right person — and if a cooperative contract makes the path easier, we&apos;ll tell you which one applies.
             </p>
@@ -52,12 +52,12 @@ export default async function ContactPage() {
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,6vw,88px) clamp(20px,4vw,48px)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(34px,4.5vw,72px)", alignItems: "start" }}>
               <Reveal as="div" style={{ order: 0 }}>
-                <h2 style={{ margin: "0 0 24px", fontSize: "clamp(22px,2.2vw,30px)", fontWeight: 800, letterSpacing: "-0.022em" }}>Send us a message</h2>
+                <h2 style={{ margin: "0 0 24px", fontSize: "clamp(20px,2vw,27px)", fontWeight: 800, letterSpacing: "-0.022em" }}>Send us a message</h2>
                 <ContactForm />
               </Reveal>
 
               <Reveal as="div" delay={0.08} style={{ display: "flex", flexDirection: "column", gap: "clamp(24px,3vw,36px)" }}>
-                <div style={{ background: "#021F43", color: "#FFFFFF", borderRadius: 4, padding: "clamp(26px,3vw,36px)", position: "relative", overflow: "hidden" }}>
+                <div style={{ background: "#021F43", color: "#FFFFFF", borderRadius: 8, padding: "clamp(26px,3vw,36px)", position: "relative", overflow: "hidden" }}>
                   <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 3, background: HAIRLINE }} />
                   <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#80CEFF" }}>Precision Task Group</p>
                   <address style={{ fontStyle: "normal", fontSize: 16, lineHeight: 1.7, color: "#DDE6F0" }}>

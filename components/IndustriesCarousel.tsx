@@ -110,7 +110,7 @@ export function IndustriesCarousel({ cards }: { cards: HomePage["industries"]["c
               scrollSnapAlign: "start",
               background: "#FFFFFF",
               border: "1px solid #E5E7EB",
-              borderRadius: 3,
+              borderRadius: 6,
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
@@ -120,8 +120,8 @@ export function IndustriesCarousel({ cards }: { cards: HomePage["industries"]["c
               <Image src={ind.image.src} alt={ind.image.alt} fill sizes="(min-width:640px) 380px, 78vw" style={{ objectFit: "cover" }} />
             </div>
             <div style={{ padding: "clamp(22px,2.4vw,30px)", display: "flex", flexDirection: "column", flex: "1 1 auto" }}>
-              <h3 style={{ margin: "0 0 10px", fontSize: "clamp(19px,1.7vw,23px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.018em" }}>{ind.name}</h3>
-              <p style={{ margin: "0 0 18px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{ind.hook}</p>
+              <h3 style={{ margin: "0 0 10px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.018em" }}>{ind.name}</h3>
+              <p style={{ margin: "0 0 18px", fontSize: 16.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{ind.hook}</p>
               <ul style={{ display: "flex", flexDirection: "column", gap: 9, margin: "0 0 22px" }}>
                 {ind.outcomes.map((o) => (
                   <li key={o} style={{ display: "flex", gap: 11, alignItems: "flex-start", fontSize: 14.5, fontWeight: 600, lineHeight: 1.45, color: "#021F43" }}>
@@ -143,7 +143,7 @@ export function IndustriesCarousel({ cards }: { cards: HomePage["industries"]["c
           disabled={!canPrev}
           onClick={() => page(-1)}
           className="hov-carouselbtn"
-          style={{ width: 46, height: 46, display: "flex", alignItems: "center", justifyContent: "center", background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, cursor: canPrev ? "pointer" : "default", color: "#021F43", opacity: canPrev ? 1 : 0.35 }}
+          style={{ width: 46, height: 46, display: "flex", alignItems: "center", justifyContent: "center", background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, cursor: canPrev ? "pointer" : "default", color: "#021F43", opacity: canPrev ? 1 : 0.35 }}
         >
           <Chevron dir={-1} />
         </button>
@@ -153,7 +153,7 @@ export function IndustriesCarousel({ cards }: { cards: HomePage["industries"]["c
           disabled={!canNext}
           onClick={() => page(1)}
           className="hov-carouselbtn"
-          style={{ width: 46, height: 46, display: "flex", alignItems: "center", justifyContent: "center", background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, cursor: canNext ? "pointer" : "default", color: "#021F43", opacity: canNext ? 1 : 0.35 }}
+          style={{ width: 46, height: 46, display: "flex", alignItems: "center", justifyContent: "center", background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, cursor: canNext ? "pointer" : "default", color: "#021F43", opacity: canNext ? 1 : 0.35 }}
         >
           <Chevron dir={1} />
         </button>

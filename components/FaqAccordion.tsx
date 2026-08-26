@@ -7,7 +7,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
   const [open, setOpen] = useState(0);
 
   return (
-    <ul style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", border: "1px solid #E5E7EB", borderRadius: 3, overflow: "hidden" }}>
+    <ul style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", border: "1px solid #E5E7EB", borderRadius: 6, overflow: "hidden" }}>
       {items.map((f, i) => {
         const isOpen = open === i;
         return (

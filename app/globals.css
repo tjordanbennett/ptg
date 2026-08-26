@@ -235,6 +235,87 @@
      and works with JS off. The signature Vivid Leaf accent shows up sparingly
      on the delivery-journey cards. */
 
+
+  /* ── Announcement bar ─────────────────────────────────────────────────
+     Visible by default so it survives with JS off. The pre-paint script in
+     app/layout.tsx stamps data-ann-dismissed on <html> when this visitor has
+     already closed THIS announcement id, and the rule below removes it before
+     the first frame — no paint-then-vanish flash. */
+  .ptg-announcement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+    background: #021f43;
+    color: #ffffff;
+    border-bottom: 2px solid #eb4900;
+    padding: 11px clamp(54px, 6vw, 68px);
+    text-align: center;
+  }
+  /* The id-specific hide rule is rendered by the component itself — see
+     components/AnnouncementBar.tsx. A generic rule here would hide a NEW
+     announcement from anyone who dismissed the previous one. */
+  .ptg-announcement[hidden] {
+    display: none;
+  }
+
+  .ptg-announcement-msg {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    color: #dde6f0;
+    text-wrap: balance;
+  }
+
+  .ptg-announcement-link,
+  .ptg-announcement-strong {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: #eb4900;
+  }
+  .ptg-announcement-link:hover {
+    color: #80ceff;
+    text-decoration-color: #80ceff;
+  }
+
+  .ptg-announcement-close {
+    position: absolute;
+    right: clamp(10px, 2vw, 20px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: #c9d8e8;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .ptg-announcement-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+
+  /* ── Corner radius scale (2026-08-26) ────────────────────────────────
+     Three tiers, kept distinct, nudged up from the near-square originals:
+       4px  chips, tags, small pills, social icons      (was 2)
+       6px  cards, panels, buttons, form fields         (was 3)
+       8px  large feature panels, empty states          (was 4)
+     Only the two button radii live here; the rest are inline at the call
+     sites, matching how the rest of this design system is expressed. Deliberately
+     restrained — the section wedges and chevrons are the sharp part of the
+     language, and rounding much further would fight them. */
+
   /* ── Button sizing (one scale, defined once) ──────────────────────────
      Colour + hover live in the .hov-cta-* classes; these three set SIZE.
      Padding/size used to be repeated inline at every call site, which let
@@ -245,14 +326,14 @@
     font-size: 15px;
     font-weight: 700;
     padding: 13px 28px;
-    border-radius: 3px;
+    border-radius: 6px;
   }
   /* Compact — header, dense contexts. */
   .cta-sm {
     font-size: 14px;
     font-weight: 700;
     padding: 10px 20px;
-    border-radius: 3px;
+    border-radius: 6px;
   }
   /* Text-style secondary (underline links) — no box, matched vertical rhythm. */
   .cta-text {
@@ -673,5 +754,117 @@
   .ptg-drawer,
   .ptg-scrim {
     display: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Builder credit hover — added 2026-08-26. ONE link uses this.
+
+   The same treatment as the credits on investcalhoun.org and
+   jetskihawaii.com. Ported from the RidgeX site's own `.cta-link`.
+
+   The sequence runs forwards in, backwards out:
+     IN   rule wipes left -> right (220ms), THEN the arrow arrives (120ms)
+     OUT  arrow leaves (120ms), THEN the rule retracts right -> left (220ms)
+   Both directions total 340ms, so it reads as one gesture played in
+   reverse rather than two different animations.
+
+   The mechanism: a transition-delay declared on the BASE rule governs
+   the EXIT, one declared on :hover governs the ENTRANCE. Each element
+   carries both — the rule leads going in and waits going out, the arrow
+   does the opposite. `transform-origin: left` gives the right-to-left
+   retraction for free, since scaling 1 -> 0 walks the right edge back
+   toward the fixed left one.
+
+   A native text-decoration cannot be animated directionally, which is
+   why the rule is drawn as a pseudo-element.
+
+   HOVER COLOUR IS PTG'S OWN ORANGE (#EB4900), not the ochre used on the
+   other two sites. It is warm, so the credit still reads as the same
+   mark, and it is already a PTG token (.hov-link:hover, .hov-social
+   hover ground) so it belongs in this footer rather than importing a
+   vendor colour into a cool blue palette.
+
+   Measured 4.68:1 on the footer ground #011733 — over the 4.5:1 that
+   13px text needs, but by only 0.18, and this is a NEW pairing (the
+   existing #EB4900 uses sit on light grounds). If PTG ever nudges that
+   hex, re-measure. #80CEFF is the safe fallback at 10.40:1.
+   Contrast pairs computed 2026-08-26, not eyeballed.
+   --------------------------------------------------------------- */
+.credit-link {
+  --credit-dur: 220ms;
+  --credit-arrow-dur: 120ms;
+  --credit-ease: cubic-bezier(0.33, 0.9, 0.2, 1);
+
+  position: relative;
+  text-decoration: none;
+  padding-right: 13px;
+  color: #c9d8e8;
+  transition: color var(--credit-arrow-dur) var(--credit-ease);
+}
+
+.credit-link:hover,
+.credit-link:focus-visible {
+  color: #eb4900;
+}
+
+.credit-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 13px;
+  top: calc(50% + 0.62em);
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--credit-dur) var(--credit-ease);
+  /* Exit: hold until the arrow has cleared. */
+  transition-delay: var(--credit-arrow-dur);
+}
+
+.credit-link:hover::before,
+.credit-link:focus-visible::before {
+  transform: scaleX(1);
+  /* Entrance: the rule leads, so no wait. */
+  transition-delay: 0ms;
+}
+
+/* The 60-degree triangle, pointed right. */
+.credit-link::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  width: 5px;
+  height: 6px;
+  background: currentColor;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  opacity: 0;
+  transform: translate(-4px, -50%);
+  transition:
+    opacity var(--credit-arrow-dur) var(--credit-ease),
+    transform var(--credit-arrow-dur) var(--credit-ease);
+  /* Exit: the arrow leads, so no wait. */
+  transition-delay: 0ms;
+}
+
+.credit-link:hover::after,
+.credit-link:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+  /* Entrance: hold until the rule has finished drawing. */
+  transition-delay: var(--credit-dur);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credit-link::before,
+  .credit-link::after,
+  .credit-link:hover::before,
+  .credit-link:focus-visible::before,
+  .credit-link:hover::after,
+  .credit-link:focus-visible::after {
+    transition: none;
+    transition-delay: 0ms;
   }
 }

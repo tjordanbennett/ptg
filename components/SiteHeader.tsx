@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { NavItem, SiteSettings } from "@/content/types";
+import { AnnouncementBar } from "@/components/AnnouncementBar";
 
 /**
  * SiteHeader — sticky header matching public/_design/*.html exactly. Desktop
@@ -77,6 +78,10 @@ export function SiteHeader({
   }, []);
 
   return (
+    <>
+      {/* Above the sticky header and outside it, so it scrolls away while the
+          nav stays pinned — the behaviour Strada and Workday Rising both use. */}
+      {site.announcement ? <AnnouncementBar announcement={site.announcement} /> : null}
     <header
       style={
         {
@@ -122,7 +127,7 @@ export function SiteHeader({
             aria-controls="ptg-mobile-nav"
             aria-label="Menu"
             onClick={() => setMobileOpen((v) => !v)}
-            style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 5, background: "none", border: "1px solid #E5E7EB", borderRadius: 3, padding: "0 13px", minWidth: 46, minHeight: 44, cursor: "pointer" }}
+            style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 5, background: "none", border: "1px solid #E5E7EB", borderRadius: 6, padding: "0 13px", minWidth: 46, minHeight: 44, cursor: "pointer" }}
           >
             <span aria-hidden="true" style={{ display: "block", width: 20, height: 2, background: "#021F43" }} />
             <span aria-hidden="true" style={{ display: "block", width: 20, height: 2, background: "#021F43" }} />
@@ -156,6 +161,7 @@ export function SiteHeader({
         </>
       ) : null}
     </header>
+    </>
   );
 }
 
@@ -213,7 +219,7 @@ function DesktopItem({
               <ul style={{ display: "flex", flexDirection: "column", gap: 1 }}>
                 {group.items.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="hov-droplink" style={{ display: "block", padding: "8px 10px", marginLeft: -10, fontSize: 14.5, fontWeight: 600, borderRadius: 3, lineHeight: 1.35 }}>
+                    <Link href={link.href} className="hov-droplink" style={{ display: "block", padding: "8px 10px", marginLeft: -10, fontSize: 14.5, fontWeight: 600, borderRadius: 6, lineHeight: 1.35 }}>
                       {link.label}
                     </Link>
                   </li>

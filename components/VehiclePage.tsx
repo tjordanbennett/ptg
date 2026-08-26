@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { CopyNumber } from "@/components/CopyNumber";
 import { Reveal } from "@/components/Reveal";
 import { ParallaxStars } from "@/components/ParallaxStars";
-import { ClosingCTA } from "@/components/StandardPage";
+import { ClosingCTA } from "@/components/ClosingCTA";
 import { EyebrowBar } from "@/components/EyebrowBar";
 
 const STAR_BLUE =
@@ -42,7 +42,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
               </ol>
             </nav>
             <EyebrowBar label={v.eyebrow} dark mb={18} />
-            <h1 id="hero-h" style={{ margin: "0 0 26px", fontSize: "clamp(34px,4.6vw,62px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{v.name}</h1>
+            <h1 id="hero-h" style={{ margin: "0 0 26px", fontSize: "clamp(30px,3.8vw,52px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{v.name}</h1>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 22, alignItems: "center" }}>
               {v.contracts.map((c) => (
                 <div key={c.number} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -64,7 +64,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
                 ))}
               </Reveal>
               {v.metaRows ? (
-                <Reveal as="div" delay={0.06} style={{ border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(20px,2.2vw,26px)", background: "#F5F7F9" }}>
+                <Reveal as="div" delay={0.06} style={{ border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(20px,2.2vw,26px)", background: "#F5F7F9" }}>
                   <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 16 }}>
                     {!multi && v.contracts[0].term ? (
                       <div>
@@ -89,14 +89,14 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         {multi ? (
           <section style={{ background: "#F5F7F9", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
             <div style={WRAP}>
-              <Reveal as="h2" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(22px,2.4vw,32px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Two contracts, two scopes — cite the right one.</Reveal>
+              <Reveal as="h2" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Two contracts, two scopes — cite the right one.</Reveal>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(18px,2vw,26px)" }}>
                 {v.contracts.map((c, i) => (
-                  <Reveal as="article" key={c.number} delay={i * 0.06} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(24px,2.6vw,32px)" }}>
+                  <Reveal as="article" key={c.number} delay={i * 0.06} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(24px,2.6vw,32px)" }}>
                     <div aria-hidden="true" style={{ width: 34, height: 3, background: i === 0 ? "#0034A0" : "#EB4900", marginBottom: 18 }} />
                     <p style={{ margin: "0 0 10px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 15, fontWeight: 700, color: "#021F43" }}>{c.number}</p>
                     {c.term ? <p style={{ margin: "0 0 14px", fontSize: 13, color: "#94A3B8" }}>{c.term}</p> : null}
-                    {c.scope ? <p style={{ margin: "0 0 14px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.scope}</p> : null}
+                    {c.scope ? <p style={{ margin: "0 0 14px", fontSize: 16.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.scope}</p> : null}
                     {c.useFor ? (
                       <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.55, color: "#021F43" }}>
                         <span style={{ fontWeight: 800 }}>Use it for: </span>{c.useFor}
@@ -139,8 +139,8 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
               ) : null}
             </div>
             {v.scopeNote ? (
-              <Reveal as="div" style={{ marginTop: "clamp(28px,3vw,40px)", borderLeft: "4px solid #EB4900", background: "#FFFFFF", border: "1px solid #E5E7EB", borderLeftColor: "#EB4900", borderRadius: 3, padding: "clamp(18px,2.2vw,26px)" }}>
-                <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155" }}>
+              <Reveal as="div" style={{ marginTop: "clamp(28px,3vw,40px)", borderLeft: "4px solid #EB4900", background: "#FFFFFF", border: "1px solid #E5E7EB", borderLeftColor: "#EB4900", borderRadius: 6, padding: "clamp(18px,2.2vw,26px)" }}>
+                <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.6, color: "#334155" }}>
                   <span style={{ fontWeight: 800, color: "#021F43" }}>Scope note. </span>{v.scopeNote}
                 </p>
               </Reveal>
@@ -154,14 +154,14 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
           <div style={{ position: "relative", ...WRAP }}>
             <Reveal as="div" style={{ maxWidth: 620, marginBottom: "clamp(28px,3.4vw,44px)" }}>
               <EyebrowBar label="How to order" dark />
-              <h2 style={{ margin: 0, fontSize: "clamp(26px,3vw,42px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.026em", textWrap: "balance" }}>Straight to purchase order.</h2>
+              <h2 style={{ margin: 0, fontSize: "clamp(24px,2.6vw,36px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.026em", textWrap: "balance" }}>Straight to purchase order.</h2>
             </Reveal>
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(230px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {v.howToOrder.map((step, i) => (
-                <Reveal as="li" key={step} delay={i * 0.05} className="hov-step" style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", borderRadius: 3 }}>
+                <Reveal as="li" key={step} delay={i * 0.05} className="hov-step" style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", borderRadius: 6 }}>
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: ["#80CEFF", "#B4FF00", "#EB4900", "#FFFFFF"][i % 4], marginBottom: 20 }} />
                   <p style={{ margin: "0 0 12px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{`0${i + 1}`}</p>
-                  <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#FFFFFF", textWrap: "balance" }}>{step}</p>
+                  <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.6, color: "#FFFFFF", textWrap: "balance" }}>{step}</p>
                 </Reveal>
               ))}
             </ol>
@@ -172,10 +172,10 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         <section aria-labelledby="record-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
           <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: HAIRLINE }} />
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(44px,5vw,72px) clamp(20px,4vw,48px)" }}>
-            <Reveal as="div" style={{ border: "1px solid rgba(128,206,255,.28)", borderRadius: 4, padding: "clamp(26px,3.4vw,44px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px,100%),1fr))", gap: "clamp(20px,3vw,44px)", alignItems: "center", background: "rgba(0,52,160,.22)" }}>
+            <Reveal as="div" style={{ border: "1px solid rgba(128,206,255,.28)", borderRadius: 8, padding: "clamp(26px,3.4vw,44px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px,100%),1fr))", gap: "clamp(20px,3vw,44px)", alignItems: "center", background: "rgba(0,52,160,.22)" }}>
               <div>
                 <p id="record-h" style={{ margin: "0 0 10px", fontSize: 12, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: "#80CEFF" }}>Verify at the source</p>
-                <p style={{ margin: 0, fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, lineHeight: 1.25, letterSpacing: "-0.018em", maxWidth: "26ch", textWrap: "balance" }}>Every term on this page is on the issuing authority&apos;s official record.</p>
+                <p style={{ margin: 0, fontSize: "clamp(18px,1.65vw,23px)", fontWeight: 800, lineHeight: 1.25, letterSpacing: "-0.018em", maxWidth: "26ch", textWrap: "balance" }}>Every term on this page is on the issuing authority&apos;s official record.</p>
               </div>
               <div style={{ justifySelf: "start" }}>
                 {/* External authority record: opens in a new tab so a buyer
@@ -200,11 +200,11 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         {/* ══ OTHER VEHICLES ══ */}
         <section aria-labelledby="others-h" style={{ background: "#F5F7F9", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
           <div style={WRAP}>
-            <Reveal as="h2" id="others-h" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(22px,2.4vw,32px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Other contract vehicles</Reveal>
+            <Reveal as="h2" id="others-h" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Other contract vehicles</Reveal>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%),1fr))", gap: "clamp(14px,1.6vw,20px)" }}>
               {others.map((o, i) => (
                 <Reveal as="div" key={o.slug} delay={i * 0.04}>
-                  <Link href={`/procurement-contracts/${o.slug}`} className="hov-card hov-move" style={{ display: "flex", flexDirection: "column", gap: 8, background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(20px,2.2vw,26px)", height: "100%" }}>
+                  <Link href={`/procurement-contracts/${o.slug}`} className="hov-card hov-move" style={{ display: "flex", flexDirection: "column", gap: 8, background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(20px,2.2vw,26px)", height: "100%" }}>
                     <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", color: "#94A3B8" }}>{o.eyebrow}</span>
                     <span style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, letterSpacing: "-0.018em", color: "#021F43" }}>
                       {o.name}
@@ -218,6 +218,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         </section>
 
         <ClosingCTA
+          from="#F5F7F9"
           eyebrow="Procurement & contracts"
           heading="Not sure this is the right vehicle?"
           body="Tell us your organization type and state and we'll confirm which contract applies — or tell you if none does."

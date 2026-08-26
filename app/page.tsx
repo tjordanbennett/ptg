@@ -1,15 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
 import { getHomePage, getSiteSettings } from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StatsTicker } from "@/components/StatsTicker";
 import { Reveal } from "@/components/Reveal";
-import { ParallaxStars } from "@/components/ParallaxStars";
 import { HomeHero } from "@/components/HomeHero";
 import { IndustriesCarousel } from "@/components/IndustriesCarousel";
 import { EyebrowBar } from "@/components/EyebrowBar";
 import { PhotoLinkCard } from "@/components/PhotoLinkCard";
+import { SectionWedge, WEDGE_H } from "@/components/SectionWedge";
+import { ClosingCTA } from "@/components/ClosingCTA";
+import { AngleField } from "@/components/AngleField";
 
 /** Matches public/_design/homepage.html. Section order, type scale, spacing and
  *  colour placement extracted verbatim from that file (the approved spec). */
@@ -19,8 +20,12 @@ const WRAP: React.CSSProperties = {
   margin: "0 auto",
   padding: "clamp(64px,7vw,104px) clamp(20px,4vw,48px)",
 };
-const JOURNEY_STAR =
-  "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E')";
+// Colour fields the homepage cuts between, so the wedges above and below a band
+// always name the same value the band itself uses.
+const NAVY = "#021F43";
+const BLUE = "#0034A0";
+const WHITE = "#FFFFFF";
+const OFFWHITE = "#F5F7F9";
 
 // Outer .lnk-arrow carries the hover slide (see globals.css); inner square holds
 // the rotation, so the two transforms compose instead of overwriting.
@@ -45,8 +50,12 @@ export default async function HomePage() {
         {/* ══ HERO ══ */}
         <HomeHero hero={h.hero} customers={h.customers} />
 
+        {/* Flat, not angled: the hero ends in the horizontal customer logo strip,
+            and a diagonal here sliced through it instead of closing it off. */}
+        <SectionWedge from={NAVY} to={WHITE} slant="flat" />
+
         {/* ══ TWO PATHS ══ */}
-        <section aria-labelledby="paths-h" style={{ background: "#FFFFFF", borderBottom: "1px solid #E5E7EB" }}>
+        <section aria-labelledby="paths-h" style={{ background: "#FFFFFF" }}>
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(48px,5vw,76px) clamp(20px,4vw,48px)" }}>
             <h2 id="paths-h" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>Where would you like to start?</h2>
             <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
@@ -54,10 +63,10 @@ export default async function HomePage() {
                 p.image ? (
                   <PhotoLinkCard key={p.heading} href={p.cta.href} image={p.image} kicker={p.eyebrow} title={p.heading} body={p.body} ctaLabel={p.cta.label} />
                 ) : (
-                  <Link key={p.heading} href={p.cta.href} className="hov-pathcard hov-move" style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", aspectRatio: "1 / 1", padding: "clamp(28px,3vw,40px)", borderRadius: 3 }}>
+                  <Link key={p.heading} href={p.cta.href} className="hov-pathcard hov-move" style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", aspectRatio: "1 / 1", padding: "clamp(28px,3vw,40px)", borderRadius: 6 }}>
                     <p style={{ margin: "0 0 14px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: "#EB4900" }}>{p.eyebrow}</p>
-                    <p style={{ margin: "0 0 12px", fontSize: "clamp(23px,2.2vw,31px)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: "inherit" }}>{p.heading}</p>
-                    <p style={{ margin: "0 0 20px", fontSize: 16, lineHeight: 1.6, color: "inherit", opacity: 0.82, maxWidth: "44ch", textWrap: "balance" }}>{p.body}</p>
+                    <p style={{ margin: "0 0 12px", fontSize: "clamp(19.5px,1.75vw,25px)", fontWeight: 800, lineHeight: 1.15, letterSpacing: "-0.02em", color: "inherit" }}>{p.heading}</p>
+                    <p style={{ margin: "0 0 20px", fontSize: 17, lineHeight: 1.6, color: "inherit", opacity: 0.82, maxWidth: "44ch", textWrap: "balance" }}>{p.body}</p>
                     <span style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 15, fontWeight: 700, color: "inherit" }}>{p.cta.label} <Arrow /></span>
                   </Link>
                 )
@@ -66,18 +75,21 @@ export default async function HomePage() {
           </div>
         </section>
 
+        <SectionWedge from={WHITE} to={NAVY} slant="left" />
+
         {/* ══ STATS ══ */}
+        {/* The 4px navy→ember bar that used to sit on top of this section is gone:
+            the wedge's Ember hairline now draws that line, on the angle. */}
         <section aria-labelledby="stats-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(128,206,255,.19) 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)" }} />
           <Reveal as="div" style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(58px,6vw,92px) clamp(20px,4vw,48px)" }}>
             <div style={{ maxWidth: 700, marginBottom: "clamp(38px,4vw,56px)" }}>
               <EyebrowBar label={h.stats.eyebrow} color="#80CEFF" />
-              <h2 id="stats-h" style={{ margin: "0 0 16px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.stats.heading}</h2>
+              <h2 id="stats-h" style={{ margin: "0 0 16px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.stats.heading}</h2>
               <p data-unverified="" style={{ margin: "0 0 16px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{h.stats.credentialLine}</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
                 {h.stats.credentialChips.map((chip) => (
-                  <span key={chip} style={{ fontSize: 12, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#80CEFF", border: "1px solid rgba(128,206,255,.4)", padding: "7px 13px", borderRadius: 2 }}>{chip}</span>
+                  <span key={chip} style={{ fontSize: 12, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#80CEFF", border: "1px solid rgba(128,206,255,.4)", padding: "7px 13px", borderRadius: 4 }}>{chip}</span>
                 ))}
               </div>
             </div>
@@ -85,19 +97,21 @@ export default async function HomePage() {
           </Reveal>
         </section>
 
+        <SectionWedge from={NAVY} to={WHITE} slant="left" />
+
         {/* ══ COOPERATIVE CONTRACTS ══ */}
         <section id="contracts" aria-labelledby="contracts-h" style={{ position: "relative", background: "#FFFFFF", scrollMarginTop: 90 }}>
           <div style={WRAP}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(34px,4vw,64px)", alignItems: "start" }}>
               <Reveal as="div">
                 <EyebrowBar label={h.contracts.eyebrow} />
-                <h2 id="contracts-h" style={{ margin: "0 0 22px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.contracts.heading}</h2>
+                <h2 id="contracts-h" style={{ margin: "0 0 22px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.contracts.heading}</h2>
                 {h.contracts.body.map((para, i) => (
                   <p key={i} style={{ margin: i === h.contracts.body.length - 1 ? "0 0 30px" : "0 0 20px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", maxWidth: "52ch", textWrap: "balance" }}>{para}</p>
                 ))}
                 <Link href={h.contracts.cta.href} className="hov-cta-blue hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{h.contracts.cta.label} <Arrow /></Link>
               </Reveal>
-              <Reveal as="ul" delay={0.08} style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", border: "1px solid #E5E7EB", borderRadius: 3, overflow: "hidden" }}>
+              <Reveal as="ul" delay={0.08} style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", border: "1px solid #E5E7EB", borderRadius: 6, overflow: "hidden" }}>
                 {h.contracts.vehicles.map((v) => (
                   <li key={v.name} style={{ background: "#FFFFFF" }}>
                     <Link href={h.contracts.cta.href} className="hov-vehrow" style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 20, padding: "22px clamp(18px,2vw,26px)" }}>
@@ -116,7 +130,7 @@ export default async function HomePage() {
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)" }}>
             <Reveal as="div" style={{ maxWidth: 640, marginBottom: "clamp(34px,4vw,52px)" }}>
               <EyebrowBar label={h.industries.eyebrow} />
-              <h2 id="ind-h" style={{ margin: "0 0 18px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.industries.heading}</h2>
+              <h2 id="ind-h" style={{ margin: "0 0 18px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.industries.heading}</h2>
               <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", textWrap: "balance" }}>{h.industries.intro}</p>
             </Reveal>
           </div>
@@ -129,7 +143,7 @@ export default async function HomePage() {
             <Reveal as="div" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: "clamp(30px,3.4vw,46px)" }}>
               <div style={{ maxWidth: 600 }}>
                 <EyebrowBar label={h.services.eyebrow} />
-                <h2 id="svc-h" style={{ margin: 0, fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.services.heading}</h2>
+                <h2 id="svc-h" style={{ margin: 0, fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.services.heading}</h2>
               </div>
             </Reveal>
             <ul style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", borderTop: "1px solid #E5E7EB", borderBottom: "1px solid #E5E7EB" }}>
@@ -138,9 +152,9 @@ export default async function HomePage() {
                   <Link href={svc.href} className="hov-svcrow hov-move" style={{ display: "flex", flexWrap: "wrap", gap: "clamp(14px,3vw,44px)", alignItems: "center", padding: "clamp(24px,2.8vw,36px) clamp(6px,1.5vw,20px)" }}>
                     <div style={{ flex: "1 1 260px", display: "flex", gap: "clamp(14px,2vw,26px)", alignItems: "baseline" }}>
                       <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 13, color: "#94A3B8", flex: "0 0 auto" }}>{svc.num}</span>
-                      <h3 style={{ margin: 0, fontSize: "clamp(21px,2.1vw,29px)", fontWeight: 800, lineHeight: 1.14, letterSpacing: "-0.022em", color: "inherit" }}>{svc.name}</h3>
+                      <h3 style={{ margin: 0, fontSize: "clamp(20px,1.9vw,26px)", fontWeight: 800, lineHeight: 1.14, letterSpacing: "-0.022em", color: "inherit" }}>{svc.name}</h3>
                     </div>
-                    <p style={{ flex: "1 1 320px", margin: 0, fontSize: 16, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{svc.summary}</p>
+                    <p style={{ flex: "1 1 320px", margin: 0, fontSize: 17, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{svc.summary}</p>
                     <span aria-hidden="true" className="lnk-arrow" style={{ flex: "0 0 auto", marginLeft: "auto" }}>
                       <span style={{ display: "block", width: 9, height: 9, borderTop: "2px solid #0034A0", borderRight: "2px solid #0034A0", transform: "rotate(45deg)" }} />
                     </span>
@@ -152,21 +166,41 @@ export default async function HomePage() {
         </section>
 
         {/* ══ DELIVERY JOURNEY ══ */}
+        {/* Textured band between two flat white ones, so it owns BOTH wedges in
+            overlay mode — a block wedge would repaint the cut in flat blue and
+            slice the gradient off at a hard horizontal line. Vertical padding
+            carries WEDGE_H on each side so the copy clears both cuts. */}
         <section aria-labelledby="journey-h" style={{ position: "relative", background: "#0034A0", color: "#FFFFFF", overflow: "hidden" }}>
-          <ParallaxStars amount={44} style={{ backgroundImage: JOURNEY_STAR, backgroundSize: "74px 74px", opacity: 0.42 }} />
-          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(64px,7vw,100px) clamp(20px,4vw,48px)" }}>
+          <AngleField id="journey-field" />
+          <SectionWedge from={WHITE} to={BLUE} slant="right" overlay edge="top" />
+          <SectionWedge from={BLUE} to={WHITE} slant="right" overlay edge="bottom" />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `calc(clamp(64px,7vw,100px) + ${WEDGE_H}) clamp(20px,4vw,48px)` }}>
             <Reveal as="div" style={{ maxWidth: 620, marginBottom: "clamp(34px,4vw,52px)" }}>
               <EyebrowBar label={h.journey.eyebrow} color="#80CEFF" />
-              <h2 id="journey-h" style={{ margin: "0 0 16px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.journey.heading}</h2>
+              <h2 id="journey-h" style={{ margin: "0 0 16px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.journey.heading}</h2>
               <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{h.journey.intro}</p>
             </Reveal>
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(238px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {h.journey.steps.map((step, i) => (
-                <Reveal as="li" key={step.num} delay={i * 0.06} className="hov-step" style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", position: "relative", borderRadius: 3 }}>
-                  <div aria-hidden="true" style={{ height: 3, width: "100%", background: step.bar, marginBottom: 22 }} />
-                  <p style={{ margin: "0 0 14px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{step.num}</p>
-                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(21px,1.9vw,27px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{step.name}</h3>
-                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{step.body}</p>
+                <Reveal as="li" key={step.num} delay={i * 0.06} className="hov-step" style={{ background: "rgba(1,26,88,.42)", backdropFilter: "blur(3px)", WebkitBackdropFilter: "blur(3px)", padding: "clamp(24px,2.6vw,32px)", position: "relative", borderRadius: 6, overflow: "hidden" }}>
+                  {/* Sheen rakes at the same angle as the field behind it, so the
+                      card reads as glass lying on the gradient rather than a
+                      panel pasted over it. */}
+                  <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(114deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.02) 38%, rgba(255,255,255,0) 62%)", pointerEvents: "none" }} />
+                  {/* Ghost numeral: the stage number is already in the label, so
+                      this is decoration and stays out of the accessibility tree. */}
+                  <span aria-hidden="true" style={{ position: "absolute", bottom: -20, right: 4, fontSize: "clamp(64px,6.4vw,94px)", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.06em", color: "rgba(255,255,255,.07)", pointerEvents: "none", userSelect: "none" }}>{step.num.replace(/\D/g, "")}</span>
+                  <div style={{ position: "relative" }}>
+                    {/* Rail fills further at each stage — the four cards read as
+                        one journey rather than four unrelated boxes. Colour is
+                        the step's own, which carries the deploy/optimise split. */}
+                    <div aria-hidden="true" style={{ position: "relative", height: 3, width: "100%", background: "rgba(255,255,255,.18)", marginBottom: 22 }}>
+                      <div style={{ position: "absolute", inset: "0 auto 0 0", width: `${((i + 1) / h.journey.steps.length) * 100}%`, background: step.bar }} />
+                    </div>
+                    <p style={{ margin: "0 0 14px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{step.num}</p>
+                    <h3 style={{ margin: "0 0 12px", fontSize: "clamp(19.5px,1.75vw,25px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{step.name}</h3>
+                    <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{step.body}</p>
+                  </div>
                 </Reveal>
               ))}
             </ol>
@@ -180,7 +214,7 @@ export default async function HomePage() {
             <Reveal as="div">
               <div aria-hidden="true" style={{ width: 44, height: 44, margin: "0 auto 30px", background: "#B4FF00", transform: "rotate(45deg)" }} />
               <blockquote style={{ margin: 0 }} data-unverified={h.testimonial.placeholder ? "" : undefined}>
-                <p style={{ margin: "0 0 28px", fontSize: "clamp(22px,2.6vw,36px)", fontWeight: 600, lineHeight: 1.35, letterSpacing: "-0.018em", color: "#021F43", textWrap: "balance" }}>&ldquo;{h.testimonial.quote}&rdquo;</p>
+                <p style={{ margin: "0 0 28px", fontSize: "clamp(21px,2.3vw,32px)", fontWeight: 600, lineHeight: 1.35, letterSpacing: "-0.018em", color: "#021F43", textWrap: "balance" }}>&ldquo;{h.testimonial.quote}&rdquo;</p>
                 <footer style={{ fontSize: 14, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#334155" }}>{h.testimonial.attribution}</footer>
               </blockquote>
             </Reveal>
@@ -193,20 +227,20 @@ export default async function HomePage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(34px,4vw,64px)", alignItems: "center" }}>
               <Reveal as="div">
                 <EyebrowBar label={h.careers.eyebrow} />
-                <h2 id="careers-h" style={{ margin: "0 0 20px", fontSize: "clamp(29px,3.4vw,48px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.careers.heading}</h2>
+                <h2 id="careers-h" style={{ margin: "0 0 20px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.careers.heading}</h2>
                 <p style={{ margin: "0 0 20px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", maxWidth: "52ch", textWrap: "balance" }}>{h.careers.body}</p>
                 <ul style={{ display: "flex", flexWrap: "wrap", gap: 10, margin: "0 0 30px" }}>
                   {h.careers.values.map((val) => (
-                    <li key={val} style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: "#021F43", background: "#FFFFFF", border: "1px solid #E5E7EB", padding: "10px 16px", borderRadius: 2 }}>{val}</li>
+                    <li key={val} style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: "#021F43", background: "#FFFFFF", border: "1px solid #E5E7EB", padding: "10px 16px", borderRadius: 4 }}>{val}</li>
                   ))}
                 </ul>
               </Reveal>
-              <Reveal as="div" delay={0.08} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(26px,3vw,40px)" }}>
-                <h3 style={{ margin: "0 0 6px", fontSize: "clamp(19px,1.7vw,23px)", fontWeight: 800, letterSpacing: "-0.018em" }}>{h.careers.openRoles.heading}</h3>
+              <Reveal as="div" delay={0.08} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(26px,3vw,40px)" }}>
+                <h3 style={{ margin: "0 0 6px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, letterSpacing: "-0.018em" }}>{h.careers.openRoles.heading}</h3>
                 <p style={{ margin: "0 0 24px", fontSize: 15, color: "#334155" }}>{h.careers.openRoles.sub}</p>
-                <div style={{ border: "1px dashed #94A3B8", borderRadius: 3, padding: "clamp(24px,3vw,34px)", textAlign: "center", background: "#F5F7F9" }}>
+                <div style={{ border: "1px dashed #94A3B8", borderRadius: 6, padding: "clamp(24px,3vw,34px)", textAlign: "center", background: "#F5F7F9" }}>
                   <p style={{ margin: "0 0 10px", fontSize: 17, fontWeight: 800, color: "#021F43" }}>{h.careers.openRoles.emptyTitle}</p>
-                  <p style={{ margin: "0 auto 22px", fontSize: 15, lineHeight: 1.6, color: "#334155", maxWidth: "38ch", textWrap: "balance" }}>{h.careers.openRoles.emptyBody}</p>
+                  <p style={{ margin: "0 auto 22px", fontSize: 16, lineHeight: 1.6, color: "#334155", maxWidth: "38ch", textWrap: "balance" }}>{h.careers.openRoles.emptyBody}</p>
                   <Link href={h.careers.openRoles.cta.href} className="hov-cta-navy cta" style={{ display: "inline-block" }}>{h.careers.openRoles.cta.label}</Link>
                 </div>
               </Reveal>
@@ -215,20 +249,13 @@ export default async function HomePage() {
         </section>
 
         {/* ══ CLOSING CTA ══ */}
-        <section id="connect" aria-labelledby="cta-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden", scrollMarginTop: 78 }}>
-          <Image src="/images/cta.png" alt="" fill sizes="100vw" style={{ objectFit: "cover" }} />
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(2,31,67,.94) 0%, rgba(2,31,67,.72) 48%, rgba(2,31,67,.28) 100%)" }} />
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 5, background: "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)" }} />
-          <Reveal as="div" style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(70px,8vw,124px) clamp(20px,4vw,48px)" }}>
-            <EyebrowBar label={h.closingCta.eyebrow} color="#80CEFF" mb={22} />
-            <h2 id="cta-h" style={{ margin: "0 0 22px", fontSize: "clamp(32px,4.4vw,64px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.03em", maxWidth: "20ch", textWrap: "balance" }}>{h.closingCta.heading}</h2>
-            <p style={{ margin: "0 0 36px", fontSize: "clamp(17px,1.4vw,21px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{h.closingCta.body}</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
-              <Link href={h.closingCta.ctas[0].href} className="hov-cta-emberwhite cta">{h.closingCta.ctas[0].label}</Link>
-              <Link href={h.closingCta.ctas[1].href} className="hov-cta-glass cta">{h.closingCta.ctas[1].label}</Link>
-            </div>
-          </Reveal>
-        </section>
+        <ClosingCTA
+          from={OFFWHITE}
+          eyebrow={h.closingCta.eyebrow}
+          heading={h.closingCta.heading}
+          body={h.closingCta.body}
+          ctas={h.closingCta.ctas}
+        />
       </main>
 
       <SiteFooter site={site} />

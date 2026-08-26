@@ -7,6 +7,7 @@ import { ContractFinder } from "@/components/ContractFinder";
 import { CopyNumber } from "@/components/CopyNumber";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { EyebrowBar } from "@/components/EyebrowBar";
+import { ClosingCTA } from "@/components/ClosingCTA";
 
 export const metadata: Metadata = {
   title: "Procurement & Contracts",
@@ -45,7 +46,7 @@ export default async function HowToBuyPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
               <div style={{ maxWidth: 660 }}>
                 <EyebrowBar label={p.hero.eyebrow} dark mb={20} />
-                <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.hero.headline}</h1>
+                <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(31px,3.9vw,54px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.hero.headline}</h1>
                 <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "58ch", textWrap: "balance" }}>{p.hero.body}</p>
               </div>
               <ul style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 6 }}>
@@ -65,8 +66,8 @@ export default async function HowToBuyPage() {
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,6vw,88px) clamp(20px,4vw,48px)" }}>
             <div style={{ maxWidth: 620, marginBottom: "clamp(28px,3vw,40px)" }}>
               <EyebrowBar label={p.finder.eyebrow} />
-              <h2 id="finder-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.finder.heading}</h2>
-              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#334155", textWrap: "balance" }}>{p.finder.intro}</p>
+              <h2 id="finder-h" style={{ margin: "0 0 16px", fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.finder.heading}</h2>
+              <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,18.5px)", lineHeight: 1.65, color: "#334155", textWrap: "balance" }}>{p.finder.intro}</p>
             </div>
             <ContractFinder finder={p.finder} vehicles={p.vehicles} />
             <p style={{ margin: "18px 0 0", fontSize: 13.5, lineHeight: 1.6, color: "#334155", maxWidth: "78ch" }}>{p.finder.disclaimer}</p>
@@ -78,15 +79,15 @@ export default async function HowToBuyPage() {
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,100px) clamp(20px,4vw,48px)" }}>
             <div style={{ maxWidth: 640, marginBottom: "clamp(32px,3.6vw,50px)" }}>
               <EyebrowBar label={p.vehiclesSection.eyebrow} />
-              <h2 id="veh-h" style={{ margin: 0, fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.vehiclesSection.heading}</h2>
+              <h2 id="veh-h" style={{ margin: 0, fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.vehiclesSection.heading}</h2>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px,2vw,22px)" }}>
               {p.vehicles.map((v) => (
-                <article key={v.id} id={v.id} style={{ border: "1px solid #E5E7EB", borderRadius: 3, scrollMarginTop: 96, overflow: "hidden" }}>
+                <article key={v.id} id={v.id} style={{ border: "1px solid #E5E7EB", borderRadius: 6, scrollMarginTop: 96, overflow: "hidden" }}>
                   <div style={{ background: "#021F43", color: "#FFFFFF", padding: "clamp(22px,2.4vw,30px) clamp(22px,2.6vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px,100%),1fr))", gap: 20, alignItems: "center" }}>
                     <div>
                       <p style={{ margin: "0 0 8px", fontSize: 11, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#80CEFF" }}>{v.kind}</p>
-                      <h3 style={{ margin: 0, fontSize: "clamp(22px,2.2vw,32px)", fontWeight: 800, letterSpacing: "-0.024em", lineHeight: 1.1 }}>{v.name}</h3>
+                      <h3 style={{ margin: 0, fontSize: "clamp(21px,2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em", lineHeight: 1.1 }}>{v.name}</h3>
                     </div>
                     <div style={{ justifySelf: "end", display: "flex", flexWrap: "wrap", gap: 10 }}>
                       {v.numbers.map((n) => (
@@ -97,7 +98,7 @@ export default async function HowToBuyPage() {
                   <div style={{ padding: "clamp(24px,2.8vw,34px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(250px,100%),1fr))", gap: "clamp(24px,3vw,44px)", background: "#FFFFFF" }}>
                     <div>
                       <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>Who can order</p>
-                      <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{v.eligible}</p>
+                      <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{v.eligible}</p>
                     </div>
                     <div>
                       <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>What&apos;s covered</p>
@@ -112,7 +113,7 @@ export default async function HowToBuyPage() {
                     </div>
                     <div>
                       <p style={{ margin: "0 0 12px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#94A3B8" }}>Verify &amp; order</p>
-                      <p style={{ margin: "0 0 16px", fontSize: 15, lineHeight: 1.6, color: "#334155" }}>{v.authority}</p>
+                      <p style={{ margin: "0 0 16px", fontSize: 16, lineHeight: 1.6, color: "#334155" }}>{v.authority}</p>
                       <a href={v.href} target="_blank" rel="noopener noreferrer" className="hov-link" style={{ display: "inline-flex", alignItems: "center", gap: 9, fontSize: 14.5, fontWeight: 700 }}>
                         Official contract record
                         <span className="sr-only"> (opens in a new tab)</span>
@@ -132,16 +133,16 @@ export default async function HowToBuyPage() {
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,96px) clamp(20px,4vw,48px)" }}>
             <div style={{ maxWidth: 620, marginBottom: "clamp(32px,3.6vw,50px)" }}>
               <EyebrowBar label={p.ordering.eyebrow} dark />
-              <h2 id="steps-h" style={{ margin: "0 0 16px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.ordering.heading}</h2>
-              <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{p.ordering.intro}</p>
+              <h2 id="steps-h" style={{ margin: "0 0 16px", fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.ordering.heading}</h2>
+              <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,18.5px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{p.ordering.intro}</p>
             </div>
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(238px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {p.ordering.steps.map((s) => (
-                <li key={s.num} style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", border: "1px solid rgba(255,255,255,.3)", borderRadius: 3 }}>
+                <li key={s.num} style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", border: "1px solid rgba(255,255,255,.3)", borderRadius: 6 }}>
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: s.bar, marginBottom: 22 }} />
                   <p style={{ margin: "0 0 14px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{s.num}</p>
-                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{s.name}</h3>
-                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{s.body}</p>
+                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(18px,1.65vw,23px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{s.name}</h3>
+                  <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{s.body}</p>
                 </li>
               ))}
             </ol>
@@ -154,7 +155,7 @@ export default async function HowToBuyPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
               <div>
                 <EyebrowBar label={p.faq.eyebrow} />
-                <h2 id="faq-h" style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.faq.heading}</h2>
+                <h2 id="faq-h" style={{ margin: "0 0 22px", fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.faq.heading}</h2>
                 <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "46ch", textWrap: "balance" }}>{p.faq.intro}</p>
                 <Link href={p.faq.cta.href} className="hov-cta-blue cta" style={{ display: "inline-block" }}>{p.faq.cta.label}</Link>
               </div>
@@ -164,20 +165,15 @@ export default async function HowToBuyPage() {
         </section>
 
         {/* ══ CLOSING CTA ══ */}
-        <section id="connect" aria-labelledby="cta-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden", scrollMarginTop: 78 }}>
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, #041F44 0 12px, #021B3B 12px 24px)" }} />
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(2,31,67,.96) 0%, rgba(2,31,67,.72) 55%, rgba(0,52,160,.35) 100%)" }} />
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 5, background: "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)" }} />
-          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(64px,7vw,112px) clamp(20px,4vw,48px)" }}>
-            <EyebrowBar label={p.closingCta.eyebrow} dark mb={20} />
-            <h2 id="cta-h" style={{ margin: "0 0 22px", fontSize: "clamp(30px,4vw,58px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.03em", maxWidth: "24ch", textWrap: "balance" }}>{p.closingCta.heading}</h2>
-            <p style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.4vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{p.closingCta.body}</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
-              <Link href={p.closingCta.ctas[0].href} className="hov-cta-emberwhite cta">{p.closingCta.ctas[0].label}</Link>
-              <Link href={p.closingCta.ctas[1].href} className="hov-underline cta-text">{p.closingCta.ctas[1].label}</Link>
-            </div>
-          </div>
-        </section>
+        {/* Was a hand-rolled copy of ClosingCTA's markup. Uses the shared one now,
+            so the closing band has a single definition site-wide. */}
+        <ClosingCTA
+          from="#F5F7F9"
+          eyebrow={p.closingCta.eyebrow}
+          heading={p.closingCta.heading}
+          body={p.closingCta.body}
+          ctas={p.closingCta.ctas}
+        />
       </main>
 
       <SiteFooter site={site} />

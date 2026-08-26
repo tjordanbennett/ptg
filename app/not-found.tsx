@@ -153,7 +153,7 @@ export default async function NotFound() {
                 id="nf-h"
                 style={{
                   margin: "0 0 22px",
-                  fontSize: "clamp(30px,4vw,56px)",
+                  fontSize: "clamp(27px,3.4vw,47px)",
                   fontWeight: 800,
                   lineHeight: 1.04,
                   letterSpacing: "-0.028em",
@@ -190,7 +190,7 @@ export default async function NotFound() {
                 id="nf-routes-h"
                 style={{
                   margin: 0,
-                  fontSize: "clamp(28px,3.3vw,46px)",
+                  fontSize: "clamp(26px,2.8vw,39px)",
                   fontWeight: 800,
                   lineHeight: 1.06,
                   letterSpacing: "-0.028em",
@@ -220,7 +220,7 @@ export default async function NotFound() {
                   style={{
                     background: "#FFFFFF",
                     border: "1px solid #E5E7EB",
-                    borderRadius: 3,
+                    borderRadius: 6,
                     padding: "clamp(24px,2.6vw,32px)",
                     display: "flex",
                     flexDirection: "column",
@@ -232,7 +232,7 @@ export default async function NotFound() {
                       {r.label}
                     </Link>
                   </h3>
-                  <p style={{ margin: "0 0 18px", fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{r.body}</p>
+                  <p style={{ margin: "0 0 18px", fontSize: 16.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{r.body}</p>
                   <Link
                     href={r.href}
                     className="hov-link"

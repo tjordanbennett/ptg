@@ -8,6 +8,7 @@ import { Reveal } from "@/components/Reveal";
 import { ParallaxStars } from "@/components/ParallaxStars";
 import { EyebrowBar } from "@/components/EyebrowBar";
 import { ApplicationForm } from "@/components/ApplicationForm";
+import { ClosingCTA } from "@/components/ClosingCTA";
 
 /**
  * StandardPageView — one renderer for every interior page (services, industries,
@@ -54,8 +55,8 @@ function SectionHeader({ eyebrow, heading, intro, dark = false, maxWidth = 640 }
   return (
     <Reveal as="div" style={{ maxWidth, marginBottom: "clamp(30px,3.6vw,50px)" }}>
       {eyebrow ? <EyebrowBar label={eyebrow} dark={dark} /> : null}
-      {heading ? <h2 style={{ margin: intro ? "0 0 16px" : 0, fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance", color: dark ? "#FFFFFF" : "#021F43" }}>{heading}</h2> : null}
-      {intro ? <p style={{ margin: 0, fontSize: "clamp(16px,1.25vw,18px)", lineHeight: 1.65, color: dark ? "#D5E4F5" : "#334155", textWrap: "balance" }}>{intro}</p> : null}
+      {heading ? <h2 style={{ margin: intro ? "0 0 16px" : 0, fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance", color: dark ? "#FFFFFF" : "#021F43" }}>{heading}</h2> : null}
+      {intro ? <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,18.5px)", lineHeight: 1.65, color: dark ? "#D5E4F5" : "#334155", textWrap: "balance" }}>{intro}</p> : null}
     </Reveal>
   );
 }
@@ -86,9 +87,9 @@ function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crum
         <div style={{ display: "grid", gridTemplateColumns: hero.bullets ? "repeat(auto-fit, minmax(min(320px,100%),1fr))" : "1fr", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
           <div style={{ maxWidth: 760 }}>
             <EyebrowBar label={hero.eyebrow} dark mb={20} />
-            <h1 id="hero-h" style={{ margin: hero.body ? "0 0 24px" : 0, fontSize: "clamp(34px,4.6vw,66px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{hero.headline}</h1>
+            <h1 id="hero-h" style={{ margin: hero.body ? "0 0 24px" : 0, fontSize: "clamp(31px,3.9vw,54px)", fontWeight: 800, lineHeight: 1.03, letterSpacing: "-0.028em", textWrap: "balance" }}>{hero.headline}</h1>
             {hero.body ? <p style={{ margin: hero.tagline ? "0 0 20px" : 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "balance" }}>{hero.body}</p> : null}
-            {hero.tagline ? <p style={{ margin: 0, fontSize: "clamp(15px,1.15vw,17px)", fontWeight: 700, letterSpacing: "-0.01em", color: "#80CEFF" }}>{hero.tagline}</p> : null}
+            {hero.tagline ? <p style={{ margin: 0, fontSize: "clamp(15.5px,1.2vw,17.5px)", fontWeight: 700, letterSpacing: "-0.01em", color: "#80CEFF" }}>{hero.tagline}</p> : null}
           </div>
           {hero.bullets ? (
             <ul style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 6 }}>
@@ -118,14 +119,42 @@ function Light({ bg, id, children }: { bg: "white" | "offwhite"; id?: string; ch
 
 /* ── section renderer ────────────────────────────────────────── */
 
-function renderSection(s: Section, key: number, bg: "white" | "offwhite"): ReactNode {
+/**
+ * The colour a section actually paints. The shell needs this so the closing
+ * CTA's wedge is drawn in the colour of the band directly above it — and it has
+ * to be ONE definition, because `faq` opts out of the light alternation and a
+ * second copy of that rule in the shell is exactly what silently drifts.
+ */
+function sectionBg(s: Section, alt: "white" | "offwhite"): string {
+  switch (s.kind) {
+    case "steps":
+      return s.band === "navy" ? "#021F43" : "#0034A0";
+    case "stats":
+      return "#021F43";
+    case "testimonial":
+      return "#FFFFFF";
+    case "cta":
+      return "#021F43";
+    default:
+      return resolveLight(s, alt) === "offwhite" ? "#F5F7F9" : "#FFFFFF";
+  }
+}
+
+/** Which of the two light tints a light section lands on. */
+function resolveLight(s: Section, alt: "white" | "offwhite"): "white" | "offwhite" {
+  if ("bg" in s && s.bg) return s.bg;
+  if (s.kind === "faq") return "offwhite"; // reads as a distinct block, always
+  return alt;
+}
+
+function renderSection(s: Section, key: number, bg: "white" | "offwhite", from = "#FFFFFF"): ReactNode {
   switch (s.kind) {
     case "prose":
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <Reveal as="div" style={{ maxWidth: s.maxWidth ?? 820 }}>
             {s.eyebrow ? <EyebrowBar label={s.eyebrow} /> : null}
-            {s.heading ? <h2 style={{ margin: "0 0 20px", fontSize: "clamp(27px,3.1vw,42px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.026em", textWrap: "balance" }}>{s.heading}</h2> : null}
+            {s.heading ? <h2 style={{ margin: "0 0 20px", fontSize: "clamp(25px,2.7vw,36px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.026em", textWrap: "balance" }}>{s.heading}</h2> : null}
             {s.body.map((p, i) => (
               <p key={i} style={{ margin: i === s.body.length - 1 ? 0 : "0 0 20px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", textWrap: "balance" }}>{p}</p>
             ))}
@@ -141,7 +170,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
           <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(min(${cols === 2 ? 320 : 288}px,100%),1fr))`, gap: "clamp(18px,2vw,26px)" }}>
             {s.cards.map((c, i) => (
-              <Reveal as="article" key={c.title} delay={i * 0.05} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(24px,2.6vw,32px)", display: "flex", flexDirection: "column" }}>
+              <Reveal as="article" key={c.title} delay={i * 0.05} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(24px,2.6vw,32px)", display: "flex", flexDirection: "column" }}>
                 <div aria-hidden="true" style={{ width: 34, height: 3, background: accent, marginBottom: 18 }} />
                 <h3 style={{ margin: "0 0 10px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.018em" }}>
                   {c.href ? (
@@ -152,7 +181,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
                     c.title
                   )}
                 </h3>
-                {c.hook ? <p style={{ margin: c.bullets || c.href ? "0 0 16px" : 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.hook}</p> : null}
+                {c.hook ? <p style={{ margin: c.bullets || c.href ? "0 0 16px" : 0, fontSize: 16.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{c.hook}</p> : null}
                 {c.bullets ? (
                   <ul style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: c.href ? 18 : 0, marginTop: c.href ? 0 : "auto" }}>
                     {c.bullets.map((b) => (
@@ -189,7 +218,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
                 <Diamond color="#EB4900" size={9} mt={7} />
                 <div>
                   <h3 style={{ margin: "0 0 6px", fontSize: "clamp(16.5px,1.4vw,19px)", fontWeight: 800, letterSpacing: "-0.015em", lineHeight: 1.25 }}>{it.title}</h3>
-                  <p style={{ margin: 0, fontSize: 15.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{it.body}</p>
+                  <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.6, color: "#334155", textWrap: "balance" }}>{it.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -210,11 +239,11 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
             <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} dark maxWidth={620} />
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(230px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {s.steps.map((st, i) => (
-                <Reveal as="li" key={st.num} delay={i * 0.05} className="hov-step" style={{ background: bgcol, padding: "clamp(24px,2.6vw,32px)", borderRadius: 3 }}>
+                <Reveal as="li" key={st.num} delay={i * 0.05} className="hov-step" style={{ background: bgcol, padding: "clamp(24px,2.6vw,32px)", borderRadius: 6 }}>
                   <div aria-hidden="true" style={{ height: 3, width: "100%", background: bars[i % bars.length], marginBottom: 22 }} />
                   <p style={{ margin: "0 0 14px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{st.num}</p>
-                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(19px,1.8vw,25px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{st.name}</h3>
-                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{st.body}</p>
+                  <h3 style={{ margin: "0 0 12px", fontSize: "clamp(18px,1.65vw,23px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15 }}>{st.name}</h3>
+                  <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{st.body}</p>
                 </Reveal>
               ))}
             </ol>
@@ -231,7 +260,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
             <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
             <Reveal as="ul" style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
               {s.items.map((t) => (
-                <li key={t} style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".05em", textTransform: "uppercase", color: "#021F43", background: "#FFFFFF", border: "1px solid #E5E7EB", padding: "11px 18px", borderRadius: 2 }}>{t}</li>
+                <li key={t} style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".05em", textTransform: "uppercase", color: "#021F43", background: "#FFFFFF", border: "1px solid #E5E7EB", padding: "11px 18px", borderRadius: 4 }}>{t}</li>
               ))}
             </Reveal>
           </Light>
@@ -269,7 +298,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <Reveal as="div" style={{ maxWidth: 900, borderLeft: "4px solid #EB4900", paddingLeft: "clamp(22px,3vw,40px)" }}>
-            <p style={{ margin: 0, fontSize: "clamp(24px,3vw,40px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.022em", color: "#021F43", textWrap: "balance" }}>{s.text}</p>
+            <p style={{ margin: 0, fontSize: "clamp(23px,2.6vw,35px)", fontWeight: 800, lineHeight: 1.2, letterSpacing: "-0.022em", color: "#021F43", textWrap: "balance" }}>{s.text}</p>
             {s.body?.map((p, i) => (
               <p
                 key={i}
@@ -296,7 +325,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
             <Reveal as="div">
               <div aria-hidden="true" style={{ width: 44, height: 44, margin: "0 auto 30px", background: "#B4FF00", transform: "rotate(45deg)" }} />
               <blockquote style={{ margin: 0 }} data-unverified={s.unverified ? "" : undefined}>
-                <p style={{ margin: "0 0 28px", fontSize: "clamp(21px,2.5vw,34px)", fontWeight: 600, lineHeight: 1.36, letterSpacing: "-0.018em", color: "#021F43", textWrap: "balance" }}>&ldquo;{s.quote}&rdquo;</p>
+                <p style={{ margin: "0 0 28px", fontSize: "clamp(20px,2.2vw,30px)", fontWeight: 600, lineHeight: 1.36, letterSpacing: "-0.018em", color: "#021F43", textWrap: "balance" }}>&ldquo;{s.quote}&rdquo;</p>
                 <footer style={{ fontSize: 14, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#334155" }}>{s.attribution}</footer>
               </blockquote>
             </Reveal>
@@ -314,7 +343,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
             <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(200px,100%),1fr))", gap: 0, borderTop: "1px solid rgba(128,206,255,.25)", borderBottom: "1px solid rgba(128,206,255,.25)" }}>
               {s.items.map((it, i) => (
                 <div key={it.label} style={{ padding: "clamp(24px,3vw,34px) clamp(14px,2vw,26px) clamp(24px,3vw,34px) 0" }}>
-                  <p style={{ margin: "0 0 8px", fontSize: "clamp(34px,4.4vw,62px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "-0.04em", color: i === 1 ? "#B4FF00" : i === 2 ? "#80CEFF" : "#FFFFFF" }}>{it.value}</p>
+                  <p style={{ margin: "0 0 8px", fontSize: "clamp(30px,3.7vw,52px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "-0.04em", color: i === 1 ? "#B4FF00" : i === 2 ? "#80CEFF" : "#FFFFFF" }}>{it.value}</p>
                   <p style={{ margin: 0, fontSize: "clamp(13px,1.05vw,15px)", fontWeight: 600, lineHeight: 1.4, color: "#C9D8E8", maxWidth: "26ch", textWrap: "balance" }}>{it.label}</p>
                 </div>
               ))}
@@ -331,7 +360,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
             {s.groups.map((g, gi) => (
               <Reveal as="div" key={g.title} delay={gi * 0.06} data-unverified={s.unverified ? "" : undefined}>
                 <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#0034A0" }}>{g.title}</p>
-                <ul style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", border: "1px solid #E5E7EB", borderRadius: 3, overflow: "hidden" }}>
+                <ul style={{ display: "flex", flexDirection: "column", gap: 1, background: "#E5E7EB", border: "1px solid #E5E7EB", borderRadius: 6, overflow: "hidden" }}>
                   {g.names.map((n) => (
                     <li key={n} style={{ background: "#FFFFFF", padding: "15px 18px", fontSize: 15.5, fontWeight: 700, letterSpacing: "-0.01em", color: "#021F43" }}>{n}</li>
                   ))}
@@ -344,11 +373,11 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
 
     case "faq":
       return (
-        <Light key={key} bg={s.bg ?? "offwhite"}>
+        <Light key={key} bg={bg}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
             <Reveal as="div">
               {s.eyebrow ? <EyebrowBar label={s.eyebrow} /> : null}
-              <h2 style={{ margin: "0 0 22px", fontSize: "clamp(28px,3.3vw,46px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{s.heading ?? "Common questions"}</h2>
+              <h2 style={{ margin: "0 0 22px", fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.028em", textWrap: "balance" }}>{s.heading ?? "Common questions"}</h2>
               {s.intro ? <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "46ch", textWrap: "balance" }}>{s.intro}</p> : null}
               {s.cta ? <Link href={s.cta.href} className="hov-cta-blue hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{s.cta.label} <Arrow /></Link> : null}
             </Reveal>
@@ -363,8 +392,8 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(250px,100%),1fr))", gap: "clamp(16px,2vw,22px)" }}>
             {s.people.map((pn, i) => (
-              <Reveal as="article" key={pn.name} delay={i * 0.04} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 3, padding: "clamp(22px,2.4vw,28px)", display: "flex", flexDirection: "column", gap: 4 }}>
-                <div aria-hidden="true" style={{ width: 46, height: 46, marginBottom: 14, borderRadius: 3, background: "#021F43", display: "grid", placeItems: "center" }}>
+              <Reveal as="article" key={pn.name} delay={i * 0.04} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(22px,2.4vw,28px)", display: "flex", flexDirection: "column", gap: 4 }}>
+                <div aria-hidden="true" style={{ width: 46, height: 46, marginBottom: 14, borderRadius: 6, background: "#021F43", display: "grid", placeItems: "center" }}>
                   <span style={{ fontSize: 17, fontWeight: 800, color: "#80CEFF", letterSpacing: "-0.01em" }}>{pn.name.split(" ").map((w) => w[0]).slice(0, 2).join("")}</span>
                 </div>
                 <h3 style={{ margin: 0, fontSize: "clamp(17px,1.5vw,20px)", fontWeight: 800, letterSpacing: "-0.018em" }}>{pn.name}</h3>
@@ -381,10 +410,10 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       return (
         <Light key={key} bg={s.bg ?? bg}>
           {(s.eyebrow || s.heading || s.sub) ? <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.sub} /> : null}
-          <Reveal as="div" style={{ border: "1px dashed #94A3B8", borderRadius: 4, padding: "clamp(34px,4.5vw,60px) clamp(24px,3vw,40px)", textAlign: "center", background: "#FFFFFF" }}>
+          <Reveal as="div" style={{ border: "1px dashed #94A3B8", borderRadius: 8, padding: "clamp(34px,4.5vw,60px) clamp(24px,3vw,40px)", textAlign: "center", background: "#FFFFFF" }}>
             <div aria-hidden="true" style={{ width: 40, height: 40, margin: "0 auto 22px", background: "#B4FF00", transform: "rotate(45deg)", opacity: 0.9 }} />
-            <p style={{ margin: "0 0 12px", fontSize: "clamp(19px,2vw,25px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>{s.title}</p>
-            <p style={{ margin: "0 auto 26px", fontSize: 16, lineHeight: 1.6, color: "#334155", maxWidth: "52ch", textWrap: "balance" }}>{s.body}</p>
+            <p style={{ margin: "0 0 12px", fontSize: "clamp(18px,1.8vw,23px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>{s.title}</p>
+            <p style={{ margin: "0 auto 26px", fontSize: 17, lineHeight: 1.6, color: "#334155", maxWidth: "52ch", textWrap: "balance" }}>{s.body}</p>
             {s.cta ? <Link href={s.cta.href} className="hov-cta-navy hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{s.cta.label} <Arrow /></Link> : null}
           </Reveal>
         </Light>
@@ -395,7 +424,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
         <Light key={key} bg={s.bg ?? bg} id={s.id ?? "apply"}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
             <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} maxWidth={460} />
-            <Reveal as="div" delay={0.06} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 4, padding: "clamp(24px,3vw,40px)" }}>
+            <Reveal as="div" delay={0.06} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 8, padding: "clamp(24px,3vw,40px)" }}>
               <ApplicationForm />
             </Reveal>
           </div>
@@ -403,32 +432,8 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite"): React
       );
 
     case "cta":
-      return <ClosingCTA key={key} eyebrow={s.eyebrow} heading={s.heading} body={s.body} ctas={s.ctas} />;
+      return <ClosingCTA key={key} eyebrow={s.eyebrow} heading={s.heading} body={s.body} ctas={s.ctas} from={from} />;
   }
-}
-
-/* ── closing CTA (shared) ────────────────────────────────────── */
-
-export function ClosingCTA({ eyebrow, heading, body, ctas, id = "connect" }: { eyebrow?: string; heading: string; body?: string; ctas: { label: string; href: string }[]; id?: string }) {
-  return (
-    <section id={id} aria-labelledby="cta-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden", scrollMarginTop: 78 }}>
-      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(135deg, #041F44 0 12px, #021B3B 12px 24px)" }} />
-      <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(2,31,67,.96) 0%, rgba(2,31,67,.72) 55%, rgba(0,52,160,.35) 100%)" }} />
-      <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 5, background: HAIRLINE }} />
-      <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(64px,7vw,112px) clamp(20px,4vw,48px)" }}>
-        <Reveal as="div">
-          {eyebrow ? <EyebrowBar label={eyebrow} dark mb={20} /> : null}
-          <h2 id="cta-h" style={{ margin: body ? "0 0 22px" : "0 0 34px", fontSize: "clamp(30px,4vw,58px)", fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.03em", maxWidth: "24ch", textWrap: "balance" }}>{heading}</h2>
-          {body ? <p style={{ margin: "0 0 34px", fontSize: "clamp(17px,1.4vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "56ch", textWrap: "balance" }}>{body}</p> : null}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
-            {ctas.map((c, i) => (
-              <Link key={c.href + c.label} href={c.href} className={i === 0 ? "hov-cta-emberwhite cta" : "hov-underline cta-text"}>{c.label}</Link>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
 }
 
 /* ── page shell ──────────────────────────────────────────────── */
@@ -437,6 +442,7 @@ export function StandardPageView({ page, site }: { page: StandardPage; site: Sit
   // Alternate white / off-white across the plain light sections for rhythm;
   // full-bleed bands (steps, testimonial, stats, cta) don't consume a turn.
   let lightIndex = 0;
+  let prevBg = "#FFFFFF";
   const isLight = (k: Section["kind"]) => !["steps", "testimonial", "stats", "cta"].includes(k);
 
   return (
@@ -445,8 +451,13 @@ export function StandardPageView({ page, site }: { page: StandardPage; site: Sit
       <main id="main">
         <PageHero hero={page.hero} breadcrumbs={page.breadcrumbs} />
         {page.sections.map((s, i) => {
-          const bg: "white" | "offwhite" = isLight(s.kind) ? (lightIndex++ % 2 === 0 ? "white" : "offwhite") : "white";
-          return renderSection(s, i, bg);
+          const alt: "white" | "offwhite" = isLight(s.kind) ? (lightIndex++ % 2 === 0 ? "white" : "offwhite") : "white";
+          const resolved = isLight(s.kind) ? resolveLight(s, alt) : alt;
+          // The closing CTA's wedge is painted in the colour of the band above,
+          // so carry that forward as we walk the list.
+          const from = prevBg;
+          prevBg = sectionBg(s, alt);
+          return renderSection(s, i, resolved, from);
         })}
       </main>
       <SiteFooter site={site} />
