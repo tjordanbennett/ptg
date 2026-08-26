@@ -238,6 +238,49 @@
      on the delivery-journey cards. */
 
 
+
+  /* Stat row: the first-left / middle-centre / last-right alignment only reads
+     when all three sit in ONE row against the rules that bracket them. The grid
+     drops to two columns at 640px and one below ~400px, where that alignment
+     would scatter them — so left-align everything once the row breaks. */
+  @media (max-width: 660px) {
+    .ptg-statrow > * {
+      align-items: flex-start !important;
+      text-align: left !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  /* Interior hero: side-by-side above 900px, stacked below — two columns at
+     phone width would leave the headline about eight characters wide. */
+  @media (max-width: 900px) {
+    .ptg-hero-split {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ── Sticky section header column ─────────────────────────────────────
+     Left column pins while the taller right column scrolls past, then
+     releases at the end of the section. `position: sticky` needs three things
+     that are easy to get wrong:
+       · the grid item must NOT be stretched — hence align-items: start on the
+         parent, or the item fills the row and never has anywhere to stick
+       · no ancestor may have overflow other than visible, or sticky is dead
+       · the sibling column has to be TALLER, or there is nothing to scroll past
+     Offset clears the 62px sticky header plus breathing room. */
+  .ptg-sticky-col {
+    position: sticky;
+    top: 86px;
+  }
+  /* Single column below this width: the header sits ABOVE the content instead
+     of beside it, so pinning would park it on top of what you're reading. */
+  @media (max-width: 900px) {
+    .ptg-sticky-col {
+      position: static;
+    }
+  }
+
   /* ── Announcement bar ─────────────────────────────────────────────────
      Visible by default so it survives with JS off. The pre-paint script in
      app/layout.tsx stamps data-ann-dismissed on <html> when this visitor has

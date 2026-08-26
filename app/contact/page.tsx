@@ -35,7 +35,7 @@ export default async function ContactPage() {
             <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(28px,4vw,48px)" }}>
               <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
                 <li><Link href="/" className="hov-footerlink" style={{ color: "#80CEFF" }}>Home</Link></li>
-                <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
+                <li aria-hidden="true" style={{ color: "#7C9BBA" }}>/</li>
                 <li style={{ color: "#C9D8E8" }}>Contact</li>
               </ol>
             </nav>

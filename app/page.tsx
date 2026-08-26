@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getHomePage, getSiteSettings } from "@/lib/content";
+import { getHomePage, getRoles, getSiteSettings } from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StatsTicker } from "@/components/StatsTicker";
@@ -10,6 +10,7 @@ import { EyebrowBar } from "@/components/EyebrowBar";
 import { PhotoLinkCard } from "@/components/PhotoLinkCard";
 import { SectionWedge, WEDGE_H } from "@/components/SectionWedge";
 import { ClosingCTA } from "@/components/ClosingCTA";
+import { RoleList } from "@/components/RoleList";
 import { AngleField } from "@/components/AngleField";
 
 /** Matches public/_design/homepage.html. Section order, type scale, spacing and
@@ -40,6 +41,7 @@ function Arrow({ size = 7, w = 2, color = "currentColor" }: { size?: number; w?:
 export default async function HomePage() {
   const site = await getSiteSettings();
   const home = await getHomePage();
+  const roles = await getRoles();
   const h = home;
 
   return (
@@ -86,12 +88,7 @@ export default async function HomePage() {
             <div style={{ maxWidth: 700, marginBottom: "clamp(38px,4vw,56px)" }}>
               <EyebrowBar label={h.stats.eyebrow} color="#80CEFF" />
               <h2 id="stats-h" style={{ margin: "0 0 16px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.stats.heading}</h2>
-              <p data-unverified="" style={{ margin: "0 0 16px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{h.stats.credentialLine}</p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-                {h.stats.credentialChips.map((chip) => (
-                  <span key={chip} style={{ fontSize: 12, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#80CEFF", border: "1px solid rgba(128,206,255,.4)", padding: "7px 13px", borderRadius: 4 }}>{chip}</span>
-                ))}
-              </div>
+              <p data-unverified="" style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#D5E4F5", textWrap: "balance" }}>{h.stats.credentialLine}</p>
             </div>
             <StatsTicker items={h.stats.items} />
           </Reveal>
@@ -130,7 +127,7 @@ export default async function HomePage() {
         </section>
 
         {/* ══ INDUSTRIES ══ */}
-        <section id="industries" aria-labelledby="ind-h" style={{ background: "#F0F2F4", borderTop: "1px solid #CBD5DF", scrollMarginTop: 90, padding: "clamp(64px,7vw,104px) 0" }}>
+        <section id="industries" aria-labelledby="ind-h" style={{ background: "#F0F2F4", scrollMarginTop: 90, padding: "clamp(64px,7vw,104px) 0" }}>
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)" }}>
             <Reveal as="div" style={{ maxWidth: 640, marginBottom: "clamp(34px,4vw,52px)" }}>
               <EyebrowBar label={h.industries.eyebrow} />
@@ -231,21 +228,25 @@ export default async function HomePage() {
               <Reveal as="div">
                 <EyebrowBar label={h.careers.eyebrow} />
                 <h2 id="careers-h" style={{ margin: "0 0 20px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.careers.heading}</h2>
-                <p style={{ margin: "0 0 20px", fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", maxWidth: "58ch", textWrap: "balance" }}>{h.careers.body}</p>
-                <ul style={{ display: "flex", flexWrap: "wrap", gap: 10, margin: "0 0 30px" }}>
-                  {h.careers.values.map((val) => (
-                    <li key={val} style={{ fontSize: 13, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: "#021F43", background: "#FFFFFF", border: "1px solid #E5E7EB", padding: "10px 16px", borderRadius: 4 }}>{val}</li>
-                  ))}
-                </ul>
+                <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", maxWidth: "58ch", textWrap: "balance" }}>{h.careers.body}</p>
               </Reveal>
               <Reveal as="div" delay={0.08} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(26px,3vw,40px)" }}>
                 <h3 style={{ margin: "0 0 6px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, letterSpacing: "-0.018em" }}>{h.careers.openRoles.heading}</h3>
                 <p style={{ margin: "0 0 24px", fontSize: 15, color: "#334155" }}>{h.careers.openRoles.sub}</p>
+                {roles.length > 0 ? (
+                  <>
+                    <RoleList roles={roles} />
+                    <p style={{ margin: "18px 0 0", fontSize: 15, color: "#475569" }}>
+                      Not seeing your role? <Link href={h.careers.openRoles.cta.href} className="hov-link" style={{ fontWeight: 700 }}>{h.careers.openRoles.cta.label}</Link>
+                    </p>
+                  </>
+                ) : (
                 <div style={{ border: "1px dashed #94A3B8", borderRadius: 6, padding: "clamp(24px,3vw,34px)", textAlign: "center", background: "#F0F2F4" }}>
                   <p style={{ margin: "0 0 10px", fontSize: 17, fontWeight: 800, color: "#021F43" }}>{h.careers.openRoles.emptyTitle}</p>
                   <p style={{ margin: "0 auto 22px", fontSize: 16, lineHeight: 1.6, color: "#334155", maxWidth: "50ch", textWrap: "balance" }}>{h.careers.openRoles.emptyBody}</p>
                   <Link href={h.careers.openRoles.cta.href} className="hov-cta-navy cta" style={{ display: "inline-block" }}>{h.careers.openRoles.cta.label}</Link>
                 </div>
+                )}
               </Reveal>
             </div>
           </div>

@@ -7,6 +7,8 @@ import { ContractFinder } from "@/components/ContractFinder";
 import { CopyNumber } from "@/components/CopyNumber";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { EyebrowBar } from "@/components/EyebrowBar";
+import { PageHero } from "@/components/StandardPage";
+import { Reveal } from "@/components/Reveal";
 import { ClosingCTA } from "@/components/ClosingCTA";
 
 export const metadata: Metadata = {
@@ -32,37 +34,34 @@ export default async function HowToBuyPage() {
 
       <main id="main">
         {/* ══ HERO ══ */}
-        <section aria-labelledby="hero-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: JOURNEY_STAR.replace("%23021F43", "%230034A0"), backgroundSize: "74px 74px", opacity: 0.5, WebkitMaskImage: "linear-gradient(115deg, transparent 45%, #000 100%)", maskImage: "linear-gradient(115deg, transparent 45%, #000 100%)" }} />
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 4, background: "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)" }} />
-          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) clamp(56px,6vw,88px)" }}>
-            <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(32px,4vw,52px)" }}>
-              <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
-                <li><Link href="/" className="hov-footerlink" style={{ color: "#80CEFF" }}>Home</Link></li>
-                <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
-                <li style={{ color: "#C9D8E8" }}>Procurement &amp; Contracts</li>
-              </ol>
-            </nav>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
-              <div style={{ maxWidth: 660 }}>
-                <EyebrowBar label={p.hero.eyebrow} dark mb={20} />
-                <h1 id="hero-h" style={{ margin: "0 0 24px", fontSize: "clamp(31px,3.9vw,54px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.hero.headline}</h1>
-                <p style={{ margin: 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "58ch", textWrap: "balance" }}>{p.hero.body}</p>
-              </div>
-              <ul style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 6 }}>
-                {p.hero.bullets.map((b) => (
-                  <li key={b} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                    <span aria-hidden="true" style={{ flex: "0 0 auto", width: 9, height: 9, background: "#EB4900", transform: "rotate(45deg)", marginTop: 7, display: "block" }} />
-                    <span style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.5, color: "#FFFFFF" }}>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Shared PageHero, not a local copy: this page previously hand-rolled
+            the same markup and drifted from it. */}
+        {/* Bullets are pulled OUT of the hero and given their own band below.
+            Keeping both the mechanism paragraph and three long bullets in the
+            hero's right column made it 349px against a 138px headline — the
+            densest hero on the site. The paragraph stays put because it carries
+            the mechanism-first framing that has to lead; the bullets read
+            better as a 3-up row than as a cramped list anyway. */}
+        <PageHero
+          hero={{ ...p.hero, bullets: undefined }}
+          breadcrumbs={[{ label: "Home", href: "/" }, { label: "Procurement & Contracts" }]}
+        />
+
+        <section aria-label="Why buying through a contract helps" style={{ background: "#FFFFFF" }}>
+          <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(30px,3.4vw,48px) clamp(20px,4vw,48px)" }}>
+            <Reveal as="ul" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(290px,100%),1fr))", gap: "clamp(18px,2.4vw,40px)" }}>
+              {p.hero.bullets.map((b) => (
+                <li key={b} style={{ display: "flex", gap: 13, alignItems: "flex-start" }}>
+                  <span aria-hidden="true" style={{ flex: "0 0 auto", width: 9, height: 9, background: "#EB4900", transform: "rotate(45deg)", marginTop: 7, display: "block" }} />
+                  <span style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.55, color: "#021F43" }}>{b}</span>
+                </li>
+              ))}
+            </Reveal>
           </div>
         </section>
 
         {/* ══ FINDER ══ */}
-        <section id="finder" aria-labelledby="finder-h" style={{ background: "#F0F2F4", borderBottom: "1px solid #CBD5DF", scrollMarginTop: 90 }}>
+        <section id="finder" aria-labelledby="finder-h" style={{ background: "#F0F2F4", scrollMarginTop: 90 }}>
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,6vw,88px) clamp(20px,4vw,48px)" }}>
             <div style={{ maxWidth: 620, marginBottom: "clamp(28px,3vw,40px)" }}>
               <EyebrowBar label={p.finder.eyebrow} />
@@ -150,10 +149,10 @@ export default async function HowToBuyPage() {
         </section>
 
         {/* ══ FAQ ══ */}
-        <section aria-labelledby="faq-h" style={{ background: "#F0F2F4", borderBottom: "1px solid #CBD5DF" }}>
+        <section aria-labelledby="faq-h" style={{ background: "#F0F2F4" }}>
           <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,96px) clamp(20px,4vw,48px)" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
-              <div>
+              <div className="ptg-sticky-col">
                 <EyebrowBar label={p.faq.eyebrow} />
                 <h2 id="faq-h" style={{ margin: "0 0 22px", fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.faq.heading}</h2>
                 <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "58ch", textWrap: "balance" }}>{p.faq.intro}</p>

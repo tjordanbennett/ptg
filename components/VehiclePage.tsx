@@ -35,9 +35,9 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
             <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(28px,4vw,48px)" }}>
               <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
                 <li><Link href="/" className="hov-footerlink" style={{ color: "#80CEFF" }}>Home</Link></li>
-                <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
+                <li aria-hidden="true" style={{ color: "#7C9BBA" }}>/</li>
                 <li><Link href="/procurement-contracts" className="hov-footerlink" style={{ color: "#80CEFF" }}>Procurement &amp; Contracts</Link></li>
-                <li aria-hidden="true" style={{ color: "#5B7FA8" }}>/</li>
+                <li aria-hidden="true" style={{ color: "#7C9BBA" }}>/</li>
                 <li style={{ color: "#C9D8E8" }}>{v.name}</li>
               </ol>
             </nav>
@@ -87,7 +87,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
 
         {/* ══ MULTI-CONTRACT CARDS (Texas DIR) ══ */}
         {multi ? (
-          <section style={{ background: "#F0F2F4", borderTop: "1px solid #CBD5DF", borderBottom: "1px solid #CBD5DF" }}>
+          <section style={{ background: "#F0F2F4" }}>
             <div style={WRAP}>
               <Reveal as="h2" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Two contracts, two scopes. Cite the right one.</Reveal>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(18px,2vw,26px)" }}>
@@ -110,7 +110,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         ) : null}
 
         {/* ══ WHO / COVERED ══ */}
-        <section style={{ background: multi ? "#FFFFFF" : "#F0F2F4", borderTop: multi ? undefined : "1px solid #CBD5DF", borderBottom: "1px solid #E5E7EB" }}>
+        <section style={{ background: multi ? "#FFFFFF" : "#F0F2F4", borderBottom: "1px solid #E5E7EB" }}>
           <div style={WRAP}>
             <div style={{ display: "grid", gridTemplateColumns: v.covered ? "repeat(auto-fit, minmax(min(280px,100%),1fr))" : "1fr", gap: "clamp(28px,4vw,56px)" }}>
               <Reveal as="div">
@@ -198,7 +198,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         </section>
 
         {/* ══ OTHER VEHICLES ══ */}
-        <section aria-labelledby="others-h" style={{ background: "#F0F2F4", borderTop: "1px solid #CBD5DF", borderBottom: "1px solid #CBD5DF" }}>
+        <section aria-labelledby="others-h" style={{ background: "#F0F2F4" }}>
           <div style={WRAP}>
             <Reveal as="h2" id="others-h" style={{ margin: "0 0 clamp(24px,3vw,36px)", fontSize: "clamp(21px,2.2vw,29px)", fontWeight: 800, letterSpacing: "-0.024em" }}>Other contract vehicles</Reveal>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%),1fr))", gap: "clamp(14px,1.6vw,20px)" }}>

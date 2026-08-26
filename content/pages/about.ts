@@ -1,4 +1,5 @@
 import type { StandardPage } from "@/content/types";
+import { roles } from "./roles";
 
 /**
  * About / Leadership / Careers / Customers. Words are PTG's (PTG-SITE-COPY.md).
@@ -56,7 +57,7 @@ export const about: StandardPage = {
       kind: "tags",
       eyebrow: "Our values",
       heading: "What we hold ourselves to.",
-      variant: "chip",
+      variant: "values",
       items: ["Mission Driven", "People First", "Drive Results", "Embrace Change", "Own It"],
     },
     {
@@ -136,11 +137,17 @@ export const careers: StandardPage = {
     headline: "People First isn't just a value on a wall.",
     body:
       "We've had close to zero voluntary turnover in recent years. Not because we say people come first. It's because consultants here own their work, know their leadership by name, and don't get moved off a project to fill a bench somewhere else.",
+    image: {
+      src: "/images/consultant.png",
+      alt: "Consultants talking around a table covered in site plans and photographs in a warm studio office",
+      width: 1254,
+      height: 1254,
+    },
   },
   sections: [
     {
       kind: "features",
-      eyebrow: "What it's like here",
+      // eyebrow: "What it's like here",
       heading: "What it's like here.",
       columns: 2,
       items: [
@@ -154,7 +161,7 @@ export const careers: StandardPage = {
       kind: "tags",
       eyebrow: "Our values",
       heading: "What we hold ourselves to.",
-      variant: "chip",
+      variant: "values",
       items: ["Mission Driven", "People First", "Drive Results", "Embrace Change", "Own It"],
     },
     {
@@ -165,6 +172,9 @@ export const careers: StandardPage = {
       title: "No postings open right now.",
       body: "We're not in a hiring push at the moment, but we're always glad to meet good people. Send your résumé below and we'll be in touch when something fits.",
       cta: { label: "Send us your résumé", href: "#apply" },
+      // ⚠️ SAMPLE postings — see content/pages/roles.ts. Empty array here (or
+      // there) restores the "no postings" empty state.
+      roles,
     },
     {
       kind: "applicationForm",

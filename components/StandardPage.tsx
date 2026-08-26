@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import type { Crumb, PageHeroData, Section, SiteSettings, StandardPage } from "@/content/types";
+import type { Crumb, Cta, PageHeroData, Section, SiteSettings, StandardPage } from "@/content/types";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FaqAccordion } from "@/components/FaqAccordion";
@@ -9,6 +10,8 @@ import { ParallaxStars } from "@/components/ParallaxStars";
 import { EyebrowBar } from "@/components/EyebrowBar";
 import { ApplicationForm } from "@/components/ApplicationForm";
 import { ClosingCTA } from "@/components/ClosingCTA";
+import { RoleList } from "@/components/RoleList";
+import { AngleField } from "@/components/AngleField";
 
 /**
  * StandardPageView — one renderer for every interior page (services, industries,
@@ -63,18 +66,38 @@ function SectionHeader({ eyebrow, heading, intro, dark = false, maxWidth = 640 }
 
 /* ── hero ────────────────────────────────────────────────────── */
 
-function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crumb[] }) {
+/**
+ * Shared for every interior page INCLUDING the bespoke ones. The procurement
+ * page kept its own copy of this markup and drifted twice — it missed the
+ * breadcrumb-contrast fix and the headline/copy split — so it now imports this.
+ */
+export function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crumb[] }) {
   return (
     <section aria-labelledby="hero-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
-      <ParallaxStars amount={70} offset={["start start", "end start"]} style={{ backgroundImage: STAR_BLUE, backgroundSize: "74px 74px", opacity: 0.5, WebkitMaskImage: "linear-gradient(115deg, transparent 44%, #000 100%)", maskImage: "linear-gradient(115deg, transparent 44%, #000 100%)" }} />
-      <div aria-hidden="true" style={{ position: "absolute", right: 0, top: 0, width: "48%", height: "100%", background: "linear-gradient(210deg, rgba(0,52,160,.42), rgba(2,31,67,0) 60%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 55%)", maskImage: "linear-gradient(to right, transparent 0%, #000 55%)" }} />
+      {/* A page can opt into a photographic hero instead of the star field. Only
+          Careers does today: that page needs to feel human, and the star texture
+          reads corporate. The photo carries its own alt text from content. */}
+      {hero.image ? (
+        <>
+          <Image src={hero.image.src} alt={hero.image.alt} fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "72% 42%" }} />
+          {/* Legibility: copy sits left, so the wash is heaviest there and the
+              band still settles into navy at the bottom edge. */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(2,31,67,.94) 0%, rgba(2,31,67,.82) 38%, rgba(2,31,67,.42) 100%)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", inset: "auto 0 0 0", height: 120, background: "linear-gradient(to bottom, transparent, rgba(2,31,67,.85))" }} />
+        </>
+      ) : (
+        <>
+          <ParallaxStars amount={70} offset={["start start", "end start"]} style={{ backgroundImage: STAR_BLUE, backgroundSize: "74px 74px", opacity: 0.5, WebkitMaskImage: "linear-gradient(115deg, transparent 44%, #000 100%)", maskImage: "linear-gradient(115deg, transparent 44%, #000 100%)" }} />
+          <div aria-hidden="true" style={{ position: "absolute", right: 0, top: 0, width: "48%", height: "100%", background: "linear-gradient(210deg, rgba(0,52,160,.42), rgba(2,31,67,0) 60%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 55%)", maskImage: "linear-gradient(to right, transparent 0%, #000 55%)" }} />
+        </>
+      )}
       <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 4, background: HAIRLINE }} />
       <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) clamp(56px,6vw,88px)" }}>
         <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(30px,4vw,50px)" }}>
           <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
             {breadcrumbs.map((c, i) => (
               <li key={c.label} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {i > 0 ? <span aria-hidden="true" style={{ color: "#5B7FA8" }}>/</span> : null}
+                {i > 0 ? <span aria-hidden="true" style={{ color: "#7C9BBA" }}>/</span> : null}
                 {c.href ? (
                   <Link href={c.href} className="hov-footerlink" style={{ color: "#80CEFF" }}>{c.label}</Link>
                 ) : (
@@ -84,24 +107,43 @@ function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crum
             ))}
           </ol>
         </nav>
-        <div style={{ display: "grid", gridTemplateColumns: hero.bullets ? "repeat(auto-fit, minmax(min(320px,100%),1fr))" : "1fr", gap: "clamp(30px,4vw,64px)", alignItems: "end" }}>
-          <div style={{ maxWidth: 760 }}>
-            <EyebrowBar label={hero.eyebrow} dark mb={20} />
-            <h1 id="hero-h" style={{ margin: hero.body ? "0 0 24px" : 0, fontSize: "clamp(31px,3.9vw,54px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.028em", textWrap: "balance" }}>{hero.headline}</h1>
-            {hero.body ? <p style={{ margin: hero.tagline ? "0 0 20px" : 0, fontSize: "clamp(17px,1.35vw,20px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "60ch", textWrap: "balance" }}>{hero.body}</p> : null}
-            {hero.tagline ? <p style={{ margin: 0, fontSize: "clamp(15.5px,1.2vw,17.5px)", fontWeight: 700, letterSpacing: "-0.01em", color: "#80CEFF" }}>{hero.tagline}</p> : null}
-          </div>
-          {hero.bullets ? (
-            <ul style={{ display: "flex", flexDirection: "column", gap: 14, paddingBottom: 6 }}>
-              {hero.bullets.map((b) => (
-                <li key={b} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                  <Diamond />
-                  <span style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.5, color: "#FFFFFF" }}>{b}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
+        {/* Headline LEFT, supporting copy RIGHT — not stacked.
+            Stacking a 3-line headline above a 5-line paragraph in one narrow
+            column was what made these heroes read as a wall, while the other
+            half of the row sat empty. Splitting them roughly halves the
+            vertical stack and puts the empty space to work. The headline column
+            is the wider of the two so the h1 breaks on 2 lines, not 3.
+            Pages with no supporting copy fall back to a single column.
+            Centred, not bottom-aligned: the two columns are different heights on
+            every page, so `end` left the headline sitting low against a
+            paragraph that started high. */}
+        {(() => {
+          const hasSide = Boolean(hero.body || hero.tagline || hero.bullets);
+          return (
+            <div style={{ display: "grid", gridTemplateColumns: hasSide ? "minmax(0,1.15fr) minmax(0,1fr)" : "1fr", gap: "clamp(26px,3.4vw,56px)", alignItems: "center" }} className={hasSide ? "ptg-hero-split" : undefined}>
+              <div>
+                <EyebrowBar label={hero.eyebrow} dark mb={20} />
+                <h1 id="hero-h" style={{ margin: 0, fontSize: "clamp(29px,3.4vw,46px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.028em", textWrap: "balance" }}>{hero.headline}</h1>
+              </div>
+              {hasSide ? (
+                <div>
+                  {hero.body ? <p style={{ margin: hero.tagline || hero.bullets ? "0 0 18px" : 0, fontSize: "clamp(16.5px,1.3vw,18.5px)", lineHeight: 1.65, color: "#DDE6F0", maxWidth: "46ch" }}>{hero.body}</p> : null}
+                  {hero.tagline ? <p style={{ margin: hero.bullets ? "0 0 18px" : 0, fontSize: "clamp(15.5px,1.2vw,17.5px)", fontWeight: 700, letterSpacing: "-0.01em", color: "#80CEFF" }}>{hero.tagline}</p> : null}
+                  {hero.bullets ? (
+                    <ul style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                      {hero.bullets.map((b) => (
+                        <li key={b} style={{ display: "flex", gap: 13, alignItems: "flex-start" }}>
+                          <Diamond />
+                          <span style={{ fontSize: 15.5, fontWeight: 600, lineHeight: 1.5, color: "#FFFFFF" }}>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          );
+        })()}
       </div>
     </section>
   );
@@ -111,7 +153,7 @@ function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crum
 
 function Light({ bg, id, children }: { bg: "white" | "offwhite"; id?: string; children: ReactNode }) {
   return (
-    <section id={id} style={{ background: bg === "offwhite" ? "#F0F2F4" : "#FFFFFF", borderTop: bg === "offwhite" ? "1px solid #CBD5DF" : undefined, borderBottom: bg === "offwhite" ? "1px solid #CBD5DF" : undefined, scrollMarginTop: 90 }}>
+    <section id={id} style={{ background: bg === "offwhite" ? "#F0F2F4" : "#FFFFFF", scrollMarginTop: 90 }}>
       <div style={CONTAINER}>{children}</div>
     </section>
   );
@@ -145,6 +187,44 @@ function resolveLight(s: Section, alt: "white" | "offwhite"): "white" | "offwhit
   if ("bg" in s && s.bg) return s.bg;
   if (s.kind === "faq") return "offwhite"; // reads as a distinct block, always
   return alt;
+}
+
+/**
+ * StickyHeader — section header pinned on the left while a taller content
+ * column scrolls past on the right, releasing at the end of the section.
+ *
+ * Only worth using where the right side is a LIST that reads fine at ~55% width.
+ * Card and feature grids are deliberately NOT converted: squeezing a 3-up grid
+ * into a narrower column costs more than the effect gains.
+ *
+ * `align-items: start` is load-bearing — a stretched grid item fills the row and
+ * has nowhere to stick. The sticky offset and the sub-900px opt-out live in
+ * `.ptg-sticky-col` (globals.css).
+ */
+function StickyHeader({
+  eyebrow,
+  heading,
+  intro,
+  cta,
+  children,
+}: {
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  cta?: Cta;
+  children: ReactNode;
+}) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px,100%),1fr))", gap: "clamp(28px,4vw,64px)", alignItems: "start" }}>
+      <div className="ptg-sticky-col">
+        {eyebrow ? <EyebrowBar label={eyebrow} /> : null}
+        {heading ? <h2 style={{ margin: intro || cta ? "0 0 18px" : 0, fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance", maxWidth: "16ch" }}>{heading}</h2> : null}
+        {intro ? <p style={{ margin: cta ? "0 0 24px" : 0, fontSize: "clamp(16px,1.25vw,17.5px)", lineHeight: 1.65, color: "#334155", maxWidth: "42ch" }}>{intro}</p> : null}
+        {cta ? <Link href={cta.href} className="hov-cta-blue hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{cta.label} <Arrow /></Link> : null}
+      </div>
+      <div>{children}</div>
+    </div>
+  );
 }
 
 function renderSection(s: Section, key: number, bg: "white" | "offwhite", from = "#FFFFFF"): ReactNode {
@@ -212,7 +292,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
       return (
         <Light key={key} bg={s.bg ?? bg}>
           <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(min(${cols === 3 ? 300 : 360}px,100%),1fr))`, gap: "clamp(4px,0.6vw,8px) clamp(28px,4vw,64px)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(min(${cols === 3 ? 320 : 440}px,100%),1fr))`, gap: "clamp(4px,0.6vw,8px) clamp(28px,4vw,64px)" }}>
             {s.items.map((it, i) => (
               <Reveal as="div" key={it.title} delay={i * 0.04} style={{ display: "flex", gap: 16, alignItems: "flex-start", padding: "clamp(18px,2vw,24px) 0", borderTop: "1px solid #E5E7EB" }}>
                 <Diamond color="#EB4900" size={9} mt={7} />
@@ -254,6 +334,46 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
 
     case "tags": {
       const cols = s.columns ?? 3;
+      if (s.variant === "values") {
+        // Two columns: the heading pins on the left while the values scroll past
+        // on the right, releasing at the end of the section. `align-items:
+        // start` is load-bearing — a stretched grid item fills the row and has
+        // nowhere to stick.
+        return (
+          <Light key={key} bg={s.bg ?? bg}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(340px,100%),1fr))", gap: "clamp(28px,4vw,72px)", alignItems: "start" }}>
+              <div className="ptg-sticky-col">
+                {s.eyebrow ? <EyebrowBar label={s.eyebrow} /> : null}
+                {s.heading ? <h2 style={{ margin: 0, fontSize: "clamp(28px,3.2vw,46px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.03em", textWrap: "balance", maxWidth: "14ch" }}>{s.heading}</h2> : null}
+                {s.intro ? <p style={{ margin: "18px 0 0", fontSize: "clamp(16.5px,1.3vw,18.5px)", lineHeight: 1.65, color: "#334155", maxWidth: "40ch" }}>{s.intro}</p> : null}
+              </div>
+              {/* Soft tinted panel rather than a saturated slab — this page
+                  should read inviting. Values keep regular weight so they stay
+                  a quieter voice than the 800 heading beside them. */}
+              <ul style={{ background: "rgba(0,52,160,.06)", border: "1px solid rgba(0,52,160,.10)", borderRadius: 10, padding: "clamp(10px,1.4vw,20px) clamp(24px,3vw,44px)" }}>
+                {s.items.map((t, i) => (
+                  <Reveal
+                    as="li"
+                    key={t}
+                    delay={i * 0.06}
+                    style={{
+                      padding: "clamp(20px,2.2vw,30px) 0",
+                      borderTop: i === 0 ? undefined : "1px solid rgba(2,31,67,.12)",
+                      fontSize: "clamp(23px,2.5vw,34px)",
+                      fontWeight: 400,
+                      lineHeight: 1.25,
+                      letterSpacing: "-0.022em",
+                      color: "#021F43",
+                    }}
+                  >
+                    {t}
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
+          </Light>
+        );
+      }
       if (s.variant === "chip") {
         return (
           <Light key={key} bg={s.bg ?? bg}>
@@ -340,13 +460,42 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
           <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: HAIRLINE }} />
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(44px,5vw,72px) clamp(20px,4vw,48px)" }}>
             {s.eyebrow ? <Reveal as="div" style={{ marginBottom: "clamp(26px,3vw,40px)" }}><EyebrowBar label={s.eyebrow} dark /></Reveal> : null}
-            <Reveal as="div" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(200px,100%),1fr))", gap: 0, borderTop: "1px solid rgba(128,206,255,.25)", borderBottom: "1px solid rgba(128,206,255,.25)" }}>
-              {s.items.map((it, i) => (
-                <div key={it.label} style={{ padding: "clamp(24px,3vw,34px) clamp(14px,2vw,26px) clamp(24px,3vw,34px) 0" }}>
-                  <p style={{ margin: "0 0 8px", fontSize: "clamp(30px,3.7vw,52px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "-0.04em", color: i === 1 ? "#B4FF00" : i === 2 ? "#80CEFF" : "#FFFFFF" }}>{it.value}</p>
-                  <p style={{ margin: 0, fontSize: "clamp(13px,1.05vw,15px)", fontWeight: 600, lineHeight: 1.4, color: "#C9D8E8", maxWidth: "26ch", textWrap: "balance" }}>{it.label}</p>
-                </div>
-              ))}
+            {/* No bracketing rules: the band already reads as its own thing — dotted
+                texture, and the gradient hairline separating it from the section
+                above. The rules were a third separator doing the same job.
+                Row-gap only, so stacked stats still breathe on mobile while the
+                single row is unaffected. */}
+            <Reveal as="div" className="ptg-statrow" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(200px,100%),1fr))", gap: "clamp(26px,3vw,38px) 0" }}>
+              {s.items.map((it, i) => {
+                // First item flush to the left end of the rules, last flush to
+                // the right, everything between centred. Left-aligning every
+                // cell left the middle and right stats floating at the 1/3 and
+                // 2/3 marks instead of reading against the rules that bracket
+                // them. Alignment is on the FLEX BOX, not just text-align, or
+                // the label's 26ch measure keeps its own left edge and the
+                // block stays visually off-centre.
+                const last = i === s.items.length - 1;
+                const align = i === 0 ? "flex-start" : last ? "flex-end" : "center";
+                const textAlign = (i === 0 ? "left" : last ? "right" : "center") as "left" | "right" | "center";
+                const pad = "clamp(14px,2vw,26px)";
+                return (
+                  <div
+                    key={it.label}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: align,
+                      textAlign,
+
+                      paddingLeft: i === 0 ? 0 : pad,
+                      paddingRight: last ? 0 : pad,
+                    }}
+                  >
+                    <p style={{ margin: "0 0 8px", fontSize: "clamp(30px,3.7vw,52px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "-0.04em", color: i === 1 ? "#B4FF00" : i === 2 ? "#80CEFF" : "#FFFFFF" }}>{it.value}</p>
+                    <p style={{ margin: 0, fontSize: "clamp(13px,1.05vw,15px)", fontWeight: 600, lineHeight: 1.4, color: "#C9D8E8", maxWidth: "26ch", textWrap: "balance" }}>{it.label}</p>
+                  </div>
+                );
+              })}
             </Reveal>
           </div>
         </section>
@@ -355,8 +504,8 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
     case "customers":
       return (
         <Light key={key} bg={s.bg ?? bg}>
-          <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
+          <StickyHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px,100%),1fr))", gap: "clamp(20px,2.5vw,32px)" }}>
             {s.groups.map((g, gi) => (
               <Reveal as="div" key={g.title} delay={gi * 0.06} data-unverified={s.unverified ? "" : undefined}>
                 <p style={{ margin: "0 0 16px", fontSize: 12, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#0034A0" }}>{g.title}</p>
@@ -368,6 +517,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
               </Reveal>
             ))}
           </div>
+          </StickyHeader>
         </Light>
       );
 
@@ -375,7 +525,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
       return (
         <Light key={key} bg={bg}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(32px,4vw,64px)", alignItems: "start" }}>
-            <Reveal as="div">
+            <Reveal as="div" className="ptg-sticky-col">
               {s.eyebrow ? <EyebrowBar label={s.eyebrow} /> : null}
               <h2 style={{ margin: "0 0 22px", fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance" }}>{s.heading ?? "Common questions"}</h2>
               {s.intro ? <p style={{ margin: "0 0 26px", fontSize: 16.5, lineHeight: 1.65, color: "#334155", maxWidth: "58ch", textWrap: "balance" }}>{s.intro}</p> : null}
@@ -389,8 +539,8 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
     case "people":
       return (
         <Light key={key} bg={s.bg ?? bg}>
-          <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(250px,100%),1fr))", gap: "clamp(16px,2vw,22px)" }}>
+          <StickyHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(230px,100%),1fr))", gap: "clamp(16px,2vw,22px)" }}>
             {s.people.map((pn, i) => (
               <Reveal as="article" key={pn.name} delay={i * 0.04} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(22px,2.4vw,28px)", display: "flex", flexDirection: "column", gap: 4 }}>
                 <div aria-hidden="true" style={{ width: 46, height: 46, marginBottom: 14, borderRadius: 6, background: "#021F43", display: "grid", placeItems: "center" }}>
@@ -403,6 +553,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
             ))}
           </div>
           {s.note ? <p style={{ margin: "clamp(22px,3vw,32px) 0 0", fontSize: 13.5, lineHeight: 1.6, color: "#475569", maxWidth: "70ch" }}>{s.note}</p> : null}
+          </StickyHeader>
         </Light>
       );
 
@@ -410,12 +561,23 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
       return (
         <Light key={key} bg={s.bg ?? bg}>
           {(s.eyebrow || s.heading || s.sub) ? <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.sub} /> : null}
+          {s.roles && s.roles.length > 0 ? (
+            <Reveal as="div">
+              <RoleList roles={s.roles} />
+              {s.cta ? (
+                <p style={{ margin: "18px 0 0", fontSize: 15, color: "#475569" }}>
+                  Not seeing your role? <Link href={s.cta.href} className="hov-link" style={{ fontWeight: 700 }}>{s.cta.label}</Link>
+                </p>
+              ) : null}
+            </Reveal>
+          ) : (
           <Reveal as="div" style={{ border: "1px dashed #94A3B8", borderRadius: 8, padding: "clamp(34px,4.5vw,60px) clamp(24px,3vw,40px)", textAlign: "center", background: "#FFFFFF" }}>
             <div aria-hidden="true" style={{ width: 40, height: 40, margin: "0 auto 22px", background: "#B4FF00", transform: "rotate(45deg)", opacity: 0.9 }} />
             <p style={{ margin: "0 0 12px", fontSize: "clamp(18px,1.8vw,23px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>{s.title}</p>
             <p style={{ margin: "0 auto 26px", fontSize: 17, lineHeight: 1.6, color: "#334155", maxWidth: "58ch", textWrap: "balance" }}>{s.body}</p>
             {s.cta ? <Link href={s.cta.href} className="hov-cta-navy hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{s.cta.label} <Arrow /></Link> : null}
           </Reveal>
+          )}
         </Light>
       );
 

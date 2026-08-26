@@ -73,11 +73,6 @@ export const home: HomePage = {
     eyebrow: "By the numbers",
     heading: "Four and a half decades of public sector work",
     credentialLine: "The largest public sector Workday reseller in the U.S.",
-    credentialChips: [
-      "Certified Workday Partner",
-      "Authorized Reseller",
-      "MBE · DBE Certified",
-    ],
     items: [
       { figure: "45", label: "Years family-owned and independent", tint: "white" },
       { figure: "100+", label: "Government Workday projects", tint: "white" },
@@ -252,7 +247,6 @@ export const home: HomePage = {
       "say people come first. It's because consultants here own their work, know their " +
       "leadership by name, and don't get moved off a project to fill a bench " +
       "somewhere else.",
-    values: ["Mission Driven", "People First", "Drive Results", "Embrace Change", "Own It"],
     openRoles: {
       heading: "Open roles",
       sub: "Workday, ServiceNow and change management. Remote-first, U.S.",

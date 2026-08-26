@@ -73,6 +73,23 @@ export interface Announcement {
   unverified?: boolean;
 }
 
+/**
+ * A job posting. Everything currently in `content/pages/roles.ts` is SAMPLE
+ * content for design review, never a real vacancy — see the header there.
+ * Anything rendered from this type must carry a visible "Sample" marker until
+ * PTG supplies approved postings.
+ */
+export interface RolePosting {
+  slug: string;
+  title: string;
+  location: string;
+  type: string;
+  team: string;
+  summary: string;
+  responsibilities: string[];
+  requirements: string[];
+}
+
 export interface ImageRef {
   src: string;
   alt: string;
@@ -108,7 +125,6 @@ export interface HomePage {
     heading: string;
     /** Unconfirmed positioning claim — rendered with data-unverified. */
     credentialLine: string;
-    credentialChips: string[];
     items: { figure: string; label: string; tint: "white" | "leaf" | "clear" }[];
   };
   customers: {
@@ -158,13 +174,15 @@ export interface HomePage {
     eyebrow: string;
     heading: string;
     body: string;
-    values: string[];
     openRoles: {
       heading: string;
       sub: string;
+      /** Shown when there are no postings. */
       emptyTitle: string;
       emptyBody: string;
       cta: Cta;
+      /** Link shown under a populated list. */
+      allLabel?: string;
     };
   };
   closingCta: {
@@ -188,6 +206,8 @@ export interface Crumb {
 export interface PageHeroData {
   eyebrow: string;
   headline: string;
+  /** Opt into a photographic hero instead of the default star field. */
+  image?: ImageRef;
   body?: string;
   bullets?: string[];
   tagline?: string;
@@ -218,7 +238,7 @@ export type Section =
       items: { title: string; body: string }[];
     }
   | { kind: "steps"; eyebrow?: string; heading?: string; intro?: string; band?: "blue" | "navy"; steps: { num: string; name: string; body: string }[] }
-  | { kind: "tags"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; items: string[]; variant?: "diamond" | "chip"; columns?: 2 | 3 | 4 }
+  | { kind: "tags"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; items: string[]; variant?: "diamond" | "chip" | "values"; columns?: 2 | 3 | 4 }
   | { kind: "outcomes"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; items: string[] }
   /** `body` keeps the quote and the paragraph that elaborates it in ONE section.
    *  Two adjacent sections double their vertical padding and strand the prose. */
@@ -228,7 +248,7 @@ export type Section =
   | { kind: "customers"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; groups: { title: string; names: string[] }[]; unverified?: boolean }
   | { kind: "faq"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; cta?: Cta; items: { q: string; a: string }[] }
   | { kind: "people"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; note?: string; people: { name: string; title: string; unverifiedRole?: boolean }[] }
-  | { kind: "emptyState"; eyebrow?: string; heading?: string; sub?: string; title: string; body: string; cta?: Cta; bg?: SectionBg }
+  | { kind: "emptyState"; eyebrow?: string; heading?: string; sub?: string; title: string; body: string; cta?: Cta; bg?: SectionBg; roles?: RolePosting[] }
   | { kind: "applicationForm"; eyebrow?: string; heading?: string; intro?: string; bg?: SectionBg; id?: string }
   | { kind: "cta"; eyebrow?: string; heading: string; body?: string; ctas: Cta[] };
 

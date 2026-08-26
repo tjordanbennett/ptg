@@ -11,8 +11,10 @@ import { partners } from "@/content/pages/partners";
 import { vehicles, vehicleOrder } from "@/content/pages/vehicles";
 import { about, leadership, careers, customers } from "@/content/pages/about";
 import { resources, accessibility, privacy } from "@/content/pages/misc";
+import { roles } from "@/content/pages/roles";
 import type {
   HomePage,
+  RolePosting,
   ProcurementPage,
   SiteSettings,
   StandardPage,
@@ -90,4 +92,17 @@ export async function getAccessibilityPage(): Promise<StandardPage> {
 }
 export async function getPrivacyPage(): Promise<StandardPage> {
   return privacy;
+}
+
+/* ── Job postings ──
+   SAMPLE content today — see content/pages/roles.ts. An empty array here makes
+   every consumer fall back to its "no postings" state. */
+export function getRoleSlugs(): string[] {
+  return roles.map((r) => r.slug);
+}
+export async function getRoles(): Promise<RolePosting[]> {
+  return roles;
+}
+export async function getRole(slug: string): Promise<RolePosting | null> {
+  return roles.find((r) => r.slug === slug) ?? null;
 }
