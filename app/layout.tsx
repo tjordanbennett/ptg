@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { MotionProvider } from "@/components/MotionProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -69,6 +70,19 @@ export default function RootLayout({
           Skip to content
         </a>
         <MotionProvider>{children}</MotionProvider>
+        {/* Vercel Analytics — production only.
+            Added at Jordan's request; note CLAUDE.md's "no external services /
+            no analytics" rule, which this supersedes.
+
+            The gate is not cosmetic. Rendered unconditionally, the component
+            fetches https://va.vercel-scripts.com/v1/script.debug.js on EVERY
+            local page load — verified, not assumed. That is an outbound request
+            to a third party from a build whose whole posture is "no network
+            writes", and it tells Vercel the dev machine's IP every time anyone
+            runs `npm run dev`. It also cannot report anything locally: the
+            beacon posts to /_vercel/insights, which only exists on Vercel. So
+            off-Vercel it is pure cost. */}
+        {process.env.NODE_ENV === "production" ? <Analytics /> : null}
       </body>
     </html>
   );
