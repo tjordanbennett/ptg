@@ -816,6 +816,20 @@
 
 
 
+
+/* Customer strip heading: centred once the row wraps.
+   The row goes to two lines at 660px (measured — one line at 680, wrapped at
+   660), so the breakpoint sits just above that. Left-aligned it reads as a
+   ragged column above centred logos; centred, the stacked layout balances.
+   `margin-inline: auto` matters as much as text-align — the element is capped
+   at 30ch, so without it the centred text would sit inside a left-hung box. */
+@media (max-width: 670px) {
+  .ptg-custheading {
+    text-align: center;
+    margin-inline: auto;
+  }
+}
+
 /* Mobile submenu: animates to CONTENT height without measuring it in JS.
    `grid-template-rows: 0fr → 1fr` is the reliable way to do that — height:auto
    is not animatable, and a fixed max-height either clips long menus or eases
@@ -838,7 +852,9 @@
   transition: grid-template-rows 0.28s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.2s ease 0.04s, visibility 0s;
 }
-.ptg-submenu > ul {
+/* The clipper is a bare wrapper — no padding, margin or border, or the row
+   cannot reach zero height. All spacing sits on the <ul> inside it. */
+.ptg-submenu > div {
   overflow: hidden;
   min-height: 0;
 }

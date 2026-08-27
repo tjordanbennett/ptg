@@ -120,7 +120,10 @@ export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customer
       <div style={{ position: "relative", zIndex: 1, borderTop: "1px solid rgba(128,206,255,.2)", background: "rgba(2,31,67,.6)", backdropFilter: "blur(6px)" }}>
         <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(13px,1.5vw,17px) clamp(20px,4vw,48px)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "clamp(20px,3vw,48px)" }}>
           {/* Small headline, not a label — wraps into a short stack on the left third */}
-          <p style={{ margin: 0, flex: "0 1 auto", maxWidth: "30ch", fontSize: "clamp(13.5px,1.05vw,15px)", fontWeight: 700, lineHeight: 1.35, letterSpacing: "-0.01em", color: "#FFFFFF", textWrap: "balance" }}>{customers.heading}</p>
+          {/* No inline `margin: 0` — Tailwind preflight already zeroes <p> margins, and
+              an inline margin outranks the stylesheet, which stopped the
+              `margin-inline: auto` that centres this when the row wraps. */}
+          <p className="ptg-custheading" style={{ flex: "0 1 auto", maxWidth: "30ch", fontSize: "clamp(13.5px,1.05vw,15px)", fontWeight: 700, lineHeight: 1.35, letterSpacing: "-0.01em", color: "#FFFFFF", textWrap: "balance" }}>{customers.heading}</p>
           {/* `1 1 0` + minWidth 0, NOT a percentage basis. At 74% the track claimed
               906px of a 1224px content box; with the heading at 305px and a 43px
               gap that came to 1254px and the track wrapped to its own line.

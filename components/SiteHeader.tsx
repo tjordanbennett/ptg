@@ -275,6 +275,12 @@ function MobileItem({
           inner element carries `overflow: hidden; min-height: 0`, without which
           the row can't actually collapse. */}
       <div className="ptg-submenu" data-open={isOpen}>
+        {/* The grid ITEM must carry no padding of its own. `overflow: hidden`
+            clips content, not the element's own padding box — so with the
+            padding on this element a collapsed 0fr row was still 16px tall,
+            which pushed every label off-centre in its row. Spacing lives on the
+            <ul> inside instead. */}
+        <div>
         <ul style={{ display: "flex", flexDirection: "column", gap: 2, padding: "2px 0 14px 16px", marginLeft: 4, borderLeft: "2px solid #E5E7EB" }}>
           {flat.map((link) => (
             <li key={link.label}>
@@ -284,6 +290,7 @@ function MobileItem({
             </li>
           ))}
         </ul>
+        </div>
       </div>
     </div>
   );
