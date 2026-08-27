@@ -9,6 +9,13 @@
 
 :root {
   --font-montserrat: "Montserrat", Helvetica, Arial, sans-serif;
+
+  /* Header height, single source of truth. Also set inline on <header> itself
+     (HEADER_H in SiteHeader.tsx) for descendants; declared here so consumers
+     OUTSIDE the header — the mobile scrim, which had to move out of the
+     header's stacking context — resolve a real value instead of silently
+     falling back to a default that happened to match. */
+  --ptg-header-h: 62px;
 }
 
 @layer base {
@@ -805,6 +812,110 @@
   padding: 0;
   background: rgba(2, 31, 67, 0.34);
   cursor: default;
+}
+
+
+
+/* Mobile submenu: animates to CONTENT height without measuring it in JS.
+   `grid-template-rows: 0fr → 1fr` is the reliable way to do that — height:auto
+   is not animatable, and a fixed max-height either clips long menus or eases
+   against empty space on short ones. The child needs `overflow: hidden` and
+   `min-height: 0` or the row refuses to collapse.
+   Closed state is `visibility: hidden` so the links leave the tab order — a
+   0fr row still contains focusable children otherwise. */
+.ptg-submenu {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.18s ease, visibility 0s linear 0.28s;
+}
+.ptg-submenu[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition: grid-template-rows 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease 0.04s, visibility 0s;
+}
+.ptg-submenu > ul {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.ptg-subchevron {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ptg-submenu,
+  .ptg-submenu[data-open="true"],
+  .ptg-subchevron {
+    transition: none;
+  }
+}
+
+/* ── Mobile nav: burger↔X, and a drawer that animates both ways ────────
+   The drawer is always in the DOM and toggled by `data-open`. Conditional
+   rendering could only animate IN — React unmounts the node before an exit
+   transition can run, which is why it used to blink shut.
+   `visibility` is transitioned with a delay so the panel stays hittable and
+   focusable for the length of the fade, then drops out of the tab order. */
+.ptg-burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #021f43;
+  transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.16s ease;
+}
+/* Bars sit at 0 / 7 / 14px (2px tall, 5px gap), so ±7px brings the outer two
+   onto the centre line before they rotate into the cross. */
+.ptg-burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.ptg-burger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.3);
+}
+.ptg-burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.ptg-drawer {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.26s;
+}
+.ptg-drawer[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.2s ease, transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.ptg-scrim {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+}
+.ptg-scrim[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.22s ease, visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ptg-burger span,
+  .ptg-drawer,
+  .ptg-drawer[data-open="true"],
+  .ptg-scrim,
+  .ptg-scrim[data-open="true"] {
+    transition: none;
+  }
 }
 
 @media (min-width: 1041px) {

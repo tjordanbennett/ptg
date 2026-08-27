@@ -123,29 +123,29 @@ export function SiteHeader({
         <div className="ptg-nav-mobile">
           <button
             type="button"
+            className="ptg-burger"
             aria-expanded={mobileOpen}
             aria-controls="ptg-mobile-nav"
-            aria-label="Menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileOpen((v) => !v)}
             style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 5, background: "none", border: "1px solid #E5E7EB", borderRadius: 6, padding: "0 13px", minWidth: 46, minHeight: 44, cursor: "pointer" }}
           >
-            <span aria-hidden="true" style={{ display: "block", width: 20, height: 2, background: "#021F43" }} />
-            <span aria-hidden="true" style={{ display: "block", width: 20, height: 2, background: "#021F43" }} />
-            <span aria-hidden="true" style={{ display: "block", width: 20, height: 2, background: "#021F43" }} />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      {mobileOpen ? (
+      {/* Mounted at all times, shown via `data-open`. Conditional rendering can
+          animate IN but never OUT — React removes the node before a transition
+          can run, which is why this used to blink shut. Closed state is
+          `visibility: hidden`, so the links stay out of the tab order.
+          The drawer stays INSIDE <header> because it is positioned off it
+          (`top: 100%`); the scrim does not — see below. */}
+      {(
         <>
-          <button
-            type="button"
-            aria-label="Close menu"
-            tabIndex={-1}
-            className="ptg-scrim"
-            onClick={() => setMobileOpen(false)}
-          />
-          <nav id="ptg-mobile-nav" aria-label="Primary" className="ptg-drawer">
+          <nav id="ptg-mobile-nav" aria-label="Primary" className="ptg-drawer" data-open={mobileOpen}>
             {site.nav.map((item, i) => (
               <MobileItem
                 key={item.label}
@@ -159,8 +159,23 @@ export function SiteHeader({
             </Link>
           </nav>
         </>
-      ) : null}
+      )}
     </header>
+
+    {/* Scrim lives OUTSIDE <header>, and that placement is the whole point.
+        The header is sticky with z-index 100, so it opens its own stacking
+        context — a scrim nested inside it has its z-index resolved against the
+        header's own children, so it painted over the logo and the nav bar and
+        washed them out. Out here it sits in the root context below the header,
+        which is what "dim the page behind the drawer" actually means. */}
+    <button
+      type="button"
+      aria-label="Close menu"
+      tabIndex={-1}
+      className="ptg-scrim"
+      data-open={mobileOpen}
+      onClick={() => setMobileOpen(false)}
+    />
     </>
   );
 }
@@ -252,9 +267,14 @@ function MobileItem({
         style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", background: "none", border: 0, fontFamily: "inherit", fontSize: 16, fontWeight: 700, color: "#021F43", padding: "16px 2px", minHeight: 44, cursor: "pointer", textAlign: "left" }}
       >
         {item.label}
-        <span aria-hidden="true" style={{ width: 7, height: 7, borderRight: "2px solid #EB4900", borderBottom: "2px solid #EB4900", transform: isOpen ? "rotate(225deg)" : "rotate(45deg)", display: "block", flex: "0 0 auto", marginRight: 4 }} />
+        <span aria-hidden="true" className="ptg-subchevron" style={{ width: 7, height: 7, borderRight: "2px solid #EB4900", borderBottom: "2px solid #EB4900", transform: isOpen ? "rotate(225deg)" : "rotate(45deg)", display: "block", flex: "0 0 auto", marginRight: 4 }} />
       </button>
-      {isOpen ? (
+      {/* Always mounted, height animated via the grid-rows 0fr→1fr technique —
+          the only way to transition to CONTENT height without measuring it in
+          JS. Conditional rendering could animate open but never closed. The
+          inner element carries `overflow: hidden; min-height: 0`, without which
+          the row can't actually collapse. */}
+      <div className="ptg-submenu" data-open={isOpen}>
         <ul style={{ display: "flex", flexDirection: "column", gap: 2, padding: "2px 0 14px 16px", marginLeft: 4, borderLeft: "2px solid #E5E7EB" }}>
           {flat.map((link) => (
             <li key={link.label}>
@@ -264,7 +284,7 @@ function MobileItem({
             </li>
           ))}
         </ul>
-      ) : null}
+      </div>
     </div>
   );
 }
