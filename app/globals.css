@@ -178,8 +178,10 @@
   .hov-vehrow {
     color: #ffffff;
   }
+  /* Translucent, not a solid fill — the rows sit on a gradient now, so an
+     opaque hover would punch a flat rectangle through it. */
   .hov-vehrow:hover {
-    background: #0a2e5a;
+    background: rgba(128, 206, 255, 0.12);
     color: #80ceff;
   }
 
@@ -553,9 +555,19 @@
     border-color: #cbd5e1;
     box-shadow: 0 28px 54px -24px rgba(2, 31, 67, 0.32);
   }
-  /* Industries carousel cards keep the lift but drop the shadow. */
+  /* Resting shadow — lighter than the Open Roles card because these are small
+     and there are five in a row; the same weight reads as haze across the band.
+     Shallow enough to clear the track's 11px padding, which is all the room
+     `overflow-y: hidden` leaves it. */
+  .hov-card--flat {
+    box-shadow: 0 12px 26px -20px rgba(2, 31, 67, 0.22);
+  }
+  /* Industries carousel cards: a lighter shadow than the standard card, both at
+     rest (inline, in IndustriesCarousel.tsx) and on hover. This used to be
+     `box-shadow: none` — which, once the cards gained a resting shadow, meant
+     hovering made a card look FLATTER than its neighbours. It deepens now. */
   .hov-card--flat:hover {
-    box-shadow: none;
+    box-shadow: 0 18px 34px -20px rgba(2, 31, 67, 0.3);
   }
   /* ── Hero load reveal ──────────────────────────────────────────────
      Driven by CSS, not by motion's animate prop, so the hidden state can

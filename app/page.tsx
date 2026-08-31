@@ -108,19 +108,49 @@ export default async function HomePage() {
                 ))}
                 <Link href={h.contracts.cta.href} className="hov-cta-blue hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{h.contracts.cta.label} <Arrow /></Link>
               </Reveal>
-              {/* Original two-column row — name left, contract number right —
-                  on a navy panel instead of white. `gap: 1` over the container's
-                  background is what draws the hairlines between rows, so the
-                  container colour IS the divider colour. */}
-              <Reveal as="ul" delay={0.08} style={{ display: "flex", flexDirection: "column", gap: 1, background: "#0E3565", border: "1px solid #0E3565", borderRadius: 6, overflow: "hidden" }}>
-                {h.contracts.vehicles.map((v) => (
-                  <li key={v.name} style={{ background: "#021F43" }}>
-                    <Link href={h.contracts.cta.href} className="hov-vehrow" style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 20, padding: "22px clamp(18px,2vw,26px)" }}>
-                      <span style={{ fontSize: "clamp(16px,1.4vw,19px)", fontWeight: 800, letterSpacing: "-0.015em", color: "inherit" }}>{v.name}</span>
-                      <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 13, fontWeight: 400, letterSpacing: ".02em", color: "#9FD3F5", textAlign: "right", whiteSpace: "nowrap" }}>{v.number}</span>
-                    </Link>
-                  </li>
-                ))}
+              {/* Panel sits on a drawn navy field rather than flat fill —
+                  AngleField with navy stops, so this reuses the delivery-journey
+                  texture instead of inventing a fourth one. Rows are transparent
+                  so the gradient reads through them; the `gap: 1` divider trick
+                  had to go with it, because a 1px gap over a gradient stripes it.
+                  Dividers are explicit hairlines now. */}
+              <Reveal
+                as="div"
+                delay={0.08}
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRadius: 6,
+                  border: "1px solid rgba(128,206,255,.16)",
+                  // Resting shadow, which the rest of the site reserves for hover
+                  // states — justified here because this is a dark block on white
+                  // rather than a white card, so a border alone leaves it flat.
+                  // Tighter and lighter than the hover shadows (-22px spread vs
+                  // -24px at .32) so it reads as sitting, not lifted.
+                  boxShadow: "0 16px 34px -20px rgba(2,31,67,.42)",
+                }}
+              >
+                <AngleField
+                  id="vehicles-field"
+                  stops={[
+                    { offset: "0%", color: "#01142C" },
+                    { offset: "48%", color: "#021F43" },
+                    { offset: "100%", color: "#0A3A78" },
+                  ]}
+                  scrim={[]}
+                  lineColor="#80CEFF"
+                  glowColor="#2C6BC4"
+                />
+                <ul style={{ position: "relative", zIndex: 1 }}>
+                  {h.contracts.vehicles.map((v, i) => (
+                    <li key={v.name} style={{ borderTop: i === 0 ? undefined : "1px solid rgba(128,206,255,.16)" }}>
+                      <Link href={h.contracts.cta.href} className="hov-vehrow" style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 20, padding: "22px clamp(18px,2vw,26px)" }}>
+                        <span style={{ fontSize: "clamp(16px,1.4vw,19px)", fontWeight: 800, letterSpacing: "-0.015em", color: "inherit" }}>{v.name}</span>
+                        <span style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 13, fontWeight: 400, letterSpacing: ".02em", color: "#9FD3F5", textAlign: "right", whiteSpace: "nowrap" }}>{v.number}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </Reveal>
             </div>
           </div>
@@ -230,7 +260,21 @@ export default async function HomePage() {
                 <h2 id="careers-h" style={{ margin: "0 0 20px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.careers.heading}</h2>
                 <p style={{ margin: 0, fontSize: "clamp(16.5px,1.3vw,19px)", lineHeight: 1.65, color: "#334155", maxWidth: "58ch", textWrap: "balance" }}>{h.careers.body}</p>
               </Reveal>
-              <Reveal as="div" delay={0.08} style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(26px,3vw,40px)" }}>
+              <Reveal
+                as="div"
+                delay={0.08}
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #E5E7EB",
+                  borderRadius: 6,
+                  padding: "clamp(26px,3vw,40px)",
+                  // Same idiom as the contract-vehicle panel, pulled back a
+                  // little: that one is a dark block on white and can carry a
+                  // heavier shadow, this is white-on-off-white where the same
+                  // opacity would read as a grey smudge rather than depth.
+                  boxShadow: "0 16px 34px -22px rgba(2,31,67,.26)",
+                }}
+              >
                 <h3 style={{ margin: "0 0 6px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, letterSpacing: "-0.018em" }}>{h.careers.openRoles.heading}</h3>
                 <p style={{ margin: "0 0 24px", fontSize: 15, color: "#334155" }}>{h.careers.openRoles.sub}</p>
                 {roles.length > 0 ? (

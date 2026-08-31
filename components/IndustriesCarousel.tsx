@@ -106,6 +106,9 @@ export function IndustriesCarousel({ cards }: { cards: HomePage["industries"]["c
             as="article"
             key={ind.name}
             delay={i * 0.06}
+            // Shadow lives in CSS (.hov-card--flat), not inline: an inline
+            // box-shadow outranks the stylesheet, so the :hover rule could
+            // never override it and hovering did nothing.
             className="hov-card hov-card--flat"
             style={{
               flex: "0 0 auto",
