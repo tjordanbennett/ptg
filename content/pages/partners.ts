@@ -19,6 +19,14 @@ export const partners: Record<string, StandardPage> = {
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday Partner"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/houston-skyline-hero.jpg",
+        alt: "Downtown Houston lit at dusk under a deep blue sky",
+        width: 2400,
+        height: 1600,
+      },
       eyebrow: "Why choose PTG + Workday",
       headline: "Stronger together. Greater impact.",
       body:
@@ -128,6 +136,14 @@ export const partners: Record<string, StandardPage> = {
     currentLabel: "Services",
     breadcrumbs: crumbs("ServiceNow Partner"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/quote-houston.jpg",
+        alt: "Downtown Houston towers lit at dusk above the freeway",
+        width: 1200,
+        height: 1600,
+      },
       eyebrow: "Why choose PTG + ServiceNow",
       headline: "Service management that works the way your organization does.",
       body:

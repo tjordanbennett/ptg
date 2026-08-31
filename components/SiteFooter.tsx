@@ -24,8 +24,12 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
               ))}
             </p>
             <p style={{ margin: 0, fontSize: 14, lineHeight: 1.65 }}>{f.address.phone}</p>
+            {/* Only socials with a real destination render. `href: "#"` is the
+                placeholder state until PTG supplies the profile URLs; three
+                boxed abbreviations linking nowhere read as unfinished, and a
+                link to the current page is a keyboard trap for no gain. */}
             <ul style={{ display: "flex", gap: 8, marginTop: 20 }}>
-              {f.social.map((s) => (
+              {f.social.filter((s) => s.href && s.href !== "#").map((s) => (
                 <li key={s.abbr}>
                   <a href={s.href} aria-label={s.label} className="hov-social" style={{ display: "grid", placeItems: "center", width: 38, height: 38, borderRadius: 4, fontSize: 12, fontWeight: 700 }}>
                     {s.abbr}
@@ -38,7 +42,10 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
           {/* Link columns */}
           {f.columns.map((col) => (
             <div key={col.title}>
-              <p style={{ margin: "0 0 16px", fontSize: 11.5, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#80CEFF" }}>{col.title}</p>
+              {/* Two-line minimum so a heading that wraps ("Procurement &
+                  Contracts") doesn't push its own column's first link below
+                  the other three. */}
+              <p style={{ margin: "0 0 16px", minHeight: "2.6em", fontSize: 11.5, fontWeight: 700, letterSpacing: ".13em", textTransform: "uppercase", color: "#80CEFF" }}>{col.title}</p>
               <ul style={{ display: "flex", flexDirection: "column", gap: 11 }}>
                 {col.items.map((link) => (
                   <li key={link.label}>

@@ -130,7 +130,7 @@ export const site: SiteSettings = {
       ],
     },
   ],
-  headerCta: { label: "Connect with Us", href: "/contact" },
+  headerCta: { label: "Connect with us", href: "/contact" },
   footer: {
     address: {
       lines: ["9801 Westheimer Road, Suite 803", "Houston, TX 77042"],
@@ -175,7 +175,7 @@ export const site: SiteSettings = {
           { label: "Our Leadership", href: "/about/leadership" },
           { label: "Careers & Culture", href: "/about/careers" },
           { label: "Customer Stories", href: "/customers" },
-          { label: "Connect with Us", href: "/contact" },
+          { label: "Connect with us", href: "/contact" },
         ],
       },
     ],

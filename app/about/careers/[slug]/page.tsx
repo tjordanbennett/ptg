@@ -7,6 +7,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ClosingCTA } from "@/components/ClosingCTA";
 import { EyebrowBar } from "@/components/EyebrowBar";
 import { Reveal } from "@/components/Reveal";
+import { ParallaxStars } from "@/components/ParallaxStars";
+import { SectionWedge, WEDGE_H } from "@/components/SectionWedge";
 import { SampleChip } from "@/components/RoleList";
 
 /**
@@ -26,6 +28,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!role) return {};
   return { title: `${role.title} (sample posting)`, description: role.summary };
 }
+
+const STAR_BLUE =
+  "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z%22 fill=%22%230034A0%22/%3E%3C/svg%3E')";
 
 const H3: React.CSSProperties = { margin: "0 0 16px", fontSize: "clamp(19px,1.7vw,23px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.2 };
 
@@ -52,7 +57,17 @@ export default async function RolePage({ params }: { params: { slug: string } })
       <SiteHeader site={site} currentLabel="About" />
       <main id="main">
         <section aria-labelledby="role-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
-          <div style={{ maxWidth: 1320, margin: "0 auto", padding: "clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) clamp(48px,5vw,72px)" }}>
+          {/* This route hand-rolls its header instead of using PageHero (it
+              needs the Sample chip beside the eyebrow), which is how it ended
+              up the one interior hero with no star field and no cut. */}
+          <ParallaxStars
+            amount={70}
+            offset={["start start", "end start"]}
+            style={{ backgroundImage: STAR_BLUE, backgroundSize: "74px 74px", opacity: 0.5, WebkitMaskImage: "linear-gradient(115deg, transparent 44%, #000 100%)", maskImage: "linear-gradient(115deg, transparent 44%, #000 100%)" }}
+          />
+          <div aria-hidden="true" style={{ position: "absolute", right: 0, top: 0, width: "48%", height: "100%", background: "linear-gradient(210deg, rgba(0,52,160,.42), rgba(2,31,67,0) 60%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 55%)", maskImage: "linear-gradient(to right, transparent 0%, #000 55%)" }} />
+          <SectionWedge from="#021F43" to="#FFFFFF" slant="right" overlay edge="bottom" />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) calc(clamp(48px,5vw,72px) + ${WEDGE_H})` }}>
             <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(26px,3.4vw,44px)" }}>
               <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
                 {[{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Careers & Culture", href: "/about/careers" }].map((c, i) => (

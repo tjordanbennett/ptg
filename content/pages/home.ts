@@ -76,9 +76,9 @@ export const home: HomePage = {
     items: [
       { figure: "45", label: "Years family-owned and independent", tint: "white" },
       { figure: "100+", label: "Government Workday projects", tint: "white" },
-      { figure: "50+", label: "Higher education Workday projects", tint: "leaf" },
+      { figure: "50+", label: "Higher education Workday projects", tint: "white" },
       { figure: "30+", label: "Years of public sector consulting", tint: "white" },
-      { figure: "2017", label: "Certified Workday partner since", tint: "clear" },
+      { figure: "2017", label: "Certified Workday partner since", tint: "white" },
     ],
   },
 

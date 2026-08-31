@@ -23,6 +23,14 @@ export const services: Record<string, StandardPage> = {
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday Advisory & Strategy"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/cta.png",
+        alt: "Five colleagues in business attire in discussion around a conference table, a civic building visible through the window behind them",
+        width: 1672,
+        height: 941,
+      },
       eyebrow: "Workday Advisory & Strategy",
       headline: "Strategy before software. Confidence before configuration.",
       body:
@@ -238,6 +246,14 @@ export const services: Record<string, StandardPage> = {
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday Implementation"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/consultant.png",
+        alt: "Consultants talking around a table covered in site plans and photographs in a warm studio office",
+        width: 1254,
+        height: 1254,
+      },
       eyebrow: "Workday Implementation",
       headline: "Unlock the full power of Workday.",
       body:
@@ -360,6 +376,14 @@ export const services: Record<string, StandardPage> = {
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday AMS & Optimization"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/evaluating-partner.png",
+        alt: "Three colleagues talking beside a window overlooking a brick campus building",
+        width: 1254,
+        height: 1254,
+      },
       eyebrow: "AMS & Optimization",
       headline: "Your Workday journey doesn't end at go-live.",
       body:
@@ -561,6 +585,14 @@ export const services: Record<string, StandardPage> = {
     currentLabel: "Services",
     breadcrumbs: crumbs("Workday Innovation"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/houston-skyline-wide.jpg",
+        alt: "The Houston skyline lit at dusk above a freeway streaked with traffic light trails",
+        width: 2400,
+        height: 1350,
+      },
       eyebrow: "Workday Innovation",
       headline: "Extend what's possible with Workday.",
       body:
@@ -698,6 +730,14 @@ export const services: Record<string, StandardPage> = {
     currentLabel: "Services",
     breadcrumbs: crumbs("ServiceNow Implementation"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/careers-houston.jpg",
+        alt: "Traffic light trails on a Houston freeway at night below the downtown skyline",
+        width: 2400,
+        height: 1350,
+      },
       eyebrow: "ServiceNow",
       headline: "Modern service management, delivered by people who know your world.",
       body:

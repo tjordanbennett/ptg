@@ -7,12 +7,15 @@ import { Reveal } from "@/components/Reveal";
 import { ParallaxStars } from "@/components/ParallaxStars";
 import { ClosingCTA } from "@/components/ClosingCTA";
 import { EyebrowBar } from "@/components/EyebrowBar";
+import { SectionWedge, WEDGE_H } from "@/components/SectionWedge";
 
 const STAR_BLUE =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z%22 fill=%22%230034A0%22/%3E%3C/svg%3E')";
 const STAR_NAVY =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E')";
-const HAIRLINE = "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)";
+/* Boundaries are wedges, matching StandardPage and the homepage. The
+   tri-colour gradient bar this replaces was the site's second divider system. */
+const WEDGE_INK = "#EB4900";
 const WRAP = { maxWidth: 1320, margin: "0 auto", padding: "clamp(52px,6vw,88px) clamp(20px,4vw,48px)" } as const;
 
 function Label({ children }: { children: React.ReactNode }) {
@@ -30,8 +33,8 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
         {/* ══ HERO ══ */}
         <section aria-labelledby="hero-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
           <ParallaxStars amount={70} offset={["start start", "end start"]} style={{ backgroundImage: STAR_BLUE, backgroundSize: "74px 74px", opacity: 0.5, WebkitMaskImage: "linear-gradient(115deg, transparent 44%, #000 100%)", maskImage: "linear-gradient(115deg, transparent 44%, #000 100%)" }} />
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 4, background: HAIRLINE }} />
-          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) clamp(48px,5vw,76px)" }}>
+          <SectionWedge from="#021F43" to="#FFFFFF" slant="right" overlay edge="bottom" hairline={WEDGE_INK} />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) calc(clamp(48px,5vw,76px) + ${WEDGE_H})` }}>
             <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(28px,4vw,48px)" }}>
               <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
                 <li><Link href="/" className="hov-footerlink" style={{ color: "#80CEFF" }}>Home</Link></li>
@@ -150,8 +153,10 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
 
         {/* ══ HOW TO ORDER ══ */}
         <section aria-label="How to order" style={{ position: "relative", background: "#0034A0", color: "#FFFFFF", overflow: "hidden" }}>
-          <ParallaxStars amount={40} style={{ backgroundImage: STAR_NAVY, backgroundSize: "74px 74px", opacity: 0.42 }} />
-          <div style={{ position: "relative", ...WRAP }}>
+          <SectionWedge from={multi ? "#FFFFFF" : "#F0F2F4"} to="#0034A0" slant="left" overlay edge="top" hairline={WEDGE_INK} />
+          <SectionWedge from="#0034A0" to="#021F43" slant="right" overlay edge="bottom" hairline={WEDGE_INK} />
+          <ParallaxStars amount={40} style={{ backgroundImage: STAR_NAVY, backgroundSize: "74px 74px", opacity: 0.21 }} />
+          <div style={{ position: "relative", zIndex: 2, ...WRAP, paddingTop: `calc(clamp(52px,6vw,88px) + ${WEDGE_H})`, paddingBottom: `calc(clamp(52px,6vw,88px) + ${WEDGE_H})` }}>
             <Reveal as="div" style={{ maxWidth: 620, marginBottom: "clamp(28px,3.4vw,44px)" }}>
               <EyebrowBar label="How to order" dark />
               <h2 style={{ margin: 0, fontSize: "clamp(24px,2.6vw,36px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.026em", textWrap: "balance" }}>Straight to purchase order.</h2>
@@ -159,7 +164,7 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(230px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {v.howToOrder.map((step, i) => (
                 <Reveal as="li" key={step} delay={i * 0.05} className="hov-step" style={{ background: "#0034A0", padding: "clamp(24px,2.6vw,32px)", borderRadius: 6 }}>
-                  <div aria-hidden="true" style={{ height: 3, width: "100%", background: ["#80CEFF", "#B4FF00", "#EB4900", "#FFFFFF"][i % 4], marginBottom: 20 }} />
+                  <div aria-hidden="true" style={{ height: 3, width: "100%", background: "#80CEFF", marginBottom: 20 }} />
                   <p style={{ margin: "0 0 12px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{`0${i + 1}`}</p>
                   <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.6, color: "#FFFFFF", textWrap: "balance" }}>{step}</p>
                 </Reveal>
@@ -170,7 +175,6 @@ export function VehiclePage({ vehicle, others, site }: { vehicle: VehiclePageDat
 
         {/* ══ OFFICIAL RECORD (the point of the page) ══ */}
         <section aria-labelledby="record-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: HAIRLINE }} />
           <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(44px,5vw,72px) clamp(20px,4vw,48px)" }}>
             <Reveal as="div" style={{ border: "1px solid rgba(128,206,255,.28)", borderRadius: 8, padding: "clamp(26px,3.4vw,44px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px,100%),1fr))", gap: "clamp(20px,3vw,44px)", alignItems: "center", background: "rgba(0,52,160,.22)" }}>
               <div>

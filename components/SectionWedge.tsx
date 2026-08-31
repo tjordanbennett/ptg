@@ -68,11 +68,28 @@ export function SectionWedge({
   /** Which edge of the owning section the overlay sits on. */
   edge?: "top" | "bottom";
 }) {
-  // A straight cut: no wedge, just the Ember hairline. Used where the band
-  // above is itself horizontal — the hero's customer logo strip — and an angle
-  // would slice through it rather than sit under it.
-  if (slant === "flat") {
-    return <div aria-hidden="true" style={{ height: 2, background: hairline }} />;
+  // Same colour on both sides: there is no colour edge for an angle to reveal,
+  // so the wedge would render as nothing but a diagonal Ember line floating in
+  // a single field. That is what a navy hero above a navy stats band produced.
+  // Fall through to the flat rule, which is the honest divider for that case.
+  //
+  // A straight cut is also what some boundaries want outright — where the band
+  // above is itself horizontal (the hero's customer logo strip) an angle would
+  // slice through it rather than sit under it.
+  //
+  // The flat rule has to honour `overlay` too, or an overlay caller gets a 2px
+  // bar in normal flow at the top of its own content instead of on its edge.
+  if (slant === "flat" || (to && from === to)) {
+    return (
+      <div
+        aria-hidden="true"
+        style={
+          overlay
+            ? { position: "absolute", [edge]: 0, left: 0, right: 0, height: 2, background: hairline, zIndex: 1 }
+            : { height: 2, background: hairline }
+        }
+      />
+    );
   }
 
   // viewBox is 100×10 and stretched, so these are proportions, not pixels. The

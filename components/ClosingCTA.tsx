@@ -24,7 +24,10 @@ import { SectionWedge, WEDGE_H } from "@/components/SectionWedge";
  * wedge will cut against the wrong colour. Interior pages get it from
  * `sectionBg()` in StandardPage.tsx; bespoke pages pass it literally.
  */
-const HAIRLINE = "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)";
+/* The band below this one is the navy footer, so there is no colour change to
+   cut across — a wedge here would be invisible. What the boundary needs is the
+   same 2px Ember rule the wedges draw, flat. Same ink, same weight, one system. */
+const HAIRLINE = "#EB4900";
 
 export function ClosingCTA({
   eyebrow,
@@ -54,13 +57,13 @@ export function ClosingCTA({
           repaint the cut in flat navy and slice the field off at a hard
           horizontal line. Top padding carries WEDGE_H so copy clears the cut. */}
       <SectionWedge from={from} slant="left" overlay edge="top" />
-      <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 5, background: HAIRLINE, zIndex: 1 }} />
+      <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 2, background: HAIRLINE, zIndex: 1 }} />
       <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `calc(clamp(70px,8vw,124px) + ${WEDGE_H}) clamp(20px,4vw,48px) clamp(70px,8vw,124px)` }}>
         <Reveal as="div">
           {eyebrow ? <EyebrowBar label={eyebrow} dark mb={22} /> : null}
           <h2 id="cta-h" style={{ margin: body ? "0 0 22px" : "0 0 34px", fontSize: "clamp(29px,3.7vw,52px)", fontWeight: 800, lineHeight: 1.09, letterSpacing: "-0.03em", maxWidth: "20ch", textWrap: "balance" }}>{heading}</h2>
           {body ? <p style={{ margin: "0 0 36px", fontSize: "clamp(17px,1.4vw,21px)", lineHeight: 1.6, color: "#DDE6F0", maxWidth: "62ch", textWrap: "balance" }}>{body}</p> : null}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
+          <div className="ptg-ctarow" style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
             {ctas.map((c, i) => (
               <Link
                 key={c.href + c.label}

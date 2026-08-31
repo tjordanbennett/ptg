@@ -77,14 +77,17 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <SectionWedge from={WHITE} to={NAVY} slant="left" />
-
         {/* ══ STATS ══ */}
         {/* The 4px navy→ember bar that used to sit on top of this section is gone:
             the wedge's Ember hairline now draws that line, on the angle. */}
         <section aria-labelledby="stats-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(128,206,255,.19) 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
-          <Reveal as="div" style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(58px,6vw,92px) clamp(20px,4vw,48px)" }}>
+          {/* BOTH cuts are overlays owned by this band, so the dot grid runs
+              into each diagonal. The entry was still a block wedge painting a
+              flat navy triangle, which left the dots starting on a horizontal
+              line below the cut. */}
+          <SectionWedge from={WHITE} to={NAVY} slant="left" overlay edge="top" />
+          <Reveal as="div" style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `calc(clamp(58px,6vw,92px) + ${WEDGE_H}) clamp(20px,4vw,48px) calc(clamp(58px,6vw,92px) + ${WEDGE_H})` }}>
             <div style={{ maxWidth: 700, marginBottom: "clamp(38px,4vw,56px)" }}>
               <EyebrowBar label={h.stats.eyebrow} color="#80CEFF" />
               <h2 id="stats-h" style={{ margin: "0 0 16px", fontSize: "clamp(27px,2.9vw,40px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance" }}>{h.stats.heading}</h2>
@@ -92,9 +95,12 @@ export default async function HomePage() {
             </div>
             <StatsTicker items={h.stats.items} />
           </Reveal>
+          {/* Overlay: the band's dot texture has to reach the cut. A block
+              wedge painted its upper triangle flat navy and the dots stopped
+              short of the diagonal. */}
+          <SectionWedge from={NAVY} to={WHITE} slant="left" overlay edge="bottom" />
         </section>
 
-        <SectionWedge from={NAVY} to={WHITE} slant="left" />
 
         {/* ══ COOPERATIVE CONTRACTS ══ */}
         <section id="contracts" aria-labelledby="contracts-h" style={{ position: "relative", background: "#FFFFFF", scrollMarginTop: 90 }}>
@@ -122,12 +128,8 @@ export default async function HomePage() {
                   overflow: "hidden",
                   borderRadius: 6,
                   border: "1px solid rgba(128,206,255,.16)",
-                  // Resting shadow, which the rest of the site reserves for hover
-                  // states — justified here because this is a dark block on white
-                  // rather than a white card, so a border alone leaves it flat.
-                  // Tighter and lighter than the hover shadows (-22px spread vs
-                  // -24px at .32) so it reads as sitting, not lifted.
-                  boxShadow: "0 16px 34px -20px rgba(2,31,67,.42)",
+                  // Dark block on white: carries the heavier rest token.
+                  boxShadow: "var(--shadow-rest-dark)",
                 }}
               >
                 <AngleField
@@ -242,7 +244,7 @@ export default async function HomePage() {
                 the page one fewer subject change. */}
             <Reveal as="div" delay={0.12} style={{ marginTop: "clamp(40px,4.6vw,68px)", paddingTop: "clamp(34px,3.6vw,52px)", borderTop: "1px solid rgba(255,255,255,.16)", maxWidth: 880, marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
               <h3 id="quote-h" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>What our customers say</h3>
-              <div aria-hidden="true" style={{ width: 34, height: 34, margin: "0 auto 24px", background: "#B4FF00", transform: "rotate(45deg)" }} />
+              <div aria-hidden="true" style={{ width: 34, height: 34, margin: "0 auto 24px", background: "#EB4900", transform: "rotate(45deg)" }} />
               <blockquote style={{ margin: 0 }} data-unverified={h.testimonial.placeholder ? "" : undefined}>
                 <p style={{ margin: "0 0 22px", fontSize: "clamp(20px,2.1vw,29px)", fontWeight: 600, lineHeight: 1.35, letterSpacing: "-0.018em", color: "#FFFFFF", textWrap: "balance" }}>&ldquo;{h.testimonial.quote}&rdquo;</p>
                 <footer style={{ fontSize: 13.5, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#9FD3F5" }}>{h.testimonial.attribution}</footer>
@@ -268,11 +270,9 @@ export default async function HomePage() {
                   border: "1px solid #E5E7EB",
                   borderRadius: 6,
                   padding: "clamp(26px,3vw,40px)",
-                  // Same idiom as the contract-vehicle panel, pulled back a
-                  // little: that one is a dark block on white and can carry a
-                  // heavier shadow, this is white-on-off-white where the same
-                  // opacity would read as a grey smudge rather than depth.
-                  boxShadow: "0 16px 34px -22px rgba(2,31,67,.26)",
+                  // White on off-white: the lighter rest token, or the same
+                  // opacity reads as a grey smudge rather than depth.
+                  boxShadow: "var(--shadow-rest)",
                 }}
               >
                 <h3 style={{ margin: "0 0 6px", fontSize: "clamp(18px,1.6vw,22px)", fontWeight: 800, letterSpacing: "-0.018em" }}>{h.careers.openRoles.heading}</h3>

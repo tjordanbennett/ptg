@@ -107,7 +107,7 @@ export function HomeHero({ hero, customers }: { hero: HomePage["hero"]; customer
           <div
             {...(() => {
               const r = rv(0.25 + lines.length * 0.1);
-              return { className: r.className, style: { display: "flex", flexWrap: "wrap", gap: 14, ...r.style } };
+              return { className: `ptg-ctarow ${r.className ?? ""}`.trim(), style: { display: "flex", flexWrap: "wrap", gap: 14, ...r.style } };
             })()}
           >
             <Link href={hero.ctas[0].href} className="hov-cta-emberwhite cta">{hero.ctas[0].label}</Link>

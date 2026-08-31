@@ -107,7 +107,7 @@ export const leadership: StandardPage = {
       // Do NOT re-add anyone without a source from PTG.
       note: "This is a partial list. Full leadership profiles, bios and headshots come from PTG.",
       people: [
-        { name: "Vanessa Zuna", title: "Chief Operating Officer" },
+        { name: "Vanessa Ozuna", title: "Chief Operating Officer" },
         { name: "Stephen Camp", title: "Chief Technology Officer" },
         { name: "Kim Christenson", title: "VP, Marketing" },
       ],

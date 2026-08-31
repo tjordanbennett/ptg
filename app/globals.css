@@ -173,16 +173,39 @@
     border-left-color: #eb4900;
   }
 
+  /* ── Elevation ────────────────────────────────────────────────
+     Four shadows, one ramp. These were literals scattered across CSS and
+     inline styles at five different opacities (.22 / .26 / .30 / .32 / .42),
+     each with its own justification comment, which is how a token turns back
+     into a magic number. Depth on this site means exactly two things: a block
+     is SITTING on the page (rest), or the pointer is on it (hover). Dark
+     blocks on light grounds carry more, small repeated cards carry less.
+     Use these; don't write a new rgba(2,31,67,…) by hand. */
+  :root {
+    --shadow-rest: 0 16px 34px -22px rgba(2, 31, 67, 0.26);
+    --shadow-rest-dark: 0 16px 34px -20px rgba(2, 31, 67, 0.42);
+    --shadow-rest-sm: 0 12px 26px -20px rgba(2, 31, 67, 0.22);
+    --shadow-hover: 0 28px 54px -24px rgba(2, 31, 67, 0.32);
+    --shadow-hover-sm: 0 18px 34px -20px rgba(2, 31, 67, 0.3);
+  }
+
   /* Used only by the homepage contract-vehicle table, which sits on a navy
      panel — so the base is white and the hover lifts rather than darkens. */
   .hov-vehrow {
     color: #ffffff;
   }
   /* Translucent, not a solid fill — the rows sit on a gradient now, so an
-     opaque hover would punch a flat rectangle through it. */
+     opaque hover would punch a flat rectangle through it.
+     VIVID LEAF LIVES HERE NOW. The brand guide reserves it for state, and it
+     had drifted into decoration: a stat tinted lime for being second in the
+     array, a step bar lime for being third, a lozenge above a pull quote.
+     Split by ground, because the colour only works on one: leaf is the state
+     colour on DARK fields, ember stays the state colour on light ones (the
+     nav's active underline). Leaf on white is roughly 1.2:1 — invisible as an
+     indicator and a contrast failure; on #021F43 it is unmistakable. */
   .hov-vehrow:hover {
-    background: rgba(128, 206, 255, 0.12);
-    color: #80ceff;
+    background: rgba(180, 255, 0, 0.1);
+    color: #b4ff00;
   }
 
   .hov-svcrow {
@@ -248,16 +271,105 @@
 
 
 
-  /* Stat row: the first-left / middle-centre / last-right alignment only reads
-     when all three sit in ONE row against the rules that bracket them. The grid
-     drops to two columns at 640px and one below ~400px, where that alignment
-     would scatter them — so left-align everything once the row breaks. */
-  @media (max-width: 660px) {
-    .ptg-statrow > * {
-      align-items: flex-start !important;
-      text-align: left !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
+  /* ── Leadership profile dialog ────────────────────────────────
+     Native <dialog>, so the focus trap, Escape and background inert-ness come
+     from the platform. Only presentation lives here. */
+  .ptg-dialog {
+    width: min(760px, calc(100vw - 40px));
+    /* No padding and no scrolling on the dialog itself — both live on
+       .ptg-dialog-body, so the close button can be absolutely positioned
+       against the dialog and stay put while the bio scrolls under it. */
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-top: 3px solid #eb4900;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #021f43;
+    box-shadow: 0 40px 80px -30px rgba(2, 31, 67, 0.6);
+    position: relative;
+  }
+  .ptg-dialog-body {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    /* Generous, and generous on ALL FOUR sides. */
+    padding: clamp(34px, 3.6vw, 52px);
+  }
+  /* Dark enough that the page behind reads as dismissed rather than tinted. */
+  .ptg-dialog::backdrop {
+    background: rgba(1, 14, 32, 0.82);
+  }
+  .ptg-dialog[open] {
+    animation: ptgRise 0.18s ease-out;
+  }
+
+  .ptg-dialog-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 190px) minmax(0, 1fr);
+    gap: clamp(24px, 3.2vw, 40px);
+    align-items: start;
+  }
+  .ptg-dialog-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
+
+  .ptg-dialog-x {
+    position: absolute;
+    z-index: 2;
+    top: clamp(16px, 1.6vw, 22px);
+    right: clamp(16px, 1.6vw, 22px);
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    color: #334155;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .ptg-dialog-x:hover {
+    background: #021f43;
+    border-color: #021f43;
+    color: #ffffff;
+  }
+
+  /* The headshot column collapses first: at phone width a 190px image beside
+     a name and two paragraphs of bio leaves neither enough room. */
+  @media (max-width: 560px) {
+    .ptg-dialog-grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .ptg-dialog-photo {
+      max-width: 150px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ptg-dialog[open] {
+      animation: none;
+    }
+  }
+
+  /* CTA pairs stack on narrow screens, and auto width made them ragged —
+     "Schedule a consultation" at 245px above "About PTG" at 141px. Once
+     stacked they are a list of equal options, so they get equal width. */
+  @media (max-width: 520px) {
+    .ptg-ctarow {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    .ptg-ctarow > .cta,
+    .ptg-ctarow > .cta-sm {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
     }
   }
 
@@ -553,21 +665,21 @@
   .hov-card:hover {
     transform: translateY(-5px);
     border-color: #cbd5e1;
-    box-shadow: 0 28px 54px -24px rgba(2, 31, 67, 0.32);
+    box-shadow: var(--shadow-hover);
   }
   /* Resting shadow — lighter than the Open Roles card because these are small
      and there are five in a row; the same weight reads as haze across the band.
      Shallow enough to clear the track's 11px padding, which is all the room
      `overflow-y: hidden` leaves it. */
   .hov-card--flat {
-    box-shadow: 0 12px 26px -20px rgba(2, 31, 67, 0.22);
+    box-shadow: var(--shadow-rest-sm);
   }
   /* Industries carousel cards: a lighter shadow than the standard card, both at
      rest (inline, in IndustriesCarousel.tsx) and on hover. This used to be
      `box-shadow: none` — which, once the cards gained a resting shadow, meant
      hovering made a card look FLATTER than its neighbours. It deepens now. */
   .hov-card--flat:hover {
-    box-shadow: 0 18px 34px -20px rgba(2, 31, 67, 0.3);
+    box-shadow: var(--shadow-hover-sm);
   }
   /* ── Hero load reveal ──────────────────────────────────────────────
      Driven by CSS, not by motion's animate prop, so the hidden state can

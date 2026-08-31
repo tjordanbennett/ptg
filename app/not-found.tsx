@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { EyebrowBar } from "@/components/EyebrowBar";
 import { ParallaxStars } from "@/components/ParallaxStars";
+import { SectionWedge } from "@/components/SectionWedge";
 import { Reveal } from "@/components/Reveal";
 
 /**
@@ -13,9 +14,13 @@ import { Reveal } from "@/components/Reveal";
  *
  * The idea: PTG's entire pitch is helping public buyers find the right route.
  * A dead end is the one moment a visitor is definitely lost, so this page routes
- * rather than apologises. The zero in "404" is PTG's own four-point brand mark,
- * in Vivid Leaf — the guide reserves that colour for "you are here" indicators,
- * and this is literally one.
+ * rather than apologises.
+ *
+ * The zero used to be PTG's four-point brand mark in Vivid Leaf. It was clever
+ * and it did not read: at a glance the page said "4 star 4", and a visitor who
+ * has just hit a dead end should not have to decode the error code. It is a
+ * plain 0 now, and being real text it is selectable, searchable and announced
+ * without a parallel sr-only string.
  *
  * Reliability: no background-clip text, no clip-path, no scroll-timeline. Every
  * element's base state is the correct visible state; the star drift is the
@@ -25,32 +30,11 @@ import { Reveal } from "@/components/Reveal";
 
 const STAR_BLUE =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z%22 fill=%22%230034A0%22/%3E%3C/svg%3E')";
-const HAIRLINE = "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)";
 
 export const metadata: Metadata = {
   title: "Page not found",
   robots: { index: false, follow: false },
 };
-
-/** PTG's four-point mark, standing in for the zero. */
-function StarZero() {
-  return (
-    <svg
-      viewBox="0 0 74 74"
-      aria-hidden="true"
-      focusable="false"
-      style={{
-        display: "block",
-        width: "0.72em",
-        height: "0.72em",
-        flex: "0 0 auto",
-        filter: "drop-shadow(0 0 34px rgba(180,255,0,.35))",
-      }}
-    >
-      <path d="M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z" fill="#B4FF00" />
-    </svg>
-  );
-}
 
 const ROUTES = [
   {
@@ -113,28 +97,25 @@ export default async function NotFound() {
               background: "linear-gradient(210deg, rgba(0,52,160,.42), rgba(2,31,67,0) 62%)",
             }}
           />
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 4, background: HAIRLINE }} />
+          {/* Wedge, like every other boundary on the site — this file still
+              carried the retired gradient hairline. Overlay, so the star field
+              runs into the cut instead of stopping at a flat triangle. */}
+          <SectionWedge from="#021F43" to="#FFFFFF" slant="right" overlay edge="bottom" />
 
           <div
             style={{
               position: "relative",
+              zIndex: 2,
               maxWidth: 1320,
               margin: "0 auto",
-              padding: "clamp(56px,7vw,104px) clamp(20px,4vw,48px) clamp(60px,7vw,110px)",
+              padding: "clamp(56px,7vw,104px) clamp(20px,4vw,48px) calc(clamp(60px,7vw,110px) + clamp(34px,4.4vw,72px))",
             }}
           >
             <Reveal as="div" style={{ maxWidth: 780 }}>
               <EyebrowBar label="Error 404" dark mb={22} />
 
-              {/* Visual mark. Read as "404" by assistive tech via the sr-only
-                  string below; the glyphs themselves are hidden so the star
-                  isn't announced as a stray character. */}
               <div
-                aria-hidden="true"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "clamp(6px,1vw,14px)",
                   fontSize: "clamp(88px,15vw,210px)",
                   fontWeight: 800,
                   lineHeight: 0.82,
@@ -143,11 +124,8 @@ export default async function NotFound() {
                   color: "#FFFFFF",
                 }}
               >
-                <span>4</span>
-                <StarZero />
-                <span>4</span>
+                404
               </div>
-              <span className="sr-only">Error 404. Page not found.</span>
 
               <h1
                 id="nf-h"

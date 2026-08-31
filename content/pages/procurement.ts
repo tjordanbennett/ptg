@@ -189,8 +189,8 @@ export const procurement: ProcurementPage = {
     steps: [
       { num: "STEP 01", name: "Confirm your vehicle", body: "Use the finder above or send us your membership details. We verify eligibility with the issuing authority before anything else.", bar: "#80CEFF" },
       { num: "STEP 02", name: "Scope the work", body: "A working session with the people who would actually deliver. You get a written scope, phasing and a price built on contract rates.", bar: "#80CEFF" },
-      { num: "STEP 03", name: "Issue the order", body: "Your procurement office issues a purchase order or task order referencing the contract number, under the lead agency's award.", bar: "#EB4900" },
-      { num: "STEP 04", name: "Start", body: "Kickoff within two to three weeks of order, with the named team from the scoping session.", bar: "#EB4900" },
+      { num: "STEP 03", name: "Issue the order", body: "Your procurement office issues a purchase order or task order referencing the contract number, under the lead agency's award.", bar: "#80CEFF" },
+      { num: "STEP 04", name: "Start", body: "Kickoff within two to three weeks of order, with the named team from the scoping session.", bar: "#80CEFF" },
     ],
   },
 

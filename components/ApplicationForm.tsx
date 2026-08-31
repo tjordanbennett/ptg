@@ -101,7 +101,7 @@ export function ApplicationForm() {
   if (sent) {
     return (
       <div aria-live="polite" style={{ border: "1px solid #BBF7D0", background: "#F0FDF4", borderRadius: 8, padding: "clamp(26px,3vw,38px)" }}>
-        <div aria-hidden="true" style={{ width: 40, height: 40, marginBottom: 18, background: "#B4FF00", transform: "rotate(45deg)" }} />
+        <div aria-hidden="true" style={{ width: 40, height: 40, marginBottom: 18, background: "#021F43", transform: "rotate(45deg)" }} />
         <p role="status" style={{ margin: "0 0 10px", fontSize: "clamp(18px,1.8vw,22px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>
           Thanks. Your application is in.
         </p>

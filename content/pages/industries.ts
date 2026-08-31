@@ -25,6 +25,14 @@ export const industries: Record<string, StandardPage> = {
     currentLabel: "Industries",
     breadcrumbs: crumbs("Government & Public Sector"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/industry-government.jpg",
+        alt: "The Houston skyline lit at night above a tree line and a roadside billboard",
+        width: 1600,
+        height: 1200,
+      },
       eyebrow: "Government & Public Sector",
       headline: "Modern solutions for a changing public sector.",
       body:
@@ -179,6 +187,14 @@ export const industries: Record<string, StandardPage> = {
     currentLabel: "Industries",
     breadcrumbs: crumbs("Higher Education"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/industry-higher-education.jpg",
+        alt: "Downtown Houston office towers lit at night above an overpass",
+        width: 1600,
+        height: 1200,
+      },
       eyebrow: "Higher Education",
       headline: "Empowering institutions. Enriching futures.",
       body:
@@ -346,6 +362,14 @@ export const industries: Record<string, StandardPage> = {
     currentLabel: "Industries",
     breadcrumbs: crumbs("Transit, Utilities & Special Districts"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/industry-transit.jpg",
+        alt: "Long-exposure traffic light trails across the lanes of a Houston freeway at night",
+        width: 1600,
+        height: 1200,
+      },
       eyebrow: "Transit, Utilities & Special Districts",
       headline: "Powering the organizations that keep communities moving.",
       body:
@@ -546,6 +570,14 @@ export const industries: Record<string, StandardPage> = {
     currentLabel: "Industries",
     breadcrumbs: crumbs("Nonprofit"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/industry-nonprofit.jpg",
+        alt: "A Houston freeway interchange at night with traffic light trails curving beneath an overpass",
+        width: 1600,
+        height: 1200,
+      },
       eyebrow: "Nonprofit",
       headline: "Technology that amplifies your mission.",
       body:
@@ -652,6 +684,14 @@ export const industries: Record<string, StandardPage> = {
     currentLabel: "Industries",
     breadcrumbs: crumbs("Healthcare"),
     hero: {
+      // Placeholder photography. Swap the file and rewrite `alt` together
+      // when PTG delivers the real shot (design/image-shot-list.md).
+      image: {
+        src: "/images/industry-healthcare.jpg",
+        alt: "Houston office towers lit at night above a freeway streaked with traffic light trails",
+        width: 1600,
+        height: 1200,
+      },
       eyebrow: "Healthcare",
       headline: "Technology that empowers better care.",
       body:

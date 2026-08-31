@@ -12,6 +12,8 @@ import { ApplicationForm } from "@/components/ApplicationForm";
 import { ClosingCTA } from "@/components/ClosingCTA";
 import { RoleList } from "@/components/RoleList";
 import { AngleField } from "@/components/AngleField";
+import { SectionWedge, WEDGE_H } from "@/components/SectionWedge";
+import { PeopleCards } from "@/components/PeopleCards";
 
 /**
  * StandardPageView — one renderer for every interior page (services, industries,
@@ -26,7 +28,26 @@ const STAR_BLUE =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 9 41 33 65 37 41 41 37 65 33 41 9 37 33 33Z%22 fill=%22%230034A0%22/%3E%3C/svg%3E')";
 const STAR_NAVY =
   "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2274%22 height=%2274%22%3E%3Cpath d=%22M37 13 40 34 61 37 40 40 37 61 34 40 13 37 34 34Z%22 fill=%22%23021F43%22/%3E%3C/svg%3E')";
-const HAIRLINE = "linear-gradient(90deg, #021F43, #0034A0 46%, #EB4900)";
+/* Colour-field boundaries are drawn by <SectionWedge> only — an angled cut
+   with a 2px Ember hairline. The tri-colour `navy → blue → ember` gradient bar
+   that used to sit under interior heroes and above the navy bands was a second,
+   softer divider system doing the same job on 24 pages while the homepage and
+   How-to-Buy used the wedge. One system now; the wedge is the one the brand
+   guide's angled geometry actually calls for. */
+const WEDGE_INK = "#EB4900";
+
+/**
+ * Clearance to reserve for a wedge on one edge of a section.
+ *
+ * `SectionWedge` collapses to a flat 2px rule when both sides are the same
+ * colour, and a flat rule needs no clearance. Reserving WEDGE_H regardless left
+ * a navy stats band under a navy hero padded ~70px more on top than underneath,
+ * so the numbers sat visibly low in the band. Ask for the space only when there
+ * is a diagonal to clear.
+ */
+function wedgeClearance(from: string, to: string): string {
+  return from === to ? "0px" : WEDGE_H;
+}
 
 const CONTAINER = { maxWidth: 1320, margin: "0 auto", padding: "clamp(56px,6vw,96px) clamp(20px,4vw,48px)" } as const;
 
@@ -71,18 +92,23 @@ function SectionHeader({ eyebrow, heading, intro, dark = false, maxWidth = 640 }
  * page kept its own copy of this markup and drifted twice — it missed the
  * breadcrumb-contrast fix and the headline/copy split — so it now imports this.
  */
-export function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumbs: Crumb[] }) {
+export function PageHero({ hero, breadcrumbs, below = "#FFFFFF" }: { hero: PageHeroData; breadcrumbs: Crumb[]; below?: string | null }) {
   return (
+    <>
     <section aria-labelledby="hero-h" style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
-      {/* A page can opt into a photographic hero instead of the star field. Only
-          Careers does today: that page needs to feel human, and the star texture
-          reads corporate. The photo carries its own alt text from content. */}
+      {/* A page can opt into a photographic hero instead of the star field.
+          Every service, industry and partner page now does; the star field is
+          the fallback for pages with no photograph. Photos carry their own alt
+          text from content. */}
       {hero.image ? (
         <>
           <Image src={hero.image.src} alt={hero.image.alt} fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "72% 42%" }} />
-          {/* Legibility: copy sits left, so the wash is heaviest there and the
-              band still settles into navy at the bottom edge. */}
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(2,31,67,.94) 0%, rgba(2,31,67,.82) 38%, rgba(2,31,67,.42) 100%)" }} />
+          {/* Legibility. The right column is NOT empty on these heroes — it
+              carries the body copy, tagline and bullets — so the wash cannot
+              fall away to .42 there the way it did when only Careers used a
+              photo and its right side was blank. Heaviest under the headline,
+              still substantial under the body. */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(2,31,67,.92) 0%, rgba(2,31,67,.82) 38%, rgba(2,31,67,.68) 100%)" }} />
           <div aria-hidden="true" style={{ position: "absolute", inset: "auto 0 0 0", height: 120, background: "linear-gradient(to bottom, transparent, rgba(2,31,67,.85))" }} />
         </>
       ) : (
@@ -91,8 +117,16 @@ export function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumb
           <div aria-hidden="true" style={{ position: "absolute", right: 0, top: 0, width: "48%", height: "100%", background: "linear-gradient(210deg, rgba(0,52,160,.42), rgba(2,31,67,0) 60%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, #000 55%)", maskImage: "linear-gradient(to right, transparent 0%, #000 55%)" }} />
         </>
       )}
-      <div aria-hidden="true" style={{ position: "absolute", left: 0, bottom: 0, right: 0, height: 4, background: HAIRLINE }} />
-      <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) clamp(56px,6vw,88px)" }}>
+      {/* The cut is an OVERLAY on the hero, not a block band beneath it. A
+          block wedge paints its upper triangle in a FLAT colour, so the hero's
+          star field / gradient / photograph stopped dead at the section edge
+          and the strip above the diagonal read as a different, darker navy —
+          most obvious on the right, where the hero's glow is lightest. As an
+          overlay only the LOWER triangle is painted (in the next section's
+          colour) and the hero's own background runs all the way into the cut.
+          Bottom padding carries the clearance only when a cut is drawn. */}
+      {below ? <SectionWedge from="#021F43" to={below} slant="right" overlay edge="bottom" hairline={WEDGE_INK} /> : null}
+      <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `clamp(20px,2.4vw,28px) clamp(20px,4vw,48px) calc(clamp(56px,6vw,88px) + ${below ? wedgeClearance("#021F43", below) : "0px"})` }}>
         <nav aria-label="Breadcrumb" style={{ marginBottom: "clamp(30px,4vw,50px)" }}>
           <ol style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", fontSize: 13, fontWeight: 600 }}>
             {breadcrumbs.map((c, i) => (
@@ -146,6 +180,7 @@ export function PageHero({ hero, breadcrumbs }: { hero: PageHeroData; breadcrumb
         })()}
       </div>
     </section>
+    </>
   );
 }
 
@@ -310,17 +345,26 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
     case "steps": {
       const band = s.band ?? "blue";
       const bgcol = band === "navy" ? "#021F43" : "#0034A0";
-      const bars = ["#80CEFF", "#B4FF00", "#EB4900", "#FFFFFF", "#80CEFF"];
       return (
         <section key={key} aria-label={s.heading} style={{ position: "relative", background: bgcol, color: "#FFFFFF", overflow: "hidden" }}>
-          <ParallaxStars amount={40} style={{ backgroundImage: band === "navy" ? STAR_BLUE : STAR_NAVY, backgroundSize: "74px 74px", opacity: band === "navy" ? 0.5 : 0.42 }} />
-          {band === "navy" ? <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: HAIRLINE }} /> : null}
-          <div style={{ position: "relative", ...CONTAINER }}>
+          {/* Overlay, so the band's star texture runs up into the cut instead
+              of starting below a flat wedge. See the hero. */}
+          <SectionWedge from={from} to={bgcol} slant="left" overlay edge="top" hairline={WEDGE_INK} />
+          {/* Star texture at half its old strength on the BLUE band. The navy
+              band is dark enough to carry 0.5; over #0034A0 the same value
+              rendered as hard dark crosses that competed with the copy rather
+              than sitting behind it. */}
+          <ParallaxStars amount={40} style={{ backgroundImage: band === "navy" ? STAR_BLUE : STAR_NAVY, backgroundSize: "74px 74px", opacity: band === "navy" ? 0.5 : 0.21 }} />
+          <div style={{ position: "relative", zIndex: 2, ...CONTAINER, paddingTop: `calc(clamp(56px,6vw,96px) + ${wedgeClearance(from, bgcol)})` }}>
             <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} dark maxWidth={620} />
             <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(230px,100%),1fr))", gap: "clamp(14px,1.6vw,18px)" }}>
               {s.steps.map((st, i) => (
                 <Reveal as="li" key={st.num} delay={i * 0.05} className="hov-step" style={{ background: bgcol, padding: "clamp(24px,2.6vw,32px)", borderRadius: 6 }}>
-                  <div aria-hidden="true" style={{ height: 3, width: "100%", background: bars[i % bars.length], marginBottom: 22 }} />
+                  {/* One colour for every step bar. This used to cycle through
+                      clear / leaf / ember / white, which made the third step
+                      lime for no reason other than being third and spent the
+                      signature accent on decoration. */}
+                  <div aria-hidden="true" style={{ height: 3, width: "100%", background: "#80CEFF", marginBottom: 22 }} />
                   <p style={{ margin: "0 0 14px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 12, letterSpacing: ".1em", color: "#80CEFF" }}>{st.num}</p>
                   <h3 style={{ margin: "0 0 12px", fontSize: "clamp(18px,1.65vw,23px)", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.2 }}>{st.name}</h3>
                   <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "#D5E4F5", textWrap: "balance" }}>{st.body}</p>
@@ -347,29 +391,79 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
                 {s.heading ? <h2 style={{ margin: 0, fontSize: "clamp(28px,3.2vw,46px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.03em", textWrap: "balance", maxWidth: "14ch" }}>{s.heading}</h2> : null}
                 {s.intro ? <p style={{ margin: "18px 0 0", fontSize: "clamp(16.5px,1.3vw,18.5px)", lineHeight: 1.65, color: "#334155", maxWidth: "40ch" }}>{s.intro}</p> : null}
               </div>
-              {/* Soft tinted panel rather than a saturated slab — this page
-                  should read inviting. Values keep regular weight so they stay
-                  a quieter voice than the 800 heading beside them. */}
-              <ul style={{ background: "rgba(0,52,160,.06)", border: "1px solid rgba(0,52,160,.10)", borderRadius: 10, padding: "clamp(10px,1.4vw,20px) clamp(24px,3vw,44px)" }}>
-                {s.items.map((t, i) => (
-                  <Reveal
-                    as="li"
-                    key={t}
-                    delay={i * 0.06}
-                    style={{
-                      padding: "clamp(20px,2.2vw,30px) 0",
-                      borderTop: i === 0 ? undefined : "1px solid rgba(2,31,67,.12)",
-                      fontSize: "clamp(23px,2.5vw,34px)",
-                      fontWeight: 400,
-                      lineHeight: 1.25,
-                      letterSpacing: "-0.022em",
-                      color: "#021F43",
-                    }}
-                  >
-                    {t}
-                  </Reveal>
-                ))}
-              </ul>
+              {/* Dark panel on a light page, the same idiom as the homepage's
+                  contract-vehicle table — AngleField for the drawn navy field
+                  rather than a fourth bespoke texture, matching border, matching
+                  rest shadow. The values had been a plain list of five names in
+                  a pale tinted box: the one section on the page with nothing to
+                  look at, on a page whose whole job is who PTG is.
+
+                  No copy was invented to fill it. The values are still exactly
+                  the five strings PTG supplied; what changed is that they are
+                  now indexed, weighted and set on a field, so they read as a
+                  declared set rather than a leftover list. */}
+              <div
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRadius: 6,
+                  border: "1px solid rgba(128,206,255,.16)",
+                  boxShadow: "var(--shadow-rest-dark)",
+                }}
+              >
+                <AngleField
+                  id="values-field"
+                  stops={[
+                    { offset: "0%", color: "#01142C" },
+                    { offset: "48%", color: "#021F43" },
+                    { offset: "100%", color: "#0A3A78" },
+                  ]}
+                  scrim={[]}
+                  lineColor="#80CEFF"
+                  glowColor="#2C6BC4"
+                />
+                <ul style={{ position: "relative", zIndex: 1 }}>
+                  {s.items.map((t, i) => (
+                    <Reveal
+                      as="li"
+                      key={t}
+                      delay={i * 0.06}
+                      style={{
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: "clamp(14px,1.8vw,24px)",
+                        padding: "clamp(18px,2vw,26px) clamp(20px,2.6vw,34px)",
+                        borderTop: i === 0 ? undefined : "1px solid rgba(128,206,255,.16)",
+                      }}
+                    >
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          flex: "0 0 auto",
+                          fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                          fontSize: 12,
+                          letterSpacing: ".1em",
+                          color: "#80CEFF",
+                        }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "clamp(20px,2.1vw,29px)",
+                          fontWeight: 800,
+                          lineHeight: 1.2,
+                          letterSpacing: "-0.024em",
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        {t}
+                      </span>
+                      <span aria-hidden="true" style={{ flex: "0 0 auto", width: 7, height: 7, marginLeft: "auto", alignSelf: "center", background: "#EB4900", transform: "rotate(45deg)" }} />
+                    </Reveal>
+                  ))}
+                </ul>
+              </div>
             </div>
           </Light>
         );
@@ -392,7 +486,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
           <ul style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(min(${cols === 4 ? 220 : cols === 3 ? 280 : 340}px,100%),1fr))`, gap: "clamp(2px,0.5vw,6px) clamp(24px,3vw,44px)" }}>
             {s.items.map((t, i) => (
               <Reveal as="li" key={t} delay={i * 0.03} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "13px 0", borderTop: "1px solid #E5E7EB", fontSize: 15.5, fontWeight: 600, lineHeight: 1.45, color: "#021F43" }}>
-                <Diamond color="#0034A0" size={7} mt={6} /> {t}
+                <Diamond size={7} mt={6} /> {t}
               </Reveal>
             ))}
           </ul>
@@ -443,7 +537,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
         <section key={key} aria-label="Testimonial" style={{ background: "#FFFFFF" }}>
           <div style={{ maxWidth: 1000, margin: "0 auto", padding: "clamp(60px,7vw,104px) clamp(20px,4vw,48px)", textAlign: "center" }}>
             <Reveal as="div">
-              <div aria-hidden="true" style={{ width: 44, height: 44, margin: "0 auto 30px", background: "#B4FF00", transform: "rotate(45deg)" }} />
+              <div aria-hidden="true" style={{ width: 44, height: 44, margin: "0 auto 30px", background: "#EB4900", transform: "rotate(45deg)" }} />
               <blockquote style={{ margin: 0 }} data-unverified={s.unverified ? "" : undefined}>
                 <p style={{ margin: "0 0 28px", fontSize: "clamp(20px,2.2vw,30px)", fontWeight: 600, lineHeight: 1.36, letterSpacing: "-0.018em", color: "#021F43", textWrap: "balance" }}>&ldquo;{s.quote}&rdquo;</p>
                 <footer style={{ fontSize: 14, fontWeight: 700, letterSpacing: ".09em", textTransform: "uppercase", color: "#334155" }}>{s.attribution}</footer>
@@ -457,41 +551,28 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
       return (
         <section key={key} style={{ position: "relative", background: "#021F43", color: "#FFFFFF", overflow: "hidden" }}>
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(128,206,255,.18) 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
-          <div aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, right: 0, height: 4, background: HAIRLINE }} />
-          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(44px,5vw,72px) clamp(20px,4vw,48px)" }}>
+          {/* Overlay, so the dot texture reaches the cut. */}
+          <SectionWedge from={from} to="#021F43" slant="left" overlay edge="top" hairline={WEDGE_INK} />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `calc(clamp(44px,5vw,72px) + ${wedgeClearance(from, "#021F43")}) clamp(20px,4vw,48px) clamp(44px,5vw,72px)` }}>
             {s.eyebrow ? <Reveal as="div" style={{ marginBottom: "clamp(26px,3vw,40px)" }}><EyebrowBar label={s.eyebrow} dark /></Reveal> : null}
-            {/* No bracketing rules: the band already reads as its own thing — dotted
-                texture, and the gradient hairline separating it from the section
-                above. The rules were a third separator doing the same job.
-                Row-gap only, so stacked stats still breathe on mobile while the
-                single row is unaffected. */}
-            <Reveal as="div" className="ptg-statrow" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(200px,100%),1fr))", gap: "clamp(26px,3vw,38px) 0" }}>
+            {/* No bracketing rules. The band already reads as its own thing:
+                dotted texture, and the wedge that cuts it away from the section
+                above. Rules were a third separator doing the same job.
+                The stats are plainly left-aligned to match — the justified
+                first/centre/last alignment only ever existed to sit flush
+                against those rules, so it left with them. */}
+            <Reveal as="div" className="ptg-statrow" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(200px,100%),1fr))", gap: "clamp(26px,3vw,38px) clamp(20px,3vw,44px)" }}>
               {s.items.map((it, i) => {
-                // First item flush to the left end of the rules, last flush to
-                // the right, everything between centred. Left-aligning every
-                // cell left the middle and right stats floating at the 1/3 and
-                // 2/3 marks instead of reading against the rules that bracket
-                // them. Alignment is on the FLEX BOX, not just text-align, or
-                // the label's 26ch measure keeps its own left edge and the
-                // block stays visually off-centre.
-                const last = i === s.items.length - 1;
-                const align = i === 0 ? "flex-start" : last ? "flex-end" : "center";
-                const textAlign = (i === 0 ? "left" : last ? "right" : "center") as "left" | "right" | "center";
-                const pad = "clamp(14px,2vw,26px)";
                 return (
-                  <div
-                    key={it.label}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: align,
-                      textAlign,
-
-                      paddingLeft: i === 0 ? 0 : pad,
-                      paddingRight: last ? 0 : pad,
-                    }}
-                  >
-                    <p style={{ margin: "0 0 8px", fontSize: "clamp(30px,3.7vw,52px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "-0.04em", color: i === 1 ? "#B4FF00" : i === 2 ? "#80CEFF" : "#FFFFFF" }}>{it.value}</p>
+                  <div key={it.label} style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
+                    {/* A figure that isn't a number ("Certified") is a label,
+                        not a quantity, and rendering it at 52px in a row of
+                        numerals read as a rendering fault. It drops to the
+                        subhead size and keeps the row's optical weight.
+                        Colour is uniform white: tinting by INDEX made the
+                        second stat lime and the third pale blue for no reason
+                        other than their position. */}
+                    <p style={{ margin: "0 0 8px", fontSize: /^\d/.test(it.value) ? "clamp(30px,3.7vw,52px)" : "clamp(21px,2.2vw,30px)", fontWeight: 800, lineHeight: /^\d/.test(it.value) ? 0.95 : 1.15, letterSpacing: "-0.04em", color: "#FFFFFF" }}>{it.value}</p>
                     <p style={{ margin: 0, fontSize: "clamp(13px,1.05vw,15px)", fontWeight: 600, lineHeight: 1.4, color: "#C9D8E8", maxWidth: "26ch", textWrap: "balance" }}>{it.label}</p>
                   </div>
                 );
@@ -537,23 +618,35 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
       );
 
     case "people":
+      /* This section carries no eyebrow/heading/intro, so routing it through
+         StickyHeader reserved a left column and left ~40% of the page blank
+         with three cards crammed into the right. The left column now holds a
+         photograph, which is what that space was always shaped for. */
       return (
         <Light key={key} bg={s.bg ?? bg}>
-          <StickyHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(230px,100%),1fr))", gap: "clamp(16px,2vw,22px)" }}>
-            {s.people.map((pn, i) => (
-              <Reveal as="article" key={pn.name} delay={i * 0.04} className="hov-card" style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: 6, padding: "clamp(22px,2.4vw,28px)", display: "flex", flexDirection: "column", gap: 4 }}>
-                <div aria-hidden="true" style={{ width: 46, height: 46, marginBottom: 14, borderRadius: 6, background: "#021F43", display: "grid", placeItems: "center" }}>
-                  <span style={{ fontSize: 17, fontWeight: 800, color: "#80CEFF", letterSpacing: "-0.01em" }}>{pn.name.split(" ").map((w) => w[0]).slice(0, 2).join("")}</span>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px,100%),1fr))", gap: "clamp(28px,4vw,64px)", alignItems: "start" }}>
+            <Reveal as="div">
+              {s.eyebrow || s.heading || s.intro ? (
+                <div style={{ marginBottom: "clamp(22px,3vw,32px)" }}>
+                  <SectionHeader eyebrow={s.eyebrow} heading={s.heading} intro={s.intro} maxWidth={460} />
                 </div>
-                <h3 style={{ margin: 0, fontSize: "clamp(17px,1.5vw,20px)", fontWeight: 800, letterSpacing: "-0.018em" }}>{pn.name}</h3>
-                <p style={{ margin: 0, fontSize: 14.5, fontWeight: 600, color: pn.unverifiedRole ? "#94A3B8" : "#0034A0" }} data-unverified={pn.unverifiedRole ? "" : undefined}>{pn.title}</p>
-                <p style={{ margin: "10px 0 0", fontSize: 13, lineHeight: 1.5, color: "#475569" }} data-unverified="">Bio to come from PTG.</p>
-              </Reveal>
-            ))}
+              ) : null}
+              {/* ⚠️ Placeholder photography, like every image on the site. */}
+              <Image
+                src="/images/evaluating-partner.png"
+                alt="Three colleagues talking beside a window overlooking a brick campus building"
+                width={1254}
+                height={1254}
+                sizes="(max-width: 900px) 100vw, 40vw"
+                style={{ width: "100%", height: "auto", borderRadius: 6, display: "block" }}
+                data-unverified=""
+              />
+            </Reveal>
+            <div>
+              <PeopleCards people={s.people} />
+              {s.note ? <p style={{ margin: "clamp(22px,3vw,32px) 0 0", fontSize: 13.5, lineHeight: 1.6, color: "#475569", maxWidth: "70ch" }}>{s.note}</p> : null}
+            </div>
           </div>
-          {s.note ? <p style={{ margin: "clamp(22px,3vw,32px) 0 0", fontSize: 13.5, lineHeight: 1.6, color: "#475569", maxWidth: "70ch" }}>{s.note}</p> : null}
-          </StickyHeader>
         </Light>
       );
 
@@ -572,7 +665,7 @@ function renderSection(s: Section, key: number, bg: "white" | "offwhite", from =
             </Reveal>
           ) : (
           <Reveal as="div" style={{ border: "1px dashed #94A3B8", borderRadius: 8, padding: "clamp(34px,4.5vw,60px) clamp(24px,3vw,40px)", textAlign: "center", background: "#FFFFFF" }}>
-            <div aria-hidden="true" style={{ width: 40, height: 40, margin: "0 auto 22px", background: "#B4FF00", transform: "rotate(45deg)", opacity: 0.9 }} />
+            <div aria-hidden="true" style={{ width: 40, height: 40, margin: "0 auto 22px", background: "#EB4900", transform: "rotate(45deg)", opacity: 0.9 }} />
             <p style={{ margin: "0 0 12px", fontSize: "clamp(18px,1.8vw,23px)", fontWeight: 800, letterSpacing: "-0.02em", color: "#021F43" }}>{s.title}</p>
             <p style={{ margin: "0 auto 26px", fontSize: 17, lineHeight: 1.6, color: "#334155", maxWidth: "58ch", textWrap: "balance" }}>{s.body}</p>
             {s.cta ? <Link href={s.cta.href} className="hov-cta-navy hov-move cta" style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>{s.cta.label} <Arrow /></Link> : null}
@@ -604,14 +697,28 @@ export function StandardPageView({ page, site }: { page: StandardPage; site: Sit
   // Alternate white / off-white across the plain light sections for rhythm;
   // full-bleed bands (steps, testimonial, stats, cta) don't consume a turn.
   let lightIndex = 0;
-  let prevBg = "#FFFFFF";
+  // Seeded with the HERO's navy, not white. Every wedge is painted in the
+  // colour of the band above it, and the band above section 0 is the hero — a
+  // page that opens straight onto a stats band (Higher Education does) was
+  // previously told the colour above it was white.
+  let prevBg = "#021F43";
   const isLight = (k: Section["kind"]) => !["steps", "testimonial", "stats", "cta"].includes(k);
+
+  // The hero draws the cut into the first section only when that section is a
+  // light one. Colour bands draw their own wedge, so handing the hero one too
+  // would stack two cuts on the same boundary.
+  const first = page.sections[0];
+  const heroBelow = !first
+    ? "#FFFFFF"
+    : isLight(first.kind)
+      ? sectionBg(first, "white")
+      : null;
 
   return (
     <>
       <SiteHeader site={site} currentLabel={page.currentLabel} />
       <main id="main">
-        <PageHero hero={page.hero} breadcrumbs={page.breadcrumbs} />
+        <PageHero hero={page.hero} breadcrumbs={page.breadcrumbs} below={heroBelow} />
         {page.sections.map((s, i) => {
           const alt: "white" | "offwhite" = isLight(s.kind) ? (lightIndex++ % 2 === 0 ? "white" : "offwhite") : "white";
           const resolved = isLight(s.kind) ? resolveLight(s, alt) : alt;

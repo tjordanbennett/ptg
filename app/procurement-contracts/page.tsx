@@ -8,6 +8,7 @@ import { CopyNumber } from "@/components/CopyNumber";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { EyebrowBar } from "@/components/EyebrowBar";
 import { PageHero } from "@/components/StandardPage";
+import { SectionWedge, WEDGE_H } from "@/components/SectionWedge";
 import { Reveal } from "@/components/Reveal";
 import { ClosingCTA } from "@/components/ClosingCTA";
 
@@ -128,8 +129,29 @@ export default async function HowToBuyPage() {
 
         {/* ══ ORDERING STEPS ══ */}
         <section aria-labelledby="steps-h" style={{ position: "relative", background: "#0034A0", color: "#FFFFFF", overflow: "hidden" }}>
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: JOURNEY_STAR, backgroundSize: "74px 74px", opacity: 0.42 }} />
-          <div style={{ position: "relative", maxWidth: 1320, margin: "0 auto", padding: "clamp(60px,6.5vw,96px) clamp(20px,4vw,48px)" }}>
+          {/* Gradient wash under the texture. A flat #0034A0 field the height
+              of this band is a lot of one colour, and it made the star grid the
+              only thing giving the section depth — which is why the texture had
+              been pushed to 0.42 and ended up shouting. The gradient carries the
+              depth now, so the stars can sit back at the site's usual 0.21. */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "radial-gradient(120% 95% at 12% 0%, rgba(0,72,190,.55), rgba(0,52,160,0) 62%), linear-gradient(200deg, rgba(0,52,160,0) 45%, rgba(1,32,104,.5) 100%)" }} />
+          {/* Masked so the grid fades out under the heading and reads strongest
+              in the far corner, the same idiom the interior heroes use. */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: JOURNEY_STAR,
+              backgroundSize: "74px 74px",
+              opacity: 0.21,
+              WebkitMaskImage: "linear-gradient(115deg, transparent 30%, #000 100%)",
+              maskImage: "linear-gradient(115deg, transparent 30%, #000 100%)",
+            }}
+          />
+          <SectionWedge from="#FFFFFF" to="#0034A0" slant="left" overlay edge="top" />
+          <SectionWedge from="#0034A0" to="#F0F2F4" slant="right" overlay edge="bottom" />
+          <div style={{ position: "relative", zIndex: 2, maxWidth: 1320, margin: "0 auto", padding: `calc(clamp(60px,6.5vw,96px) + ${WEDGE_H}) clamp(20px,4vw,48px)` }}>
             <div style={{ maxWidth: 620, marginBottom: "clamp(32px,3.6vw,50px)" }}>
               <EyebrowBar label={p.ordering.eyebrow} dark />
               <h2 id="steps-h" style={{ margin: "0 0 16px", fontSize: "clamp(26px,2.8vw,39px)", fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.028em", textWrap: "balance" }}>{p.ordering.heading}</h2>
