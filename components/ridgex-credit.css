@@ -1,0 +1,99 @@
+/* "Site built by RidgeX": the footer credit on every site RidgeX builds.
+   Canonical copy: ridgexventures.com/brand#credit. Copy as is; don't restyle per client.
+
+   Colors are fixed on purpose so the credit looks the same on every site. Rest colors are
+   translucent so they sit on any dark or light footer. Contrast, worst case:
+   dark:  rest text 6.7:1, hover "RidgeX" #FF7A45 5.9:1, both on #262626
+   light: rest text 6.4:1, hover "RidgeX" #B23B0B 5.1:1, both on a warm gray #EFEDE9
+   (#B23B0B, not the usual #C2410C, so it still passes on off-white footers)
+
+   The one setting: --rx-credit-accent. On a mid-tone light footer (a colored band, not white or
+   off-white) the orange can dip under 4.5:1. Set this on the footer to a deeper orange that passes,
+   e.g. #8F2E07 (4.6:1 on #AEC3E0). Nothing else about the credit changes per site. */
+
+.rx-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.rx-credit__mark {
+  flex-shrink: 0;
+  height: 1.6em;
+  width: auto;
+  overflow: visible;
+}
+.rx-credit__sun {
+  transform: translateY(9px); /* tucked behind the ridges */
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.rx-credit__sun-color {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.rx-credit__sun-rest {
+  transition: opacity 0.3s ease;
+}
+.rx-credit__back,
+.rx-credit__front {
+  transition: fill 0.3s ease;
+}
+.rx-credit__name {
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+/* At rest */
+.rx-credit--dark { color: rgb(255 255 255 / 0.62); }
+.rx-credit--dark .rx-credit__sun-rest { fill: rgb(255 255 255 / 0.35); }
+.rx-credit--dark .rx-credit__back { fill: rgb(255 255 255 / 0.5); }
+.rx-credit--dark .rx-credit__front { fill: rgb(255 255 255 / 0.8); }
+
+.rx-credit--light { color: rgb(11 26 51 / 0.72); }
+.rx-credit--light .rx-credit__sun-rest { fill: rgb(11 26 51 / 0.2); }
+.rx-credit--light .rx-credit__back { fill: rgb(11 26 51 / 0.32); }
+.rx-credit--light .rx-credit__front { fill: rgb(11 26 51 / 0.6); }
+
+/* The "on" state: the sun is up and everything takes its RidgeX color.
+   Mouse: on hover (inside hover:hover, so it never sticks after a tap).
+   Keyboard: on focus.
+   Touch screens: always on, since there is no hover to reveal it. */
+@media (hover: hover) {
+  .rx-credit:hover .rx-credit__sun { transform: none; }
+  .rx-credit:hover .rx-credit__sun-color { opacity: 1; }
+  .rx-credit:hover .rx-credit__sun-rest { opacity: 0; }
+  .rx-credit:hover .rx-credit__back { fill: #f2622e; }
+  .rx-credit--dark:hover { color: rgb(255 255 255 / 0.9); }
+  .rx-credit--dark:hover .rx-credit__front { fill: #ffffff; }
+  .rx-credit--dark:hover .rx-credit__name { color: #ff7a45; }
+  .rx-credit--light:hover { color: #0b1a33; }
+  .rx-credit--light:hover .rx-credit__front { fill: #0b1a33; }
+  .rx-credit--light:hover .rx-credit__name { color: var(--rx-credit-accent, #b23b0b); }
+}
+.rx-credit:focus-visible .rx-credit__sun { transform: none; }
+.rx-credit:focus-visible .rx-credit__sun-color { opacity: 1; }
+.rx-credit:focus-visible .rx-credit__sun-rest { opacity: 0; }
+.rx-credit:focus-visible .rx-credit__back { fill: #f2622e; }
+.rx-credit--dark:focus-visible { color: rgb(255 255 255 / 0.9); }
+.rx-credit--dark:focus-visible .rx-credit__front { fill: #ffffff; }
+.rx-credit--dark:focus-visible .rx-credit__name { color: #ff7a45; }
+.rx-credit--light:focus-visible { color: #0b1a33; }
+.rx-credit--light:focus-visible .rx-credit__front { fill: #0b1a33; }
+.rx-credit--light:focus-visible .rx-credit__name { color: var(--rx-credit-accent, #b23b0b); }
+@media (hover: none) {
+  .rx-credit .rx-credit__sun { transform: none; }
+  .rx-credit .rx-credit__sun-color { opacity: 1; }
+  .rx-credit .rx-credit__sun-rest { opacity: 0; }
+  .rx-credit .rx-credit__back { fill: #f2622e; }
+  .rx-credit--dark { color: rgb(255 255 255 / 0.9); }
+  .rx-credit--dark .rx-credit__front { fill: #ffffff; }
+  .rx-credit--dark .rx-credit__name { color: #ff7a45; }
+  .rx-credit--light { color: #0b1a33; }
+  .rx-credit--light .rx-credit__front { fill: #0b1a33; }
+  .rx-credit--light .rx-credit__name { color: var(--rx-credit-accent, #b23b0b); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rx-credit__sun { transition: none; }
+}

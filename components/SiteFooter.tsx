@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { SiteSettings } from "@/content/types";
+import RidgeXCredit from "@/components/RidgeXCredit";
+import "@/components/ridgex-credit.css";
 
 /** SiteFooter — dark footer (#011733) matching public/_design/*.html. */
 export function SiteFooter({ site }: { site: SiteSettings }) {
@@ -72,15 +74,10 @@ export function SiteFooter({ site }: { site: SiteSettings }) {
           */}
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "6px 22px" }}>
             <p style={{ margin: 0, fontSize: 13, letterSpacing: ".02em" }}>{f.copyright}</p>
-            <a
-              href="https://www.ridgexventures.com"
-              target="_blank"
-              rel="noopener"
-              className="credit-link"
-              style={{ fontSize: 13, letterSpacing: ".02em" }}
-            >
-              Site Built by RidgeX
-            </a>
+            {/* The standard RidgeX credit, copied as is from ridgexventures.com/brand#credit */}
+            <span style={{ fontSize: 13, letterSpacing: ".02em" }}>
+              <RidgeXCredit client="ptg" tone="dark" />
+            </span>
           </div>
           <ul style={{ display: "flex", flexWrap: "wrap", gap: 22 }}>
             {f.legalLinks.map((l) => (
